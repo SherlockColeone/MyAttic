@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.shop.domain.Order" table="order">
+		<id name="oid" column="oid"></id>
+		<property name="ordertime" column="ordertime"></property>
+		<property name="state" column="state"></property>
+		<property name="address" column="address"></property>
+		<property name="name" column="name"></property>
+		<property name="telephone" column="telephone"></property>
+		<property name="uid" type="java.lang.String" column="uid"></property>
+	</class>
+</hibernate-mapping>

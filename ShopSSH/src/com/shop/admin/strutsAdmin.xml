@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="admin" namespace="/" extends="struts-default">
+
+		<!-- 配置全局的result结果处理 -->
+		<global-results>
+			<result name="goLogin" type="redirect">/admin/login.jsp</result>
+		</global-results>
+		
+		<!-- 商品Action -->
+		<!-- 商品列表Action -->
+		<action name="AdminProductListAction" class="com.shop.admin.action.product.AdminProductListAction"
+			method="getproductList">
+			<result name="list">/admin/product/list.jsp</result>
+		</action>
+
+		<action name="AdminProductAddAction" class="com.shop.admin.action.product.AdminProductAddAction"
+			method="execute">
+			<result name="success">/admin/product/add.jsp</result>
+		</action>
+
+		<action name="AdminProductSaveAction" class="com.shop.admin.action.product.AdminProductSaveAction"
+			method="execute">
+			<result name="success" type="chain">
+				<param name="actionName">AdminProductListAction</param>
+			</result>
+		</action>
+
+		<action name="AdminProductEditAction" class="com.shop.admin.action.product.AdminProductEditAction"
+			method="execute">
+			<result name="success">/admin/product/edit.jsp</result>
+		</action>
+
+		<action name="AdminProductUpdateAction" class="com.shop.admin.action.product.AdminProductUpdateAction"
+			method="execute">
+			<result name="success" type="redirectAction">
+				<param name="actionName">AdminProductListAction</param>
+			</result>
+		</action>
+
+		<action name="AdminProductDeleteAction" class="com.shop.admin.action.product.AdminProductDeleteAction"
+			method="execute">
+			<result name="success" type="redirectAction">
+				<param name="actionName">AdminProductListAction</param>
+			</result>
+		</action>
+		
+		<!-- 分类Action -->
+		<action name="AdminCategoryListAction" class="com.shop.admin.action.category.AdminCategoryListAction">
+			<result>/admin/category/list.jsp</result>
+		</action>
+		<action name="AdminCategoryAddAction" class="com.shop.admin.action.category.AdminCategoryAddAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">AdminCategoryListAction</param>
+			</result>
+		</action>
+		<action name="AdminCategoryEditAction" class="com.shop.admin.action.category.AdminCategoryEditAction">
+			<result>/admin/category/edit.jsp</result>
+		</action>
+		<action name="AdminCategoryUpdatetAction" class="com.shop.admin.action.category.AdminCategoryUpdateAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">AdminCategoryListAction</param>
+			</result>
+		</action>				
+		<action name="AdminCategoryDeletetAction" class="com.shop.admin.action.category.AdminCategoryDeleteAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">AdminCategoryListAction</param>
+			</result>
+		</action>
+		
+		<action name="AdminLoginAction" class="com.shop.admin.action.AdminLoginAction"
+			method="login">
+			<result name="success" type="redirect">/admin/home.jsp</result>
+		</action>
+	</package>
+</struts>	

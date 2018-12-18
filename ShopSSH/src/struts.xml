@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="user" namespace="/" extends="struts-default">
+
+		<action name="IndexAction" class="com.shop.action.IndexAction">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="LoginAction" class="com.shop.action.LoginAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">IndexAction</param>
+			</result>
+			<result name="goLogin">/login.jsp</result>
+		</action>
+		
+		<action name="RegisterAction" class="com.shop.action.RegisterAction">
+			<result type="redirectAction">
+				<param name="actionName">IndexAction</param>
+			</result>
+		</action>
+		
+		<action name="CartAction" class="com.shop.action.CartAction">
+			<result name="cart">/cart.jsp</result>
+			<result name="goLogin">/login.jsp</result>
+			<result name="order_info">/order_info.jsp</result>
+			<result name="success">/cart.jsp</result>
+		</action>
+		
+		<action name="ProductAction" class="com.shop.action.ProductAction">
+			<result>/product_list.jsp</result>
+		</action>
+		
+		<action name="ProductInfoAction" class="com.shop.action.ProductInfoAction">
+			<result>/product_info.jsp</result>
+		</action>		
+
+		<action name="HeaderAction" class="com.shop.action.HeaderAction">
+			<result name="success">/header.jsp</result>
+		</action>
+		
+	</package>
+	<include file="com\shop\admin\strutsAdmin.xml"></include>
+	<!-- 修改开发模式，让配置文件变为热更新（修改配置文件无需重启服务器） -->
+	<constant name="struts.devMode" value="true"></constant>
+</struts>
