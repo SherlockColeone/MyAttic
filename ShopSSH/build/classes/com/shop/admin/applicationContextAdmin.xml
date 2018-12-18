@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" 	
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- 配置登录的Action -->
+	<bean name="AdminLoginAction" class="com.shop.admin.action.AdminLoginAction" scope="prototype">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+	
+	<!-- 配置商品的Action -->
+	<bean name="AdminProductAddAction" class="com.shop.admin.action.product.AdminProductAddAction" scope="prototype">
+		<property name="categoryService" ref="CategoryService"></property>
+	</bean>
+	<bean name="AdminProductDeleteAction" class="com.shop.admin.action.product.AdminProductDeleteAction" scope="prototype">
+		<property name="product" ref="product"></property>
+		<property name="productService" ref="ProductService"></property>
+	</bean>
+	<bean name="AdminProductEditAction" class="com.shop.admin.action.product.AdminProductEditAction" scope="prototype">
+		<property name="product" ref="product"></property>
+		<property name="productService" ref="ProductService"></property>
+		<property name="categoryService" ref="CategoryService"></property>
+	</bean>
+	<bean name="AdminProductListAction" class="com.shop.admin.action.product.AdminProductListAction" scope="prototype">
+		<property name="productService" ref="ProductService"></property>
+	</bean>
+	<bean name="AdminProductSaveAction" class="com.shop.admin.action.product.AdminProductSaveAction" scope="prototype">
+		<property name="product" ref="product"></property>
+		<property name="productService" ref="ProductService"></property>
+	</bean>
+	<bean name="AdminProductUpdateAction" class="com.shop.admin.action.product.AdminProductUpdateAction" scope="prototype">
+		<property name="product" ref="product"></property>
+		<property name="productService" ref="ProductService"></property>
+	</bean>
+	
+	<!-- 配置分类的Action -->
+	<bean name="AdminCategoryListAction" class="com.shop.admin.action.category.AdminCategoryListAction" scope="prototype">
+		<property name="category" ref="category"></property>
+		<property name="categoryService" ref="CategoryService"></property>
+	</bean>
+	<bean name="AdminCategoryAddAction" class="com.shop.admin.action.category.AdminCategoryAddAction" scope="prototype">
+		<property name="category" ref="category"></property>
+		<property name="categoryService" ref="CategoryService"></property>
+	</bean>
+	<bean name="AdminCategoryEditAction" class="com.shop.admin.action.category.AdminCategoryEditAction" scope="prototype">
+		<property name="category" ref="category"></property>
+		<property name="categoryService" ref="CategoryService"></property>
+	</bean>
+	<bean name="AdminCategoryUpdateAction" class="com.shop.admin.action.category.AdminCategoryUpdateAction" scope="prototype">
+		<property name="category" ref="category"></property>
+		<property name="categoryService" ref="CategoryService"></property>
+	</bean>
+	<bean name="AdminCategoryDeleteAction" class="com.shop.admin.action.category.AdminCategoryDeleteAction" scope="prototype">
+		<property name="category" ref="category"></property>
+		<property name="categoryService" ref="CategoryService"></property>
+	</bean>
+					
+</beans>
