@@ -34,6 +34,8 @@ public class Paint extends JPanel{
 		
 	}
 	
+	public void seeNothing() {}
+	
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
 		Paint panel = new Paint();
