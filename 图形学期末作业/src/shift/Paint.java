@@ -30,6 +30,9 @@ public class Paint extends JPanel{
 	public void set(int a){
 		this.a = a;
 	}
+	public void see() {
+		
+	}
 	
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
