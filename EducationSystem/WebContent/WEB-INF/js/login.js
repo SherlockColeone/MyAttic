@@ -31,52 +31,38 @@ $(function() {
 	});
 	
 		
-	//下拉框的值产生变化
+	//下拉框的值产生变化，身份产生变化
 	$("#identity").change(function(){
 		//选择学生身份时
 		if($("select option:selected").val()==3){
-			$("#id").html("学&nbsp;&nbsp;&nbsp;&nbsp;号:");
-		}
-		//选择教师身份时
-		else if($("select option:selected").val()==2){
-			$("#id").html("工&nbsp;&nbsp;&nbsp;&nbsp;号:");
-		}
-		//选择管理员身份时
-		else{
-			$("#id").html("工&nbsp;&nbsp;&nbsp;&nbsp;号:");
-		}
-	});
-	
-	//选择三种不同的身份分别进入不同的首页
-	function identity(){
-		//选择学生身份时
-		if($("select option:selected").val()==3){
 			//跳转到学生首页
-//			$("#form").setAttribute("action","${pageContext.servletContext.contextPath}/studentLogin");
-			location.href = "studentLogin";
+			$("#form").attr("action","studentLogin");
+			$("#idLabel").html("学&nbsp;&nbsp;&nbsp;&nbsp;号:");
 		}
 		//选择教师身份时
 		else if($("select option:selected").val()==2){
 			//跳转到教师首页
-//			$("#form").setAttribute("action","${pageContext.servletContext.contextPath}/teacherLogin");
-			location.href = "teacherLogin";
+			$("#form").attr("action","teacherLogin");
+			$("#idLabel").html("工&nbsp;&nbsp;&nbsp;&nbsp;号:");
 		}
 		//选择管理员身份时
-		else if($("select option:selected").val()==1){
+		else{
 			//跳转到管理员首页
-//			$("#form").setAttribute("action","${pageContext.servletContext.contextPath}/adminLogin");		
-			location.href = "adminLogin";
+			$("#form").attr("action","adminLogin");
+			$("#idLabel").html("工&nbsp;&nbsp;&nbsp;&nbsp;号:");
 		}
-	}
+	});
 	
 	//检查验证码是否填写正确
 	$("#submit").click(function(){
 		var check = $("#check").val().toLowerCase();
 		var code = $("#code").html().toLowerCase();
 		if (check==code) { //验证码输入正确
-			identity();
+			
 		} else{ //验证码输入错误
 			alert("验证码输入错误！");
+			return false;
+			location.href = "index";
 		}
 	});
 

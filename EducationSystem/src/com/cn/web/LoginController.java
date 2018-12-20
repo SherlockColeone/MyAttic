@@ -32,7 +32,6 @@ public class LoginController extends AbstractController{
 	private ServiceAdmin serivceAdmin;
 
 	@Override
-	@RequestMapping(value="/login")
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		return mv;
@@ -40,7 +39,6 @@ public class LoginController extends AbstractController{
 	
 	@RequestMapping(value="/studentLogin")
 	public String studentLogin(ModelAndView mv,Student student) {
-		System.out.println(student);
 		//Âß¼­²ãµÇÂ¼
 		student = serviceStudent.studentLogin(student.getId(), student.getPassword());
 		mv.addObject("student",student);
@@ -50,7 +48,6 @@ public class LoginController extends AbstractController{
 	
 	@RequestMapping(value="/teacherLogin")
 	public String teacherLogin(ModelAndView mv,Teacher teacher) {
-		System.out.println(teacher);
 		//Âß¼­²ãµÇÂ¼
 		teacher = seriveTeacher.teacherLogin(teacher.getId(), teacher.getPassword());
 		mv.addObject("teacher",teacher);
@@ -60,7 +57,6 @@ public class LoginController extends AbstractController{
 	
 	@RequestMapping(value="/adminLogin")
 	public String adminLogin(ModelAndView mv,Admin admin) {
-		System.out.println(admin);
 		//Âß¼­²ãµÇÂ¼
 		admin = serivceAdmin.adminLogin(admin.getId(), admin.getPassword());
 		mv.addObject("admin",admin);
