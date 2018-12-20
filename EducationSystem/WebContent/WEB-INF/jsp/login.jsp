@@ -69,7 +69,7 @@
 									<a class="col-md-7">看不清，换一张</a>
 								</div>
 								<div id="loginBtn" class="col-md-8 col-md-offset-2">
-									<button id="submit" type="submit" class="btn btn-primary">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+									<button id="submit" type="button" class="btn btn-primary">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
 								</div>
 							</div>
 						</form>

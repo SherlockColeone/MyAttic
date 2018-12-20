@@ -40,29 +40,32 @@ public class LoginController extends AbstractController{
 	
 	@RequestMapping(value="/studentLogin")
 	public String studentLogin(ModelAndView mv,Student student) {
+		System.out.println(student);
 		//逻辑层登录
 		student = serviceStudent.studentLogin(student.getId(), student.getPassword());
 		mv.addObject("student",student);
 		//跳到学生首页界面
-		return "student_home";
+		return "student/student_home";
 	}
 	
 	@RequestMapping(value="/teacherLogin")
 	public String teacherLogin(ModelAndView mv,Teacher teacher) {
+		System.out.println(teacher);
 		//逻辑层登录
 		teacher = seriveTeacher.teacherLogin(teacher.getId(), teacher.getPassword());
 		mv.addObject("teacher",teacher);
 		//跳到教师首页界面
-		return "teacher_home";
+		return "teacher/teacher_home";
 	}
 	
 	@RequestMapping(value="/adminLogin")
 	public String adminLogin(ModelAndView mv,Admin admin) {
+		System.out.println(admin);
 		//逻辑层登录
 		admin = serivceAdmin.adminLogin(admin.getId(), admin.getPassword());
 		mv.addObject("admin",admin);
 		//跳到教师首页界面
-		return "admin_home";
+		return "admin/admin_home";
 	}
 	
 }

@@ -51,15 +51,21 @@ $(function() {
 	function identity(){
 		//选择学生身份时
 		if($("select option:selected").val()==3){
-//			window.location.href = "";
+			//跳转到学生首页
+//			$("#form").setAttribute("action","${pageContext.servletContext.contextPath}/studentLogin");
+			location.href = "studentLogin";
 		}
 		//选择教师身份时
 		else if($("select option:selected").val()==2){
-//			window.location.href = "";
+			//跳转到教师首页
+//			$("#form").setAttribute("action","${pageContext.servletContext.contextPath}/teacherLogin");
+			location.href = "teacherLogin";
 		}
 		//选择管理员身份时
 		else if($("select option:selected").val()==1){
-//			window.location.href = "";
+			//跳转到管理员首页
+//			$("#form").setAttribute("action","${pageContext.servletContext.contextPath}/adminLogin");		
+			location.href = "adminLogin";
 		}
 	}
 	
