@@ -1,7 +1,6 @@
 package com.cn.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.cn.bean.Admin;
 import com.cn.bean.Cet;
@@ -327,7 +326,7 @@ public interface ServiceAdmin {
 	 * @param cetid 社会考试id
 	 * @return 社会考试报名集合
 	 */
-	public Map<Integer,Enrollcet> searchAllEnrollcetByCetid(int cetid);
+	public List<Enrollcet> searchAllEnrollcetByCetid(int cetid);
 	
 	/**
 	 * 	管理员查询某一次社会考试所有报名的学生学号
