@@ -26,7 +26,7 @@
 							<h3>用户登录</h3>
 							<span>USER LOGIN</span>
 						</div>
-						<form method="post" id="form" class="bs-example bs-example-form col-md-offset-1" role="form">
+						<form action="${pageContext.servletContext.contextPath}/studentLogin" method="post" id="form" class="bs-example bs-example-form col-md-offset-1">
 							<div class="container col-md-12">
 								<div class="input-group col-md-7">
 									<div class="col-md-5">
@@ -42,10 +42,10 @@
 								</div>
 								<div class="input-group col-md-9">
 									<div class="col-md-3">
-										<label id="id">学&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
+										<label id="idLabel">学&nbsp;&nbsp;&nbsp;&nbsp;号:</label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" placeholder="请输入学号或工号" name="id">
+										<input id="id" type="text" name="id" class="form-control" placeholder="请输入学号或工号">
 									</div>
 								</div>
 								<div class="input-group col-md-9">
@@ -53,7 +53,7 @@
 										<label>密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
 									</div>
 									<div class="col-md-9">
-										<input type="password" class="form-control" placeholder="请输入密码" name="password">
+										<input id="password" type="password" name="password" class="form-control" placeholder="请输入密码">
 									</div>
 								</div>
 								<div class="input-group col-md-9">

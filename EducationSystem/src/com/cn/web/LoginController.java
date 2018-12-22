@@ -1,13 +1,12 @@
 package com.cn.web;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.cn.bean.Admin;
 import com.cn.bean.Student;
@@ -23,45 +22,45 @@ import com.cn.service.ServiceTeacher;
  */
 
 @Controller
-public class LoginController extends AbstractController{
+public class LoginController {
 	@Autowired
 	private ServiceStudent serviceStudent;
 	@Autowired
 	private ServiceTeacher seriveTeacher;
 	@Autowired
 	private ServiceAdmin serivceAdmin;
-
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		return mv;
-	}
 	
 	@RequestMapping(value="/studentLogin")
-	public String studentLogin(ModelAndView mv,Student student) {
-		//逻辑层登录
+	public String studentLogin(ModelAndView mv,Student student,HttpServletRequest request) {
+		//逻辑层登录获取学生个人信息
 		student = serviceStudent.studentLogin(student.getId(), student.getPassword());
-		mv.addObject("student",student);
-		//跳到学生首页界面
-		return "student/student_home";
+		HttpSession session = request.getSession();
+		//把学生对象存入session域中
+		session.setAttribute("student", student);
+		//重定向学生首页界面
+		return "redirect:studentHome";
 	}
 	
 	@RequestMapping(value="/teacherLogin")
-	public String teacherLogin(ModelAndView mv,Teacher teacher) {
-		//逻辑层登录
+	public String teacherLogin(ModelAndView mv,Teacher teacher,HttpServletRequest request) {
+		//逻辑层获取教师个人信息
 		teacher = seriveTeacher.teacherLogin(teacher.getId(), teacher.getPassword());
-		mv.addObject("teacher",teacher);
+		HttpSession session = request.getSession();
+		//把教师对象存入session域中
+		session.setAttribute("teacher", teacher);
 		//跳到教师首页界面
-		return "teacher/teacher_home";
+		return "redirect:teacherHome";
 	}
 	
 	@RequestMapping(value="/adminLogin")
-	public String adminLogin(ModelAndView mv,Admin admin) {
-		//逻辑层登录
+	public String adminLogin(ModelAndView mv,Admin admin,HttpServletRequest request) {
+		//逻辑层获取管理员个人信息
 		admin = serivceAdmin.adminLogin(admin.getId(), admin.getPassword());
-		mv.addObject("admin",admin);
-		//跳到教师首页界面
-		return "admin/admin_home";
+		HttpSession session = request.getSession();
+		//把管理员对象存入session域中
+		session.setAttribute("admin", admin);
+		//跳到管理员首页界面
+		return "redirect:adminHome";
 	}
 	
 }
