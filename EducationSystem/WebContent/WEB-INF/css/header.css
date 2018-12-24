@@ -1,0 +1,32 @@
+/*
+ * header的css文件
+ */
+
+.container{
+	margin-top:8px;
+}
+
+#group>div>a{
+	background-color: DarkSeaGreen;
+	color:navy;
+}
+
+.navbar-nav{
+	float: none;
+	text-align: center;
+}
+
+#navigator{
+	background-color:DarkSeaGreen;
+}
+
+li{
+	float: none;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+li>a{
+	color:navy;
+	font-size: 15px;
+}
