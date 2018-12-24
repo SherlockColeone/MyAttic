@@ -1,14 +1,33 @@
 /*
- * headerçš„cssæ–‡ä»¶
+ * headerµÄcssÎÄ¼þ
  */
 
 .container{
 	margin-top:8px;
 }
 
-#group>div>a{
+.btn{
 	background-color: DarkSeaGreen;
 	color:navy;
+}
+
+.dropdown-menu li{
+	margin-top: 5px;
+}
+
+#DarkSeaGreen{
+	background-color: DarkSeaGreen;
+	color: navy;
+}
+
+#SkyBlue{
+	background-color: skyblue;
+	color: black;
+}
+
+#Black{
+	background-color: black;
+	color:silver;
 }
 
 .navbar-nav{
@@ -26,7 +45,7 @@ li{
 	margin-left: 20px;
 }
 
-li>a{
+li a{
 	color:navy;
 	font-size: 15px;
 }
