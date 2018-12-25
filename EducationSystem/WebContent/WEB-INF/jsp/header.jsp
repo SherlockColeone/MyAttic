@@ -61,26 +61,20 @@
 				//更改颜色
 				//浅绿色
 				$("#DarkSeaGreen").click(function() {
-					$(".btn").css("background-color", "DarkSeaGreen");
-					$(".btn").css("color", "navy");
-					$("#navigator").css("background-color", "DarkSeaGreen");
-					$(".nav>li>a").css("color", "navy");
+					$(".change").css("background-color", "DarkSeaGreen");
+					$(".change").css("color", "navy");
 				});
 
 				//天蓝色
 				$("#SkyBlue").click(function() {
-					$(".btn").css("background-color", "SkyBlue");
-					$(".btn").css("color", "black");
-					$("#navigator").css("background-color", "SkyBlue");
-					$(".nav>li>a").css("color", "black");
+					$(".change").css("background-color", "SkyBlue");
+					$(".change").css("color", "black");
 				});
 
 				//黑色
 				$("#Black").click(function() {
-					$(".btn").css("background-color", "black");
-					$(".btn").css("color", "silver");
-					$("#navigator").css("background-color", "black");
-					$(".nav>li>a").css("color", "silver");
+					$(".change").css("background-color", "black");
+					$(".change").css("color", "silver");
 				});
 
 			});
@@ -100,7 +94,7 @@
 						</div>
 						<div id="group" class="col-md-6">
 							<div class="col-md-6 btn-group">
-								<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+								<button type="button" class="btn dropdown-toggle change" data-toggle="dropdown">
 									更改样式
 									<span class="caret"></span>
 								</button>
@@ -117,7 +111,7 @@
 								</ul>
 							</div>
 							<div class="col-md-6">
-								<a href="#" id="quit" class="btn" role="button">注销</a>
+								<a href="#" id="quit" class="btn change" role="button">注销</a>
 							</div>
 						</div>
 					</div>
@@ -125,30 +119,30 @@
 			</div>
 
 			<!--导航栏-->
-			<div id="navigator" class="col-md-12">
-				<div class="col-md-offset-3">
+			<div id="navigator" class="col-md-12 change">
+				<div class="col-md-offset-2">
 					<!-- 导航条中的导航组件 -->
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="#">首页</a>
+							<a href="#" class="change">网站首页</a>
 						</li>
 						<li>
-							<a href="#">个人信息</a>
+							<a href="#" class="change">个人信息</a>
 						</li>
 						<li>
-							<a href="#">课程安排</a>
+							<a href="#" class="change">课程安排</a>
 						</li>
 						<li>
-							<a href="#">学生成绩</a>
+							<a href="#" class="change">学生成绩</a>
 						</li>
 						<li>
-							<a href="#">考试安排</a>
+							<a href="#" class="change">考试安排</a>
 						</li>
 						<li>
-							<a href="#">选课中心</a>
+							<a href="#" class="change">选课中心</a>
 						</li>
 						<li>
-							<a href="#">其他</a>
+							<a href="#" class="change">密码管理</a>
 						</li>
 					</ul>
 				</div>
