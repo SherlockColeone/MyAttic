@@ -11,6 +11,13 @@
 		<script type="text/javascript" src="../../js/jquery-2.1.0.js" ></script>
 		<script type="text/javascript" src="../../js/bootstrap.js" ></script>
 		<script type="text/javascript" src="../../js/link.js" ></script>
+		<script>
+			$(function() {
+				//添加外部html
+				$("#header").load("../header.jsp");
+				$("#footer").load("../footer.html");
+			});
+		</script>
 	</head>
 	<body>
 		<div id="header"></div>
