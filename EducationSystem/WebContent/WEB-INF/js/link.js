@@ -1,5 +1,5 @@
 $(function(){
 	//添加外部html
-	$("#header").load("header.html");
-	$("#footer").load("footer.html");
+	$("#header").load("/WEB-INF/jsp/header.jsp");
+	$("#footer").load("/WEB-INF/jsp/footer.html");
 });

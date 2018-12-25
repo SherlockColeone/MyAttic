@@ -91,7 +91,7 @@
 		<div class="container col-md-12">
 			<div id="top" class="col-md-10 col-lg-offset-2">
 				<div class="col-md-6">
-					<img src="../../images/logo.png" />
+					<img src="images/logo.png" />
 				</div>
 				<div id="topRight" class="col-md-offset-6">
 					<div class="col-md-10">
@@ -130,16 +130,16 @@
 					<!-- 导航条中的导航组件 -->
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="首页index.html">首页</a>
+							<a href="#">首页</a>
 						</li>
 						<li>
-							<a href="产品列表list.html">个人信息</a>
+							<a href="#">个人信息</a>
 						</li>
 						<li>
-							<a href="手机phone.html">课程安排</a>
+							<a href="#">课程安排</a>
 						</li>
 						<li>
-							<a href="电脑pc.html">学生成绩</a>
+							<a href="#">学生成绩</a>
 						</li>
 						<li>
 							<a href="#">考试安排</a>

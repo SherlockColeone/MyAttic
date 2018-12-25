@@ -1,71 +1,78 @@
 /**
- * 瀛︾敓涓汉棣栭〉鐨刢ss鏂囦欢
+ * 学生个人首页的css文件
  */
 
 #main{
 	margin-bottom: 20px;
 }
 
-#block div{
+a{
+	color: white;
 	margin: 5px;
+}
+
+.col-md-4{
+	height: 304px;	
+}
+
+.col-md-2{
+	color: white;
+	height: 150px;
+	padding: 30px;
 }
 
 #message{
 	background-color: MediumSeaGreen;
 	color: white;
-	height: 320px;
+	height: 304px;
+	padding-top: 50px;
 }
 
 #curriculum{
 	background-color: cornflowerblue;
 	color: white;
-	height: 160px;
+	height: 304px;
+	padding-top: 100px;
 }
 
 #courses{
 	background-color: crimson;
 	color: white;
-	height: 160px;
 }
 
 #elective{
 	background-color: MediumOrchid ;
 	color: white;
-	height: 160px;
 }
 
 #curriculumarrange{
 	background-color: Darkorange;
 	color: white;
-	height: 160px;
 }
 
 #exam{
 	background-color: Peru ;
 	color: white;
-	height: 160px;
 }
 
 #cet{
 	background-color: CadetBlue ;
 	color: white;
-	height: 160px;
 }
 
 #stuscore{
 	background-color: brown ;
 	color: white;
-	height: 160px;
+	height: 150px;
+	padding: 20px;
 }
 
 #evaluation{
 	background-color: DarkOliveGreen ;
 	color: white;
-	height: 160px;	
 }
 
 #password{
 	background-color: MediumPurple ;
 	color: white;
-	height: 160px;	
 }
