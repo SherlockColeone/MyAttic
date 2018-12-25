@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>header</title>
@@ -156,5 +155,4 @@
 			</div>
 		</div>
 	</body>
-
 </html>
