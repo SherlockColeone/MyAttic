@@ -319,6 +319,9 @@ public class ServiceStudentImpl implements ServiceStudent {
 		criteria.andStudentidEqualTo(studentid);
 		criteria.andCetidEqualTo(cetid);
 		List<Enrollcet> list = enrollcetMapper.selectByExample(example);
+		if(list.size()==0) {
+			return null;
+		}
 		return list.get(0);
 	}
 
@@ -329,6 +332,9 @@ public class ServiceStudentImpl implements ServiceStudent {
 		criteria.andStudentidEqualTo(studentid);
 		criteria.andCetidEqualTo(cetid);
 		List<Gradecet> list = gradecetMapper.selectByExample(example);
+		if(list.size()==0) {
+			return null;
+		}
 		return list.get(0);
 	}
 

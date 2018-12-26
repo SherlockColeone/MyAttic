@@ -10,7 +10,6 @@
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/header.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
-		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/header.js"></script>
 
 	</head>
@@ -54,7 +53,7 @@
 								</ul>
 							</div>
 							<div class="col-md-6">
-								<a href="${pageContext.servletContext.contextPath}/quit" id="quit" class="btn change" role="button">注销</a>
+								<button id="quit" class="btn change" role="button">注销</button>
 							</div>
 						</div>
 					</div>

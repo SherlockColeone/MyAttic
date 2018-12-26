@@ -21,5 +21,15 @@ $(function() {
 		$(".change").css("background-color", "black");
 		$(".change").css("color", "silver");
 	});
+	
+	//注销确认事件
+	$("#quit").click(function() {
+		if(confirm("确定注销账户？")){
+			location.href = "quit";
+		}
+		else{
+			return false;
+		}
+	});
 
 });
