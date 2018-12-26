@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,7 +24,16 @@
 				<div id="topRight" class="col-md-offset-6">
 					<div class="col-md-10">
 						<div class="col-md-6">
-							欢迎回来！周星星同学！
+							欢迎回来！
+							<c:if test="${not empty student }">
+								${student.name }同学！
+							</c:if>
+							<c:if test="${not empty teacher }">
+								${teacher.name }老师！
+							</c:if>
+							<c:if test="${not empty admin }">
+								${admin.name }管理员！
+							</c:if>
 						</div>
 						<div id="group" class="col-md-6">
 							<div class="col-md-6 btn-group">

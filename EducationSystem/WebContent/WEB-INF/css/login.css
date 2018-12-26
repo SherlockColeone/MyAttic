@@ -29,7 +29,7 @@
 
 #login{
 	width: 480px;
-	height: 400px;
+	height: 430px;
 	background-color: white;
 	border-radius: 10px;
 	padding-top: 8px;
@@ -67,4 +67,10 @@ label{
 
 #submit{
 	width: 140px;
+}
+
+#warning{
+	font-size: 15px;
+	color: red;
+	margin-top: 300px;
 }

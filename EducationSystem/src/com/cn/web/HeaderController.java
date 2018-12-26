@@ -35,7 +35,16 @@ public class HeaderController {
 	 * @return 进入header
 	 */
 	@RequestMapping(value="/header")
-	public String header() {
+	public String header(ModelAndView mv,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取对象
+		Student student = (Student) session.getAttribute("student");
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		Admin admin = (Admin) session.getAttribute("admin");
+		//对象添加到视图中
+		mv.addObject("student", student);
+		mv.addObject("teacher", teacher);
+		mv.addObject("admin", admin);
 		//进入header
 		return "header";
 	}

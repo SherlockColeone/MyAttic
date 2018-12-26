@@ -51,6 +51,13 @@ public class IndexController {
 	public String studentLogin(ModelAndView mv,Student student,HttpServletRequest request) {
 		//逻辑层登录获取学生个人信息
 		student = serviceStudent.studentLogin(student.getId(), student.getPassword());
+		if(student==null) {
+			//添加警告提示
+			String warning = "账号不存在或密码输入错误！请重新输入！";
+			mv.addObject("warning",warning);
+			//跳转回登录界面
+			return "login";
+		}
 		HttpSession session = request.getSession();
 		//把学生对象存入session域中
 		session.setAttribute("student", student);

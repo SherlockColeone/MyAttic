@@ -54,12 +54,16 @@ $(function() {
 	});
 	
 	//检查验证码是否填写正确
-	$("#submit").click(function(){
+	$("#submit").click(function() {
 		var check = $("#check").val().toLowerCase();
 		var code = $("#code").html().toLowerCase();
-		if (check==code) { //验证码输入正确
-			
-		} else{ //验证码输入错误
+		if(check == code) { //验证码输入正确
+			if($("#id").html() == null || $("#password").html() == null) {
+				alert("请输入账户和密码！");
+				return false;
+				location.href = "index";
+			}
+		} else { //验证码输入错误
 			alert("验证码输入错误！");
 			return false;
 			location.href = "index";
