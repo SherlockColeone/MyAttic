@@ -16,16 +16,13 @@ a{
 }
 
 .col-md-2{
-	color: white;
 	height: 150px;
-	padding: 30px;
 }
 
 #message{
 	background-color: MediumSeaGreen;
 	color: white;
 	height: 304px;
-	padding-top: 50px;
 }
 
 #curriculum{
@@ -38,26 +35,31 @@ a{
 #courses{
 	background-color: crimson;
 	color: white;
+	padding-top: 30px;
 }
 
 #elective{
 	background-color: MediumOrchid ;
 	color: white;
+	padding-top: 30px;
 }
 
 #curriculumarrange{
 	background-color: Darkorange;
 	color: white;
+	padding-top: 30px;
 }
 
 #exam{
 	background-color: Peru ;
 	color: white;
+	padding-top: 30px;
 }
 
 #cet{
 	background-color: CadetBlue ;
 	color: white;
+	padding-top: 30px;
 }
 
 #stuscore{
@@ -70,9 +72,11 @@ a{
 #evaluation{
 	background-color: DarkOliveGreen ;
 	color: white;
+	padding-top: 30px;
 }
 
 #password{
 	background-color: MediumPurple ;
 	color: white;
+	padding-top: 30px;
 }

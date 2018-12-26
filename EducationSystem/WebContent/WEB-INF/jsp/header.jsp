@@ -5,80 +5,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>header</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/bootstrap-theme.css" />
+		<link rel="stylesheet" href="css/header.css" />
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/header.js"></script>	
 
-		<style>
-			.container {
-				margin-top: 8px;
-			}
-			
-			.btn {
-				background-color: DarkSeaGreen;
-				color: navy;
-			}
-			
-			.dropdown-menu li {
-				margin-top: 5px;
-			}
-			
-			#DarkSeaGreen {
-				background-color: DarkSeaGreen;
-				color: navy;
-			}
-			
-			#SkyBlue {
-				background-color: skyblue;
-				color: black;
-			}
-			
-			#Black {
-				background-color: black;
-				color: silver;
-			}
-			
-			.navbar-nav {
-				float: none;
-				text-align: center;
-			}
-			
-			#navigator {
-				background-color: DarkSeaGreen;
-			}
-			
-			li {
-				float: none;
-				display: inline-block;
-				margin-left: 20px;
-			}
-			
-			li a {
-				color: navy;
-				font-size: 15px;
-			}
-		</style>
-
-		<script>
-			$(function() {
-				//更改颜色
-				//浅绿色
-				$("#DarkSeaGreen").click(function() {
-					$(".change").css("background-color", "DarkSeaGreen");
-					$(".change").css("color", "navy");
-				});
-
-				//天蓝色
-				$("#SkyBlue").click(function() {
-					$(".change").css("background-color", "SkyBlue");
-					$(".change").css("color", "black");
-				});
-
-				//黑色
-				$("#Black").click(function() {
-					$(".change").css("background-color", "black");
-					$(".change").css("color", "silver");
-				});
-
-			});
-		</script>
 	</head>
 
 	<body>
