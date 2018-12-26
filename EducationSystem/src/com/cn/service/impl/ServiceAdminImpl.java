@@ -80,6 +80,9 @@ public class ServiceAdminImpl implements ServiceAdmin {
 		criteria.andIdEqualTo(adminid);
 		criteria.andPasswordEqualTo(password);
 		List<Admin> list = adminMapper.selectByExample(example);
+		if(list.size()==0) {
+			return null;
+		}
 		return list.get(0);
 	}
 

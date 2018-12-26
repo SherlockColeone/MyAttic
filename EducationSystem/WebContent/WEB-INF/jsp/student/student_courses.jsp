@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>学生学籍信息</title>
+		<title>学生课程安排</title>
 		<link rel="stylesheet" href="../../css/bootstrap.css" />
 		<link rel="stylesheet" href="../../css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="../../css/student/home_student.css" />

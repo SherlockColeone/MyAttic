@@ -75,6 +75,9 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		criteria.andIdEqualTo(teacherid);
 		criteria.andPasswordEqualTo(password);
 		List<Teacher> list = teacherMapper.selectByExample(example);
+		if(list.size()==0) {
+			return null;
+		}
 		return list.get(0);
 	}
 

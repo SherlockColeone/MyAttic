@@ -19,7 +19,7 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div id="block" class="col-md-8 col-md-offset-2">
-				<a href="#" id="curriculum" class="col-md-2 btn">
+				<a href="${pageContext.servletContext.contextPath}/studentCurriculum" id="curriculum" class="col-md-2 btn">
 					<img src="images/curriculum.png" />
 					<div>课程表</div>
 				</a>
@@ -30,14 +30,14 @@
 					<div>姓名：${student.name }</div>
 					<div>身份：学生</div>
 				</a>
-				<a href="#" id="exam" class="col-md-2 btn" style="padding-top: 30px;">
+				<a href="${pageContext.servletContext.contextPath}/studentCourses" id="courses" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/courses.png" />
+					<div>课程安排</div>
+				</a>				
+				<a href="${pageContext.servletContext.contextPath}/studentExam" id="exam" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/exam.png" />
 					<div>考试安排</div>
 				</a>				
-				<a href="#" id="courses" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="images/courses.png" />
-					<div>课程安排</div>
-				</a>
 				<a href="#" id="elective" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/elective.png" />
 					<div>选课中心</div>

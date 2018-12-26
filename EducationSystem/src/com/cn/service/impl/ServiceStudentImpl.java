@@ -165,7 +165,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 		for (Stuscore stuscore : list) {
 			map.put(stuscore.getId(), stuscore);
 		}
-		return null;
+		return map;
 	}
 
 	@Override
@@ -190,6 +190,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 				return searchElectiveById(id);
 			}
 		}
+		//查不到则返回null
 		return null;
 	}
 
