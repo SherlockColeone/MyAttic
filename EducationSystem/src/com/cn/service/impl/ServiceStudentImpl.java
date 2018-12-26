@@ -90,10 +90,8 @@ public class ServiceStudentImpl implements ServiceStudent {
 		criteria.andPasswordEqualTo(pwd);
 		List<Student> list = studentMapper.selectByExample(example);
 		if(list.size()==0) {
-//			return null;
+			return null;
 		}
-		System.out.println("list:"+list);
-		System.out.println("list.size:"+list.size());
 		return list.get(0);
 	}
 

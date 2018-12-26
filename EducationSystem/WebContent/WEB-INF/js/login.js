@@ -57,12 +57,13 @@ $(function() {
 	$("#submit").click(function() {
 		var check = $("#check").val().toLowerCase();
 		var code = $("#code").html().toLowerCase();
-		if(check == code) { //验证码输入正确
-			if($("#id").html() == null || $("#password").html() == null) {
-				alert("请输入账户和密码！");
-				return false;
-				location.href = "index";
-			}
+		
+		if($("#id").val()==null || $("#id").val()=="" || $("#password").val()==null || $("#password").val()=="") {
+			alert("请输入账户和密码！");
+			return false;
+			location.href = "index";
+		} else if(check == code) { //验证码输入正确
+
 		} else { //验证码输入错误
 			alert("验证码输入错误！");
 			return false;

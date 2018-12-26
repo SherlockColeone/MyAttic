@@ -55,14 +55,16 @@ public class IndexController {
 			//添加警告提示
 			String warning = "账号不存在或密码输入错误！请重新输入！";
 			mv.addObject("warning",warning);
-			//跳转回登录界面
+			request.setAttribute("warning", warning);
 			return "login";
 		}
-		HttpSession session = request.getSession();
-		//把学生对象存入session域中
-		session.setAttribute("student", student);
-		//重定向到学生首页界面
-		return "redirect:studentHome";
+		else {
+			HttpSession session = request.getSession();
+			//把学生对象存入session域中
+			session.setAttribute("student", student);
+			//重定向到学生首页界面
+			return "redirect:studentHome";
+		}
 	}
 	
 	/**
@@ -76,11 +78,20 @@ public class IndexController {
 	public String teacherLogin(ModelAndView mv,Teacher teacher,HttpServletRequest request) {
 		//逻辑层获取教师个人信息
 		teacher = seriveTeacher.teacherLogin(teacher.getId(), teacher.getPassword());
-		HttpSession session = request.getSession();
-		//把教师对象存入session域中
-		session.setAttribute("teacher", teacher);
-		//重定向到教师首页界面
-		return "redirect:teacherHome";
+		if(teacher==null) {
+			//添加警告提示
+			String warning = "账号不存在或密码输入错误！请重新输入！";
+			mv.addObject("warning",warning);
+			request.setAttribute("warning", warning);
+			return "login";
+		}
+		else {
+			HttpSession session = request.getSession();
+			//把教师对象存入session域中
+			session.setAttribute("teacher", teacher);
+			//重定向到教师首页界面
+			return "redirect:teacherHome";
+		}
 	}
 	
 	/**
@@ -94,11 +105,20 @@ public class IndexController {
 	public String adminLogin(ModelAndView mv,Admin admin,HttpServletRequest request) {
 		//逻辑层获取管理员个人信息
 		admin = serivceAdmin.adminLogin(admin.getId(), admin.getPassword());
-		HttpSession session = request.getSession();
-		//把管理员对象存入session域中
-		session.setAttribute("admin", admin);
-		//重定向到管理员首页界面
-		return "redirect:adminHome";
+		if(admin==null) {
+			//添加警告提示
+			String warning = "账号不存在或密码输入错误！请重新输入！";
+			mv.addObject("warning",warning);
+			request.setAttribute("warning", warning);
+			return "login";
+		}
+		else {
+			HttpSession session = request.getSession();
+			//把管理员对象存入session域中
+			session.setAttribute("admin", admin);
+			//重定向到管理员首页界面
+			return "redirect:adminHome";
+		}
 	}
 	
 }
