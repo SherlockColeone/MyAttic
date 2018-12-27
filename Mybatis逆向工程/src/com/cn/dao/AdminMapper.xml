@@ -11,6 +11,8 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="birthplace" property="birthplace" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="politics" property="politics" jdbcType="VARCHAR" />
     <result column="entrytime" property="entrytime" jdbcType="VARCHAR" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="identity" property="identity" jdbcType="INTEGER" />
@@ -75,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, sex, phone, idcard, birth, password, address, birthplace, entrytime, position, 
-    identity, photo
+    id, name, sex, phone, idcard, birth, password, address, birthplace, nation, politics, 
+    entrytime, position, identity, photo
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.bean.AdminExample" >
     select
@@ -112,13 +114,15 @@
     insert into admin (id, name, sex, 
       phone, idcard, birth, 
       password, address, birthplace, 
-      entrytime, position, identity, 
-      photo)
+      nation, politics, entrytime, 
+      position, identity, photo
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, 
-      #{entrytime,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{identity,jdbcType=INTEGER}, 
-      #{photo,jdbcType=VARCHAR})
+      #{nation,jdbcType=VARCHAR}, #{politics,jdbcType=VARCHAR}, #{entrytime,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{identity,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cn.bean.Admin" >
     insert into admin
@@ -149,6 +153,12 @@
       </if>
       <if test="birthplace != null" >
         birthplace,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="politics != null" >
+        politics,
       </if>
       <if test="entrytime != null" >
         entrytime,
@@ -190,6 +200,12 @@
       </if>
       <if test="birthplace != null" >
         #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="politics != null" >
+        #{politics,jdbcType=VARCHAR},
       </if>
       <if test="entrytime != null" >
         #{entrytime,jdbcType=VARCHAR},
@@ -241,6 +257,12 @@
       <if test="record.birthplace != null" >
         birthplace = #{record.birthplace,jdbcType=VARCHAR},
       </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.politics != null" >
+        politics = #{record.politics,jdbcType=VARCHAR},
+      </if>
       <if test="record.entrytime != null" >
         entrytime = #{record.entrytime,jdbcType=VARCHAR},
       </if>
@@ -269,6 +291,8 @@
       password = #{record.password,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       birthplace = #{record.birthplace,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      politics = #{record.politics,jdbcType=VARCHAR},
       entrytime = #{record.entrytime,jdbcType=VARCHAR},
       position = #{record.position,jdbcType=VARCHAR},
       identity = #{record.identity,jdbcType=INTEGER},
@@ -304,6 +328,12 @@
       <if test="birthplace != null" >
         birthplace = #{birthplace,jdbcType=VARCHAR},
       </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="politics != null" >
+        politics = #{politics,jdbcType=VARCHAR},
+      </if>
       <if test="entrytime != null" >
         entrytime = #{entrytime,jdbcType=VARCHAR},
       </if>
@@ -329,6 +359,8 @@
       password = #{password,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       birthplace = #{birthplace,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      politics = #{politics,jdbcType=VARCHAR},
       entrytime = #{entrytime,jdbcType=VARCHAR},
       position = #{position,jdbcType=VARCHAR},
       identity = #{identity,jdbcType=INTEGER},

@@ -11,6 +11,8 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="birthplace" property="birthplace" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="politics" property="politics" jdbcType="VARCHAR" />
     <result column="regist" property="regist" jdbcType="VARCHAR" />
     <result column="academyid" property="academyid" jdbcType="INTEGER" />
     <result column="majorid" property="majorid" jdbcType="INTEGER" />
@@ -77,8 +79,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, sex, phone, idcard, birth, password, address, birthplace, regist, academyid, 
-    majorid, classesid, identity, photo
+    id, name, sex, phone, idcard, birth, password, address, birthplace, nation, politics, 
+    regist, academyid, majorid, classesid, identity, photo
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.bean.StudentExample" >
     select
@@ -114,15 +116,15 @@
     insert into student (id, name, sex, 
       phone, idcard, birth, 
       password, address, birthplace, 
-      regist, academyid, majorid, 
-      classesid, identity, photo
-      )
+      nation, politics, regist, 
+      academyid, majorid, classesid, 
+      identity, photo)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, 
-      #{regist,jdbcType=VARCHAR}, #{academyid,jdbcType=INTEGER}, #{majorid,jdbcType=INTEGER}, 
-      #{classesid,jdbcType=INTEGER}, #{identity,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}
-      )
+      #{nation,jdbcType=VARCHAR}, #{politics,jdbcType=VARCHAR}, #{regist,jdbcType=VARCHAR}, 
+      #{academyid,jdbcType=INTEGER}, #{majorid,jdbcType=INTEGER}, #{classesid,jdbcType=INTEGER}, 
+      #{identity,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.bean.Student" >
     insert into student
@@ -153,6 +155,12 @@
       </if>
       <if test="birthplace != null" >
         birthplace,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="politics != null" >
+        politics,
       </if>
       <if test="regist != null" >
         regist,
@@ -200,6 +208,12 @@
       </if>
       <if test="birthplace != null" >
         #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="politics != null" >
+        #{politics,jdbcType=VARCHAR},
       </if>
       <if test="regist != null" >
         #{regist,jdbcType=VARCHAR},
@@ -257,6 +271,12 @@
       <if test="record.birthplace != null" >
         birthplace = #{record.birthplace,jdbcType=VARCHAR},
       </if>
+      <if test="record.nation != null" >
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.politics != null" >
+        politics = #{record.politics,jdbcType=VARCHAR},
+      </if>
       <if test="record.regist != null" >
         regist = #{record.regist,jdbcType=VARCHAR},
       </if>
@@ -291,6 +311,8 @@
       password = #{record.password,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       birthplace = #{record.birthplace,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      politics = #{record.politics,jdbcType=VARCHAR},
       regist = #{record.regist,jdbcType=VARCHAR},
       academyid = #{record.academyid,jdbcType=INTEGER},
       majorid = #{record.majorid,jdbcType=INTEGER},
@@ -328,6 +350,12 @@
       <if test="birthplace != null" >
         birthplace = #{birthplace,jdbcType=VARCHAR},
       </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="politics != null" >
+        politics = #{politics,jdbcType=VARCHAR},
+      </if>
       <if test="regist != null" >
         regist = #{regist,jdbcType=VARCHAR},
       </if>
@@ -359,6 +387,8 @@
       password = #{password,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       birthplace = #{birthplace,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      politics = #{politics,jdbcType=VARCHAR},
       regist = #{regist,jdbcType=VARCHAR},
       academyid = #{academyid,jdbcType=INTEGER},
       majorid = #{majorid,jdbcType=INTEGER},

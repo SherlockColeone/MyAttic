@@ -19,6 +19,10 @@ public class Teacher {
 
     private String birthplace;
 
+    private String nation;
+
+    private String politics;
+
     private String entrytime;
 
     private String position;
@@ -99,6 +103,22 @@ public class Teacher {
 
     public void setBirthplace(String birthplace) {
         this.birthplace = birthplace == null ? null : birthplace.trim();
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation == null ? null : nation.trim();
+    }
+
+    public String getPolitics() {
+        return politics;
+    }
+
+    public void setPolitics(String politics) {
+        this.politics = politics == null ? null : politics.trim();
     }
 
     public String getEntrytime() {

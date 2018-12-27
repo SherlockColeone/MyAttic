@@ -724,6 +724,146 @@ public class StudentExample {
             return (Criteria) this;
         }
 
+        public Criteria andNationIsNull() {
+            addCriterion("nation is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationIsNotNull() {
+            addCriterion("nation is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationEqualTo(String value) {
+            addCriterion("nation =", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationNotEqualTo(String value) {
+            addCriterion("nation <>", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationGreaterThan(String value) {
+            addCriterion("nation >", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationGreaterThanOrEqualTo(String value) {
+            addCriterion("nation >=", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationLessThan(String value) {
+            addCriterion("nation <", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationLessThanOrEqualTo(String value) {
+            addCriterion("nation <=", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationLike(String value) {
+            addCriterion("nation like", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationNotLike(String value) {
+            addCriterion("nation not like", value, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationIn(List<String> values) {
+            addCriterion("nation in", values, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationNotIn(List<String> values) {
+            addCriterion("nation not in", values, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationBetween(String value1, String value2) {
+            addCriterion("nation between", value1, value2, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andNationNotBetween(String value1, String value2) {
+            addCriterion("nation not between", value1, value2, "nation");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsIsNull() {
+            addCriterion("politics is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsIsNotNull() {
+            addCriterion("politics is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsEqualTo(String value) {
+            addCriterion("politics =", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsNotEqualTo(String value) {
+            addCriterion("politics <>", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsGreaterThan(String value) {
+            addCriterion("politics >", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsGreaterThanOrEqualTo(String value) {
+            addCriterion("politics >=", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsLessThan(String value) {
+            addCriterion("politics <", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsLessThanOrEqualTo(String value) {
+            addCriterion("politics <=", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsLike(String value) {
+            addCriterion("politics like", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsNotLike(String value) {
+            addCriterion("politics not like", value, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsIn(List<String> values) {
+            addCriterion("politics in", values, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsNotIn(List<String> values) {
+            addCriterion("politics not in", values, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsBetween(String value1, String value2) {
+            addCriterion("politics between", value1, value2, "politics");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoliticsNotBetween(String value1, String value2) {
+            addCriterion("politics not between", value1, value2, "politics");
+            return (Criteria) this;
+        }
+
         public Criteria andRegistIsNull() {
             addCriterion("regist is null");
             return (Criteria) this;

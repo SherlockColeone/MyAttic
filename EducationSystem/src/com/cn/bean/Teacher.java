@@ -24,6 +24,10 @@ public class Teacher {
 	private String address;
 	//籍贯
 	private String birthplace;
+	//民族
+    private String nation;
+    //政治面貌
+    private String politics;
 	//入职日期
 	private String entrytime;
 	//职位
@@ -35,7 +39,34 @@ public class Teacher {
 	//照片
     private String photo;
 
-    public Integer getId() {
+    public Teacher() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Teacher(Integer id, String name, String sex, String phone, String idcard, String birth, String password,
+			String address, String birthplace, String nation, String politics, String entrytime, String position,
+			Integer academyid, Integer identity, String photo) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.sex = sex;
+		this.phone = phone;
+		this.idcard = idcard;
+		this.birth = birth;
+		this.password = password;
+		this.address = address;
+		this.birthplace = birthplace;
+		this.nation = nation;
+		this.politics = politics;
+		this.entrytime = entrytime;
+		this.position = position;
+		this.academyid = academyid;
+		this.identity = identity;
+		this.photo = photo;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -107,6 +138,22 @@ public class Teacher {
         this.birthplace = birthplace == null ? null : birthplace.trim();
     }
 
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation == null ? null : nation.trim();
+    }
+
+    public String getPolitics() {
+        return politics;
+    }
+
+    public void setPolitics(String politics) {
+        this.politics = politics == null ? null : politics.trim();
+    }
+
     public String getEntrytime() {
         return entrytime;
     }
@@ -146,4 +193,12 @@ public class Teacher {
     public void setPhoto(String photo) {
         this.photo = photo == null ? null : photo.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Teacher [id=" + id + ", name=" + name + ", sex=" + sex + ", phone=" + phone + ", idcard=" + idcard
+				+ ", birth=" + birth + ", password=" + password + ", address=" + address + ", birthplace=" + birthplace
+				+ ", nation=" + nation + ", politics=" + politics + ", entrytime=" + entrytime + ", position="
+				+ position + ", academyid=" + academyid + ", identity=" + identity + ", photo=" + photo + "]";
+	}
 }

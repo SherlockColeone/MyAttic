@@ -24,6 +24,10 @@ public class Admin {
 	private String address;
 	//籍贯
 	private String birthplace;
+	//民族
+    private String nation;
+    //政治面貌
+    private String politics;
 	//入职日期
 	private String entrytime;
 	//职位
@@ -39,7 +43,8 @@ public class Admin {
 	}
 
 	public Admin(Integer id, String name, String sex, String phone, String idcard, String birth, String password,
-			String address, String birthplace, String entrytime, String position, Integer identity, String photo) {
+			String address, String birthplace, String nation, String politics, String entrytime, String position,
+			Integer identity, String photo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,6 +55,8 @@ public class Admin {
 		this.password = password;
 		this.address = address;
 		this.birthplace = birthplace;
+		this.nation = nation;
+		this.politics = politics;
 		this.entrytime = entrytime;
 		this.position = position;
 		this.identity = identity;
@@ -128,6 +135,22 @@ public class Admin {
         this.birthplace = birthplace == null ? null : birthplace.trim();
     }
 
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation == null ? null : nation.trim();
+    }
+
+    public String getPolitics() {
+        return politics;
+    }
+
+    public void setPolitics(String politics) {
+        this.politics = politics == null ? null : politics.trim();
+    }
+
     public String getEntrytime() {
         return entrytime;
     }
@@ -164,7 +187,7 @@ public class Admin {
 	public String toString() {
 		return "Admin [id=" + id + ", name=" + name + ", sex=" + sex + ", phone=" + phone + ", idcard=" + idcard
 				+ ", birth=" + birth + ", password=" + password + ", address=" + address + ", birthplace=" + birthplace
-				+ ", entrytime=" + entrytime + ", position=" + position + ", identity=" + identity + ", photo=" + photo
-				+ "]";
+				+ ", nation=" + nation + ", politics=" + politics + ", entrytime=" + entrytime + ", position="
+				+ position + ", identity=" + identity + ", photo=" + photo + "]";
 	}
 }

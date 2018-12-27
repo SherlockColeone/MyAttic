@@ -24,6 +24,10 @@ public class Student {
 	private String address;
 	//籍贯
 	private String birthplace;
+	//民族
+    private String nation;
+    //政治面貌
+    private String politics;
 	//入学时间
 	private String regist;
 	//二级学院编号
@@ -43,8 +47,8 @@ public class Student {
 	}
 
 	public Student(Integer id, String name, String sex, String phone, String idcard, String birth, String password,
-			String address, String birthplace, String regist, Integer academyid, Integer majorid, Integer classesid,
-			Integer identity, String photo) {
+			String address, String birthplace, String nation, String politics, String regist, Integer academyid,
+			Integer majorid, Integer classesid, Integer identity, String photo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -55,6 +59,8 @@ public class Student {
 		this.password = password;
 		this.address = address;
 		this.birthplace = birthplace;
+		this.nation = nation;
+		this.politics = politics;
 		this.regist = regist;
 		this.academyid = academyid;
 		this.majorid = majorid;
@@ -135,6 +141,22 @@ public class Student {
         this.birthplace = birthplace == null ? null : birthplace.trim();
     }
 
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation == null ? null : nation.trim();
+    }
+
+    public String getPolitics() {
+        return politics;
+    }
+
+    public void setPolitics(String politics) {
+        this.politics = politics == null ? null : politics.trim();
+    }
+
     public String getRegist() {
         return regist;
     }
@@ -187,7 +209,8 @@ public class Student {
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", sex=" + sex + ", phone=" + phone + ", idcard=" + idcard
 				+ ", birth=" + birth + ", password=" + password + ", address=" + address + ", birthplace=" + birthplace
-				+ ", regist=" + regist + ", academyid=" + academyid + ", majorid=" + majorid + ", classesid="
-				+ classesid + ", identity=" + identity + ", photo=" + photo + "]";
+				+ ", nation=" + nation + ", politics=" + politics + ", regist=" + regist + ", academyid=" + academyid
+				+ ", majorid=" + majorid + ", classesid=" + classesid + ", identity=" + identity + ", photo=" + photo
+				+ "]";
 	}
 }

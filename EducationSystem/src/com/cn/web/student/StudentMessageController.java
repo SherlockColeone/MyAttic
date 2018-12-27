@@ -23,6 +23,7 @@ public class StudentMessageController {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
+		
 		//把学生个人信息添加到视图中
 		mv.addObject("student", student);
 		//跳转到学生个人中心
