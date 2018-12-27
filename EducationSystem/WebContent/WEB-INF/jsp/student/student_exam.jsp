@@ -6,11 +6,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>考试安排</title>
-		<link rel="stylesheet" href="../../css/bootstrap.css" />
-		<link rel="stylesheet" href="../../css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="../../css/student/home_student.css" />
-		<script type="text/javascript" src="../../js/jquery-2.1.0.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/bootstrap-theme.css" />
+		<link rel="stylesheet" href="css/student/home_student.css" />
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
 	</head>
 
 	<body>

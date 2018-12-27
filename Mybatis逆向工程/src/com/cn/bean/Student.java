@@ -29,6 +29,8 @@ public class Student {
 
     private Integer identity;
 
+    private String photo;
+
     public Integer getId() {
         return id;
     }
@@ -139,5 +141,13 @@ public class Student {
 
     public void setIdentity(Integer identity) {
         this.identity = identity;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo == null ? null : photo.trim();
     }
 }

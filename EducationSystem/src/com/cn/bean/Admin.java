@@ -1,15 +1,15 @@
 package com.cn.bean;
 
 /**
- * 管理员类
+ * 	管理员类
  * @author Sherlock
  *
  */
 public class Admin {
 	//管理员工号
-    private Integer id;
-    //姓名
-    private String name;
+	private Integer id;
+	//姓名
+	private String name;
 	//性别
 	private String sex;
 	//联系方式
@@ -30,6 +30,8 @@ public class Admin {
 	private String position;
 	//身份
     private Integer identity;
+    //照片
+    private String photo;
 
     public Admin() {
 		super();
@@ -37,7 +39,7 @@ public class Admin {
 	}
 
 	public Admin(Integer id, String name, String sex, String phone, String idcard, String birth, String password,
-			String address, String birthplace, String entrytime, String position, Integer identity) {
+			String address, String birthplace, String entrytime, String position, Integer identity, String photo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -51,6 +53,7 @@ public class Admin {
 		this.entrytime = entrytime;
 		this.position = position;
 		this.identity = identity;
+		this.photo = photo;
 	}
 
 	public Integer getId() {
@@ -149,10 +152,19 @@ public class Admin {
         this.identity = identity;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo == null ? null : photo.trim();
+    }
+
 	@Override
 	public String toString() {
 		return "Admin [id=" + id + ", name=" + name + ", sex=" + sex + ", phone=" + phone + ", idcard=" + idcard
 				+ ", birth=" + birth + ", password=" + password + ", address=" + address + ", birthplace=" + birthplace
-				+ ", entrytime=" + entrytime + ", position=" + position + ", identity=" + identity + "]";
+				+ ", entrytime=" + entrytime + ", position=" + position + ", identity=" + identity + ", photo=" + photo
+				+ "]";
 	}
 }

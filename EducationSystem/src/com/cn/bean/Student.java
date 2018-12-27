@@ -34,6 +34,8 @@ public class Student {
 	private Integer classesid;
 	//…Ì∑›
 	private Integer identity;
+	//’’∆¨
+    private String photo;
 
     public Student() {
 		super();
@@ -42,7 +44,7 @@ public class Student {
 
 	public Student(Integer id, String name, String sex, String phone, String idcard, String birth, String password,
 			String address, String birthplace, String regist, Integer academyid, Integer majorid, Integer classesid,
-			Integer identity) {
+			Integer identity, String photo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -58,6 +60,7 @@ public class Student {
 		this.majorid = majorid;
 		this.classesid = classesid;
 		this.identity = identity;
+		this.photo = photo;
 	}
 
 	public Integer getId() {
@@ -172,11 +175,19 @@ public class Student {
         this.identity = identity;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo == null ? null : photo.trim();
+    }
+
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", sex=" + sex + ", phone=" + phone + ", idcard=" + idcard
 				+ ", birth=" + birth + ", password=" + password + ", address=" + address + ", birthplace=" + birthplace
 				+ ", regist=" + regist + ", academyid=" + academyid + ", majorid=" + majorid + ", classesid="
-				+ classesid + ", identity=" + identity + "]";
+				+ classesid + ", identity=" + identity + ", photo=" + photo + "]";
 	}
 }

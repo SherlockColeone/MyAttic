@@ -32,31 +32,10 @@ public class Teacher {
 	private Integer academyid;
 	//…Ì∑›
 	private Integer identity;
+	//’’∆¨
+    private String photo;
 
-    public Teacher() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Teacher(Integer id, String name, String sex, String phone, String idcard, String birth, String password,
-			String address, String birthplace, String entrytime, String position, Integer academyid, Integer identity) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.sex = sex;
-		this.phone = phone;
-		this.idcard = idcard;
-		this.birth = birth;
-		this.password = password;
-		this.address = address;
-		this.birthplace = birthplace;
-		this.entrytime = entrytime;
-		this.position = position;
-		this.academyid = academyid;
-		this.identity = identity;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -160,11 +139,11 @@ public class Teacher {
         this.identity = identity;
     }
 
-	@Override
-	public String toString() {
-		return "Teacher [id=" + id + ", name=" + name + ", sex=" + sex + ", phone=" + phone + ", idcard=" + idcard
-				+ ", birth=" + birth + ", password=" + password + ", address=" + address + ", birthplace=" + birthplace
-				+ ", entrytime=" + entrytime + ", position=" + position + ", academyid=" + academyid + ", identity="
-				+ identity + "]";
-	}
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo == null ? null : photo.trim();
+    }
 }

@@ -16,6 +16,7 @@
     <result column="majorid" property="majorid" jdbcType="INTEGER" />
     <result column="classesid" property="classesid" jdbcType="INTEGER" />
     <result column="identity" property="identity" jdbcType="INTEGER" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, sex, phone, idcard, birth, password, address, birthplace, regist, academyid, 
-    majorid, classesid, identity
+    majorid, classesid, identity, photo
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.bean.StudentExample" >
     select
@@ -114,12 +115,14 @@
       phone, idcard, birth, 
       password, address, birthplace, 
       regist, academyid, majorid, 
-      classesid, identity)
+      classesid, identity, photo
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, 
       #{regist,jdbcType=VARCHAR}, #{academyid,jdbcType=INTEGER}, #{majorid,jdbcType=INTEGER}, 
-      #{classesid,jdbcType=INTEGER}, #{identity,jdbcType=INTEGER})
+      #{classesid,jdbcType=INTEGER}, #{identity,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cn.bean.Student" >
     insert into student
@@ -166,6 +169,9 @@
       <if test="identity != null" >
         identity,
       </if>
+      <if test="photo != null" >
+        photo,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -209,6 +215,9 @@
       </if>
       <if test="identity != null" >
         #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -263,6 +272,9 @@
       <if test="record.identity != null" >
         identity = #{record.identity,jdbcType=INTEGER},
       </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,7 +295,8 @@
       academyid = #{record.academyid,jdbcType=INTEGER},
       majorid = #{record.majorid,jdbcType=INTEGER},
       classesid = #{record.classesid,jdbcType=INTEGER},
-      identity = #{record.identity,jdbcType=INTEGER}
+      identity = #{record.identity,jdbcType=INTEGER},
+      photo = #{record.photo,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -330,6 +343,9 @@
       <if test="identity != null" >
         identity = #{identity,jdbcType=INTEGER},
       </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -347,7 +363,8 @@
       academyid = #{academyid,jdbcType=INTEGER},
       majorid = #{majorid,jdbcType=INTEGER},
       classesid = #{classesid,jdbcType=INTEGER},
-      identity = #{identity,jdbcType=INTEGER}
+      identity = #{identity,jdbcType=INTEGER},
+      photo = #{photo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

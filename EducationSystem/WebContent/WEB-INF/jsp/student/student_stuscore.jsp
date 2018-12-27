@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>学生成绩</title>
+		<title>成绩查询</title>
 		<link rel="stylesheet" href="../../css/bootstrap.css" />
 		<link rel="stylesheet" href="../../css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="../../css/student/home_student.css" />
