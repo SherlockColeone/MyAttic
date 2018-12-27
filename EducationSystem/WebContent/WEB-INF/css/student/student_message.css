@@ -1,0 +1,26 @@
+/**
+ * 学生学籍信息的css文件
+ */
+
+#main{
+	margin-bottom: 20px;
+}
+
+#up{
+	margin-bottom: 5px;
+}
+
+table{
+	table-layout: fixed;
+}
+
+td{
+	border:1px solid;
+	border-collapse: collapse;
+	text-align: center;
+	height: 40px;
+}
+
+tr{
+	border-collapse: collapse;
+}
