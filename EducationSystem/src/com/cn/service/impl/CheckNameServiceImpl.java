@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import com.cn.bean.Academy;
 import com.cn.bean.Classes;
 import com.cn.bean.Major;
+import com.cn.bean.Term;
 import com.cn.dao.AcademyMapper;
 import com.cn.dao.ClassesMapper;
 import com.cn.dao.MajorMapper;
+import com.cn.dao.TermMapper;
 import com.cn.service.CheckNameService;
 
 /**
@@ -25,6 +27,8 @@ public class CheckNameServiceImpl implements CheckNameService {
 	private MajorMapper majorMapper;
 	@Autowired
 	private ClassesMapper classesMapper;
+	@Autowired
+	private TermMapper termMapper;
 
 	@Override
 	public String searchNameByAcademyId(Integer academyId) {
@@ -44,6 +48,12 @@ public class CheckNameServiceImpl implements CheckNameService {
 	public String searchNameByClassesId(Integer classesId) {
 		Classes classes = classesMapper.selectByPrimaryKey(classesId);
 		return classes.getName();
+	}
+
+	@Override
+	public String searchNameByTermid(Integer termId) {
+		Term term = termMapper.selectByPrimaryKey(termId);
+		return term.getTermtime();
 	}
 
 }

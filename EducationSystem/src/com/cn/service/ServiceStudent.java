@@ -16,6 +16,7 @@ import com.cn.bean.Student;
 import com.cn.bean.Stuscore;
 import com.cn.bean.Teacher;
 import com.cn.bean.Tempelective;
+import com.cn.bean.Term;
 
 /**
  * 	学生端逻辑层
@@ -209,5 +210,11 @@ public interface ServiceStudent {
 	 * @return 添加的列数量
 	 */
 	public int addEvaluationByTeacherid(Evaluation vo);
+	
+	/**
+	 * 查询所有的学期
+	 * @return 学期的集合
+	 */
+	public List<Term> searchAllTerm();
 	
 }

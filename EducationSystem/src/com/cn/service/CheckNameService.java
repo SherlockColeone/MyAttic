@@ -26,4 +26,11 @@ public interface CheckNameService {
 	 * @return 班级的名字
 	 */
 	public String searchNameByClassesId(Integer classesId);
+	
+	/**
+	 * 	根据学期的id查询学期的名字
+	 * @param termid 学期id
+	 * @return 学期的名字
+	 */
+	public String searchNameByTermid(Integer termId);
 }

@@ -28,7 +28,6 @@ import com.cn.bean.StuscoreExample;
 import com.cn.bean.Teacher;
 import com.cn.bean.TeacherExample;
 import com.cn.bean.TeacherExample.Criteria;
-import com.cn.dao.ClassesMapper;
 import com.cn.dao.CoursesMapper;
 import com.cn.dao.CurriculumarrangeMapper;
 import com.cn.dao.ElectiveMapper;
@@ -51,8 +50,6 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	private TeacherMapper teacherMapper;
 	@Autowired
 	private StudentMapper studentMapper;
-	@Autowired
-	private ClassesMapper classesMapper;
 	@Autowired
 	private CoursesMapper coursesMapper;
 	@Autowired
@@ -140,10 +137,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			}
 			//获取课程在星期几
 			int day = courses.getDay();
-			//通过班级id找到班级名称
-			String classes = classesMapper.selectByPrimaryKey(courses.getClassesid()).getName();
-			Curriculum curr = new Curriculum(courses.getName(), courses.getWeek(), day,time,lesson,courses.getPlace(),
-					courses.getTeacher(), classes);
+			Curriculum curr = new Curriculum(courses.getId(), courses.getName(), courses.getWeek(),day,time,lesson,
+					courses.getPlace(),courses.getTeacher(),courses.getClassesid(),courses.getTermid(),courses.getTeacherid());
 			mapCurr.put(day*10+lesson, curr);
 		}
 		//选修课程
@@ -158,8 +153,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 				lesson = 5;
 			}
 			int day = elective.getDay();
-			Curriculum curr = new Curriculum(elective.getName(), elective.getWeek(), day, time, lesson, 
-					elective.getPlace(), elective.getTeacher());
+			Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getWeek(), day, time,
+					lesson,elective.getPlace(), elective.getTeacher(), elective.getTermid(),elective.getTeacherid());
 			mapCurr.put(day*10+lesson, curr);
 		}
 		return mapCurr;

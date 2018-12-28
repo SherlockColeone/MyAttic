@@ -31,8 +31,9 @@ import com.cn.bean.StuscoreExample;
 import com.cn.bean.Teacher;
 import com.cn.bean.Tempelective;
 import com.cn.bean.TempelectiveExample;
+import com.cn.bean.Term;
+import com.cn.bean.TermExample;
 import com.cn.dao.CetMapper;
-import com.cn.dao.ClassesMapper;
 import com.cn.dao.CoursesMapper;
 import com.cn.dao.CurriculumarrangeMapper;
 import com.cn.dao.ElectiveMapper;
@@ -44,6 +45,7 @@ import com.cn.dao.StudentMapper;
 import com.cn.dao.StuscoreMapper;
 import com.cn.dao.TeacherMapper;
 import com.cn.dao.TempelectiveMapper;
+import com.cn.dao.TermMapper;
 import com.cn.service.ServiceStudent;
 
 /**
@@ -55,8 +57,6 @@ import com.cn.service.ServiceStudent;
 public class ServiceStudentImpl implements ServiceStudent {
 	@Autowired
 	private StudentMapper studentMapper;
-	@Autowired
-	private ClassesMapper classesMapper;
 	@Autowired
 	private CoursesMapper coursesMapper;
 	@Autowired
@@ -79,6 +79,8 @@ public class ServiceStudentImpl implements ServiceStudent {
 	private TeacherMapper teacherMapper;
 	@Autowired
 	private EvaluationMapper evaluationMapper;
+	@Autowired
+	private TermMapper termMapper;
 
 	@Override
 	public Student studentLogin(int studentid, String pwd) {
@@ -120,10 +122,8 @@ public class ServiceStudentImpl implements ServiceStudent {
 			}
 			//获取课程在星期几
 			int day = courses.getDay();
-			//通过班级id找到班级名称
-			String classes = classesMapper.selectByPrimaryKey(courses.getClassesid()).getName();
-			Curriculum curr = new Curriculum(courses.getName(), courses.getWeek(), day,time,lesson,courses.getPlace(),
-					courses.getTeacher(), classes);
+			Curriculum curr = new Curriculum(courses.getId(), courses.getName(), courses.getWeek(), day, time, lesson,
+					courses.getPlace(), courses.getTeacher(), courses.getClassesid(), courses.getTermid(), courses.getTeacherid());
 			mapCurr.put(day*10+lesson, curr);
 		}
 		//选修课程
@@ -138,8 +138,8 @@ public class ServiceStudentImpl implements ServiceStudent {
 				lesson = 5;
 			}
 			int day = elective.getDay();
-			Curriculum curr = new Curriculum(elective.getName(), elective.getWeek(), day, time, lesson, 
-					elective.getPlace(), elective.getTeacher());
+			Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getWeek(), day, time,
+					lesson,elective.getPlace(), elective.getTeacher(), elective.getTermid(),elective.getTeacherid());
 			mapCurr.put(day*10+lesson, curr);
 		}
 		return mapCurr;
@@ -235,7 +235,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 		for (Stuscore stuScore : mapStuScore.values()) {
 			//分别通过各自的id查询专业课与选修课
 			int electiveid = stuScore.getElectiveid();
-			if(electiveid!=0) {
+			if(electiveid==0) {
 				//专业课
 				Courses courses = coursesMapper.selectByPrimaryKey(stuScore.getCouresid());
 				mapCurr.putAll(curriculumTransform(courses, null));
@@ -389,6 +389,12 @@ public class ServiceStudentImpl implements ServiceStudent {
 	@Override
 	public int addEvaluationByTeacherid(Evaluation vo) {
 		return evaluationMapper.insert(vo);
+	}
+
+	@Override
+	public List<Term> searchAllTerm() {
+		TermExample example = new TermExample();
+		return termMapper.selectByExample(example);
 	}
 
 }

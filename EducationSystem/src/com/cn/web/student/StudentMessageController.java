@@ -37,7 +37,7 @@ public class StudentMessageController {
 		request.setAttribute("academy",academy);
 		request.setAttribute("major",major);
 		request.setAttribute("classes",classes);
-		//跳转到学生个人中心
+		//跳转到学生学籍信息页面
 		return "student/student_message";
 	}
 	

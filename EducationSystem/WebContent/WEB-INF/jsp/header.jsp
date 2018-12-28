@@ -22,6 +22,7 @@
 				</div>
 				<div id="topRight" class="col-md-offset-6">
 					<div class="col-md-10">
+					<!-- 此处可以使用滚动文字marquee标签 -->
 						<div class="col-md-6">
 							欢迎回来！
 							<c:if test="${not empty student }">

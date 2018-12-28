@@ -1,35 +1,43 @@
 package com.cn.bean;
 
 /**
- * 总课程类（专业课加选修课）
+ * 	总课程类（专业课加选修课,不属于数据库表的类，仅为实体类）
  * @author Sherlock
  *
  */
 public class Curriculum {
+	//课程id（专业课就是专业课id，选修课就是选修课id）
+	private Integer id;
 	//课程名称
 	private String name;
 	//上课周次
 	private String week;
 	//星期
-	private int day;
+	private Integer day;
 	//上课节数
 	private String time;
 	//课程大节
-	private int lesson;
+	private Integer lesson;
 	//上课地点
 	private String place;
 	//任课老师
 	private String teacher;
-	//上课班级（教师查询时需要）
-	private String classes;
+	//班级id
+	private Integer classesid;
+	//学期id
+	private Integer termid;	
+	//任课老师id
+	private Integer teacherid;
 	
 	public Curriculum() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Curriculum(String name, String week, int day, String time, int lesson, String place, String teacher) {
+
+	public Curriculum(Integer id, String name, String week, Integer day, String time, Integer lesson, String place,
+			String teacher, Integer termid, Integer teacherid) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.week = week;
 		this.day = day;
@@ -37,11 +45,14 @@ public class Curriculum {
 		this.lesson = lesson;
 		this.place = place;
 		this.teacher = teacher;
+		this.termid = termid;
+		this.teacherid = teacherid;
 	}
 
-	public Curriculum(String name, String week, int day, String time, int lesson, String place, String teacher,
-			String classes) {
+	public Curriculum(Integer id, String name, String week, Integer day, String time, Integer lesson, String place,
+			String teacher, Integer classesid, Integer termid, Integer teacherid) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.week = week;
 		this.day = day;
@@ -49,7 +60,17 @@ public class Curriculum {
 		this.lesson = lesson;
 		this.place = place;
 		this.teacher = teacher;
-		this.classes = classes;
+		this.classesid = classesid;
+		this.termid = termid;
+		this.teacherid = teacherid;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -68,11 +89,11 @@ public class Curriculum {
 		this.week = week;
 	}
 
-	public int getDay() {
+	public Integer getDay() {
 		return day;
 	}
 
-	public void setDay(int day) {
+	public void setDay(Integer day) {
 		this.day = day;
 	}
 
@@ -84,11 +105,11 @@ public class Curriculum {
 		this.time = time;
 	}
 
-	public int getLesson() {
+	public Integer getLesson() {
 		return lesson;
 	}
 
-	public void setLesson(int lesson) {
+	public void setLesson(Integer lesson) {
 		this.lesson = lesson;
 	}
 
@@ -108,18 +129,35 @@ public class Curriculum {
 		this.teacher = teacher;
 	}
 
-	public String getClasses() {
-		return classes;
+	public Integer getClassesid() {
+		return classesid;
 	}
 
-	public void setClasses(String classes) {
-		this.classes = classes;
+	public void setClassesid(Integer classesid) {
+		this.classesid = classesid;
+	}
+
+	public Integer getTermid() {
+		return termid;
+	}
+
+	public void setTermid(Integer termid) {
+		this.termid = termid;
+	}
+
+	public Integer getTeacherid() {
+		return teacherid;
+	}
+
+	public void setTeacherid(Integer teacherid) {
+		this.teacherid = teacherid;
 	}
 
 	@Override
 	public String toString() {
-		return "Curriculum [name=" + name + ", week=" + week + ", day=" + day + ", time=" + time + ", lesson=" + lesson
-				+ ", place=" + place + ", teacher=" + teacher + ", classes=" + classes + "]";
+		return "Curriculum [id=" + id + ", name=" + name + ", week=" + week + ", day=" + day + ", time=" + time
+				+ ", lesson=" + lesson + ", place=" + place + ", teacher=" + teacher + ", classesid=" + classesid
+				+ ", termid=" + termid + ", teacherid=" + teacherid + "]";
 	}
 
 }
