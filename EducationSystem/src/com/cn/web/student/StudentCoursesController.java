@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
@@ -51,14 +50,13 @@ public class StudentCoursesController {
 	
 	/**
 	 * 	根据选择的条件查询出课程安排
-	 * @param mv ModelAndView
 	 * @param request 请求
 	 * @param termId 从表单获取的学期id
 	 * @param curriculum 从表单获取的课程性质。0表示不限性质；1表示专业课；2表示选修课
 	 * @return 跳转到学生课程安排页面
 	 */
 	@RequestMapping(value="/studentSearchAllCourses")
-	public String studentSearchAllCourses(ModelAndView mv,HttpServletRequest request,Integer termId,Integer curriculum) {
+	public String studentSearchAllCourses(HttpServletRequest request,Integer termId,Integer curriculum) {
 		//把学期列表添加到视图中
 		request.setAttribute("termList",termList);
 		//查出学期的名字

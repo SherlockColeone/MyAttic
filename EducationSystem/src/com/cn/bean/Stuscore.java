@@ -16,7 +16,7 @@ public class Stuscore {
 	private String score;	
 	//学分
 	private Integer credit;	
-	//绩点
+	//绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
 	private Double point;
 	//学期id
 	private Integer termid;

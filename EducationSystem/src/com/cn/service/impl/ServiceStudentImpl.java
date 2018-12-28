@@ -155,7 +155,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 	}
 
 	@Override
-	public Map<Integer,Stuscore> searchAllStuScoreByStudentidAndTermid(int studentid, int termid) {
+	public List<Stuscore> searchAllStuScoreByStudentidAndTermid(int studentid, int termid) {
 		StuscoreExample example = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
 		criteria.andStudentidEqualTo(studentid);
@@ -165,7 +165,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 		for (Stuscore stuscore : list) {
 			map.put(stuscore.getId(), stuscore);
 		}
-		return map;
+		return list;
 	}
 
 	@Override
@@ -231,8 +231,8 @@ public class ServiceStudentImpl implements ServiceStudent {
 	public Map<Integer, Curriculum> searchCurriculumByStudentidAndTermid(int studentid, int termid) {
 		Map<Integer,Curriculum> mapCurr = new HashMap<>();
 		//通过学生成绩表查询所有专业课与选修课
-		Map<Integer,Stuscore> mapStuScore = searchAllStuScoreByStudentidAndTermid(studentid, termid);
-		for (Stuscore stuScore : mapStuScore.values()) {
+		List<Stuscore> listStuscore = searchAllStuScoreByStudentidAndTermid(studentid, termid);
+		for (Stuscore stuScore : listStuscore) {
 			//分别通过各自的id查询专业课与选修课
 			int electiveid = stuScore.getElectiveid();
 			if(electiveid==0) {

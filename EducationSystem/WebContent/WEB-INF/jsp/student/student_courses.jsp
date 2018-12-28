@@ -8,7 +8,7 @@
 		<title>学生课程安排</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="" />
+		<link rel="stylesheet" href="css/student/student_courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 	</head>
@@ -20,9 +20,9 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-lg-offset-4">
-					<h4>课程安排</h4>
+					<h4>课程安排查询</h4>
 				</div>
-				<div id="buttonGroup" class="col-md-10">
+				<div id="buttonGroup" class="col-md-10 col-md-offset-1">
 					<form action="${pageContext.servletContext.contextPath}/studentSearchAllCourses" method="post">
 						<div id="term" class="col-md-8 col-md-offset-3">
 							开课时间：
@@ -44,7 +44,9 @@
 							<button type="submit" class="btn btn-default">查询</button>
 						</div>
 					</form>
-
+					
+					<!-- 还可以添加搜索单个课程的功能 -->
+					
 				</div>
 				<div class="col-md-6 col-md-offset-7">查询条件：</div>
 				<div class="col-md-12">

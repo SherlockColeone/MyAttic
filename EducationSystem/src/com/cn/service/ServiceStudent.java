@@ -62,7 +62,7 @@ public interface ServiceStudent {
 	 * @param termid 学期id
 	 * @return 一个学生一个学期的学生成绩集合
 	 */
-	public Map<Integer,Stuscore> searchAllStuScoreByStudentidAndTermid(int studentid,int termid);
+	public List<Stuscore> searchAllStuScoreByStudentidAndTermid(int studentid,int termid);
 	
 	/**
 	 * 	根据选修课id查询选修课
