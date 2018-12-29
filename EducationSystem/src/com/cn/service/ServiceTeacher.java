@@ -1,7 +1,6 @@
 package com.cn.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
@@ -66,7 +65,7 @@ public interface ServiceTeacher {
 	 * @param elective 选修课对象，若为空证明无选修课
 	 * @return 总课程集合
 	 */
-	public Map<Integer,Curriculum> curriculumTransform(Courses courses,Elective elective);
+	public List<Curriculum> curriculumTransform(Courses courses,Elective elective);
 	
 	/**
 	 * 	查询某位教师一个学期的所有课程安排（专业课加选修课）
@@ -74,7 +73,7 @@ public interface ServiceTeacher {
 	 * @param teacherid 教师工号
 	 * @return 某位教师一个学期的课程安排集合
 	 */
-	public Map<Integer,Curriculum> searchAllCurriculumByTermidAndTeacherid(int termid,int teacherid);
+	public List<Curriculum> searchAllCurriculumByTermidAndTeacherid(int termid,int teacherid);
 	
 	/**
 	 * 	查询一个学期一个班级的所有课程
@@ -82,7 +81,7 @@ public interface ServiceTeacher {
 	 * @param classesid 班级id
 	 * @return 一个学期一个班级的课程集合
 	 */
-	public Map<Integer,Curriculum> searchAllCurriculumByTermidAndClassesid(int termid,int classesid);
+	public List<Curriculum> searchAllCurriculumByTermidAndClassesid(int termid,int classesid);
 	
 	/**
 	 * 	添加调课安排

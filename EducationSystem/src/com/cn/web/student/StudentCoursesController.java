@@ -2,7 +2,6 @@ package com.cn.web.student;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -66,13 +65,8 @@ public class StudentCoursesController {
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
 		if(curriculum==0) { //性质不限
-			List<Curriculum> resultList = new ArrayList<>();
 			//查询该学期的所有课程
-			Map<Integer, Curriculum> map = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), termId);			
-			for (Curriculum curr : map.values()) {
-				//添加到list中
-				resultList.add(curr);
-			}
+			List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), termId);
 			//把结果列表添加到视图中
 			request.setAttribute("resultList",resultList);
 		} else if(curriculum==1) { //专业课

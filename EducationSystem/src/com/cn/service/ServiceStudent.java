@@ -44,9 +44,9 @@ public interface ServiceStudent {
 	 * 	把专业课或选修课转化成课程格式
 	 * @param courses 专业课对象，若为空证明无专业课
 	 * @param elective 选修课对象，若为空证明无选修课
-	 * @return 总课程Map集合。该集合的键为一个两位数的Integer类型，十位数是指该课程在星期几，个位数是指该课程在第几大节。
+	 * @return 总课程集合。
 	 */
-	public Map<Integer,Curriculum> curriculumTransform(Courses courses,Elective elective);
+	public List<Curriculum> curriculumTransform(Courses courses,Elective elective);
 	
 	/**
 	 * 	查询不同学期和一个班级的所有专业课
@@ -108,7 +108,7 @@ public interface ServiceStudent {
 	 * @param termid 学期id
 	 * @return 一个学生一个学期的所有课程
 	 */
-	public Map<Integer,Curriculum> searchCurriculumByStudentidAndTermid(int studentid,int termid);
+	public List<Curriculum> searchCurriculumByStudentidAndTermid(int studentid,int termid);
 	
 	/**
 	 * 	查询一个老师一个学期的所有专业课

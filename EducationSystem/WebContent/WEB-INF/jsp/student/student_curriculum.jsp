@@ -54,7 +54,8 @@
 							</p>
 						</div>
 					</c:forEach>
-				</div>				
+				</div>
+				<div class="col-md-5">学期时间：${term }</div>			
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>

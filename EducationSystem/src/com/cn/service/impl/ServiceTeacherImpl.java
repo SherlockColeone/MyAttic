@@ -1,9 +1,7 @@
 package com.cn.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +26,7 @@ import com.cn.bean.StuscoreExample;
 import com.cn.bean.Teacher;
 import com.cn.bean.TeacherExample;
 import com.cn.bean.TeacherExample.Criteria;
+import com.cn.dao.ClassesMapper;
 import com.cn.dao.CoursesMapper;
 import com.cn.dao.CurriculumarrangeMapper;
 import com.cn.dao.ElectiveMapper;
@@ -64,6 +63,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	private StuscoreMapper stuscoreMapper;
 	@Autowired
 	private EvaluationMapper evaluationMapper;
+	@Autowired
+	private ClassesMapper classesMapper;
 
 	@Override
 	public Teacher teacherLogin(int teacherid, String password) {
@@ -118,8 +119,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public Map<Integer, Curriculum> curriculumTransform(Courses courses, Elective elective) {
-		Map<Integer,Curriculum> mapCurr = new HashMap<>();
+	public List<Curriculum> curriculumTransform(Courses courses, Elective elective) {
+		List<Curriculum> list = new ArrayList<>();
 		//专业课程
 		if(courses!=null) {
 			//获取上课节数
@@ -137,9 +138,12 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			}
 			//获取课程在星期几
 			int day = courses.getDay();
-			Curriculum curr = new Curriculum(courses.getId(), courses.getName(), courses.getWeek(),day,time,lesson,
-					courses.getPlace(),courses.getTeacher(),courses.getClassesid(),courses.getTermid(),courses.getTeacherid());
-			mapCurr.put(day*10+lesson, curr);
+			//获取班级名称
+			String classes = classesMapper.selectByPrimaryKey(courses.getClassesid()).getName();
+			Curriculum curr = new Curriculum(courses.getId(), courses.getName(), courses.getWeek(), day, time, lesson,
+					courses.getPlace(), courses.getTeacher(), courses.getClassesid(), courses.getTermid(), 
+					courses.getTeacherid(),courses.getId(),0,classes);
+			list.add(curr);
 		}
 		//选修课程
 		if(elective!=null) {
@@ -154,15 +158,16 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			}
 			int day = elective.getDay();
 			Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getWeek(), day, time,
-					lesson,elective.getPlace(), elective.getTeacher(), elective.getTermid(),elective.getTeacherid());
-			mapCurr.put(day*10+lesson, curr);
+					lesson,elective.getPlace(), elective.getTeacher(), elective.getTermid(),elective.getTeacherid(),
+					0,elective.getId());
+			list.add(curr);
 		}
-		return mapCurr;
+		return list;
 	}
 
 	@Override
-	public Map<Integer, Curriculum> searchAllCurriculumByTermidAndTeacherid(int termid, int teacherid) {
-		Map<Integer,Curriculum> mapCurr = new HashMap<>();
+	public List<Curriculum> searchAllCurriculumByTermidAndTeacherid(int termid, int teacherid) {
+		List<Curriculum> list = new ArrayList<>();
 		//找到该教师所有专业课
 		CoursesExample coursesExample = new CoursesExample();
 		com.cn.bean.CoursesExample.Criteria criteriaCourses = coursesExample.createCriteria();
@@ -170,7 +175,7 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		criteriaCourses.andTeacheridEqualTo(teacherid);
 		List<Courses> listCourses = coursesMapper.selectByExample(coursesExample);
 		for (Courses courses : listCourses) {
-			mapCurr.putAll(curriculumTransform(courses, null));
+			list.addAll(curriculumTransform(courses, null));
 		}
 		//找到该教师所有选修课
 		ElectiveExample electiveExample = new ElectiveExample();
@@ -179,14 +184,14 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		criteriaElecitve.andTeacheridEqualTo(teacherid);
 		List<Elective> listElective = electiveMapper.selectByExample(electiveExample);
 		for (Elective elective : listElective) {
-			mapCurr.putAll(curriculumTransform(null, elective));
+			list.addAll(curriculumTransform(null, elective));
 		}
-		return mapCurr;
+		return list;
 	}
 
 	@Override
-	public Map<Integer, Curriculum> searchAllCurriculumByTermidAndClassesid(int termid, int classesid) {
-		Map<Integer,Curriculum> mapCurr = new HashMap<>();
+	public List<Curriculum> searchAllCurriculumByTermidAndClassesid(int termid, int classesid) {
+		List<Curriculum> list = new ArrayList<>();
 		//找到所有专业课
 		CoursesExample example = new CoursesExample();
 		com.cn.bean.CoursesExample.Criteria criteria = example.createCriteria();
@@ -195,9 +200,9 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		List<Courses> listCourses = coursesMapper.selectByExample(example);
 		for (Courses courses : listCourses) {
 			//转成总课程的格式
-			mapCurr.putAll(curriculumTransform(courses, null));
+			list.addAll(curriculumTransform(courses, null));
 		}
-		return mapCurr;
+		return list;
 	}
 
 	@Override

@@ -48,7 +48,9 @@
 					<!-- 还可以添加搜索单个课程的功能 -->
 					
 				</div>
-				<div class="col-md-6 col-md-offset-7">查询条件：</div>
+				<div class="col-md-6 col-md-offset-7">
+					查询条件：
+				</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>

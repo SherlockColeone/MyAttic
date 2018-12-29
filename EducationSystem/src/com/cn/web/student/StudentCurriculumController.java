@@ -2,7 +2,6 @@ package com.cn.web.student;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cn.bean.Curriculum;
 import com.cn.bean.Student;
@@ -28,6 +26,8 @@ import com.cn.service.ServiceStudent;
 public class StudentCurriculumController {
 	@Autowired
 	private ServiceStudent serviceStudent;
+	@Autowired
+	private CheckNameService checkNameService;
 	
 	public List<Term> termList = new ArrayList<>();
 	
@@ -41,14 +41,13 @@ public class StudentCurriculumController {
 		//把学期列表添加到视图中
 		termList = serviceStudent.searchAllTerm();
 		request.setAttribute("termList", termList);
+		// 查出学期的名字
+		String term = "2018-09-2019-01";
+		request.setAttribute("term", term);
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
-		Map<Integer, Curriculum> mapCurriculum = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), 1);
-		List<Curriculum> resultList = new ArrayList<>();
-		for (Curriculum curriculum : mapCurriculum.values()) {
-			resultList.add(curriculum);
-		}
+		List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), 1);
 		request.setAttribute("resultList", resultList);
 		//跳转到学生课程表页面
 		return "student/student_curriculum";
@@ -64,14 +63,13 @@ public class StudentCurriculumController {
 		//把学期列表添加到视图中
 		termList = serviceStudent.searchAllTerm();
 		request.setAttribute("termList", termList);
+		// 查出学期的名字
+		String term = checkNameService.searchNameByTermid(termId);
+		request.setAttribute("term", term);
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
-		Map<Integer, Curriculum> mapCurriculum = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), termId);
-		List<Curriculum> resultList = new ArrayList<>();
-		for (Curriculum curriculum : mapCurriculum.values()) {
-			resultList.add(curriculum);
-		}
+		List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), termId);
 		request.setAttribute("resultList", resultList);
 		//跳转到学生课程表页面
 		return "student/student_curriculum";

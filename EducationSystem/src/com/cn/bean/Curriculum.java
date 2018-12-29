@@ -1,7 +1,7 @@
 package com.cn.bean;
 
 /**
- * 	总课程类（专业课加选修课,不属于数据库表的类，仅为实体类）
+ * 	总课程类（专业课加选修课，不属于数据库表的类，仅为实体类）
  * @author Sherlock
  *
  */
@@ -41,7 +41,7 @@ public class Curriculum {
 	}
 
 	public Curriculum(Integer id, String name, String week, Integer day, String time, Integer lesson, String place,
-			String teacher, Integer termid, Integer teacherid) {
+			String teacher, Integer termid, Integer teacherid, Integer couresid, Integer electiveid) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,10 +53,13 @@ public class Curriculum {
 		this.teacher = teacher;
 		this.termid = termid;
 		this.teacherid = teacherid;
+		this.couresid = couresid;
+		this.electiveid = electiveid;
 	}
 
 	public Curriculum(Integer id, String name, String week, Integer day, String time, Integer lesson, String place,
-			String teacher, Integer classesid, Integer termid, Integer teacherid) {
+			String teacher, Integer classesid, Integer termid, Integer teacherid, Integer couresid, Integer electiveid,
+			String classes) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,6 +72,9 @@ public class Curriculum {
 		this.classesid = classesid;
 		this.termid = termid;
 		this.teacherid = teacherid;
+		this.couresid = couresid;
+		this.electiveid = electiveid;
+		this.classes = classes;
 	}
 
 	public Integer getId() {
@@ -159,11 +165,36 @@ public class Curriculum {
 		this.teacherid = teacherid;
 	}
 
+	public Integer getCouresid() {
+		return couresid;
+	}
+
+	public void setCouresid(Integer couresid) {
+		this.couresid = couresid;
+	}
+
+	public Integer getElectiveid() {
+		return electiveid;
+	}
+
+	public void setElectiveid(Integer electiveid) {
+		this.electiveid = electiveid;
+	}
+
+	public String getClasses() {
+		return classes;
+	}
+
+	public void setClasses(String classes) {
+		this.classes = classes;
+	}
+
 	@Override
 	public String toString() {
 		return "Curriculum [id=" + id + ", name=" + name + ", week=" + week + ", day=" + day + ", time=" + time
 				+ ", lesson=" + lesson + ", place=" + place + ", teacher=" + teacher + ", classesid=" + classesid
-				+ ", termid=" + termid + ", teacherid=" + teacherid + "]";
+				+ ", termid=" + termid + ", teacherid=" + teacherid + ", couresid=" + couresid + ", electiveid="
+				+ electiveid + ", classes=" + classes + "]";
 	}
 
 }
