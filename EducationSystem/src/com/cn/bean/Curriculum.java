@@ -28,6 +28,12 @@ public class Curriculum {
 	private Integer termid;	
 	//任课老师id
 	private Integer teacherid;
+	//专业课id，若为0，说明该课程不是专业课
+	private Integer couresid;
+	//选修课id，若为0，说明该课程不是选修课
+	private Integer electiveid;
+	//班级名称
+	private String classes;
 	
 	public Curriculum() {
 		super();

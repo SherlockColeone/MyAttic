@@ -44,7 +44,7 @@ public interface ServiceStudent {
 	 * 	把专业课或选修课转化成课程格式
 	 * @param courses 专业课对象，若为空证明无专业课
 	 * @param elective 选修课对象，若为空证明无选修课
-	 * @return 总课程集合
+	 * @return 总课程Map集合。该集合的键为一个两位数的Integer类型，十位数是指该课程在星期几，个位数是指该课程在第几大节。
 	 */
 	public Map<Integer,Curriculum> curriculumTransform(Courses courses,Elective elective);
 	

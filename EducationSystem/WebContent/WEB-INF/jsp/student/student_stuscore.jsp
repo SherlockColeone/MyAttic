@@ -42,7 +42,7 @@
 				</div>
 				<div class="col-md-6 col-md-offset-7">查询条件：</div>
 				<div class="col-md-12">
-					<table class="table table-striped">
+					<table class="table table-hover">
 						<tr>
 							<td>课程编号</td>
 							<td>课程名称</td>
