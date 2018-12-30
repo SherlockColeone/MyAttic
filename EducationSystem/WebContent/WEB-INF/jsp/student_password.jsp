@@ -14,7 +14,7 @@
 	</head>
 
 	<body>
-		<jsp:include page="../header.jsp"></jsp:include>
+		<jsp:include page="header.jsp"></jsp:include>
 
 		<!--主体-->
 		<div id="main" class="container col-md-12" style="margin-bottom: 15px;">
@@ -38,6 +38,6 @@
 			</div>
 		</div>
 
-		<jsp:include page="../footer.jsp"></jsp:include>
+		<jsp:include page="footer.jsp"></jsp:include>
 	</body>
 </html>

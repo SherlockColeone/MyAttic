@@ -26,7 +26,7 @@ public class StudentCetController {
 		//把学生添加到视图中
 		mv.addObject("student", student);
 		//跳转到学生个人中心
-		return "student/student_courses";
+		return "student/student_cet";
 	}
 	
 }
