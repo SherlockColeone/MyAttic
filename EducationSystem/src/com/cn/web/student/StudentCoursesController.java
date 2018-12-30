@@ -69,15 +69,18 @@ public class StudentCoursesController {
 			List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), termId);
 			//把结果列表添加到视图中
 			request.setAttribute("resultList",resultList);
+			request.setAttribute("nature","不限性质");
 		} else if(curriculum==1) { //专业课
 			List<Courses> resultList = serviceStudent.searchAllCoursesByStudentidAndTermid(student.getId(), termId);
 			//把专业课列表添加到视图中
 			request.setAttribute("resultList",resultList);
+			request.setAttribute("nature","专业课");
 		}
 		else if(curriculum==2) { //选修课
 			Elective resultList = serviceStudent.searchElectiveByStudentidAndTermid(student.getId(), termId);
 			//把选修课列表添加到视图中
 			request.setAttribute("resultList",resultList);
+			request.setAttribute("nature","选修课");
 		}
 		return "student/student_courses";
 	}
