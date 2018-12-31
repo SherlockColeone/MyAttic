@@ -92,8 +92,13 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		return studentMapper.selectByExample(example);
 	}
 
-	@Override
-	public int modifyTeacherPwd(int teacherid, String newPwd) {
+	/**
+	 * 	修改教师本人密码
+	 * @param teacherid 教师工号
+	 * @param newPwd 新密码
+	 * @return 更改的列的数量
+	 */
+	private int modifyTeacherPwd(int teacherid, String newPwd) {
 		Teacher record = new Teacher();
 		record.setId(teacherid);
 		record.setPassword(newPwd);
@@ -118,8 +123,13 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		}
 	}
 
-	@Override
-	public List<Curriculum> curriculumTransform(Courses courses, Elective elective) {
+	/**
+	 * 	把专业课或选修课转化成课程格式
+	 * @param courses 专业课对象，若为空证明无专业课
+	 * @param elective 选修课对象，若为空证明无选修课
+	 * @return 总课程集合
+	 */
+	private List<Curriculum> curriculumTransform(Courses courses, Elective elective) {
 		List<Curriculum> list = new ArrayList<>();
 		//专业课程
 		if(courses!=null) {

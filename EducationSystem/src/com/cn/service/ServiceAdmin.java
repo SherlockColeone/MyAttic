@@ -116,14 +116,6 @@ public interface ServiceAdmin {
 	public Admin searchAdminByAdminid(int adminid);
 	
 	/**
-	 * 	修改管理员本人密码
-	 * @param adminid 管理员id
-	 * @param newPwd 新密码
-	 * @return 更改的列的数量
-	 */
-	public int modifyAdminPwd(int adminid,String newPwd);
-	
-	/**
 	 * 	检验并更改管理员密码
 	 * @param adminid 管理员id
 	 * @param pwd 原始密码

@@ -85,7 +85,7 @@
 							<a href="${pageContext.servletContext.contextPath}/elective" class="change">选课中心</a>
 						</li>
 						<li>
-							<a href="${pageContext.servletContext.contextPath}/password" class="change">密码管理</a>
+							<a href="${pageContext.servletContext.contextPath}/pwd" class="change">密码管理</a>
 						</li>
 					</ul>
 				</div>

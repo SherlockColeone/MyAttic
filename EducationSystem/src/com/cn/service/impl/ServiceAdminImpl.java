@@ -191,8 +191,13 @@ public class ServiceAdminImpl implements ServiceAdmin {
 		return adminMapper.selectByPrimaryKey(adminid);
 	}
 
-	@Override
-	public int modifyAdminPwd(int adminid, String newPwd) {
+	/**
+	 * 	修改管理员本人密码
+	 * @param adminid 管理员id
+	 * @param newPwd 新密码
+	 * @return 更改的列的数量
+	 */
+	private int modifyAdminPwd(int adminid, String newPwd) {
 		Admin record = new Admin();
 		record.setId(adminid);
 		record.setPassword(newPwd);

@@ -2,10 +2,8 @@ package com.cn.service;
 
 import java.util.List;
 
-import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
-import com.cn.bean.Elective;
 import com.cn.bean.Evaluation;
 import com.cn.bean.Exam;
 import com.cn.bean.Gradecet;
@@ -42,14 +40,6 @@ public interface ServiceTeacher {
 	public List<Student> searchAllStudentByClassesid(int classesid);
 	
 	/**
-	 * 	修改教师本人密码
-	 * @param teacherid 教师工号
-	 * @param newPwd 新密码
-	 * @return 更改的列的数量
-	 */
-	public int modifyTeacherPwd(int teacherid,String newPwd);
-	
-	/**
 	 * 	检验并更改教师密码
 	 * @param teacherid 教师工号
 	 * @param pwd 原始密码
@@ -58,14 +48,6 @@ public interface ServiceTeacher {
 	 * @return 更改的列数量，若返回正整数则修改成功；若返回0则修改失败；若返回-1则说明更改的密码与确认密码不符；若返回-2则说明输入的密码与原始密码不符
 	 */
 	public int checkAndModifyTeacherPwd(int teacherid,String pwd,String newPwd,String rePwd);
-	
-	/**
-	 * 	把专业课或选修课转化成课程格式
-	 * @param courses 专业课对象，若为空证明无专业课
-	 * @param elective 选修课对象，若为空证明无选修课
-	 * @return 总课程集合
-	 */
-	public List<Curriculum> curriculumTransform(Courses courses,Elective elective);
 	
 	/**
 	 * 	查询某位教师一个学期的所有课程安排（专业课加选修课）

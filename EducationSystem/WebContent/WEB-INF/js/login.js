@@ -70,5 +70,8 @@ $(function() {
 			location.href = "index";
 		}
 	});
-
+	
+	$("#forget").click(function(){
+		alert("请联系管理员");
+	});
 });

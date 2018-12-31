@@ -168,18 +168,13 @@ public class HeaderController {
 		}
 	}
 	
-	@RequestMapping(value="/password")
+	@RequestMapping(value="/pwd")
 	public String password(HttpServletRequest request) {
-		if(identify()==3) { //跳到学生密码管理
-			return "redirect:studentPassword";
+		if(identify()!=0) { //证明当前已登录
+			//跳转到密码管理
+			return "redirect:password";
 		}
-		else if(identify()==2) { //跳到教师密码管理
-			return "redirect:teacherPassword";
-		}
-		else if(identify()==1) { //跳到管理员密码管理
-			return "redirect:adminPassword";
-		}
-		else {
+		else {  //证明当前未登录
 			return "redirect:index";
 		}
 	}

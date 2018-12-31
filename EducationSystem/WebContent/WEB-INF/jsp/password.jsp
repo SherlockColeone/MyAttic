@@ -14,7 +14,7 @@
 	</head>
 
 	<body>
-		<jsp:include page="../header.jsp"></jsp:include>
+		<jsp:include page="header.jsp"></jsp:include>
 
 		<!--主体-->
 		<div id="main" class="container col-md-12" style="margin-bottom: 15px;">
@@ -27,9 +27,9 @@
 				<div class="col-md-8">
 					<form action="${pageContext.servletContext.contextPath}/studentModifyPassword" method="post">
 						当前登录账户：<input class="form-control" type="text" placeholder="${studentId }" readonly><br /> 
-						旧密码：<input type="password" class="form-control" placeholder="请输入旧密码"><br />
-						新密码：<input type="password" class="form-control" placeholder="请输入新密码"><br />
-						确认新密码：<input type="password" class="form-control" placeholder="请确认新密码"><br />
+						旧密码：<input name="pwd" type="password" class="form-control" placeholder="请输入旧密码"><br />
+						新密码：<input name="newPwd" type="password" class="form-control" placeholder="请输入新密码"><br />
+						确认新密码：<input name="rePwd" type="password" class="form-control" placeholder="请确认新密码"><br />
 						<div class="col-md-offset-5">
 							<input type="submit" class="btn btn-info" value="提交" />
 						</div>
@@ -38,6 +38,6 @@
 			</div>
 		</div>
 
-		<jsp:include page="../footer.jsp"></jsp:include>
+		<jsp:include page="footer.jsp"></jsp:include>
 	</body>
 </html>

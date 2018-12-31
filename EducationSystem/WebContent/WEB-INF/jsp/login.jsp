@@ -70,8 +70,11 @@
 										<div id="code" class="col-md-6"></div>
 										<a class="col-md-7">看不清，换一张</a>
 									</div>
-									<div id="loginBtn" class="col-md-8 col-md-offset-2">
+									<div id="loginBtn" class="col-md-5 col-md-offset-2">
 										<button id="submit" type="submit" class="btn btn-primary">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+									</div>
+									<div id="forgetBlock" class="col-md-4">
+										<a id="forget">忘记密码？</a>
 									</div>
 								</div>
 							</form>

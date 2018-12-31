@@ -105,8 +105,13 @@ public class ServiceStudentImpl implements ServiceStudent {
 		return studentMapper.selectByPrimaryKey(studentid);
 	}
 
-	@Override
-	public List<Curriculum> curriculumTransform(Courses courses, Elective elective) {
+	/**
+	 * 	把专业课或选修课转化成课程格式
+	 * @param courses 专业课对象，若为空证明无专业课
+	 * @param elective 选修课对象，若为空证明无选修课
+	 * @return 总课程集合。
+	 */
+	private List<Curriculum> curriculumTransform(Courses courses, Elective elective) {
 		List<Curriculum> list = new ArrayList<>();
 		//专业课程
 		if(courses!=null) {
@@ -285,27 +290,19 @@ public class ServiceStudentImpl implements ServiceStudent {
 		criteria.andClassesidEqualTo(classesid);
 		return examMapper.selectByExample(example);
 	}
-
+	
 	@Override
-	public int modifyStudentPwd(int studentid, String newPwd) {
-		Student record = new Student();
-		record.setId(studentid);
-		record.setPassword(newPwd);
-		return studentMapper.updateByPrimaryKeySelective(record);
-	}
-
-	@Override
-	public int checkAndModifyStudentPwd(int studentid, String pwd, String newPwd, String rePwd) {
+	public int modifyStudentPwd(int studentid,String pwd,  String newPwd) {
 		//获取该学生在数据库中的密码
 		String password = studentMapper.selectByPrimaryKey(studentid).getPassword();
 		if(pwd!=password) { //输入的密码与原始密码不符
-			return -2;
-		}
-		else if(newPwd!=rePwd){ //更改的密码与确认密码不符
 			return -1;
 		}
 		else {
-			return modifyStudentPwd(studentid, newPwd);
+			Student record = new Student();
+			record.setId(studentid);
+			record.setPassword(newPwd);
+			return studentMapper.updateByPrimaryKeySelective(record);
 		}
 	}
 

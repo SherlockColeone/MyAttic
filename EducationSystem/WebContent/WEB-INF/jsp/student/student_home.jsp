@@ -58,7 +58,7 @@
 					<img src="images/cet.png" />
 					<div>社会考试</div>
 				</a>
-				<a href="${pageContext.servletContext.contextPath}/studentPassword" id="password" class="col-md-2 btn" style="padding-top: 30px;">
+				<a href="${pageContext.servletContext.contextPath}/password" id="password" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/password.png" />
 					<div>密码管理</div>
 				</a>

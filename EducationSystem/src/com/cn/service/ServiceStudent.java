@@ -41,14 +41,6 @@ public interface ServiceStudent {
 	public Student searchStudentById(int studentid);
 	
 	/**
-	 * 	把专业课或选修课转化成课程格式
-	 * @param courses 专业课对象，若为空证明无专业课
-	 * @param elective 选修课对象，若为空证明无选修课
-	 * @return 总课程集合。
-	 */
-	public List<Curriculum> curriculumTransform(Courses courses,Elective elective);
-	
-	/**
 	 * 	查询不同学期和一个班级的所有专业课
 	 * @param termid 学期id
 	 * @param classesid 班级编号
@@ -133,22 +125,14 @@ public interface ServiceStudent {
 	public List<Exam> searchAllExamByClassesid(int classesid);
 	
 	/**
-	 * 	修改学生本人密码
-	 * @param studentid 学生学号
-	 * @param newPwd 新密码
-	 * @return 更改的列的数量
-	 */
-	public int modifyStudentPwd(int studentid,String newPwd);
-	
-	/**
-	 * 	检验并更改学生密码
+	 * 	更改学生密码
 	 * @param studentid 学生学号
 	 * @param pwd 原始密码
 	 * @param newPwd 新密码
 	 * @param rePwd 确认密码
-	 * @return 更改的列数量，若返回正整数则修改成功；若返回0则修改失败；若返回-1则说明更改的密码与确认密码不符；若返回-2则说明输入的密码与原始密码不符
+	 * @return 更改的列数量，若返回正整数则修改成功；若返回0则修改失败；若返回-1则说明输入的密码与原始密码不符
 	 */
-	public int checkAndModifyStudentPwd(int studentid,String pwd,String newPwd,String rePwd);
+	public int modifyStudentPwd(int studentid,String pwd,String newPwd);
 	
 	/**
 	 * 	学生报名社会考试
