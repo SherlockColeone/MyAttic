@@ -27,7 +27,7 @@
 				</div>
 				<div class="col-md-8">
 					<form action="#" method="post">
-						当前登录账户：<input class="form-control" type="text" placeholder="账号……" readonly>
+						当前登录账户：<input class="form-control" type="text" placeholder="${id }" readonly>
 						<br /> 
 						原始密码：<input id="password" name="pwd" type="password" class="form-control" placeholder="请输入原始密码">
 						<div id="warnPwd"></div>

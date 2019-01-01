@@ -38,13 +38,13 @@ public class PasswordController {
 		Admin admin = (Admin) session.getAttribute("admin");
 		//根据不同身份把用户账号添加到视图中
 		if(student!=null) { //学生
-			request.setAttribute("studentId", student.getId());
+			request.setAttribute("id", student.getId());
 		}
 		else if(teacher!=null) { //教师
-			request.setAttribute("teacherId", teacher.getId());
+			request.setAttribute("id", teacher.getId());
 		}
 		else if(admin!=null) { //管理员
-			request.setAttribute("adminId", admin.getId());
+			request.setAttribute("id", admin.getId());
 		}
 		//跳转到密码管理
 		return "password";
@@ -60,7 +60,7 @@ public class PasswordController {
 		//根据不同身份进行修改密码
 		if(student!=null) { //学生
 			request.setAttribute("studentId", student.getId());
-//			serviceStudent.modifyStudentPwd(student.getId(), pwd, newPwd);
+			serviceStudent.modifyStudentPwd(student.getId(), pwd, newPwd);
 		}
 		else if(teacher!=null) { //教师
 			request.setAttribute("teacherId", teacher.getId());
