@@ -59,13 +59,16 @@ public class PasswordController {
 		Admin admin = (Admin) session.getAttribute("admin");
 		//根据不同身份进行修改密码
 		if(student!=null) { //学生
-			serviceStudent.modifyStudentPwd(student.getId(), pwd, newPwd);
+			request.setAttribute("studentId", student.getId());
+//			serviceStudent.modifyStudentPwd(student.getId(), pwd, newPwd);
 		}
 		else if(teacher!=null) { //教师
-			serviceTeacher.checkAndModifyTeacherPwd(teacher.getId(), pwd, newPwd, rePwd);
+			request.setAttribute("teacherId", teacher.getId());
+//			serviceTeacher.checkAndModifyTeacherPwd(teacher.getId(), pwd, newPwd, rePwd);
 		}
 		else if(admin!=null) { //管理员
-			serviceAdmin.checkAndModifyAdminPwd(admin.getId(), pwd, newPwd, rePwd);
+			request.setAttribute("adminId", admin.getId());
+//			serviceAdmin.checkAndModifyAdminPwd(admin.getId(), pwd, newPwd, rePwd);
 		}
 		//跳转到密码管理
 		return "password";
