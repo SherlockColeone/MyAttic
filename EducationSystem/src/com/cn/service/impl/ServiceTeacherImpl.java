@@ -92,34 +92,20 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		return studentMapper.selectByExample(example);
 	}
 
-	/**
-	 * 	修改教师本人密码
-	 * @param teacherid 教师工号
-	 * @param newPwd 新密码
-	 * @return 更改的列的数量
-	 */
-	private int modifyTeacherPwd(int teacherid, String newPwd) {
-		Teacher record = new Teacher();
-		record.setId(teacherid);
-		record.setPassword(newPwd);
-		return teacherMapper.updateByPrimaryKeySelective(record);
-	}
-
 	@Override
-	public int checkAndModifyTeacherPwd(int teacherid, String pwd, String newPwd, String rePwd) {
+	public int modifyTeacherPwd(int teacherid, String pwd, String newPwd) {
 		//获取该教师在数据库中的密码
 		String password = teacherMapper.selectByPrimaryKey(teacherid).getPassword();
 		//输入的密码与原始密码不符
 		if(pwd!=password) {
-			return -2;
-		}
-		//更改的密码与确认密码不符
-		else if(newPwd!=rePwd){
 			return -1;
 		}
 		//验证通过，可以修改密码
 		else {  
-			return modifyTeacherPwd(teacherid, newPwd);
+			Teacher record = new Teacher();
+			record.setId(teacherid);
+			record.setPassword(newPwd);
+			return teacherMapper.updateByPrimaryKeySelective(record);
 		}
 	}
 

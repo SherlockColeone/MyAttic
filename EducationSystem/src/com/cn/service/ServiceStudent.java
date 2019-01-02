@@ -129,7 +129,6 @@ public interface ServiceStudent {
 	 * @param studentid 学生学号
 	 * @param pwd 原始密码
 	 * @param newPwd 新密码
-	 * @param rePwd 确认密码
 	 * @return 更改的列数量，若返回正整数则修改成功；若返回0则修改失败；若返回-1则说明输入的密码与原始密码不符
 	 */
 	public int modifyStudentPwd(int studentid,String pwd,String newPwd);

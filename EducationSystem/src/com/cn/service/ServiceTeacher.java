@@ -44,10 +44,9 @@ public interface ServiceTeacher {
 	 * @param teacherid 教师工号
 	 * @param pwd 原始密码
 	 * @param newPwd 新密码
-	 * @param rePwd 确认密码
-	 * @return 更改的列数量，若返回正整数则修改成功；若返回0则修改失败；若返回-1则说明更改的密码与确认密码不符；若返回-2则说明输入的密码与原始密码不符
+	 * @return 更改的列数量，若返回正整数则修改成功；若返回0则修改失败；若返回-1则说明输入的密码与原始密码不符
 	 */
-	public int checkAndModifyTeacherPwd(int teacherid,String pwd,String newPwd,String rePwd);
+	public int modifyTeacherPwd(int teacherid,String pwd,String newPwd);
 	
 	/**
 	 * 	查询某位教师一个学期的所有课程安排（专业课加选修课）

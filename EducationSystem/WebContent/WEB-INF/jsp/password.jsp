@@ -30,7 +30,9 @@
 						当前登录账户：<input class="form-control" type="text" placeholder="${id }" readonly>
 						<br /> 
 						原始密码：<input id="password" name="pwd" type="password" class="form-control" placeholder="请输入原始密码">
-						<div id="warnPwd"></div>
+						<div id="warnPwd">
+							<div id="result"></div>
+						</div>
 						<br /> 
 						新密码：<input id="newPwd" name="newPwd" type="password" class="form-control" placeholder="请输入新密码，请用大小写英文字母、数字，长度为6-20个字符">
 						<div id="warnNewPwd"></div>

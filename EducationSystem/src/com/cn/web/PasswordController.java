@@ -57,18 +57,31 @@ public class PasswordController {
 		Student student = (Student) session.getAttribute("student");
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 		Admin admin = (Admin) session.getAttribute("admin");
-		//根据不同身份进行修改密码
+		//根据不同身份进行修改密码并把用户账号添加到视图中
 		if(student!=null) { //学生
-			request.setAttribute("studentId", student.getId());
-			serviceStudent.modifyStudentPwd(student.getId(), pwd, newPwd);
+			request.setAttribute("id", student.getId());
+			//获取修改的返回值
+			int result = serviceStudent.modifyStudentPwd(student.getId(), pwd, newPwd);
+			//将返回值传到
+			request.setAttribute("result", result);
+//			if(num>0) {
+//				result = "修改密码成功！";
+//				session.setAttribute("result", result);
+//			} else if(num==0) {
+//				result = "修改密码失败！";
+//			} else if(num==-1){
+//				result = "原始密码不正确！";
+//			}
 		}
 		else if(teacher!=null) { //教师
-			request.setAttribute("teacherId", teacher.getId());
-//			serviceTeacher.checkAndModifyTeacherPwd(teacher.getId(), pwd, newPwd, rePwd);
+			request.setAttribute("id", teacher.getId());
+			int result = serviceTeacher.modifyTeacherPwd(teacher.getId(), rePwd, newPwd);
+			request.setAttribute("result", result);
 		}
 		else if(admin!=null) { //管理员
-			request.setAttribute("adminId", admin.getId());
-//			serviceAdmin.checkAndModifyAdminPwd(admin.getId(), pwd, newPwd, rePwd);
+			request.setAttribute("id", admin.getId());
+			int result = serviceAdmin.modifyAdminPwd(admin.getId(), rePwd, newPwd);
+			request.setAttribute("result", result);
 		}
 		//跳转到密码管理
 		return "password";
