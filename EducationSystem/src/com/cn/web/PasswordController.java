@@ -46,7 +46,7 @@ public class PasswordController {
 		else if(admin!=null) { //管理员
 			request.setAttribute("id", admin.getId());
 		}
-		//跳转到密码管理
+		//跳转到密码管理页面
 		return "password";
 	}
 	
@@ -76,7 +76,7 @@ public class PasswordController {
 			int result = serviceAdmin.modifyAdminPwd(admin.getId(), pwd, newPwd);
 			request.setAttribute("result", result);
 		}
-		//跳转到密码管理
+		//跳转到密码管理页面
 		return "password";
 	}
 }
