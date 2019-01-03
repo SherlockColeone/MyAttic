@@ -42,6 +42,8 @@ public class StudentCetController {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
+		//设置准考证号
+		request.setAttribute("studentId", student.getId());
 		//找到该学生的所有社会考试
 		List<Gradecet> list = serviceStudent.searchAllGradeCetByStudentid(student.getId());
 		request.setAttribute("list", list);
