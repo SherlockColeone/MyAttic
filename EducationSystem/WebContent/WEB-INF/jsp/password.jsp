@@ -41,7 +41,9 @@
 						<div id="warnRePwd"></div>
 						<br />
 						<div class="col-md-offset-5">
-							<button id="submit" type="submit" class="btn btn-info">提交</button>
+							<button id="submit" type="submit" class="btn btn-info">
+								<span class="glyphicon glyphicon-upload"></span>提交
+							</button>
 						</div>
 					</form>
 				</div>

@@ -46,7 +46,7 @@ public class StudentCetController {
 		List<Gradecet> list = serviceStudent.searchAllGradeCetByStudentid(student.getId());
 		request.setAttribute("list", list);
 		//跳转到学生社会考试页面
-		return "student/student_cet";
+		return "student/student_gradecet";
 	}
 	
 }

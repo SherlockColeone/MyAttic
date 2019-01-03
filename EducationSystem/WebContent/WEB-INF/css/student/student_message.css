@@ -4,7 +4,6 @@
 
 #main{
 	margin-bottom: 20px;
-	height: 500px;
 }
 
 #up{
@@ -24,10 +23,4 @@ td{
 
 tr{
 	border-collapse: collapse;
-}
-
-#footer{
-	position: fixed;
-	left: 500px;
-	bottom: 50px;
 }

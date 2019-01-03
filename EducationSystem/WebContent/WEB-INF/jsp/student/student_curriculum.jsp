@@ -36,7 +36,9 @@
 							</select>
 						</div>
 						<div class="col-md-4 col-md-offset-4">
-							<button type="submit" class="btn btn-default">查询</button>
+							<button type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查询
+							</button>
 						</div>
 					</form>
 				</div>

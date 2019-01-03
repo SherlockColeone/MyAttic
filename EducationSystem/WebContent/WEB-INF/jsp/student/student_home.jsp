@@ -54,7 +54,7 @@
 					<img src="images/stuscore.png" />
 					<div>课程成绩</div>
 				</a>
-				<a href="${pageContext.servletContext.contextPath}/studentGradeCet" id="cet" class="col-md-2 btn" style="padding-top: 30px;">
+				<a href="${pageContext.servletContext.contextPath}/studentCet" id="cet" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/cet.png" />
 					<div>社会考试</div>
 				</a>
