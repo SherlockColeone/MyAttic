@@ -57,7 +57,7 @@
 				</div>
 				<div class="col-md-5">学期时间：${term }</div>			
 				<div class="col-md-12">
-					<table class="table table-striped">
+					<table class="table table-bordered">
 						<tr>
 							<td></td>
 							<td>星期一</td>

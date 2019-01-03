@@ -1,13 +1,20 @@
 package com.cn.web.student;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.cn.bean.Curriculum;
+import com.cn.bean.Exam;
 import com.cn.bean.Student;
+import com.cn.service.CheckNameService;
+import com.cn.service.ServiceStudent;
 
 /**
  * 	进入考试安排（学生）的控制器
@@ -17,14 +24,28 @@ import com.cn.bean.Student;
 
 @Controller
 public class StudentExamController {
+	@Autowired
+	private ServiceStudent serviceStudent;
+	@Autowired
+	private CheckNameService checkNameService;
 	
 	@RequestMapping(value="/studentExam")
-	public String studentExam(ModelAndView mv,HttpServletRequest request) {
+	public String studentExam(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
-		//把学生添加到视图中
-		mv.addObject("student", student);
+		String classes = checkNameService.searchNameByClassesId(student.getClassesid());
+		request.setAttribute("classes", classes);
+		//查询本班所有考试
+		List<Exam> list = serviceStudent.searchAllExamByClassesid(student.getClassesid());
+		List<Curriculum> listResult = new ArrayList<>();
+		for (Exam exam : list) {
+			//找到每个课程对应的名称
+			String name = checkNameService.searchNameByCoursesId(exam.getCoursesid());
+			Curriculum temp = new Curriculum(exam.getId(), name, null, null, exam.getExamtime(), null, exam.getPlace(), null, exam.getClassesid(), null, null, exam.getCoursesid(), null, classes);		
+			listResult.add(temp);
+		}				
+		request.setAttribute("list", listResult);
 		//跳转到学生个人中心
 		return "student/student_exam";
 	}

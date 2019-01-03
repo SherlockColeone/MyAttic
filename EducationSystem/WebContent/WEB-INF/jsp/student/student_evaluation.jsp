@@ -18,7 +18,7 @@
 
 		<!--主体-->
 		<div id="main" class="container col-md-12">
-			
+			正在努力开发……
 		</div>
 
 		<jsp:include page="../footer.jsp"></jsp:include>

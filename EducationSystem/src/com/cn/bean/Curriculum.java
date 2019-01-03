@@ -29,7 +29,7 @@ public class Curriculum {
 	//任课老师id
 	private Integer teacherid;
 	//专业课id，若为0，说明该课程不是专业课
-	private Integer couresid;
+	private Integer coursesid;
 	//选修课id，若为0，说明该课程不是选修课
 	private Integer electiveid;
 	//班级名称
@@ -41,7 +41,7 @@ public class Curriculum {
 	}
 
 	public Curriculum(Integer id, String name, String week, Integer day, String time, Integer lesson, String place,
-			String teacher, Integer termid, Integer teacherid, Integer couresid, Integer electiveid) {
+			String teacher, Integer termid, Integer teacherid, Integer coursesid, Integer electiveid) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,12 +53,12 @@ public class Curriculum {
 		this.teacher = teacher;
 		this.termid = termid;
 		this.teacherid = teacherid;
-		this.couresid = couresid;
+		this.coursesid = coursesid;
 		this.electiveid = electiveid;
 	}
 
 	public Curriculum(Integer id, String name, String week, Integer day, String time, Integer lesson, String place,
-			String teacher, Integer classesid, Integer termid, Integer teacherid, Integer couresid, Integer electiveid,
+			String teacher, Integer classesid, Integer termid, Integer teacherid, Integer coursesid, Integer electiveid,
 			String classes) {
 		super();
 		this.id = id;
@@ -72,7 +72,7 @@ public class Curriculum {
 		this.classesid = classesid;
 		this.termid = termid;
 		this.teacherid = teacherid;
-		this.couresid = couresid;
+		this.coursesid = coursesid;
 		this.electiveid = electiveid;
 		this.classes = classes;
 	}
@@ -165,12 +165,12 @@ public class Curriculum {
 		this.teacherid = teacherid;
 	}
 
-	public Integer getCouresid() {
-		return couresid;
+	public Integer getCoursesid() {
+		return coursesid;
 	}
 
-	public void setCouresid(Integer couresid) {
-		this.couresid = couresid;
+	public void setCoursesid(Integer coursesid) {
+		this.coursesid = coursesid;
 	}
 
 	public Integer getElectiveid() {
@@ -193,7 +193,7 @@ public class Curriculum {
 	public String toString() {
 		return "Curriculum [id=" + id + ", name=" + name + ", week=" + week + ", day=" + day + ", time=" + time
 				+ ", lesson=" + lesson + ", place=" + place + ", teacher=" + teacher + ", classesid=" + classesid
-				+ ", termid=" + termid + ", teacherid=" + teacherid + ", couresid=" + couresid + ", electiveid="
+				+ ", termid=" + termid + ", teacherid=" + teacherid + ", coursesid=" + coursesid + ", electiveid="
 				+ electiveid + ", classes=" + classes + "]";
 	}
 

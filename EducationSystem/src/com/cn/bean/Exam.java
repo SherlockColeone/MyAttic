@@ -10,7 +10,7 @@ public class Exam {
 	private Integer id;
 	//考试地点
 	private String place;
-	//考试时间
+	//考试时间。考试时间的标准储存格式为XXXX（年）-XX（月）-XX（日） XX（时）：XX（分）- XX（时）：XX（分）
 	private String examtime;
 	//考试课程id
 	private Integer coursesid;
