@@ -96,16 +96,14 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	public int modifyTeacherPwd(int teacherid, String pwd, String newPwd) {
 		//获取该教师在数据库中的密码
 		String password = teacherMapper.selectByPrimaryKey(teacherid).getPassword();
-		//输入的密码与原始密码不符
-		if(pwd!=password) {
-			return -1;
-		}
-		//验证通过，可以修改密码
-		else {  
+		if(pwd.equals(password)) { //验证通过，可以修改密码
 			Teacher record = new Teacher();
 			record.setId(teacherid);
 			record.setPassword(newPwd);
 			return teacherMapper.updateByPrimaryKeySelective(record);
+		}
+		else {  //输入的密码与原始密码不符
+			return -1;
 		}
 	}
 

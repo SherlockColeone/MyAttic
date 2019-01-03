@@ -195,14 +195,14 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	public int modifyAdminPwd(int adminid, String pwd, String newPwd) {
 		//获取该管理员在数据库中的密码
 		String password = adminMapper.selectByPrimaryKey(adminid).getPassword();
-		if(pwd!=password) { //输入的密码与原始密码不符
-			return -1;
-		}
-		else {
+		if(pwd.equals(password)) {
 			Admin record = new Admin();
 			record.setId(adminid);
 			record.setPassword(newPwd);
 			return adminMapper.updateByPrimaryKeySelective(record);
+		}
+		else { //输入的密码与原始密码不符
+			return -1;
 		}
 	}
 

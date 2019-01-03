@@ -295,14 +295,14 @@ public class ServiceStudentImpl implements ServiceStudent {
 	public int modifyStudentPwd(int studentid,String pwd,  String newPwd) {
 		//获取该学生在数据库中的密码
 		String password = studentMapper.selectByPrimaryKey(studentid).getPassword();
-		if(pwd!=password) { //输入的密码与原始密码不符
-			return -1;
-		}
-		else {
+		if(pwd.equals(password)) { //输入的密码符合原始密码
 			Student record = new Student();
 			record.setId(studentid);
 			record.setPassword(newPwd);
 			return studentMapper.updateByPrimaryKeySelective(record);
+		}
+		else { //输入的密码与原始密码不符
+			return -1;
 		}
 	}
 

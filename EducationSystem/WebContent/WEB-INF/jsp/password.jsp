@@ -26,14 +26,14 @@
 					</center>
 				</div>
 				<div class="col-md-8">
-					<form action="#" method="post">
+					<form action="${pageContext.servletContext.contextPath}/modifyPassword" method="post">
 						当前登录账户：<input class="form-control" type="text" placeholder="${id }" readonly>
 						<br /> 
 						原始密码：<input id="password" name="pwd" type="password" class="form-control" placeholder="请输入原始密码">
 						<div id="warnPwd">
-							<div id="result"></div>
+							<div id="result">${result }</div>
 						</div>
-						<br /> 
+						<br />
 						新密码：<input id="newPwd" name="newPwd" type="password" class="form-control" placeholder="请输入新密码，请用大小写英文字母、数字，长度为6-20个字符">
 						<div id="warnNewPwd"></div>
 						<br /> 

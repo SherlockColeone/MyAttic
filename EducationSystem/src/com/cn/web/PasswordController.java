@@ -51,12 +51,13 @@ public class PasswordController {
 	}
 	
 	@RequestMapping(value="/modifyPassword")
-	public String modifyPassword(HttpServletRequest request,String pwd,String newPwd,String rePwd) {
+	public String modifyPassword(HttpServletRequest request,String pwd,String newPwd) {
 		HttpSession session = request.getSession();
 		//从session域中获取用户对象
 		Student student = (Student) session.getAttribute("student");
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 		Admin admin = (Admin) session.getAttribute("admin");
+		
 		//根据不同身份进行修改密码并把用户账号添加到视图中
 		if(student!=null) { //学生
 			request.setAttribute("id", student.getId());
@@ -64,23 +65,15 @@ public class PasswordController {
 			int result = serviceStudent.modifyStudentPwd(student.getId(), pwd, newPwd);
 			//将返回值传到
 			request.setAttribute("result", result);
-//			if(num>0) {
-//				result = "修改密码成功！";
-//				session.setAttribute("result", result);
-//			} else if(num==0) {
-//				result = "修改密码失败！";
-//			} else if(num==-1){
-//				result = "原始密码不正确！";
-//			}
 		}
 		else if(teacher!=null) { //教师
 			request.setAttribute("id", teacher.getId());
-			int result = serviceTeacher.modifyTeacherPwd(teacher.getId(), rePwd, newPwd);
+			int result = serviceTeacher.modifyTeacherPwd(teacher.getId(), pwd, newPwd);
 			request.setAttribute("result", result);
 		}
 		else if(admin!=null) { //管理员
 			request.setAttribute("id", admin.getId());
-			int result = serviceAdmin.modifyAdminPwd(admin.getId(), rePwd, newPwd);
+			int result = serviceAdmin.modifyAdminPwd(admin.getId(), pwd, newPwd);
 			request.setAttribute("result", result);
 		}
 		//跳转到密码管理

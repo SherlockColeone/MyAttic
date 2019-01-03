@@ -43,4 +43,17 @@ $(function() {
 
 		}
 	});
+		
+	var result = $("#result").html();
+	if (result!=null) { //当控制器返回了值时（即处理了修改密码的动作）
+		if(result>0){
+			alert("修改密码成功！");
+		} else if(result == "0"){
+			alert("修改密码失败！");
+		} else if(result == "-1"){
+			$("#result").html("原始密码不正确！");
+			$("#result").css("display","inline");
+		}
+	}
+	
 });
