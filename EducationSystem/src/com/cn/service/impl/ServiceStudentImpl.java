@@ -1,6 +1,9 @@
 package com.cn.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +20,6 @@ import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
 import com.cn.bean.CurriculumarrangeExample;
 import com.cn.bean.Elective;
-import com.cn.bean.Enrollcet;
-import com.cn.bean.EnrollcetExample;
 import com.cn.bean.Evaluation;
 import com.cn.bean.Exam;
 import com.cn.bean.ExamExample;
@@ -39,7 +40,6 @@ import com.cn.dao.ClassesMapper;
 import com.cn.dao.CoursesMapper;
 import com.cn.dao.CurriculumarrangeMapper;
 import com.cn.dao.ElectiveMapper;
-import com.cn.dao.EnrollcetMapper;
 import com.cn.dao.EvaluationMapper;
 import com.cn.dao.ExamMapper;
 import com.cn.dao.GradecetMapper;
@@ -72,8 +72,6 @@ public class ServiceStudentImpl implements ServiceStudent {
 	private CurriculumarrangeMapper curriculumarrangeMapper;
 	@Autowired
 	private ExamMapper examMapper;
-	@Autowired
-	private EnrollcetMapper enrollcetMapper;
 	@Autowired
 	private GradecetMapper gradecetMapper;
 	@Autowired
@@ -311,26 +309,13 @@ public class ServiceStudentImpl implements ServiceStudent {
 	}
 
 	@Override
-	public boolean addEnrollCet(int studentid, int cetid) {
-		Enrollcet vo = new Enrollcet(cetid, studentid);
-		if (enrollcetMapper.insert(vo)>0) {
+	public boolean addGradecetApplyByStudentidAndCetid(int studentid, int cetid) {
+		Gradecet vo = new Gradecet(studentid, cetid);
+		if (gradecetMapper.insert(vo)>0) {
 			return true;
 		} else {
 			return false;
 		}
-	}
-
-	@Override
-	public Enrollcet searchEnrollCetByStudentidAndCetid(int studentid, int cetid) {
-		EnrollcetExample example = new EnrollcetExample();
-		com.cn.bean.EnrollcetExample.Criteria criteria = example.createCriteria();
-		criteria.andStudentidEqualTo(studentid);
-		criteria.andCetidEqualTo(cetid);
-		List<Enrollcet> list = enrollcetMapper.selectByExample(example);
-		if(list.size()==0) {
-			return null;
-		}
-		return list.get(0);
 	}
 
 	@Override
@@ -391,11 +376,42 @@ public class ServiceStudentImpl implements ServiceStudent {
 	}
 	
 	@Override
-	public List<Cet> searchAllCet(int termid) {
+	public List<Cet> searchAllCetByCurrentTerm() {
+		//先找到当前的学期
+		Date date = new Date();
+		DateFormat dateFormat1 = new SimpleDateFormat("yyyy");
+		String strYear = dateFormat1.format(date);
+		System.out.println(strYear);
+		DateFormat dateFormat2 = new SimpleDateFormat("mm");
+		String strMonth = dateFormat2.format(date);
+		System.out.println(strMonth);
+		Integer term = new Integer(strMonth);
+		if(term==9 || term==10 || term==11 || term==12 || term==1) { //属于上学期
+			//年份加上字符串1，作为学期id
+			term = new Integer(strYear+"1");
+		} 
+		else if(term==3 || term==4 || term==5 || term==6 || term==7) { //属于下学期
+			term = new Integer(strYear+"2");
+		} 
+		else { //证明属于寒暑假，返回空
+			return null;
+		}
 		CetExample example = new CetExample();
-		com.cn.bean.CetExample.Criteria criteria = example.createCriteria();
-		criteria.andTermidEqualTo(termid);
+		com.cn.bean.CetExample.Criteria criteria = example.createCriteria();		
+		criteria.andTermidEqualTo(term);
 		return cetMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<BeanCet> searchAllBeanCetByCurrentTerm() {
+		List<BeanCet> list = new ArrayList<>();
+		List<Cet> listCet = searchAllCetByCurrentTerm();
+		for (Cet cet : listCet) {
+			String name = checkNameService.searchByCetId(cet.getId());			
+			BeanCet beanCet = new BeanCet(name, cet.getCettime(), null, cet.getId(), 0);
+			list.add(beanCet);
+		}
+		return list;
 	}
 
 	@Override

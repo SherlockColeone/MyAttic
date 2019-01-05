@@ -9,7 +9,6 @@ import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
 import com.cn.bean.Elective;
-import com.cn.bean.Enrollcet;
 import com.cn.bean.Evaluation;
 import com.cn.bean.Exam;
 import com.cn.bean.Gradecet;
@@ -135,20 +134,12 @@ public interface ServiceStudent {
 	public int modifyStudentPwd(int studentid,String pwd,String newPwd);
 	
 	/**
-	 * 	学生报名社会考试
+	 * 	学生报名社会考试，在社会考试成绩表中添加学号与社会考试id
 	 * @param studentid 学生学号
 	 * @param cetid 社会考试id
 	 * @return 是否报名成功
 	 */
-	public boolean addEnrollCet(int studentid,int cetid);
-	
-	/**
-	 * 	学生查询本次社会考试报名记录
-	 * @param studentid 学号
-	 * @param cetid 社会考试id
-	 * @return 社会考试报名记录
-	 */
-	public Enrollcet searchEnrollCetByStudentidAndCetid(int studentid,int cetid);
+	public boolean addGradecetApplyByStudentidAndCetid(int studentid,int cetid);
 	
 	/**
 	 * 	考生查询某次社会考试成绩和考试安排
@@ -180,11 +171,18 @@ public interface ServiceStudent {
 	public List<BeanCet> searchAllGradeCetApplyByStudentid(int studentid);
 	
 	/**
-	 * 	查询本学期的所有社会考试
+	 * 	查询当前学期的所有社会考试
 	 * @param termid 学期id
-	 * @return 本学期的社会考试集合
+	 * @return 当前学期的社会考试集合，若返回空，证明为寒暑假
 	 */
-	public List<Cet> searchAllCet(int termid);
+	public List<Cet> searchAllCetByCurrentTerm();
+	
+	/**
+	 * 	查询当前学期的所有社会考试
+	 * @param termid 学期id
+	 * @return 当前学期的社会考试集合，若返回空，证明为寒暑假
+	 */
+	public List<BeanCet> searchAllBeanCetByCurrentTerm();
 	
 	/**
 	 * 	根据学号与学期查询所有专业课程

@@ -1,4 +1,4 @@
-package com.cn.bean;
+package com.cn.demo;
 
 /**
  * 	学生社会考试记录类

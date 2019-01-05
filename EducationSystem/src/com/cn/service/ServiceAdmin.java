@@ -8,7 +8,6 @@ import com.cn.bean.Classes;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculumarrange;
 import com.cn.bean.Elective;
-import com.cn.bean.Enrollcet;
 import com.cn.bean.Evaluation;
 import com.cn.bean.Exam;
 import com.cn.bean.Gradecet;
@@ -317,14 +316,14 @@ public interface ServiceAdmin {
 	 * @param cetid 社会考试id
 	 * @return 社会考试报名集合
 	 */
-	public List<Enrollcet> searchAllEnrollcetByCetid(int cetid);
+	public List<Gradecet> searchAllGradecetApplyByCetid(int cetid);
 	
 	/**
 	 * 	管理员查询某一次社会考试所有报名的学生学号
 	 * @param cetid 社会考试id
 	 * @return 社会考试报名集合
 	 */
-	public List<Integer> searchAllEnrollCetStudentidByCetid(int cetid);
+	public List<Integer> searchAllGradecetApplyStudentidByCetid(int cetid);
 	
 	/**
 	 * 	管理员添加社会考试成绩

@@ -47,7 +47,7 @@ public class StudentCurriculumController {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
-		List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), 1);
+		List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), 20181);
 		request.setAttribute("resultList", resultList);
 		//跳转到学生课程表页面
 		return "student/student_curriculum";

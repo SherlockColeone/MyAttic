@@ -14,12 +14,11 @@ import com.cn.bean.Classes;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculumarrange;
 import com.cn.bean.Elective;
-import com.cn.bean.Enrollcet;
-import com.cn.bean.EnrollcetExample;
 import com.cn.bean.Evaluation;
 import com.cn.bean.Exam;
 import com.cn.bean.ExamExample;
 import com.cn.bean.Gradecet;
+import com.cn.bean.GradecetExample;
 import com.cn.bean.Major;
 import com.cn.bean.Student;
 import com.cn.bean.Teacher;
@@ -29,7 +28,6 @@ import com.cn.dao.ClassesMapper;
 import com.cn.dao.CoursesMapper;
 import com.cn.dao.CurriculumarrangeMapper;
 import com.cn.dao.ElectiveMapper;
-import com.cn.dao.EnrollcetMapper;
 import com.cn.dao.EvaluationMapper;
 import com.cn.dao.ExamMapper;
 import com.cn.dao.GradecetMapper;
@@ -65,8 +63,6 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	private ClassesMapper classesMapper;
 	@Autowired
 	private CetMapper cetMapper;
-	@Autowired
-	private EnrollcetMapper enrollcetMapper;
 	@Autowired
 	private GradecetMapper gradecetMapper;
 	@Autowired
@@ -443,19 +439,19 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	}
 
 	@Override
-	public List<Enrollcet> searchAllEnrollcetByCetid(int cetid) {
-		EnrollcetExample example = new EnrollcetExample();
-		com.cn.bean.EnrollcetExample.Criteria criteria = example.createCriteria();
+	public List<Gradecet> searchAllGradecetApplyByCetid(int cetid) {
+		GradecetExample example = new GradecetExample();
+		com.cn.bean.GradecetExample.Criteria criteria = example.createCriteria();
 		criteria.andCetidEqualTo(cetid);
-		return enrollcetMapper.selectByExample(example);
+		return gradecetMapper.selectByExample(example);
 	}
 
 	@Override
-	public List<Integer> searchAllEnrollCetStudentidByCetid(int cetid) {
+	public List<Integer> searchAllGradecetApplyStudentidByCetid(int cetid) {
 		List<Integer> listStudentid = new ArrayList<>();
-		List<Enrollcet> listEnrollcet = searchAllEnrollcetByCetid(cetid);
-		for (Enrollcet enrollcet : listEnrollcet) {
-			listStudentid.add(enrollcet.getStudentid());
+		List<Gradecet> listGradecetApply = searchAllGradecetApplyByCetid(cetid);
+		for (Gradecet gradecet : listGradecetApply) {
+			listStudentid.add(gradecet.getStudentid());
 		}
 		return listStudentid;
 	}

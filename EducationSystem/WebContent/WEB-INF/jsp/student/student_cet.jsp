@@ -21,7 +21,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-1">
-					<a href="#" class="btn btn-default">
+					<a href="${pageContext.servletContext.contextPath}/studentGradeCet" class="btn btn-default">
 						<span class="glyphicon glyphicon-arrow-left"></span>前往社会考试成绩页面
 					</a>
 				</div>
@@ -36,14 +36,20 @@
 							<td>是否具备报名资格</td>
 							<td>操作</td>
 						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td>
-								<a id="apply" href="#">报名</a>
-							</td>
-						</tr>
+						<c:forEach items="${list }" var="result">
+							<tr>
+								<td class="cetId" hidden>${result.score }</td>
+								<td class="name">${result.name }</td>
+								<td class="time">${result.time }</td>
+								<td class="qualification">
+									<c:if test="${result.qualification }==0">是</c:if>
+									<c:if test="${result.qualification }==1">否</c:if>
+								</td>
+								<td>
+									<a class="apply" href="#">报名</a>
+								</td>
+							</tr>							
+						</c:forEach>
 					</table>
 				</div>
 
@@ -52,14 +58,13 @@
 						<tr>
 							<td>社会考试名称</td>
 							<td>社会考试时间</td>
-							<td>社会考试地点</td>
+							<td>学号</td>
 						</tr>
 						<tr>
-							<form action="" method="post">
-								<td></td>
-								<td>2018-06-16</td>
-								<td></td>
-							</form>
+							<td id="cetId" hidden></td>
+							<td id="showName"></td>
+							<td id="showTime"></td>
+							<td>${studentId }</td>
 						</tr>
 					</table>
 					<div class="col-md-4 col-md-offset-4">
@@ -73,7 +78,7 @@
 				<a href="#" class="list-group-item disabled">
 					<h4>社会考试</h4>
 				</a>
-				<a href="#" class="list-group-item">社会考试成绩与安排</a>
+				<a href="${pageContext.servletContext.contextPath}/studentGradeCet" class="list-group-item">社会考试成绩与安排</a>
 				<a href="#" class="list-group-item active">社会考试报名</a>`
 			</div>
 		</div>

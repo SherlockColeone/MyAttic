@@ -1,4 +1,4 @@
-package com.cn.dao;
+package com.cn.demo;
 
 import com.cn.bean.Enrollcet;
 import com.cn.bean.EnrollcetExample;

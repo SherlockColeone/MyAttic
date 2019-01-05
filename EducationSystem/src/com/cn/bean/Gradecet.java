@@ -26,6 +26,12 @@ public class Gradecet {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Gradecet(Integer studentid, Integer cetid) {
+		super();
+		this.studentid = studentid;
+		this.cetid = cetid;
+	}
+
 	public Gradecet(Integer id, Integer studentid, Integer cetid, String cettime, Integer classroomid,
 			Integer teacherid) {
 		super();
