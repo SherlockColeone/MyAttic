@@ -28,9 +28,9 @@ public class StudentMessageController {
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
 		//查询出二级学院、专业、班级的名字
-		String academy = checkNameService.searchNameByAcademyId(student.getAcademyid());
-		String major = checkNameService.searchNameByMajorId(student.getMajorid());
-		String classes = checkNameService.searchNameByClassesId(student.getClassesid());
+		String academy = checkNameService.searchByAcademyId(student.getAcademyid());
+		String major = checkNameService.searchByMajorId(student.getMajorid());
+		String classes = checkNameService.searchByClassesId(student.getClassesid());
 		//把学生个人信息添加到视图中
 		mv.addObject("student", student);
 		//把二级学院、专业、班级的名字放入视图中

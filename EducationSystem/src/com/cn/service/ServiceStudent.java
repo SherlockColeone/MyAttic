@@ -3,6 +3,7 @@ package com.cn.service;
 import java.util.List;
 import java.util.Map;
 
+import com.cn.bean.BeanCet;
 import com.cn.bean.Cet;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
@@ -151,11 +152,11 @@ public interface ServiceStudent {
 	
 	/**
 	 * 	考生查询某次社会考试成绩和考试安排
-	 * @param studentid
-	 * @param cetid
+	 * @param studentid 学号
+	 * @param cetid 社会考试id
 	 * @return 社会考试成绩对象
 	 */
-	public Gradecet searchGradeCetByStudentidAndCetid(int studentid,String cetid);
+	public Gradecet searchGradeCetByStudentidAndCetid(int studentid,Integer cetid);
 	
 	/**
 	 * 	考生查询本人所有社会考试成绩
@@ -163,6 +164,20 @@ public interface ServiceStudent {
 	 * @return 社会考试成绩集合
 	 */
 	public List<Gradecet> searchAllGradeCetByStudentid(int studentid);
+
+	/**
+	 * 	考生查询本人已有成绩的社会考试成绩
+	 * @param studentid 学号
+	 * @return 社会考试显示实体类集合
+	 */
+	public List<BeanCet> searchAllGradeCetScoreByStudentid(int studentid);	
+	
+	/**
+	 * 	考生查询本人已报名的社会考试成绩
+	 * @param studentid 学号
+	 * @return 社会考试显示实体类集合
+	 */
+	public List<BeanCet> searchAllGradeCetApplyByStudentid(int studentid);
 	
 	/**
 	 * 	查询本学期的所有社会考试

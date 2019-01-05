@@ -5,7 +5,7 @@ public class Gradecet {
 
     private Integer studentid;
 
-    private String cetid;
+    private Integer cetid;
 
     private String cettime;
 
@@ -31,12 +31,12 @@ public class Gradecet {
         this.studentid = studentid;
     }
 
-    public String getCetid() {
+    public Integer getCetid() {
         return cetid;
     }
 
-    public void setCetid(String cetid) {
-        this.cetid = cetid == null ? null : cetid.trim();
+    public void setCetid(Integer cetid) {
+        this.cetid = cetid;
     }
 
     public String getCettime() {

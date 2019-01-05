@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.cn.bean.Gradecet" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="studentid" property="studentid" jdbcType="INTEGER" />
-    <result column="cetid" property="cetid" jdbcType="INTEGER" />
+    <result column="cetid" property="cetid" jdbcType="VARCHAR" />
     <result column="cettime" property="cettime" jdbcType="VARCHAR" />
     <result column="cetscore" property="cetscore" jdbcType="INTEGER" />
     <result column="classroomid" property="classroomid" jdbcType="INTEGER" />
@@ -105,7 +105,7 @@
     insert into gradecet (id, studentid, cetid, 
       cettime, cetscore, classroomid, 
       teacherid)
-    values (#{id,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}, #{cetid,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}, #{cetid,jdbcType=VARCHAR}, 
       #{cettime,jdbcType=VARCHAR}, #{cetscore,jdbcType=INTEGER}, #{classroomid,jdbcType=INTEGER}, 
       #{teacherid,jdbcType=INTEGER})
   </insert>
@@ -142,7 +142,7 @@
         #{studentid,jdbcType=INTEGER},
       </if>
       <if test="cetid != null" >
-        #{cetid,jdbcType=INTEGER},
+        #{cetid,jdbcType=VARCHAR},
       </if>
       <if test="cettime != null" >
         #{cettime,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
         studentid = #{record.studentid,jdbcType=INTEGER},
       </if>
       <if test="record.cetid != null" >
-        cetid = #{record.cetid,jdbcType=INTEGER},
+        cetid = #{record.cetid,jdbcType=VARCHAR},
       </if>
       <if test="record.cettime != null" >
         cettime = #{record.cettime,jdbcType=VARCHAR},
@@ -197,7 +197,7 @@
     update gradecet
     set id = #{record.id,jdbcType=INTEGER},
       studentid = #{record.studentid,jdbcType=INTEGER},
-      cetid = #{record.cetid,jdbcType=INTEGER},
+      cetid = #{record.cetid,jdbcType=VARCHAR},
       cettime = #{record.cettime,jdbcType=VARCHAR},
       cetscore = #{record.cetscore,jdbcType=INTEGER},
       classroomid = #{record.classroomid,jdbcType=INTEGER},
@@ -213,7 +213,7 @@
         studentid = #{studentid,jdbcType=INTEGER},
       </if>
       <if test="cetid != null" >
-        cetid = #{cetid,jdbcType=INTEGER},
+        cetid = #{cetid,jdbcType=VARCHAR},
       </if>
       <if test="cettime != null" >
         cettime = #{cettime,jdbcType=VARCHAR},
@@ -233,7 +233,7 @@
   <update id="updateByPrimaryKey" parameterType="com.cn.bean.Gradecet" >
     update gradecet
     set studentid = #{studentid,jdbcType=INTEGER},
-      cetid = #{cetid,jdbcType=INTEGER},
+      cetid = #{cetid,jdbcType=VARCHAR},
       cettime = #{cettime,jdbcType=VARCHAR},
       cetscore = #{cetscore,jdbcType=INTEGER},
       classroomid = #{classroomid,jdbcType=INTEGER},

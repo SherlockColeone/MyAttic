@@ -1,4 +1,4 @@
-package com.cn.bean;
+package com.cn.demo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -234,52 +234,62 @@ public class GradecetExample {
             return (Criteria) this;
         }
 
-        public Criteria andCetidEqualTo(Integer value) {
+        public Criteria andCetidEqualTo(String value) {
             addCriterion("cetid =", value, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidNotEqualTo(Integer value) {
+        public Criteria andCetidNotEqualTo(String value) {
             addCriterion("cetid <>", value, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidGreaterThan(Integer value) {
+        public Criteria andCetidGreaterThan(String value) {
             addCriterion("cetid >", value, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCetidGreaterThanOrEqualTo(String value) {
             addCriterion("cetid >=", value, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidLessThan(Integer value) {
+        public Criteria andCetidLessThan(String value) {
             addCriterion("cetid <", value, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidLessThanOrEqualTo(Integer value) {
+        public Criteria andCetidLessThanOrEqualTo(String value) {
             addCriterion("cetid <=", value, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidIn(List<Integer> values) {
+        public Criteria andCetidLike(String value) {
+            addCriterion("cetid like", value, "cetid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCetidNotLike(String value) {
+            addCriterion("cetid not like", value, "cetid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCetidIn(List<String> values) {
             addCriterion("cetid in", values, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidNotIn(List<Integer> values) {
+        public Criteria andCetidNotIn(List<String> values) {
             addCriterion("cetid not in", values, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidBetween(Integer value1, Integer value2) {
+        public Criteria andCetidBetween(String value1, String value2) {
             addCriterion("cetid between", value1, value2, "cetid");
             return (Criteria) this;
         }
 
-        public Criteria andCetidNotBetween(Integer value1, Integer value2) {
+        public Criteria andCetidNotBetween(String value1, String value2) {
             addCriterion("cetid not between", value1, value2, "cetid");
             return (Criteria) this;
         }

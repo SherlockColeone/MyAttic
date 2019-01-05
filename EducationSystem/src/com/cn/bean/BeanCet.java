@@ -14,7 +14,7 @@ public class BeanCet {
 	private String place;
 	//社会考试成绩
 	private Integer score;
-	//是否具备资格
+	//是否具备资格报名/是否已报名。0代表是，1代表否
 	private Integer qualification;
 	
 	public BeanCet() {

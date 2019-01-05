@@ -34,14 +34,14 @@ public class StudentExamController {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
-		String classes = checkNameService.searchNameByClassesId(student.getClassesid());
+		String classes = checkNameService.searchByClassesId(student.getClassesid());
 		request.setAttribute("classes", classes);
 		//查询本班所有考试
 		List<Exam> list = serviceStudent.searchAllExamByClassesid(student.getClassesid());
 		List<Curriculum> listResult = new ArrayList<>();
 		for (Exam exam : list) {
 			//找到每个课程对应的名称
-			String name = checkNameService.searchNameByCoursesId(exam.getCoursesid());
+			String name = checkNameService.searchByCoursesId(exam.getCoursesid());
 			Curriculum temp = new Curriculum(exam.getId(), name, null, null, exam.getExamtime(), null, exam.getPlace(), null, exam.getClassesid(), null, null, exam.getCoursesid(), null, classes);		
 			listResult.add(temp);
 		}				

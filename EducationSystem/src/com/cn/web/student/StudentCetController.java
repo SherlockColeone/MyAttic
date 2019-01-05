@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cn.bean.BeanCet;
 import com.cn.bean.Gradecet;
 import com.cn.bean.Student;
 import com.cn.service.ServiceStudent;
@@ -44,9 +45,12 @@ public class StudentCetController {
 		Student student = (Student) session.getAttribute("student");
 		//设置准考证号
 		request.setAttribute("studentId", student.getId());
-		//找到该学生的所有社会考试
-		List<Gradecet> list = serviceStudent.searchAllGradeCetByStudentid(student.getId());
-		request.setAttribute("list", list);
+		//找到该学生的所有社会考试成绩
+		List<BeanCet> listScore = serviceStudent.searchAllGradeCetScoreByStudentid(student.getId());		
+		request.setAttribute("listScore", listScore);
+		//找到该学生的所有社会考试报名
+		List<BeanCet> listApply = serviceStudent.searchAllGradeCetApplyByStudentid(student.getId());		
+		request.setAttribute("listApply", listApply);
 		//跳转到学生社会考试页面
 		return "student/student_gradecet";
 	}

@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cn.bean.BeanCet;
 import com.cn.bean.Cet;
 import com.cn.bean.CetExample;
 import com.cn.bean.Courses;
@@ -47,6 +48,7 @@ import com.cn.dao.StuscoreMapper;
 import com.cn.dao.TeacherMapper;
 import com.cn.dao.TempelectiveMapper;
 import com.cn.dao.TermMapper;
+import com.cn.service.CheckNameService;
 import com.cn.service.ServiceStudent;
 
 /**
@@ -84,6 +86,8 @@ public class ServiceStudentImpl implements ServiceStudent {
 	private TermMapper termMapper;
 	@Autowired
 	private ClassesMapper classesMapper;
+	@Autowired
+	private CheckNameService checkNameService;
 
 	@Override
 	public Student studentLogin(int studentid, String pwd) {
@@ -330,7 +334,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 	}
 
 	@Override
-	public Gradecet searchGradeCetByStudentidAndCetid(int studentid, String cetid) {
+	public Gradecet searchGradeCetByStudentidAndCetid(int studentid, Integer cetid) {
 		GradecetExample example = new GradecetExample();
 		com.cn.bean.GradecetExample.Criteria criteria = example.createCriteria();
 		criteria.andStudentidEqualTo(studentid);
@@ -349,7 +353,39 @@ public class ServiceStudentImpl implements ServiceStudent {
 		criteria.andStudentidEqualTo(studentid);
 		return gradecetMapper.selectByExample(example);
 	}
+	
+	@Override
+	public List<BeanCet> searchAllGradeCetScoreByStudentid(int studentid) {
+		//先查出所有的社会考试成绩
+		List<Gradecet> listAll = searchAllGradeCetByStudentid(studentid);
+		List<BeanCet> list = new ArrayList<>();
+		for (Gradecet gradecet : listAll) {
+			if(gradecet.getCetscore()!=null) { //若有成绩
+				String name = checkNameService.searchByCetId(gradecet.getCetid());
+				String place = checkNameService.searchByClassroomId(gradecet.getClassroomid());
+				BeanCet beanCet = new BeanCet(name, gradecet.getCettime(), place, gradecet.getCetscore(), null);
+				list.add(beanCet);
+			}
+		}		
+		return list;
+	}
 
+	@Override
+	public List<BeanCet> searchAllGradeCetApplyByStudentid(int studentid) {
+		//先查出所有的社会考试成绩
+		List<Gradecet> listAll = searchAllGradeCetByStudentid(studentid);
+		List<BeanCet> list = new ArrayList<>();
+		for (Gradecet gradecet : listAll) {
+			if(gradecet.getCetscore()==null) { //若没有成绩
+				String name = checkNameService.searchByCetId(gradecet.getCetid());
+				String place = checkNameService.searchByClassroomId(gradecet.getClassroomid());
+				BeanCet beanCet = new BeanCet(name, gradecet.getCettime(), place, null, null);
+				list.add(beanCet);
+			}
+		}		
+		return list;
+	}
+	
 	@Override
 	public List<Cet> searchAllCet(int termid) {
 		CetExample example = new CetExample();

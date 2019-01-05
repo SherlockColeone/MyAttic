@@ -64,7 +64,7 @@ public class StudentCurriculumController {
 		termList = serviceStudent.searchAllTerm();
 		request.setAttribute("termList", termList);
 		// 查出学期的名字
-		String term = checkNameService.searchNameByTermid(termId);
+		String term = checkNameService.searchByTermid(termId);
 		request.setAttribute("term", term);
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

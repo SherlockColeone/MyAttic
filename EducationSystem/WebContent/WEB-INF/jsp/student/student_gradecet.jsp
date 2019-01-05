@@ -38,7 +38,7 @@
 							<td>社会考试地点</td>
 							<td>考试成绩</td>
 						</tr>
-						<c:forEach items="${list }" var="result">
+						<c:forEach items="${listScore }" var="result">
 							<tr>
 								<td></td>
 								<td>${studentId }</td>
@@ -63,12 +63,14 @@
 							<td>社会考试地点</td>
 							<td>是否已报名</td>
 						</tr>
-						<tr>
-							<td></td>
-							<td class="time"></td>
-							<td></td>
-							<td></td>
-						</tr>
+						<c:forEach items="${listApply }" var="result">
+							<tr>
+								<td></td>
+								<td class="time"></td>
+								<td></td>
+								<td></td>
+							</tr>						
+						</c:forEach>
 					</table>
 				</div>
 			</div>

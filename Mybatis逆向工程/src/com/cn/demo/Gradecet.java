@@ -1,4 +1,4 @@
-package com.cn.bean;
+package com.cn.demo;
 
 /**
  * 社会考试成绩类
@@ -7,27 +7,26 @@ package com.cn.bean;
  */
 public class Gradecet {
 	//id
-	private Integer id;
+	private int id;
 	//考生考号
-	private Integer studentid;
+	private int studentid;
 	//社会考试id
-    private Integer cetid;
+	private String cetid;
 	//社会考试时间
 	private String cettime;
 	//成绩
-	private Integer cetscore;
+	private int cetscore;
 	//考场id
-	private Integer classroomid;
+	private int classroomid;
 	//监考老师工号
-	private Integer teacherid;
+	private int teacherid;
 
     public Gradecet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Gradecet(Integer id, Integer studentid, Integer cetid, String cettime, Integer classroomid,
-			Integer teacherid) {
+	public Gradecet(int id, int studentid, String cetid, String cettime, int classroomid, int teacherid) {
 		super();
 		this.id = id;
 		this.studentid = studentid;
@@ -37,8 +36,7 @@ public class Gradecet {
 		this.teacherid = teacherid;
 	}
 
-	public Gradecet(Integer id, Integer studentid, Integer cetid, String cettime, Integer cetscore, Integer classroomid,
-			Integer teacherid) {
+	public Gradecet(int id, int studentid, String cetid, String cettime, int cetscore, int classroomid, int teacherid) {
 		super();
 		this.id = id;
 		this.studentid = studentid;
@@ -65,12 +63,12 @@ public class Gradecet {
         this.studentid = studentid;
     }
 
-    public Integer getCetid() {
+    public String getCetid() {
         return cetid;
     }
 
-    public void setCetid(Integer cetid) {
-        this.cetid = cetid;
+    public void setCetid(String cetid) {
+        this.cetid = cetid == null ? null : cetid.trim();
     }
 
     public String getCettime() {
