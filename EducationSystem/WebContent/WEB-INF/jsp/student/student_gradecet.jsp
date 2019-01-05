@@ -40,11 +40,11 @@
 						</tr>
 						<c:forEach items="${listScore }" var="result">
 							<tr>
-								<td></td>
+								<td>${result.name }</td>
 								<td>${studentId }</td>
-								<td id="date">${result.cettime }</td>
-								<td></td>
-								<td>${result.cetscore }</td>
+								<td id="date">${result.time }</td>
+								<td>${result.place }</td>
+								<td>${result.score }</td>
 							</tr>							
 						</c:forEach>
 					</table>
@@ -65,10 +65,13 @@
 						</tr>
 						<c:forEach items="${listApply }" var="result">
 							<tr>
-								<td></td>
-								<td class="time"></td>
-								<td></td>
-								<td></td>
+								<td>${result.name }</td>
+								<td class="time">${result.time }</td>
+								<td>${result.place }</td>
+								<td>
+									<c:if test="${result.place }==0">是</c:if>
+									<c:if test="${result.place }==1">否</c:if>
+								</td>
 							</tr>						
 						</c:forEach>
 					</table>

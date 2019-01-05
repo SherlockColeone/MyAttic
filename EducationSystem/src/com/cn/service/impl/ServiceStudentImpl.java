@@ -379,7 +379,11 @@ public class ServiceStudentImpl implements ServiceStudent {
 			if(gradecet.getCetscore()==null) { //若没有成绩
 				String name = checkNameService.searchByCetId(gradecet.getCetid());
 				String place = checkNameService.searchByClassroomId(gradecet.getClassroomid());
-				BeanCet beanCet = new BeanCet(name, gradecet.getCettime(), place, null, null);
+				Integer qualification = 0;
+				if (place==null) { //若尚未安排考场，证明未报名
+					qualification = 1;
+				}
+				BeanCet beanCet = new BeanCet(name, gradecet.getCettime(), place, null, qualification);
 				list.add(beanCet);
 			}
 		}		
