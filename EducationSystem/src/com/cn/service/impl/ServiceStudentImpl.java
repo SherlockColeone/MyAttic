@@ -362,11 +362,14 @@ public class ServiceStudentImpl implements ServiceStudent {
 		List<BeanCet> list = new ArrayList<>();
 		for (Gradecet gradecet : listAll) {
 			if(gradecet.getCetscore()==null) { //若没有成绩
-				String name = checkNameService.searchByCetId(gradecet.getCetid());
-				String place = checkNameService.searchByClassroomId(gradecet.getClassroomid());
+				String name = checkNameService.searchByCetId(gradecet.getCetid());				
 				Integer qualification = 0;
-				if (place==null) { //若尚未安排考场，证明未报名
+				String place = null;
+				if (gradecet.getClassroomid()==null) { //若尚未安排考场，证明未报名
 					qualification = 1;
+				}
+				else {
+					place = checkNameService.searchByClassroomId(gradecet.getClassroomid());
 				}
 				BeanCet beanCet = new BeanCet(name, gradecet.getCettime(), place, null, qualification);
 				list.add(beanCet);
@@ -381,17 +384,22 @@ public class ServiceStudentImpl implements ServiceStudent {
 		Date date = new Date();
 		DateFormat dateFormat1 = new SimpleDateFormat("yyyy");
 		String strYear = dateFormat1.format(date);
-		System.out.println(strYear);
-		DateFormat dateFormat2 = new SimpleDateFormat("mm");
+		Integer year = new Integer(strYear);
+		DateFormat dateFormat2 = new SimpleDateFormat("MM");
 		String strMonth = dateFormat2.format(date);
-		System.out.println(strMonth);
 		Integer term = new Integer(strMonth);
-		if(term==9 || term==10 || term==11 || term==12 || term==1) { //属于上学期
+		if(term==9 || term==10 || term==11 || term==12) { //属于上学期
 			//年份加上字符串1，作为学期id
 			term = new Integer(strYear+"1");
 		} 
-		else if(term==3 || term==4 || term==5 || term==6 || term==7) { //属于下学期
-			term = new Integer(strYear+"2");
+		else if(term==1){ //当月份为一月份时，年份要减去1
+			year = year-1;
+			term = new Integer(year.toString()+"1");
+		}
+		else if(term==3 || term==4 || term==5 || term==6 || term==7) { //属于下学期，年份要减去1
+			year = year-1;
+			//年份加上字符串2，作为学期id
+			term = new Integer(year.toString()+"2");
 		} 
 		else { //证明属于寒暑假，返回空
 			return null;

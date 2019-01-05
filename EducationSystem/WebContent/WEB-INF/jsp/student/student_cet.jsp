@@ -42,10 +42,13 @@
 								<td class="name">${result.name }</td>
 								<td class="time">${result.time }</td>
 								<td class="qualification">
-									<c:if test="${result.qualification }==0">是</c:if>
-									<c:if test="${result.qualification }==1">否</c:if>
+									<c:if test="${result.qualification==0 }">是</c:if>
+									<c:if test="${result.qualification==1 }">否</c:if>
 								</td>
 								<td>
+									
+									<!-- 未解决的问题：当不能报名时无法点击链接 -->
+									
 									<a class="apply" href="#">报名</a>
 								</td>
 							</tr>							
@@ -61,14 +64,16 @@
 							<td>学号</td>
 						</tr>
 						<tr>
-							<td id="cetId" hidden></td>
 							<td id="showName"></td>
 							<td id="showTime"></td>
 							<td>${studentId }</td>
 						</tr>
 					</table>
 					<div class="col-md-4 col-md-offset-4">
-						<button id="submit" type="submit" class="btn btn-default">确定报名</button>
+						<form action="#" method="post">
+							<input id="cetId" name="cetId" hidden readonly />
+							<button id="submit" type="submit" class="btn btn-default">确定报名</button>
+						</form>
 					</div>
 				</div>
 			</div>

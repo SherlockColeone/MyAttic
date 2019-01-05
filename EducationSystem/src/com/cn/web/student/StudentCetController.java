@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cn.bean.BeanCet;
 import com.cn.bean.Student;
@@ -78,8 +79,8 @@ public class StudentCetController {
 		Student student = (Student) session.getAttribute("student");
 		//在社会考试成绩表中添加学生的信息
 		serviceStudent.addGradecetApplyByStudentidAndCetid(student.getId(), cetId);
-		//重定向到学生社会考试成绩页面
-		return "redirect:studentGradeCet";
+		//重定向到学生社会考试成绩页面（PS：由于本方法带参数，因此重定向时需要带上/）
+		return "redirect:/studentGradeCet";
 	}
 	
 }

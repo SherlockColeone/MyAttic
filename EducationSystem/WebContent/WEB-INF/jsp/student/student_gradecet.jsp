@@ -69,8 +69,8 @@
 								<td class="time">${result.time }</td>
 								<td>${result.place }</td>
 								<td>
-									<c:if test="${result.place }==0">是</c:if>
-									<c:if test="${result.place }==1">否</c:if>
+									<c:if test="${result.qualification==0 }">是</c:if>
+									<c:if test="${result.qualification==1 }">否</c:if>
 								</td>
 							</tr>						
 						</c:forEach>
