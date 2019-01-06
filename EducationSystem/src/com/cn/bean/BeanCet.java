@@ -1,7 +1,7 @@
 package com.cn.bean;
 
 /**
- * 	方便用于显示社会考试的实体类
+ * 	用于方便地显示社会考试的实体类
  * @author Sherlock
  *
  */

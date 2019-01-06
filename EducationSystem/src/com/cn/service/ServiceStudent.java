@@ -3,6 +3,7 @@ package com.cn.service;
 import java.util.List;
 import java.util.Map;
 
+import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
 import com.cn.bean.Cet;
 import com.cn.bean.Courses;
@@ -116,6 +117,13 @@ public interface ServiceStudent {
 	 * @return 本班的所有调课安排
 	 */
 	public List<Curriculumarrange> searchAllCoursesArrangeByClassesid(int classesid);
+	
+	/**
+	 * 	查询班级的调课安排，可以在页面中更好地显示调课安排
+	 * @param classesid 班级id
+	 * @return 本班的所有调课安排
+	 */
+	public List<BeanArrange> searchAllCurriculumarrangeByClassesid(int classesid);
 	
 	/**
 	 *	 查询本班的考试安排

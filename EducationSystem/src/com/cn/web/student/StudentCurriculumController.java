@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Student;
 import com.cn.bean.Term;
-import com.cn.service.CheckNameService;
 import com.cn.service.ServiceStudent;
+import com.cn.utils.CheckNameUtils;
 
 /**
  * 	进入学生课程表的控制器
@@ -27,7 +27,7 @@ public class StudentCurriculumController {
 	@Autowired
 	private ServiceStudent serviceStudent;
 	@Autowired
-	private CheckNameService checkNameService;
+	private CheckNameUtils checkNameUtils;
 	
 	public List<Term> termList = new ArrayList<>();
 	
@@ -64,7 +64,7 @@ public class StudentCurriculumController {
 		termList = serviceStudent.searchAllTerm();
 		request.setAttribute("termList", termList);
 		// 查出学期的名字
-		String term = checkNameService.searchByTermid(termId);
+		String term = checkNameUtils.searchByTermid(termId);
 		request.setAttribute("term", term);
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

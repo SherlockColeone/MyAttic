@@ -11,6 +11,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
 import com.cn.bean.Cet;
 import com.cn.bean.CetExample;
@@ -48,8 +49,8 @@ import com.cn.dao.StuscoreMapper;
 import com.cn.dao.TeacherMapper;
 import com.cn.dao.TempelectiveMapper;
 import com.cn.dao.TermMapper;
-import com.cn.service.CheckNameService;
 import com.cn.service.ServiceStudent;
+import com.cn.utils.CheckNameUtils;
 
 /**
  * 	学生端逻辑层实现类
@@ -85,7 +86,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 	@Autowired
 	private ClassesMapper classesMapper;
 	@Autowired
-	private CheckNameService checkNameService;
+	private CheckNameUtils checkNameUtils;
 
 	@Override
 	public Student studentLogin(int studentid, String pwd) {
@@ -284,6 +285,28 @@ public class ServiceStudentImpl implements ServiceStudent {
 		criteria.andClassesidEqualTo(classesid);
 		return curriculumarrangeMapper.selectByExample(example);
 	}
+	
+	@Override
+	public List<BeanArrange> searchAllCurriculumarrangeByClassesid(int classesid) {
+		List<BeanArrange> list = new ArrayList<>();
+		List<Curriculumarrange> listArrange = searchAllCoursesArrangeByClassesid(classesid);
+		for (Curriculumarrange arrange : listArrange) {
+			//找到课程名称
+			String name = checkNameUtils.searchByCoursesId(arrange.getCoursesid());
+			//拼接上课日期
+			String day = checkNameUtils.transformDay(arrange.getDay());
+			String time = arrange.getTime();
+			//进行拼接
+			String date = day+"<br />"+time+"节";
+			//找到教师名称
+			String teacher = checkNameUtils.searchByTeacherId(arrange.getTeacherid());
+			//找到班级名称
+			String classes = checkNameUtils.searchByClassesId(arrange.getClassesid());
+			BeanArrange bean = new BeanArrange(name, arrange.getWeek(), date, arrange.getPlace(), teacher, classes);
+			list.add(bean);
+		}
+		return list;
+	}
 
 	@Override
 	public List<Exam> searchAllExamByClassesid(int classesid) {
@@ -346,8 +369,8 @@ public class ServiceStudentImpl implements ServiceStudent {
 		List<BeanCet> list = new ArrayList<>();
 		for (Gradecet gradecet : listAll) {
 			if(gradecet.getCetscore()!=null) { //若有成绩
-				String name = checkNameService.searchByCetId(gradecet.getCetid());
-				String place = checkNameService.searchByClassroomId(gradecet.getClassroomid());
+				String name = checkNameUtils.searchByCetId(gradecet.getCetid());
+				String place = checkNameUtils.searchByClassroomId(gradecet.getClassroomid());
 				BeanCet beanCet = new BeanCet(name, gradecet.getCettime(), place, gradecet.getCetscore(), null);
 				list.add(beanCet);
 			}
@@ -362,14 +385,14 @@ public class ServiceStudentImpl implements ServiceStudent {
 		List<BeanCet> list = new ArrayList<>();
 		for (Gradecet gradecet : listAll) {
 			if(gradecet.getCetscore()==null) { //若没有成绩
-				String name = checkNameService.searchByCetId(gradecet.getCetid());				
+				String name = checkNameUtils.searchByCetId(gradecet.getCetid());				
 				Integer qualification = 0;
 				String place = null;
 				if (gradecet.getClassroomid()==null) { //若尚未安排考场，证明未报名
 					qualification = 1;
 				}
 				else {
-					place = checkNameService.searchByClassroomId(gradecet.getClassroomid());
+					place = checkNameUtils.searchByClassroomId(gradecet.getClassroomid());
 				}
 				BeanCet beanCet = new BeanCet(name, gradecet.getCettime(), place, null, qualification);
 				list.add(beanCet);
@@ -415,7 +438,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 		List<BeanCet> list = new ArrayList<>();
 		List<Cet> listCet = searchAllCetByCurrentTerm();
 		for (Cet cet : listCet) {
-			String name = checkNameService.searchByCetId(cet.getId());			
+			String name = checkNameUtils.searchByCetId(cet.getId());			
 			BeanCet beanCet = new BeanCet(name, cet.getCettime(), null, cet.getId(), 0);
 			list.add(beanCet);
 		}

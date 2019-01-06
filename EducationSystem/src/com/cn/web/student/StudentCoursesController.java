@@ -15,8 +15,8 @@ import com.cn.bean.Curriculum;
 import com.cn.bean.Elective;
 import com.cn.bean.Student;
 import com.cn.bean.Term;
-import com.cn.service.CheckNameService;
 import com.cn.service.ServiceStudent;
+import com.cn.utils.CheckNameUtils;
 
 /**
  * 	学生课程安排的控制器
@@ -29,7 +29,7 @@ public class StudentCoursesController {
 	@Autowired
 	private ServiceStudent serviceStudent;
 	@Autowired
-	private CheckNameService checkNameService;
+	private CheckNameUtils checkNameUtils;
 	
 	public List<Term> termList = new ArrayList<>();
 	
@@ -59,7 +59,7 @@ public class StudentCoursesController {
 		//把学期列表添加到视图中
 		request.setAttribute("termList",termList);
 		//查出学期的名字
-		String term = checkNameService.searchByTermid(termId);
+		String term = checkNameUtils.searchByTermid(termId);
 		request.setAttribute("term",term);
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

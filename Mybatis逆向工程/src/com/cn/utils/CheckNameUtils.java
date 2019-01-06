@@ -1,11 +1,11 @@
-package com.cn.service;
+package com.cn.utils;
 
 /**
- * 	用于把id转换成名字，包括二级学院、专业、班级
+ * 	用于把id转换成名字，包括所有的实体类
  * @author Sherlock
  *
  */
-public interface CheckNameService {
+public interface CheckNameUtils {	
 	/**
 	 * 	根据二级学院的id查询二级学院的名字
 	 * @param academyId 二级学院id
@@ -54,4 +54,18 @@ public interface CheckNameService {
 	 * @return 课室的名字
 	 */
 	public String searchByClassroomId(Integer classroomId);
+	
+	/**
+	 *	 把星期的数字转化成星期几，若返回空，则说明数字已超出1-7
+	 * @param day 星期数字
+	 * @return 返回星期几
+	 */
+	public String transformDay(Integer day);
+	
+	/**
+	 * 	根据教师工号查询教师的名字
+	 * @param teacherId 教师id
+	 * @return 教师的名字
+	 */
+	public String searchByTeacherId(Integer teacherId);
 }

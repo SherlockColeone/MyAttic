@@ -8,9 +8,10 @@
 		<title>调课通知</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="" />
+		<link rel="stylesheet" href="css/student/student_courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/exam.js"></script>
 	</head>
 
 	<body>
@@ -18,7 +19,36 @@
 
 		<!--主体-->
 		<div id="main" class="container col-md-12">
-			正在努力开发中……
+			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-offset-4">
+					<h4>调课通知</h4>
+				</div>
+				<div class="col-md-6 col-md-offset-0">开学以来：</div>
+				<div class="col-md-12">
+					<table class="table table-striped">
+						<tr>
+							<td>课程名称</td>
+							<td>课程周次</td>
+							<td>调课后时间</td>
+							<td>调课后地点</td>
+							<td>课程老师</td>
+							<td>上课班级</td>
+						</tr>
+						<c:forEach items="${list }" var="result">
+							<tr>
+								<td>${result.name }</td>
+								<td>${result.week }</td>
+								<td id="arrangeDate">
+									${result.date }
+								</td>
+								<td>${result.place }</td>
+								<td>${result.teacher }</td>
+								<td>${result.classes }</td>
+							</tr>								
+						</c:forEach>
+					</table>
+				</div>
+			</div>			
 		</div>
 
 		<jsp:include page="../footer.jsp"></jsp:include>
