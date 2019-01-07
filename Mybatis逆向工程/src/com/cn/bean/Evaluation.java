@@ -5,6 +5,8 @@ public class Evaluation {
 
     private Integer teacherid;
 
+    private Integer studentid;
+
     private String content;
 
     public Integer getId() {
@@ -21,6 +23,14 @@ public class Evaluation {
 
     public void setTeacherid(Integer teacherid) {
         this.teacherid = teacherid;
+    }
+
+    public Integer getStudentid() {
+        return studentid;
+    }
+
+    public void setStudentid(Integer studentid) {
+        this.studentid = studentid;
     }
 
     public String getContent() {

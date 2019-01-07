@@ -1,9 +1,6 @@
 package com.cn.service.impl;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
+import com.cn.bean.BeanEvaluation;
 import com.cn.bean.Cet;
 import com.cn.bean.CetExample;
 import com.cn.bean.Courses;
@@ -22,6 +20,7 @@ import com.cn.bean.Curriculumarrange;
 import com.cn.bean.CurriculumarrangeExample;
 import com.cn.bean.Elective;
 import com.cn.bean.Evaluation;
+import com.cn.bean.EvaluationExample;
 import com.cn.bean.Exam;
 import com.cn.bean.ExamExample;
 import com.cn.bean.Gradecet;
@@ -51,6 +50,7 @@ import com.cn.dao.TempelectiveMapper;
 import com.cn.dao.TermMapper;
 import com.cn.service.ServiceStudent;
 import com.cn.utils.CheckNameUtils;
+import com.cn.utils.GetCurrentTermUtils;
 
 /**
  * 	学生端逻辑层实现类
@@ -403,30 +403,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 	
 	@Override
 	public List<Cet> searchAllCetByCurrentTerm() {
-		//先找到当前的学期
-		Date date = new Date();
-		DateFormat dateFormat1 = new SimpleDateFormat("yyyy");
-		String strYear = dateFormat1.format(date);
-		Integer year = new Integer(strYear);
-		DateFormat dateFormat2 = new SimpleDateFormat("MM");
-		String strMonth = dateFormat2.format(date);
-		Integer term = new Integer(strMonth);
-		if(term==9 || term==10 || term==11 || term==12) { //属于上学期
-			//年份加上字符串1，作为学期id
-			term = new Integer(strYear+"1");
-		} 
-		else if(term==1){ //当月份为一月份时，年份要减去1
-			year = year-1;
-			term = new Integer(year.toString()+"1");
-		}
-		else if(term==3 || term==4 || term==5 || term==6 || term==7) { //属于下学期，年份要减去1
-			year = year-1;
-			//年份加上字符串2，作为学期id
-			term = new Integer(year.toString()+"2");
-		} 
-		else { //证明属于寒暑假，返回空
-			return null;
-		}
+		Integer term = GetCurrentTermUtils.getCurrentTermiId();
 		CetExample example = new CetExample();
 		com.cn.bean.CetExample.Criteria criteria = example.createCriteria();		
 		criteria.andTermidEqualTo(term);
@@ -476,12 +453,58 @@ public class ServiceStudentImpl implements ServiceStudent {
 		}
 		return listTeacher;
 	}
+	
+	@Override
+	public Courses searchCoursesByCoursesId(int coursesId) {
+		return coursesMapper.selectByPrimaryKey(coursesId);
+		
+	}
 
 	@Override
 	public int addEvaluationByTeacherid(Evaluation vo) {
 		return evaluationMapper.insert(vo);
 	}
 
+	@Override
+	public boolean addEvaluationByStudentidAndContent(int studentid, BeanEvaluation content) {
+		//将content的10道题答案
+		Integer tenth = content.getTenth();
+		Integer nineth = content.getNineth();
+		Integer eighth = content.getEighth();
+		Integer seventh = content.getSeventh();
+		Integer sixth = content.getSixth();
+		Integer fifth = content.getFifth();
+		Integer fourth = content.getFourth();
+		Integer third = content.getThird();
+		Integer second = content.getSecond();
+		Integer first = content.getFirst();
+		//将这10个数字用字符串加起来
+		String anwser = first.toString()+second.toString()+third.toString()+fourth.toString()+fifth.toString()
+				+sixth.toString()+seventh.toString()+eighth.toString()+nineth.toString()+tenth.toString();		
+		Evaluation evaluation = new Evaluation(content.getTeacherid(), studentid, anwser);
+		int isAdd = addEvaluationByTeacherid(evaluation);
+		if (isAdd==0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	@Override
+	public Integer checkEvaluationByStudentidAndTeacherid(int studentid, int teacherid) {
+		EvaluationExample example = new EvaluationExample();
+		com.cn.bean.EvaluationExample.Criteria criteria = example.createCriteria();
+		criteria.andStudentidEqualTo(studentid);
+		criteria.andTeacheridEqualTo(teacherid);
+		List<Evaluation> list = evaluationMapper.selectByExample(example);
+		if(list.size()==0) { //尚未评价
+			return 0;
+		}
+		else { //已评价
+			return 1;
+		}
+	}
+	
 	@Override
 	public List<Term> searchAllTerm() {
 		TermExample example = new TermExample();

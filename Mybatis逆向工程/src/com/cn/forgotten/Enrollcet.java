@@ -1,4 +1,4 @@
-package com.cn.demo;
+package com.cn.forgotten;
 
 /**
  * 	学生社会考试记录类

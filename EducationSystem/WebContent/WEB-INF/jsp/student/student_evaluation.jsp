@@ -33,11 +33,17 @@
 							</tr>
 							<c:forEach items="${list }" var="result">
 								<tr>
-									<td>风清扬</td>
-									<td>数据库原理</td>
-									<td>专业课</td>
+									<td>${result.teacher }</td>
+									<td>${result.name }</td>
 									<td>
-										<a href="#" class="">评价</a>
+										<c:if test="${result.coursesid!=0 }">专业课</c:if>
+										<c:if test="${result.coursesid==0 }">选修课</c:if>
+									</td>
+									<td>
+										<c:if test="${result.termid==0 }">
+											<a href="${pageContext.servletContext.contextPath}/studentEvaluationForm/${result.teacherid }">评价</a>
+										</c:if>
+										<c:if test="${result.termid==1 }">已评价</c:if>										
 									</td>
 								</tr>							
 							</c:forEach>

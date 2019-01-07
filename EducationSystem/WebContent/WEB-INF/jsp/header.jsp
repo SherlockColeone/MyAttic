@@ -11,7 +11,6 @@
 		<link rel="stylesheet" href="css/header.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/header.js"></script>
-
 	</head>
 
 	<body>
@@ -66,27 +65,13 @@
 				<div class="col-md-offset-2">
 					<!-- 导航条中的导航组件 -->
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="${pageContext.servletContext.contextPath}/home" class="change">网站首页</a>
-						</li>
-						<li>
-							<a href="${pageContext.servletContext.contextPath}/message" class="change">个人信息</a>
-						</li>
-						<li>
-							<a href="${pageContext.servletContext.contextPath}/courses" class="change">课程安排</a>
-						</li>
-						<li>
-							<a href="${pageContext.servletContext.contextPath}/stuscore" class="change">学生成绩</a>
-						</li>
-						<li>
-							<a href="${pageContext.servletContext.contextPath}/exam" class="change">考试安排</a>
-						</li>
-						<li>
-							<a href="${pageContext.servletContext.contextPath}/elective" class="change">选课中心</a>
-						</li>
-						<li>
-							<a href="${pageContext.servletContext.contextPath}/pwd" class="change">密码管理</a>
-						</li>
+						<li><a href="${pageContext.servletContext.contextPath}/home" class="change">网站首页</a></li>
+						<li><a href="${pageContext.servletContext.contextPath}/message" class="change">个人信息</a></li>
+						<li><a href="${pageContext.servletContext.contextPath}/courses" class="change">课程安排</a></li>
+						<li><a href="${pageContext.servletContext.contextPath}/stuscore" class="change">学生成绩</a></li>
+						<li><a href="${pageContext.servletContext.contextPath}/exam" class="change">考试安排</a></li>
+						<li><a href="${pageContext.servletContext.contextPath}/elective" class="change">选课中心</a></li>
+						<li><a href="${pageContext.servletContext.contextPath}/pwd" class="change">密码管理</a></li>
 					</ul>
 				</div>
 			</div>

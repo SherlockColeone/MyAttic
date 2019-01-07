@@ -1,7 +1,5 @@
-package com.cn.demo;
+package com.cn.forgotten;
 
-import com.cn.bean.Enrollcet;
-import com.cn.bean.EnrollcetExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

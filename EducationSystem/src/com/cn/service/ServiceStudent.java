@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
+import com.cn.bean.BeanEvaluation;
 import com.cn.bean.Cet;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
@@ -209,11 +210,34 @@ public interface ServiceStudent {
 	public List<Teacher> searchAllCoursesTeacherByStudentidAndTermid(int studentid,int termid);
 	
 	/**
+	 * 根据专业课id查找专业课
+	 * @param coursesId 专业课id
+	 * @return 专业课对象
+	 */
+	public Courses searchCoursesByCoursesId(int coursesId);	
+	
+	/**
 	 * 	学生添加教学评价
 	 * @param vo 教学评价
 	 * @return 添加的列数量
 	 */
 	public int addEvaluationByTeacherid(Evaluation vo);
+	
+	/**
+	 * 根据学号与评价内容添加教学评价
+	 * @param studentid 学号
+	 * @param content 评价内容
+	 * @return 是否成功添加
+	 */
+	public boolean addEvaluationByStudentidAndContent(int studentid,BeanEvaluation content);
+	
+	/**
+	 * 根据学生学号和教师工号检查是否已评价该教师
+	 * @param studentid 学号
+	 * @param teacherid 工号
+	 * @return 是否已评价，返回0即为尚未评价，返回1即为已评价
+	 */
+	public Integer checkEvaluationByStudentidAndTeacherid(int studentid,int teacherid);
 	
 	/**
 	 * 查询所有的学期

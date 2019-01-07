@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cn.dao.EnrollcetMapper" >
-  <resultMap id="BaseResultMap" type="com.cn.bean.Enrollcet" >
+<mapper namespace="com.cn.dao.EvaluationMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.bean.Evaluation" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="cetid" property="cetid" jdbcType="INTEGER" />
-    <result column="studentid" property="studentid" jdbcType="INTEGER" />
+    <result column="teacherid" property="teacherid" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, cetid, studentid
+    id, teacherid, content
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.bean.EnrollcetExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.bean.EvaluationExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from enrollcet
+    from evaluation
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +84,67 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from enrollcet
+    from evaluation
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from enrollcet
+    delete from evaluation
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cn.bean.EnrollcetExample" >
-    delete from enrollcet
+  <delete id="deleteByExample" parameterType="com.cn.bean.EvaluationExample" >
+    delete from evaluation
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cn.bean.Enrollcet" >
-    insert into enrollcet (id, cetid, studentid
+  <insert id="insert" parameterType="com.cn.bean.Evaluation" >
+    insert into evaluation (id, teacherid, content
       )
-    values (#{id,jdbcType=INTEGER}, #{cetid,jdbcType=INTEGER}, #{studentid,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{teacherid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cn.bean.Enrollcet" >
-    insert into enrollcet
+  <insert id="insertSelective" parameterType="com.cn.bean.Evaluation" >
+    insert into evaluation
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="cetid != null" >
-        cetid,
+      <if test="teacherid != null" >
+        teacherid,
       </if>
-      <if test="studentid != null" >
-        studentid,
+      <if test="content != null" >
+        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="cetid != null" >
-        #{cetid,jdbcType=INTEGER},
+      <if test="teacherid != null" >
+        #{teacherid,jdbcType=INTEGER},
       </if>
-      <if test="studentid != null" >
-        #{studentid,jdbcType=INTEGER},
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cn.bean.EnrollcetExample" resultType="java.lang.Integer" >
-    select count(*) from enrollcet
+  <select id="countByExample" parameterType="com.cn.bean.EvaluationExample" resultType="java.lang.Integer" >
+    select count(*) from evaluation
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update enrollcet
+    update evaluation
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.cetid != null" >
-        cetid = #{record.cetid,jdbcType=INTEGER},
+      <if test="record.teacherid != null" >
+        teacherid = #{record.teacherid,jdbcType=INTEGER},
       </if>
-      <if test="record.studentid != null" >
-        studentid = #{record.studentid,jdbcType=INTEGER},
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -152,30 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update enrollcet
+    update evaluation
     set id = #{record.id,jdbcType=INTEGER},
-      cetid = #{record.cetid,jdbcType=INTEGER},
-      studentid = #{record.studentid,jdbcType=INTEGER}
+      teacherid = #{record.teacherid,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cn.bean.Enrollcet" >
-    update enrollcet
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.bean.Evaluation" >
+    update evaluation
     <set >
-      <if test="cetid != null" >
-        cetid = #{cetid,jdbcType=INTEGER},
+      <if test="teacherid != null" >
+        teacherid = #{teacherid,jdbcType=INTEGER},
       </if>
-      <if test="studentid != null" >
-        studentid = #{studentid,jdbcType=INTEGER},
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cn.bean.Enrollcet" >
-    update enrollcet
-    set cetid = #{cetid,jdbcType=INTEGER},
-      studentid = #{studentid,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.cn.bean.Evaluation" >
+    update evaluation
+    set teacherid = #{teacherid,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

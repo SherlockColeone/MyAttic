@@ -1,4 +1,4 @@
-package com.cn.bean;
+package com.cn.forgotten;
 
 /**
  * 	教学评价类
@@ -8,30 +8,20 @@ package com.cn.bean;
 public class Evaluation {
 	//id
 	private Integer id;
-	//教师工号
+	//教师id
 	private Integer teacherid;
-	//学号
-    private Integer studentid;
-    //内容
-    private String content;
+	//内容
+	private String content;
 
     public Evaluation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Evaluation(Integer teacherid, Integer studentid, String content) {
-		super();
-		this.teacherid = teacherid;
-		this.studentid = studentid;
-		this.content = content;
-	}
-
-	public Evaluation(Integer id, Integer teacherid, Integer studentid, String content) {
+	public Evaluation(Integer id, Integer teacherid, String content) {
 		super();
 		this.id = id;
 		this.teacherid = teacherid;
-		this.studentid = studentid;
 		this.content = content;
 	}
 
@@ -51,14 +41,6 @@ public class Evaluation {
         this.teacherid = teacherid;
     }
 
-    public Integer getStudentid() {
-        return studentid;
-    }
-
-    public void setStudentid(Integer studentid) {
-        this.studentid = studentid;
-    }
-
     public String getContent() {
         return content;
     }
@@ -69,7 +51,6 @@ public class Evaluation {
 
 	@Override
 	public String toString() {
-		return "Evaluation [id=" + id + ", teacherid=" + teacherid + ", studentid=" + studentid + ", content=" + content
-				+ "]";
+		return "Evaluation [id=" + id + ", teacherid=" + teacherid + ", content=" + content + "]";
 	}
 }
