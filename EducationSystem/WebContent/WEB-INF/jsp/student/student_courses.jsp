@@ -19,10 +19,10 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="col-lg-offset-4">
+				<div class="col-md-offset-5">
 					<h4>课程安排查询</h4>
 				</div>
-				<div id="buttonGroup" class="col-md-10 col-md-offset-1">
+				<div id="buttonGroup" class="col-md-10 col-md-offset-2">
 					<form action="${pageContext.servletContext.contextPath}/studentSearchAllCourses" method="post">
 						<div id="term" class="col-md-8 col-md-offset-3">
 							开课时间：

@@ -18,7 +18,37 @@
 
 		<!--主体-->
 		<div id="main" class="container col-md-12">
-			正在努力开发……
+			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-offset-5">
+					<h4>选课中心</h4>
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-12">
+						<table class="table table-striped">
+							<tr>
+								<td>选课编号</td>
+								<td>课程名称</td>
+								<td>任课老师</td>
+								<td>课程时间</td>								
+								<td>操作</td>
+							</tr>
+							<c:forEach items="${list }" var="result">
+								<tr>
+									<td>1</td>
+									<td>侵权责任法</td>
+									<td>李晓敏</td>
+									<td>
+										星期一<br />07-08节
+									</td>
+									<td>
+										<a href="#">选择课程</a>
+									</td>
+								</tr>								
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+			</div>			
 		</div>
 
 		<jsp:include page="../footer.jsp"></jsp:include>

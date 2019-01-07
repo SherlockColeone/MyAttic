@@ -20,7 +20,7 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="col-md-offset-4">
+				<div class="col-md-offset-5">
 					<h4>调课通知</h4>
 				</div>
 				<div class="col-md-6 col-md-offset-0">开学以来：</div>

@@ -19,7 +19,7 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="col-md-offset-4">
+				<div class="col-md-offset-5">
 					<h4>学生教师评价</h4>
 				</div>
 				<div class="col-md-12">

@@ -27,7 +27,7 @@ public class StudentElectiveController {
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
 		
-		//跳转到学生个人中心
+		//跳转到学生选课中心页面
 		return "student/student_elective";
 	}
 	

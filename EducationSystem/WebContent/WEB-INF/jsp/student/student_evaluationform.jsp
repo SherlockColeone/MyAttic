@@ -66,7 +66,7 @@
 
 			<!--导航栏-->
 			<div id="navigator" class="col-md-12 change">
-				<div class="col-md-offset-2">
+				<div class="col-md-offset-3">
 					<!-- 导航条中的导航组件 -->
 					<ul class="nav navbar-nav">
 						<li><a href="${pageContext.servletContext.contextPath}/home" class="change">网站首页</a></li>
@@ -84,7 +84,7 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="col-md-offset-4">
+				<div class="col-md-offset-5">
 					<h4>学生教师评价</h4>
 				</div>
 				<div class="col-md-12">

@@ -62,7 +62,7 @@
 
 			<!--导航栏-->
 			<div id="navigator" class="col-md-12 change">
-				<div class="col-md-offset-2">
+				<div class="col-md-offset-3">
 					<!-- 导航条中的导航组件 -->
 					<ul class="nav navbar-nav">
 						<li><a href="${pageContext.servletContext.contextPath}/home" class="change">网站首页</a></li>
