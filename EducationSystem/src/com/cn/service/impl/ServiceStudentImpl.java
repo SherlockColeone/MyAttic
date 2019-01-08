@@ -525,19 +525,23 @@ public class ServiceStudentImpl implements ServiceStudent {
 		List<Curriculum> list = new ArrayList<>();
 		List<Elective> listElective = searchAllElectiveByTermid(termid);
 		List<Tempelective> listTemp = searchAllTempElectiveByStudentid(studentid);
+		int electiveid = 0;
+		if (listTemp.size()>0) { //证明已有选修结果
+			Tempelective temp = listTemp.get(0);
+			//将已选择的选修课id保存
+			electiveid = temp.getElectiveid();
+		}
 		for (Elective elective : listElective) {
 			//把上课时间拼接起来
 			Integer intDay = elective.getDay();
 			String time = elective.getTime();
 			String day = checkNameUtils.transformDay(intDay);
 			time = day+" "+time;
-			Curriculum curriculum = new Curriculum();
-			if (listTemp.size()>0) { //证明已有选修结果		
-				//用Curriculum类中的coursesid来标记是否已选择选修课，1代表已选择
-				curriculum = new Curriculum(elective.getName(), time, elective.getTeacher(), 1, elective.getId());
-			} else {
-				//用Curriculum类中的coursesid来标记是否已选择选修课，0代表尚未选择
-				curriculum = new Curriculum(elective.getName(), time, elective.getTeacher(), 0, elective.getId());
+			//用Curriculum类中的coursesid来标记是否已选择选修课，0代表尚未选择，1代表已选择
+			Curriculum curriculum = new Curriculum(elective.getName(), time, elective.getTeacher(), 0, elective.getId());
+			if (electiveid==elective.getId()) { //证明是该选修课被选择
+				//标记该课程已被选择
+				curriculum.setCoursesid(1);
 			}
 			list.add(curriculum);
 		}		

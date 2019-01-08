@@ -25,6 +25,7 @@
 				</div>
 				<div class="col-md-12">
 					<div class="col-md-12">
+						<input id="iselected" value="${iselected }" hidden readonly />
 						<table class="table table-condensed">
 							<tr>
 								<td>选课编号</td>
@@ -40,6 +41,7 @@
 									<td class="teacher">${result.teacher }</td>
 									<td class="time">${result.time }</td>
 									<td>
+										<input class="selected" hidden value="${result.coursesid }" />
 										<c:if test="${result.coursesid==0 }">
 											<a href="#" class="btn apply" style="background-color: white;">选择课程</a>
 										</c:if>
