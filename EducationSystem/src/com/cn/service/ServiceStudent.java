@@ -90,9 +90,9 @@ public interface ServiceStudent {
 	public boolean modifyTempElectiveByStudentid(int tempid,int electiveid);
 	
 	/**
-	 * 	学生查询所有本人所有选课结果
+	 * 	学生查询本人的选课结果
 	 * @param studentid 学号
-	 * @return 选课记录集合
+	 * @return 选课记录
 	 */
 	public List<Tempelective> searchAllTempElectiveByStudentid(int studentid);
 	
@@ -224,7 +224,7 @@ public interface ServiceStudent {
 	public int addEvaluationByTeacherid(Evaluation vo);
 	
 	/**
-	 * 根据学号与评价内容添加教学评价
+	 * 	根据学号与评价内容添加教学评价
 	 * @param studentid 学号
 	 * @param content 评价内容
 	 * @return 是否成功添加
@@ -232,7 +232,7 @@ public interface ServiceStudent {
 	public boolean addEvaluationByStudentidAndContent(int studentid,BeanEvaluation content);
 	
 	/**
-	 * 根据学生学号和教师工号检查是否已评价该教师
+	 * 	根据学生学号和教师工号检查是否已评价该教师
 	 * @param studentid 学号
 	 * @param teacherid 工号
 	 * @return 是否已评价，返回0即为尚未评价，返回1即为已评价
@@ -240,9 +240,24 @@ public interface ServiceStudent {
 	public Integer checkEvaluationByStudentidAndTeacherid(int studentid,int teacherid);
 	
 	/**
-	 * 查询所有的学期
+	 * 	查询所有的学期
 	 * @return 学期的集合
 	 */
 	public List<Term> searchAllTerm();
+	
+	/**
+	 * 	根据学期id所有的选修课
+	 * @param termid 学期id
+	 * @return 选修课集合
+	 */
+	public List<Elective> searchAllElectiveByTermid(int termid);
+	
+	/**
+	 * 	根据学号与学期id查询所有选修课
+	 * @param studentid 学号
+	 * @param termid 学期id
+	 * @return 放置选修课的总课程集合
+	 */
+	public List<Curriculum> searchAllElectiveResultByStudentidAndTermid(int studentid,int termid);
 	
 }

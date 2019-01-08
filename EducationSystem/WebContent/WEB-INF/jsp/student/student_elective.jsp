@@ -33,15 +33,22 @@
 								<td>课程时间</td>
 								<td>操作</td>
 							</tr>
-							<tr>
-								<td class="id">201811</td>
-								<td class="name">侵权责任法</td>
-								<td class="teacher">李晓敏</td>
-								<td class="time">星期一&nbsp;&nbsp;07-08节</td>
-								<td>
-									<a href="#" class="btn apply" style="background-color: white;">选择课程</a>
-								</td>
-							</tr>							
+							<c:forEach items="${list }" var="result">
+								<tr>
+									<td class="id">${result.electiveid }</td>
+									<td class="name">${result.name }</td>
+									<td class="teacher">${result.teacher }</td>
+									<td class="time">${result.time }</td>
+									<td>
+										<c:if test="${result.coursesid==0 }">
+											<a href="#" class="btn apply" style="background-color: white;">选择课程</a>
+										</c:if>
+										<c:if test="${result.coursesid==1 }">
+											<a href="#" class="btn apply" style="background-color: white;">查看</a>
+										</c:if>
+									</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 					

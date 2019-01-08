@@ -19,6 +19,7 @@ import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
 import com.cn.bean.CurriculumarrangeExample;
 import com.cn.bean.Elective;
+import com.cn.bean.ElectiveExample;
 import com.cn.bean.Evaluation;
 import com.cn.bean.EvaluationExample;
 import com.cn.bean.Exam;
@@ -509,6 +510,38 @@ public class ServiceStudentImpl implements ServiceStudent {
 	public List<Term> searchAllTerm() {
 		TermExample example = new TermExample();
 		return termMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Elective> searchAllElectiveByTermid(int termid) {
+		ElectiveExample example = new ElectiveExample();
+		com.cn.bean.ElectiveExample.Criteria criteria = example.createCriteria();
+		criteria.andTermidEqualTo(termid);
+		return electiveMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Curriculum> searchAllElectiveResultByStudentidAndTermid(int studentid, int termid) {
+		List<Curriculum> list = new ArrayList<>();
+		List<Elective> listElective = searchAllElectiveByTermid(termid);
+		List<Tempelective> listTemp = searchAllTempElectiveByStudentid(studentid);
+		for (Elective elective : listElective) {
+			//把上课时间拼接起来
+			Integer intDay = elective.getDay();
+			String time = elective.getTime();
+			String day = checkNameUtils.transformDay(intDay);
+			time = day+" "+time;
+			Curriculum curriculum = new Curriculum();
+			if (listTemp.size()>0) { //证明已有选修结果		
+				//用Curriculum类中的coursesid来标记是否已选择选修课，1代表已选择
+				curriculum = new Curriculum(elective.getName(), time, elective.getTeacher(), 1, elective.getId());
+			} else {
+				//用Curriculum类中的coursesid来标记是否已选择选修课，0代表尚未选择
+				curriculum = new Curriculum(elective.getName(), time, elective.getTeacher(), 0, elective.getId());
+			}
+			list.add(curriculum);
+		}		
+		return list;
 	}
 
 }

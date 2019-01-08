@@ -40,6 +40,15 @@ public class Curriculum {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Curriculum(String name, String time, String teacher, Integer coursesid, Integer electiveid) {
+		super();
+		this.name = name;
+		this.time = time;
+		this.teacher = teacher;
+		this.coursesid = coursesid;
+		this.electiveid = electiveid;
+	}
+
 	public Curriculum(String name, String teacher, Integer termid, Integer teacherid, Integer coursesid,
 			Integer electiveid) {
 		super();
