@@ -44,7 +44,7 @@
 											<a href="#" class="btn apply" style="background-color: white;">选择课程</a>
 										</c:if>
 										<c:if test="${result.coursesid==1 }">
-											<a href="#" class="btn apply" style="background-color: white;">查看</a>
+											<a href="#" class="btn check" style="background-color: white;">查看</a>
 										</c:if>
 									</td>
 								</tr>
@@ -68,7 +68,7 @@
 							</tr>
 						</table>
 						<div class="col-md-4 col-md-offset-5">
-							<form action="#" method="post">
+							<form action="${pageContext.servletContext.contextPath}/studentSelectElective" method="post">
 								<input id="id" name="id" hidden readonly />
 								<button id="submit" type="submit" class="btn btn-default">
 									<span class="glyphicon glyphicon-ok-circle"></span>
