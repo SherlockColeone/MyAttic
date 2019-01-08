@@ -22,7 +22,7 @@ import com.cn.utils.GetCurrentTermUtils;
 @Controller
 public class StudentElectiveController {
 	@Autowired
-	private ServiceStudent serviceStudent;	
+	private ServiceStudent serviceStudent;
 	
 	@RequestMapping(value="/studentElective")
 	public String studentElective(HttpServletRequest request) {
