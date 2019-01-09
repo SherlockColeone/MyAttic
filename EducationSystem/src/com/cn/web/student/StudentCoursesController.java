@@ -70,14 +70,21 @@ public class StudentCoursesController {
 			//把结果列表添加到视图中
 			request.setAttribute("resultList",resultList);
 			request.setAttribute("nature","不限性质");
-		} else if(curriculum==1) { //专业课
+		} 
+		else if(curriculum==1) { //专业课
 			List<Courses> resultList = serviceStudent.searchAllCoursesByStudentidAndTermid(student.getId(), termId);
 			//把专业课列表添加到视图中
 			request.setAttribute("resultList",resultList);
 			request.setAttribute("nature","专业课");
 		}
 		else if(curriculum==2) { //选修课
-			Elective resultList = serviceStudent.searchElectiveByStudentidAndTermid(student.getId(), termId);
+			List<Curriculum> resultList = new ArrayList<>();
+			List<Elective> list = serviceStudent.searchAllElectiveByStudentidAndTermid(student.getId(), termId);
+			for (Elective elective : list) {
+				Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getTeacher(), null,
+						0, elective.getId());
+				resultList.add(curr);
+			}			
 			//把选修课列表添加到视图中
 			request.setAttribute("resultList",resultList);
 			request.setAttribute("nature","选修课");

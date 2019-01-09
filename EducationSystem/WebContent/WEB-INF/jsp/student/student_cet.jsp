@@ -69,7 +69,7 @@
 							<td>${studentId }</td>
 						</tr>
 					</table>
-					<div class="col-md-4 col-md-offset-4">
+					<div class="col-md-4 col-md-offset-5">
 						<form action="#" method="post">
 							<input id="cetId" name="cetId" hidden readonly />
 							<button id="submit" type="submit" class="btn btn-default">确定报名</button>

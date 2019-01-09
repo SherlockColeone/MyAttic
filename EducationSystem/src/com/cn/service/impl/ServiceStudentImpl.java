@@ -190,24 +190,26 @@ public class ServiceStudentImpl implements ServiceStudent {
 	}
 
 	@Override
-	public Elective searchElectiveByStudentidAndTermid(int studentid, int termid) {
+	public List<Elective> searchAllElectiveByStudentidAndTermid(int studentid, int termid) {
+		List<Elective> list = new ArrayList<>();
 		//查找本学期该学生的所有课程
 		StuscoreExample example = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
 		criteria.andStudentidEqualTo(studentid);
 		criteria.andTermidEqualTo(termid);
-		List<Stuscore> list = stuscoreMapper.selectByExample(example);
+		List<Stuscore> listScore = stuscoreMapper.selectByExample(example);
 		//遍历所有课程
-		for (Stuscore stuscore : list) {
+		for (Stuscore stuscore : listScore) {
 			int id = stuscore.getElectiveid();
 			//判断该课程是否为选修课
 			if(id!=0) {
 				//若为选修课则通过选修课id查询
-				return searchElectiveById(id);
+				Elective elecitve = searchElectiveById(id);
+				//将选修课添加到集合中
+				list.add(elecitve);
 			}
 		}
-		//查不到则返回null
-		return null;
+		return list;
 	}
 
 	@Override

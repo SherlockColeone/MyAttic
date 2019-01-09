@@ -66,12 +66,12 @@ public interface ServiceStudent {
 	public Elective searchElectiveById(int id);
 	
 	/**
-	 * 	根据学号和学期id查询本学期的选课结果
+	 * 	根据学号和学期id查询本学期的所有选课结果
 	 * @param studentid 学号
 	 * @param termid 学期id
-	 * @return 本学期选修课对象，返回空则说明本学期没有选修课
+	 * @return 本学期选修课集合，返回空则说明本学期没有选修课
 	 */
-	public Elective searchElectiveByStudentidAndTermid(int studentid,int termid);
+	public List<Elective> searchAllElectiveByStudentidAndTermid(int studentid,int termid);
 	
 	/**
 	 * 	学生添加选课
