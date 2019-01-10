@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>学生学籍信息</title>
+		<title>教师个人信息</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/student/student_message.css" />
@@ -20,7 +20,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-6 col-md-offset-3">
 				<center>
-					<h4>学籍信息</h4>
+					<h4>教师信息</h4>
 				</center>
 				<div id="up" class="col-md-12">
 				<span class="col-md-4">
@@ -30,42 +30,42 @@
 					班级：${classes }
 				</span>
 				<span class="col-md-4">
-					学号：${student.id }
+					工号：${teacher.id }
 				</span>
 				</div>
 				<table class="col-md-12">
 					<tr>
 						<td width="15%">姓名</td>
-						<td>${student.name }</td>
+						<td>${teacher.name }</td>
 						<td width="15%">学号</td>
-						<td colspan="2">${student.id }</td>						
+						<td colspan="2">${teacher.id }</td>						
 						<td rowspan="4">
-							<img src="${student.photo }" />
+							<img src="${teacher.photo }" />
 						</td>
 					</tr>
 					<tr>
 						<td width="15%">身份证号</td>
-						<td colspan="2">${student.idcard }</td>
+						<td colspan="2">${teacher.idcard }</td>
 						<td>性别</td>
 						<td>男</td>
 					</tr>
 					<tr>
 						<td width="15%">籍贯</td>
-						<td>${student.birthplace }</td>
+						<td>${teacher.birthplace }</td>
 						<td width="15%">家庭地址</td>
-						<td colspan="2">${student.address }</td>						
+						<td colspan="2">${teacher.address }</td>						
 					</tr>
 					<tr>
 						<td width="15%">电话</td>
-						<td>${student.phone }</td>
+						<td>${teacher.phone }</td>
 						<td width="15%">出生日期</td>
-						<td colspan="2">${student.birth }</td>
+						<td colspan="2">${teacher.birth }</td>
 					</tr>
 					<tr>
 						<td width="15%">民族</td>
-						<td colspan="2">${student.nation }</td>
+						<td colspan="2">${teacher.nation }</td>
 						<td>政治面貌</td>
-						<td colspan="2">${student.politics }</td>
+						<td colspan="2">${teacher.politics }</td>
 					</tr>
 					<tr>
 						<td width="15%">二级学院</td>
@@ -76,8 +76,8 @@
 					<tr>
 						<td width="15%">班级</td>
 						<td colspan="2">${classes }</td>						
-						<td>入学时间</td>
-						<td colspan="2">${student.regist }</td>
+						<td>入职时间</td>
+						<td colspan="2">${teacher.regist }</td>
 					</tr>
 				</table>
 			</div>
