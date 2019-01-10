@@ -18,47 +18,47 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div id="block" class="col-md-8 col-md-offset-2">
-				<a href="${pageContext.servletContext.contextPath}/studentMessage" id="message" class="col-md-4 btn" style="padding-top: 70px;">
-					<img src="../../images/personal.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherMessage" id="message" class="col-md-4 btn" style="padding-top: 70px;">
+					<img src="images/personal.png" />
 					<div>教师信息</div>
 					<div>工号：${teacher.id }</div>
 					<div>姓名：${teacher.name }</div>
 					<div>身份：教师</div>
 				</a>
-				<a href="#" id="curriculum" class="col-md-2 btn">
-					<img src="../../images/curriculum.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherCurriculum" id="curriculum" class="col-md-2 btn">
+					<img src="images/curriculum.png" />
 					<div>教师课程表</div>
 				</a>
-				<a href="#" id="courses" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="../../images/courses.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherCourses" id="courses" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/courses.png" />
 					<div>课程安排</div>	
 				</a>	
-				<a href="#" id="exam" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="../../images/exam.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherExam" id="exam" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/exam.png" />
 					<div>考试安排</div>
 				</a>
-				<a href="#" id="elective" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="../../images/elective.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherCurriculumarrange" id="curriculumarrange" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/curriculumarrange.png" />
+					<div>调课通知</div>
+				</a>				
+				<a href="${pageContext.servletContext.contextPath}/teacherElective" id="elective" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/elective.png" />
 					<div>选课结果</div>
 				</a>
-				<a href="#" id="curriculumarrange" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="../../images/curriculumarrange.png" />
-					<div>调课通知</div>
-				</a>
-				<a href="#" id="evaluation" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="../../images/evaluation.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherEvaluation" id="evaluation" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/evaluation.png" />
 					<div>教师评价</div>
 				</a>
-				<a href="#" id="cet" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="../../images/cet.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherGradeCet" id="cet" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/cet.png" />
 					<div>社会考试成绩</div>
 				</a>				
-				<a href="#" id="stuscore" class="col-md-4 btn" style="padding-top: 30px;">
-					<img src="../../images/stuscore.png" />
+				<a href="${pageContext.servletContext.contextPath}/teacherStuscore" id="stuscore" class="col-md-4 btn" style="padding-top: 30px;">
+					<img src="images/stuscore.png" />
 					<div>学生成绩管理</div>
 				</a>
-				<a href="#" id="password" class="col-md-2 btn" style="padding-top: 30px;">
-					<img src="../../images/password.png" />
+				<a href="${pageContext.servletContext.contextPath}/password" id="password" class="col-md-2 btn" style="padding-top: 30px;">
+					<img src="images/password.png" />
 					<div>密码管理</div>
 				</a>
 			</div>
