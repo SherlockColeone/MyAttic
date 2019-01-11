@@ -25,7 +25,7 @@ public class TeacherCurriculumarrangeController {
 	@Autowired
 	private ServiceStudent serviceStudent;
 	
-	@RequestMapping(value="/studentCurriculumarrange")
+	@RequestMapping(value="/teacherCurriculumarrange")
 	public String studentCurriculumarrange(ModelAndView mv,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

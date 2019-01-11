@@ -38,7 +38,7 @@ public class TeacherStuscoreController {
 	 * @param request 请求
 	 * @return 跳转到学生成绩查询页面
 	 */
-	@RequestMapping(value = "/studentStuscore")
+	@RequestMapping(value = "/teacherStuscore")
 	public String studentStudentscore(HttpServletRequest request) {
 		termList = serviceStudent.searchAllTerm();
 		// 把学期列表添加到视图中
@@ -54,7 +54,7 @@ public class TeacherStuscoreController {
 	 * @param termId     从表单获取的学期id
 	 * @return 跳转到学生成绩查询页面
 	 */
-	@RequestMapping(value = "/studentSearchAllStuscore")
+	@RequestMapping(value = "/teacherSearchAllStuscore")
 	public String studentSearchAllStuscore(HttpServletRequest request, Integer termId) {
 		// 把学期列表添加到视图中
 		request.setAttribute("termList", termList);

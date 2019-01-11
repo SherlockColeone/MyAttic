@@ -36,7 +36,7 @@ public class TeacherCurriculumController {
 	 * @param request 请求
 	 * @return 跳转到学生课程表页面
 	 */
-	@RequestMapping(value="/studentCurriculum")
+	@RequestMapping(value="/teacherCurriculum")
 	public String studentCurriculum(HttpServletRequest request) {
 		//把学期列表添加到视图中
 		termList = serviceStudent.searchAllTerm();
@@ -58,7 +58,7 @@ public class TeacherCurriculumController {
 	 * @param request 请求
 	 * @return 跳转到学生课程表页面
 	 */
-	@RequestMapping(value="/studentSearchCurriculum")
+	@RequestMapping(value="/teacherSearchCurriculum")
 	public String studentSearchCurriculum(HttpServletRequest request,Integer termId) {
 		//把学期列表添加到视图中
 		termList = serviceStudent.searchAllTerm();

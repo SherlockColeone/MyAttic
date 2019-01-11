@@ -24,7 +24,7 @@ public class TeacherElectiveController {
 	@Autowired
 	private ServiceStudent serviceStudent;
 	
-	@RequestMapping(value="/studentElective")
+	@RequestMapping(value="/teacherElective")
 	public String studentElective(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
@@ -43,7 +43,7 @@ public class TeacherElectiveController {
 		return "student/student_elective";
 	}
 	
-	@RequestMapping(value="/studentSelectElective")
+	@RequestMapping(value="/teacherSelectElective")
 	public String studentSelectElective(HttpServletRequest request,Integer id) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

@@ -29,7 +29,7 @@ public class TeacherExamController {
 	@Autowired
 	private CheckNameUtils checkNameUtils;
 	
-	@RequestMapping(value="/studentExam")
+	@RequestMapping(value="/teacherExam")
 	public String studentExam(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

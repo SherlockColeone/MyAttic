@@ -30,7 +30,7 @@ public class TeacherCetController {
 	 * @param request 请求
 	 * @return 跳转到学生社会考试页面
 	 */
-	@RequestMapping(value="/studentGradeCet")
+	@RequestMapping(value="/teacherGradeCet")
 	public String studentGradeCet(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
@@ -52,7 +52,7 @@ public class TeacherCetController {
 	 * @param request 请求
 	 * @return 跳转到学生社会考试报名页面
 	 */
-	@RequestMapping(value="/studentCet")
+	@RequestMapping(value="/teacherCet")
 	public String studentCet(HttpServletRequest request) {
 		//查找当前学期所有的社会考试
 		List<BeanCet> list = serviceStudent.searchAllBeanCetByCurrentTerm();
@@ -71,7 +71,7 @@ public class TeacherCetController {
 	 * @param request 请求
 	 * @return 重定向到学生社会考试成绩页面
 	 */
-	@RequestMapping(value="/studentApplyCet/{cetId}")
+	@RequestMapping(value="/teacherApplyCet/{cetId}")
 	public String studentApplyCet(HttpServletRequest request,@PathVariable("cetId")Integer cetId) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

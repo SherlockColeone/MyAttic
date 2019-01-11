@@ -39,7 +39,7 @@ public class TeacherEvaluationController {
 	 * @param request 请求
 	 * @return 跳转到学生教师评价页面（选择教师）
 	 */
-	@RequestMapping(value="/studentEvaluation")
+	@RequestMapping(value="/teacherEvaluation")
 	public String studentEvaluation(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
@@ -78,7 +78,7 @@ public class TeacherEvaluationController {
 	 * @param request 请求
 	 * @return 跳转到学生教师评价页面（填写评价）
 	 */
-	@RequestMapping(value="/studentEvaluationForm/{teacherid}")
+	@RequestMapping(value="/teacherEvaluationForm/{teacherid}")
 	public String studentEvaluationForm(HttpServletRequest request,@PathVariable("teacherid")Integer teacherid) {
 		String teacherName = checkNameUtils.searchByTeacherId(teacherid);
 		//把教师工号与姓名传到页面
@@ -94,7 +94,7 @@ public class TeacherEvaluationController {
 	 * @param content 教师评价内容
 	 * @return 重定向到学生教师评价页面（选择教师）
 	 */
-	@RequestMapping(value="/studentEvaluationSubmit")
+	@RequestMapping(value="/teacherEvaluationSubmit")
 	public String studentEvaluationSubmit(HttpServletRequest request,BeanEvaluation content) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象

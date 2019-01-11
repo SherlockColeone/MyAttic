@@ -27,7 +27,7 @@
 					院系：${academy }
 				</span>	
 				<span class="col-md-4">
-					班级：${classes }
+					职位：${teacher.position }
 				</span>
 				<span class="col-md-4">
 					工号：${teacher.id }
@@ -70,14 +70,14 @@
 					<tr>
 						<td width="15%">二级学院</td>
 						<td colspan="2">${academy }</td>
-						<td>专业</td>
-						<td colspan="2">${major }</td>
+						<td>职位</td>
+						<td colspan="2">${teacher.position }</td>
 					</tr>
 					<tr>
-						<td width="15%">班级</td>
-						<td colspan="2">${classes }</td>						
-						<td>入职时间</td>
-						<td colspan="2">${teacher.regist }</td>
+						<td width="15%">入职时间</td>
+						<td colspan="2">${teacher.entrytime }</td>						
+						<td></td>
+						<td colspan="2"></td>
 					</tr>
 				</table>
 			</div>
