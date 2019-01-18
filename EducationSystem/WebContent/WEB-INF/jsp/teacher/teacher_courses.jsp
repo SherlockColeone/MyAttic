@@ -23,7 +23,7 @@
 					<h4>课程安排查询</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-10 col-md-offset-2">
-					<form action="${pageContext.servletContext.contextPath}/studentSearchAllCourses" method="post">
+					<form action="${pageContext.servletContext.contextPath}/teacherSearchAllCourses" method="post">
 						<div id="term" class="col-md-8 col-md-offset-3">
 							开课时间：
 							<select name="termId">
@@ -59,7 +59,6 @@
 							<td>课程编号</td>
 							<td>课程名称</td>
 							<td>开课时间</td>
-							<td>课程老师</td>
 							<td>课程性质</td>
 						</tr>
 						<c:forEach items="${resultList }" var="result">
@@ -67,7 +66,6 @@
 								<td>${result.id }</td>
 								<td>${result.name }</td>
 								<td>${term }</td>
-								<td>${result.teacher }</td>
 								<td>
 									<c:if test="${not empty result.classesid }">
 										专业课

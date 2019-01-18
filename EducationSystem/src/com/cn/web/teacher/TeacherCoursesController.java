@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Elective;
-import com.cn.bean.Student;
+import com.cn.bean.Teacher;
 import com.cn.bean.Term;
-import com.cn.service.ServiceStudent;
+import com.cn.service.ServiceTeacher;
 import com.cn.utils.CheckNameUtils;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	教师课程安排的控制器
@@ -27,9 +28,11 @@ import com.cn.utils.CheckNameUtils;
 @Controller
 public class TeacherCoursesController {
 	@Autowired
-	private ServiceStudent serviceStudent;
+	private ServiceTeacher serviceTeacher;
 	@Autowired
 	private CheckNameUtils checkNameUtils;
+	@Autowired
+	private GetTermUtils getTermUtils;
 	
 	public List<Term> termList = new ArrayList<>();
 	
@@ -40,11 +43,11 @@ public class TeacherCoursesController {
 	 */
 	@RequestMapping(value="/teacherCourses")
 	public String studentCourses(HttpServletRequest request) {
-		termList = serviceStudent.searchAllTerm();
+		termList = getTermUtils.getAllTerms();
 		//把学期列表添加到视图中
 		request.setAttribute("termList",termList);
 		//跳转到教师课程安排
-		return "student/student_courses";
+		return "teacher/teacher_courses";
 	}
 	
 	/**
@@ -63,23 +66,24 @@ public class TeacherCoursesController {
 		request.setAttribute("term",term);
 		HttpSession session = request.getSession();
 		//从session域中获取教师对象
-		Student student = (Student) session.getAttribute("student");
+		Teacher teacher = (Teacher) session.getAttribute("teacher");		
 		if(curriculum==0) { //性质不限
 			//查询该学期的所有课程
-			List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), termId);
+			List<Curriculum> resultList = serviceTeacher.searchAllCurriculumByTermidAndTeacherid(termId, teacher.getId());
 			//把结果列表添加到视图中
 			request.setAttribute("resultList",resultList);
 			request.setAttribute("nature","不限性质");
 		} 
 		else if(curriculum==1) { //专业课
-			List<Courses> resultList = serviceStudent.searchAllCoursesByStudentidAndTermid(student.getId(), termId);
+			List<Courses> resultList = serviceTeacher.searchAllCoursesByTeacheridAndTermid(teacher.getId(), termId);
 			//把专业课列表添加到视图中
 			request.setAttribute("resultList",resultList);
 			request.setAttribute("nature","专业课");
 		}
 		else if(curriculum==2) { //选修课
 			List<Curriculum> resultList = new ArrayList<>();
-			List<Elective> list = serviceStudent.searchAllElectiveByStudentidAndTermid(student.getId(), termId);
+			List<Elective> list = serviceTeacher.searchAllElectiveByTeacheridAndTermid(teacher.getId(), termId);
+			//由于选修课缺少某些属性无法在页面中显示，因此转换成总课程对象显示
 			for (Elective elective : list) {
 				Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getTeacher(), null,
 						0, elective.getId());
@@ -89,6 +93,6 @@ public class TeacherCoursesController {
 			request.setAttribute("resultList",resultList);
 			request.setAttribute("nature","选修课");
 		}
-		return "student/student_courses";
+		return "teacher/teacher_courses";
 	}
 }

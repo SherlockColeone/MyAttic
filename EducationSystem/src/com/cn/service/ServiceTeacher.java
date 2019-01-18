@@ -2,8 +2,10 @@ package com.cn.service;
 
 import java.util.List;
 
+import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
+import com.cn.bean.Elective;
 import com.cn.bean.Evaluation;
 import com.cn.bean.Exam;
 import com.cn.bean.Gradecet;
@@ -148,5 +150,21 @@ public interface ServiceTeacher {
 	 * @return 某位教师的所有教学评价集合
 	 */
 	public List<Evaluation> searchAllEvaluationByTeacherid(int teacherid);
+	
+	/**
+	 * 	根据教师工号与学期id查询所有专业课
+	 * @param teacherid 教师工号
+	 * @param termid 学期id
+	 * @return 该教师一个学期的所有专业课集合
+	 */
+	public List<Courses> searchAllCoursesByTeacheridAndTermid(int teacherid,int termid);
+	
+	/**
+	 * 	根据教师工号与学期id查询所有选修课
+	 * @param teacherid 教师工号
+	 * @param termid 学期id
+	 * @return 该教师一个学期的所有选修课集合
+	 */
+	public List<Elective> searchAllElectiveByTeacheridAndTermid(int teacherid,int termid);
 	
 }

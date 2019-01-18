@@ -314,4 +314,22 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		return evaluationMapper.selectByExample(example);
 	}
 
+	@Override
+	public List<Courses> searchAllCoursesByTeacheridAndTermid(int teacherid, int termid) {
+		CoursesExample example = new CoursesExample();
+		com.cn.bean.CoursesExample.Criteria criteria = example.createCriteria();
+		criteria.andTeacheridEqualTo(teacherid);
+		criteria.andTermidEqualTo(termid);
+		return coursesMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Elective> searchAllElectiveByTeacheridAndTermid(int teacherid, int termid) {
+		ElectiveExample example = new ElectiveExample();
+		com.cn.bean.ElectiveExample.Criteria criteria = example.createCriteria();
+		criteria.andTeacheridEqualTo(teacherid);
+		criteria.andTermidEqualTo(termid);
+		return electiveMapper.selectByExample(example);
+	}
+
 }
