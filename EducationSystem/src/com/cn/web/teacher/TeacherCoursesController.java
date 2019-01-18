@@ -19,7 +19,7 @@ import com.cn.service.ServiceStudent;
 import com.cn.utils.CheckNameUtils;
 
 /**
- * 	学生课程安排的控制器
+ * 	教师课程安排的控制器
  * @author Sherlock
  *
  */
@@ -36,14 +36,14 @@ public class TeacherCoursesController {
 	/**
 	 * 	将学期放入表单的学期选项中
 	 * @param request 请求
-	 * @return 跳转到学生课程安排页面
+	 * @return 跳转到教师课程安排页面
 	 */
 	@RequestMapping(value="/teacherCourses")
 	public String studentCourses(HttpServletRequest request) {
 		termList = serviceStudent.searchAllTerm();
 		//把学期列表添加到视图中
 		request.setAttribute("termList",termList);
-		//跳转到学生课程安排
+		//跳转到教师课程安排
 		return "student/student_courses";
 	}
 	
@@ -52,7 +52,7 @@ public class TeacherCoursesController {
 	 * @param request 请求
 	 * @param termId 从表单获取的学期id
 	 * @param curriculum 从表单获取的课程性质。0表示不限性质；1表示专业课；2表示选修课
-	 * @return 跳转到学生课程安排页面
+	 * @return 跳转到教师课程安排页面
 	 */
 	@RequestMapping(value="/teacherSearchAllCourses")
 	public String studentSearchAllCourses(HttpServletRequest request,Integer termId,Integer curriculum) {
@@ -62,7 +62,7 @@ public class TeacherCoursesController {
 		String term = checkNameUtils.searchByTermid(termId);
 		request.setAttribute("term",term);
 		HttpSession session = request.getSession();
-		//从session域中获取学生对象
+		//从session域中获取教师对象
 		Student student = (Student) session.getAttribute("student");
 		if(curriculum==0) { //性质不限
 			//查询该学期的所有课程

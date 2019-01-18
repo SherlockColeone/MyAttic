@@ -1,0 +1,29 @@
+
+#main{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#buttonGroup{
+	margin-bottom: 15px;
+}
+
+form div{
+	margin-top: 10px;
+}
+
+tr td:first-child{
+	width: 55px;
+}
+
+tr{
+	border-collapse: collapse;
+}
+
+td{
+	border:1px solid;
+	border-collapse: collapse;
+	text-align: center;
+	word-wrap: break-word;
+	width: 125px;
+}

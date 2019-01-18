@@ -8,7 +8,7 @@
 		<title>教师课程表</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="css/student/student_curriculum.css" />
+		<link rel="stylesheet" href="css/curriculum.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/curriculum.js"></script>
