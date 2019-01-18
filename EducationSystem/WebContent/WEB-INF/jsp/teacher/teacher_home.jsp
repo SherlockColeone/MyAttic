@@ -43,7 +43,7 @@
 				</a>				
 				<a href="${pageContext.servletContext.contextPath}/teacherElective" id="elective" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/elective.png" />
-					<div>选课结果</div>
+					<div>选修课安排</div>
 				</a>
 				<a href="${pageContext.servletContext.contextPath}/teacherEvaluation" id="evaluation" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/evaluation.png" />

@@ -15,7 +15,7 @@ import com.cn.service.ServiceStudent;
 import com.cn.utils.GetTermUtils;
 
 /**
- * 	进入学生选课中心的控制器
+ * 	进入教师选修课安排的控制器
  * @author Sherlock
  *
  */

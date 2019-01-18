@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>选课中心</title>
+		<title>教师选修课安排</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/student/home_student.css" />
@@ -21,14 +21,14 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-offset-5">
-					<h4>选课中心</h4>
+					<h4>选修课安排</h4>
 				</div>
 				<div class="col-md-12">
 					<div class="col-md-12">
 						<input id="iselected" value="${iselected }" hidden readonly />
 						<table class="table table-condensed">
 							<tr>
-								<td>选课编号</td>
+								<td>选修课编号</td>
 								<td>课程名称</td>
 								<td>任课老师</td>
 								<td>课程时间</td>

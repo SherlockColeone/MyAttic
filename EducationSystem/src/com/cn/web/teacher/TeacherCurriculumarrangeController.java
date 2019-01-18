@@ -15,7 +15,7 @@ import com.cn.bean.Student;
 import com.cn.service.ServiceStudent;
 
 /**
- * 	进入学生调课通知的控制器
+ * 	进入教师调课通知的控制器
  * @author Sherlock
  *
  */
@@ -28,13 +28,13 @@ public class TeacherCurriculumarrangeController {
 	@RequestMapping(value="/teacherCurriculumarrange")
 	public String studentCurriculumarrange(ModelAndView mv,HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		//从session域中获取学生对象
+		//从session域中获取教师对象
 		Student student = (Student) session.getAttribute("student");
-		//根据学生的班级查询所有调课
+		//根据教师查询所有调课
 		List<BeanArrange> list = serviceStudent.searchAllCurriculumarrangeByClassesid(student.getClassesid());
 		request.setAttribute("list", list);
-		//跳转到学生调课通知页面
-		return "student/student_curriculumarrange";
+		//跳转到教师调课通知页面
+		return "teacher/teacher_curriculumarrange";
 	}
 	
 }
