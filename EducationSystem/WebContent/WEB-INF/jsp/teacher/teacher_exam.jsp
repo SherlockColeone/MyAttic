@@ -8,7 +8,7 @@
 		<title>考试安排</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="css/student/student_courses.css" />
+		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/exam.js"></script>
@@ -23,8 +23,7 @@
 				<div class="col-md-offset-5">
 					<h4>本学期考试安排</h4>
 				</div>
-
-				<div class="col-md-6">所在班级：${classes }（仅限于本学期）</div>
+				<div class="col-md-6">监考老师：${teacherName }（仅限于本学期）</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
@@ -40,7 +39,7 @@
 								<td>${result.name }</td>
 								<td class="time">${result.time }</td>
 								<td>${result.place }</td>
-								<td>${classes }</td>
+								<td>${result.classes }</td>
 							</tr>
 						</c:forEach>
 					</table>

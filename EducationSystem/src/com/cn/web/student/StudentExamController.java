@@ -46,7 +46,7 @@ public class StudentExamController {
 			listResult.add(temp);
 		}				
 		request.setAttribute("list", listResult);
-		//跳转到学生密码管理页面
+		//跳转到学生考试安排页面
 		return "student/student_exam";
 	}
 	

@@ -40,6 +40,15 @@ public class Curriculum {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Curriculum(String name, String time, String place, Integer coursesid, String classes) {
+		super();
+		this.name = name;
+		this.time = time;
+		this.place = place;
+		this.coursesid = coursesid;
+		this.classes = classes;
+	}
+
 	public Curriculum(Integer id, String name, String teacher, Integer classesid, Integer coursesid,
 			Integer electiveid) {
 		super();
@@ -87,7 +96,8 @@ public class Curriculum {
 		this.coursesid = coursesid;
 		this.electiveid = electiveid;
 	}
-
+	
+	//À˘”– Ù–‘
 	public Curriculum(Integer id, String name, String week, Integer day, String time, Integer lesson, String place,
 			String teacher, Integer classesid, Integer termid, Integer teacherid, Integer coursesid, Integer electiveid,
 			String classes) {

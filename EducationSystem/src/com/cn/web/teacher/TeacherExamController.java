@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cn.bean.Curriculum;
 import com.cn.bean.Exam;
-import com.cn.bean.Student;
-import com.cn.service.ServiceStudent;
+import com.cn.bean.Teacher;
+import com.cn.service.ServiceTeacher;
 import com.cn.utils.CheckNameUtils;
 
 /**
- * 	进入考试安排（学生）的控制器
+ * 	进入考试安排（教师）的控制器
  * @author Sherlock
  *
  */
@@ -25,29 +25,28 @@ import com.cn.utils.CheckNameUtils;
 @Controller
 public class TeacherExamController {
 	@Autowired
-	private ServiceStudent serviceStudent;
+	private ServiceTeacher serviceTeacher;
 	@Autowired
 	private CheckNameUtils checkNameUtils;
 	
 	@RequestMapping(value="/teacherExam")
 	public String studentExam(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		//从session域中获取学生对象
-		Student student = (Student) session.getAttribute("student");
-		String classes = checkNameUtils.searchByClassesId(student.getClassesid());
-		request.setAttribute("classes", classes);
-		//查询本班所有考试
-		List<Exam> list = serviceStudent.searchAllExamByClassesid(student.getClassesid());
+		//从session域中获取教师对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		request.setAttribute("teacherName", teacher.getName());
+		//查询该教师需要监考的所有考试
+		List<Exam> list = serviceTeacher.searchAllExamByTeacherid(teacher.getId());
 		List<Curriculum> listResult = new ArrayList<>();
 		for (Exam exam : list) {
 			//找到每个课程对应的名称
 			String name = checkNameUtils.searchByCoursesId(exam.getCoursesid());
-			Curriculum temp = new Curriculum(exam.getId(), name, null, null, exam.getExamtime(), null, exam.getPlace(), null, exam.getClassesid(), null, null, exam.getCoursesid(), null, classes);		
+			Curriculum temp = new Curriculum(name, exam.getExamtime(), exam.getPlace(), exam.getCoursesid(), checkNameUtils.searchByClassesId(exam.getClassesid()));		
 			listResult.add(temp);
 		}				
 		request.setAttribute("list", listResult);
-		//跳转到学生密码管理页面
-		return "student/student_exam";
+		//跳转到教师考试安排页面
+		return "teacher/teacher_exam";
 	}
 	
 }
