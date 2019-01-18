@@ -19,7 +19,7 @@ import com.cn.bean.Student;
 import com.cn.bean.Stuscore;
 import com.cn.service.ServiceStudent;
 import com.cn.utils.CheckNameUtils;
-import com.cn.utils.GetCurrentTermUtils;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	进入学生教师评价的控制器
@@ -46,7 +46,7 @@ public class TeacherEvaluationController {
 		Student student = (Student) session.getAttribute("student");
 		//根据当前学期与学号找到所有任课老师
 		List<Stuscore> stuScore = serviceStudent.searchAllStuScoreByStudentidAndTermid(student.getId(),
-				GetCurrentTermUtils.getCurrentTermiId());
+				GetTermUtils.getCurrentTermiId());
 		List<Curriculum> list = new ArrayList<>();
 		for (Stuscore score : stuScore) {
 			if(score.getCouresid()!=0) { //专业课

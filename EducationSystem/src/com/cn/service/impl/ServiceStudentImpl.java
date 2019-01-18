@@ -51,7 +51,7 @@ import com.cn.dao.TempelectiveMapper;
 import com.cn.dao.TermMapper;
 import com.cn.service.ServiceStudent;
 import com.cn.utils.CheckNameUtils;
-import com.cn.utils.GetCurrentTermUtils;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	学生端逻辑层实现类
@@ -406,7 +406,7 @@ public class ServiceStudentImpl implements ServiceStudent {
 	
 	@Override
 	public List<Cet> searchAllCetByCurrentTerm() {
-		Integer term = GetCurrentTermUtils.getCurrentTermiId();
+		Integer term = GetTermUtils.getCurrentTermiId();
 		CetExample example = new CetExample();
 		com.cn.bean.CetExample.Criteria criteria = example.createCriteria();		
 		criteria.andTermidEqualTo(term);

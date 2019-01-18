@@ -3,16 +3,25 @@ package com.cn.utils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cn.bean.Term;
+import com.cn.bean.TermExample;
+import com.cn.dao.TermMapper;
+
 /**
- * 工具类：获取当前的学期
+ * 工具类：获取当前学期或者所有学期信息
  * @author Sherlock
  *
  */
 @Service
-public class GetCurrentTermUtils {	
+public class GetTermUtils {	
+	@Autowired
+	private TermMapper termMapper;
+	
 	/**
 	 * 获取当前的学期id
 	 * @return 返回当前学期id
@@ -45,5 +54,14 @@ public class GetCurrentTermUtils {
 			return null;
 		}
 		return term;
+	}
+	
+	/**
+	 * 获取所有的学期
+	 * @return 学期集合
+	 */
+	public List<Term> getAllTerms() {
+		TermExample example = new TermExample();
+		return termMapper.selectByExample(example);		
 	}
 }

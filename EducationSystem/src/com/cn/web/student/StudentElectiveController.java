@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Student;
 import com.cn.service.ServiceStudent;
-import com.cn.utils.GetCurrentTermUtils;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	进入学生选课中心的控制器
@@ -31,7 +31,7 @@ public class StudentElectiveController {
 		Student student = (Student) session.getAttribute("student");
 		//获取当前学期的所有选修课
 		List<Curriculum> list = serviceStudent.searchAllElectiveResultByStudentidAndTermid(student.getId(), 
-				GetCurrentTermUtils.getCurrentTermiId());
+				GetTermUtils.getCurrentTermiId());
 		request.setAttribute("list", list);
 		if (serviceStudent.searchAllTempElectiveByStudentid(student.getId()).size()>0) {
 			//标记已选择选修课
