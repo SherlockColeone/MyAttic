@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="css/student/home_student.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/elective.js"></script>
+		<script type="text/javascript" src="js/student/elective.js"></script>
 	</head>
 
 	<body>
