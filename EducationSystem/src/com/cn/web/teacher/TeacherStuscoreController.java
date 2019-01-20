@@ -17,7 +17,7 @@ import com.cn.service.ServiceStudent;
 import com.cn.utils.CheckNameUtils;
 
 /**
- * 	进入学生成绩（学生）的控制器
+ * 	进入学生成绩管理（教师）的控制器
  * 
  * @author Sherlock
  *
@@ -36,14 +36,14 @@ public class TeacherStuscoreController {
 	 * 	将学期放入表单的学期选项中
 	 * 
 	 * @param request 请求
-	 * @return 跳转到学生成绩查询页面
+	 * @return 跳转到教师成绩查询页面
 	 */
 	@RequestMapping(value = "/teacherStuscore")
 	public String studentStudentscore(HttpServletRequest request) {
 		termList = serviceStudent.searchAllTerm();
 		// 把学期列表添加到视图中
 		request.setAttribute("termList", termList);
-		// 跳转到学生个人中心
+		// 跳转到教师个人中心
 		return "student/student_stuscore";
 	}
 
@@ -52,7 +52,7 @@ public class TeacherStuscoreController {
 	 * 
 	 * @param request    请求
 	 * @param termId     从表单获取的学期id
-	 * @return 跳转到学生成绩查询页面
+	 * @return 跳转到教师成绩查询页面
 	 */
 	@RequestMapping(value = "/teacherSearchAllStuscore")
 	public String studentSearchAllStuscore(HttpServletRequest request, Integer termId) {
@@ -62,7 +62,7 @@ public class TeacherStuscoreController {
 		String term = checkNameUtils.searchByTermid(termId);
 		request.setAttribute("term", term);
 		HttpSession session = request.getSession();
-		//从session域中获取学生对象
+		//从session域中获取教师对象
 		Student student = (Student) session.getAttribute("student");
 		//查询该学期的所有成绩
 		List<Stuscore> resultList = serviceStudent.searchAllStuScoreByStudentidAndTermid(student.getId(), termId);

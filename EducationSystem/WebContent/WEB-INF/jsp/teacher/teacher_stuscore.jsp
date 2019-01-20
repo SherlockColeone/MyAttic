@@ -5,10 +5,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>成绩查询</title>
+		<title>学生成绩管理</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="css/student/student_courses.css" />
+		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 	</head>
@@ -20,7 +20,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-offset-5">
-					<h4>成绩查询</h4>
+					<h4>学生成绩管理</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-9 col-md-offset-2">
 					<form action="${pageContext.servletContext.contextPath}/studentSearchAllStuscore" method="post">
