@@ -43,7 +43,7 @@ public class StudentStuscoreController {
 		termList = serviceStudent.searchAllTerm();
 		// 把学期列表添加到视图中
 		request.setAttribute("termList", termList);
-		// 跳转到学生个人中心
+		// 跳转到学生成绩查询
 		return "student/student_stuscore";
 	}
 

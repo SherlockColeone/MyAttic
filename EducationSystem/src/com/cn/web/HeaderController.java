@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cn.bean.Admin;
 import com.cn.bean.Student;
 import com.cn.bean.Teacher;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	header的控制器
@@ -38,6 +39,9 @@ public class HeaderController {
 		mv.addObject("student", student);
 		mv.addObject("teacher", teacher);
 		mv.addObject("admin", admin);
+		//获取当前学期并添加到视图中
+		String term = GetTermUtils.getCurrentTerm();
+		mv.addObject("term", term);
 		//进入header
 		return "header";
 	}

@@ -14,6 +14,7 @@ import com.cn.bean.Teacher;
 import com.cn.service.ServiceAdmin;
 import com.cn.service.ServiceStudent;
 import com.cn.service.ServiceTeacher;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	进入首页与三种身份个人中心的控制器
@@ -62,6 +63,9 @@ public class IndexController {
 			HttpSession session = request.getSession();
 			//把学生对象存入session域中
 			session.setAttribute("student", student);
+			//获取当前学期并存入session中
+			String term = GetTermUtils.getCurrentTerm();
+			session.setAttribute("term", term);
 			//重定向到学生首页界面
 			return "redirect:studentHome";
 		}
@@ -89,6 +93,9 @@ public class IndexController {
 			HttpSession session = request.getSession();
 			//把教师对象存入session域中
 			session.setAttribute("teacher", teacher);
+			//获取当前学期并存入session中
+			String term = GetTermUtils.getCurrentTerm();
+			session.setAttribute("term", term);
 			//重定向到教师首页界面
 			return "redirect:teacherHome";
 		}
@@ -116,6 +123,9 @@ public class IndexController {
 			HttpSession session = request.getSession();
 			//把管理员对象存入session域中
 			session.setAttribute("admin", admin);
+			//获取当前学期并存入session中
+			String term = GetTermUtils.getCurrentTerm();
+			session.setAttribute("term", term);
 			//重定向到管理员首页界面
 			return "redirect:adminHome";
 		}

@@ -51,7 +51,10 @@
 					</div>
 					
 					<div id="single" class="col-md-12">
-						<div>课程名称：${elective.name }<br />学生名单如下:</div>
+						<div>
+							课程名称：${elective.name }<br />
+							学生名单如下:
+						</div>
 						<table class="table table-condensed">
 							<tr>
 								<td>班级</td>

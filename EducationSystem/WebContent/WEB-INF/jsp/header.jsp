@@ -33,6 +33,7 @@
 							<c:if test="${not empty admin }">
 								${admin.name }管理员！
 							</c:if>
+							<br />当前学期为：${term }
 						</div>
 						<div id="group" class="col-md-6">
 							<div class="col-md-6 btn-group">
