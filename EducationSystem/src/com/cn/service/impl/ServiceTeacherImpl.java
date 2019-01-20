@@ -37,6 +37,7 @@ import com.cn.dao.StudentMapper;
 import com.cn.dao.StuscoreMapper;
 import com.cn.dao.TeacherMapper;
 import com.cn.service.ServiceTeacher;
+import com.cn.utils.CheckNameUtils;
 
 /**
  * 	教师端逻辑层实现类
@@ -65,6 +66,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	private EvaluationMapper evaluationMapper;
 	@Autowired
 	private ClassesMapper classesMapper;
+	@Autowired
+	private CheckNameUtils checkNameUtils;
 
 	@Override
 	public Teacher teacherLogin(int teacherid, String password) {
@@ -330,6 +333,30 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		criteria.andTeacheridEqualTo(teacherid);
 		criteria.andTermidEqualTo(termid);
 		return electiveMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Curriculum> changeElectiveListIntoCurriculumList(List<Elective> listElective) {
+		List<Curriculum> list = new ArrayList<>();
+		for (Elective elective : listElective) {
+			//转换成字符串的星期几
+			String day = checkNameUtils.transformDay(elective.getDay());
+			String time = day+" "+elective.getTime()+"节";
+			Curriculum curr = new Curriculum(elective.getName(), time, elective.getPlace(), elective.getId());
+			list.add(curr);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Curriculum> changeStudentListIntoCurriculumList(List<Student> listStudent) {
+		List<Curriculum> list = new ArrayList<>();
+		for (Student student : listStudent) {
+			Curriculum curr = new Curriculum(student.getId(), student.getName(),
+					checkNameUtils.searchByClassesId(student.getClassesid()));
+			list.add(curr);
+		}
+		return list;
 	}
 
 }

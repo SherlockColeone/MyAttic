@@ -30,7 +30,7 @@ public class TeacherExamController {
 	private CheckNameUtils checkNameUtils;
 	
 	@RequestMapping(value="/teacherExam")
-	public String studentExam(HttpServletRequest request) {
+	public String teacherExam(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取教师对象
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
@@ -41,7 +41,8 @@ public class TeacherExamController {
 		for (Exam exam : list) {
 			//找到每个课程对应的名称
 			String name = checkNameUtils.searchByCoursesId(exam.getCoursesid());
-			Curriculum temp = new Curriculum(name, exam.getExamtime(), exam.getPlace(), exam.getCoursesid(), checkNameUtils.searchByClassesId(exam.getClassesid()));		
+			Curriculum temp = new Curriculum(name, exam.getExamtime(), exam.getPlace(), exam.getCoursesid(),
+					checkNameUtils.searchByClassesId(exam.getClassesid()));		
 			listResult.add(temp);
 		}				
 		request.setAttribute("list", listResult);

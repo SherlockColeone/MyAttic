@@ -26,7 +26,7 @@ public class AdminHomeController {
 		//把管理员添加到视图中
 		mv.addObject("admin", admin);
 		//跳转到管理员个人中心
-		return "teacher/teacher_home";
+		return "admin/admin_home";
 	}
 	
 }

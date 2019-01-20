@@ -167,4 +167,18 @@ public interface ServiceTeacher {
 	 */
 	public List<Elective> searchAllElectiveByTeacheridAndTermid(int teacherid,int termid);
 	
+	/**
+	 * 	将一个选修课集合转换成课程集合
+	 * @param listElective 选修课集合
+	 * @return 课程集合
+	 */
+	public List<Curriculum> changeElectiveListIntoCurriculumList(List<Elective> listElective);
+	
+	/**
+	 * 	将一个学生集合转换成课程集合
+	 * @param listStudent 学生集合
+	 * @return 课程集合
+	 */
+	public List<Curriculum> changeStudentListIntoCurriculumList(List<Student> listStudent);
+	
 }

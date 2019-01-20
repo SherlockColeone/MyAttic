@@ -39,7 +39,25 @@ public class Curriculum {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	//显示学生名单所需的班级、姓名、学号
+	public Curriculum(Integer id, String name, String classes) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.classes = classes;
+	}
 
+	//选修课所需的选修课id
+	public Curriculum(String name, String time, String place, Integer electiveid) {
+		super();
+		this.name = name;
+		this.time = time;
+		this.place = place;
+		this.electiveid = electiveid;
+	}
+	
+	//专业课所需的专业课id和班级名称
 	public Curriculum(String name, String time, String place, Integer coursesid, String classes) {
 		super();
 		this.name = name;

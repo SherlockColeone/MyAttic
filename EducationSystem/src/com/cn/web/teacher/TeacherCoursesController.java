@@ -42,7 +42,7 @@ public class TeacherCoursesController {
 	 * @return 跳转到教师课程安排页面
 	 */
 	@RequestMapping(value="/teacherCourses")
-	public String studentCourses(HttpServletRequest request) {
+	public String teacherCourses(HttpServletRequest request) {
 		termList = getTermUtils.getAllTerms();
 		//把学期列表添加到视图中
 		request.setAttribute("termList",termList);
@@ -58,7 +58,7 @@ public class TeacherCoursesController {
 	 * @return 跳转到教师课程安排页面
 	 */
 	@RequestMapping(value="/teacherSearchAllCourses")
-	public String studentSearchAllCourses(HttpServletRequest request,Integer termId,Integer curriculum) {
+	public String teacherSearchAllCourses(HttpServletRequest request,Integer termId,Integer curriculum) {
 		//把学期列表添加到视图中
 		request.setAttribute("termList",termList);
 		//查出学期的名字
