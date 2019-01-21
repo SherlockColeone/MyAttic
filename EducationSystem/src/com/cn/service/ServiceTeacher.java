@@ -2,6 +2,7 @@ package com.cn.service;
 
 import java.util.List;
 
+import com.cn.bean.BeanStuscore;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
@@ -128,21 +129,28 @@ public interface ServiceTeacher {
 	 * @param coursesid 专业课id
 	 * @return 是否成功上传
 	 */
-	public boolean addStuScoreByCoursesid(int coursesid);
+	public boolean modifyStuScoreByCoursesid(int coursesid);
+	
+	/**
+	 * 	上传一门选修课的成绩
+	 * @param electiveid 选修课id
+	 * @return 是否成功上传
+	 */
+	public boolean modifyStuScoreByElectiveid(int electiveid);
 	
 	/**
 	 * 	上传一个班的所有学生成绩
 	 * @param classesid 班级编号
 	 * @return 是否成功上传
 	 */
-	public boolean addStuScoreByClassesid(int classesid);
+	public boolean modifyStuScoreByClassesid(int classesid);
 	
 	/**
 	 * 	上传某一次社会考试成绩
 	 * @param studentid 考生学号
 	 * @return 是否成功上传
 	 */
-	public boolean addGradeCetByStudentid(int studentid);
+	public boolean modifyGradeCetByStudentid(int studentid);
 	
 	/**
 	 * 	查看某位教师的所有教学评价
@@ -180,5 +188,12 @@ public interface ServiceTeacher {
 	 * @return 课程集合
 	 */
 	public List<Curriculum> changeStudentListIntoCurriculumList(List<Student> listStudent);
+	
+	/**
+	 * 	将一个学生成绩集合转换成BeanStuscore集合
+	 * @param listStuscore 学生成绩集合
+	 * @return BeanStuscore集合
+	 */
+	public List<BeanStuscore> changeStuscoreListIntoBeanStuscoreList(List<Stuscore> listStuscore);
 	
 }

@@ -8,7 +8,9 @@ import com.cn.bean.Cet;
 import com.cn.bean.Classes;
 import com.cn.bean.Classroom;
 import com.cn.bean.Courses;
+import com.cn.bean.Elective;
 import com.cn.bean.Major;
+import com.cn.bean.Student;
 import com.cn.bean.Teacher;
 import com.cn.bean.Term;
 import com.cn.dao.AcademyMapper;
@@ -16,7 +18,9 @@ import com.cn.dao.CetMapper;
 import com.cn.dao.ClassesMapper;
 import com.cn.dao.ClassroomMapper;
 import com.cn.dao.CoursesMapper;
+import com.cn.dao.ElectiveMapper;
 import com.cn.dao.MajorMapper;
+import com.cn.dao.StudentMapper;
 import com.cn.dao.TeacherMapper;
 import com.cn.dao.TermMapper;
 
@@ -43,6 +47,10 @@ public class CheckNameUtils {
 	private ClassroomMapper classroomMapper;
 	@Autowired
 	private TeacherMapper teacherMapper;
+	@Autowired
+	private StudentMapper studentMapper;	
+	@Autowired
+	private ElectiveMapper electiveMapper;
 	
 	/**
 	 * 	根据二级学院的id查询二级学院的名字
@@ -97,6 +105,16 @@ public class CheckNameUtils {
 	}
 	
 	/**
+	 * 	根据选修课的id查询选修课的名字
+	 * @param electiveId 选修课id
+	 * @return 选修课名字
+	 */
+	public String searchByElectiveId(Integer electiveId) {
+		Elective elective = electiveMapper.selectByPrimaryKey(electiveId);
+		return elective.getName();
+	}
+	
+	/**
 	 * 	根据社会考试的id查询社会考试的名字
 	 * @param cetId 社会考试id
 	 * @return 社会考试的名字
@@ -144,7 +162,7 @@ public class CheckNameUtils {
 	
 	/**
 	 * 	根据教师工号查询教师的名字
-	 * @param teacherId 教师id
+	 * @param teacherId 教师工号
 	 * @return 教师的名字
 	 */
 	public String searchByTeacherId(Integer teacherId) {
@@ -152,4 +170,13 @@ public class CheckNameUtils {
 		return teacher.getName();
 	}
 	
+	/**
+	 * 	根据学生学号查询学生的名字
+	 * @param studentId 学生学号
+	 * @return 学生的名字
+	 */
+	public String searchByStudentId(Integer studentId) {
+		Student student = studentMapper.selectByPrimaryKey(studentId);
+		return student.getName();
+	}
 }

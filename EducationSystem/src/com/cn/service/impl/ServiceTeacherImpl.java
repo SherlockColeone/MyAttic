@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cn.bean.BeanStuscore;
 import com.cn.bean.Courses;
 import com.cn.bean.CoursesExample;
 import com.cn.bean.Curriculum;
@@ -292,19 +293,25 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public boolean addStuScoreByCoursesid(int coursesid) {
+	public boolean modifyStuScoreByCoursesid(int coursesid) {
 		
 		return false;
 	}
 
 	@Override
-	public boolean addStuScoreByClassesid(int classesid) {
+	public boolean modifyStuScoreByElectiveid(int electiveid) {
+		
+		return false;
+	}
+	
+	@Override
+	public boolean modifyStuScoreByClassesid(int classesid) {
 		
 		return false;
 	}
 
 	@Override
-	public boolean addGradeCetByStudentid(int studentid) {
+	public boolean modifyGradeCetByStudentid(int studentid) {
 		
 		return false;
 	}
@@ -355,6 +362,20 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			Curriculum curr = new Curriculum(student.getId(), student.getName(),
 					checkNameUtils.searchByClassesId(student.getClassesid()));
 			list.add(curr);
+		}
+		return list;
+	}
+
+	@Override
+	public List<BeanStuscore> changeStuscoreListIntoBeanStuscoreList(List<Stuscore> listStuscore) {	
+		List<BeanStuscore> list = new ArrayList<>();
+		//遍历所有的学生成绩
+		for (Stuscore stuscore : listStuscore) {
+			//查询该成绩对应的学生信息
+			Student student = studentMapper.selectByPrimaryKey(stuscore.getStudentid());
+			BeanStuscore score = new BeanStuscore(student.getId(), checkNameUtils.searchByClassesId(student.getClassesid()), 
+					student.getName(), null, null, stuscore.getScore());
+			list.add(score);
 		}
 		return list;
 	}
