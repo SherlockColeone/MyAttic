@@ -29,13 +29,29 @@ public class Stuscore {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Stuscore(Integer id, Integer studentid, String coursename, Integer termid, Integer couresid,
+	
+    //缺少score、point
+	public Stuscore(Integer id, Integer studentid, String coursename, Integer credit, Integer termid, Integer couresid,
 			Integer electiveid) {
 		super();
 		this.id = id;
 		this.studentid = studentid;
 		this.coursename = coursename;
+		this.credit = credit;
+		this.termid = termid;
+		this.couresid = couresid;
+		this.electiveid = electiveid;
+	}
+
+	//所有属性不带主键
+	public Stuscore(Integer studentid, String coursename, String score, Integer credit, Double point, Integer termid,
+			Integer couresid, Integer electiveid) {
+		super();
+		this.studentid = studentid;
+		this.coursename = coursename;
+		this.score = score;
+		this.credit = credit;
+		this.point = point;
 		this.termid = termid;
 		this.couresid = couresid;
 		this.electiveid = electiveid;

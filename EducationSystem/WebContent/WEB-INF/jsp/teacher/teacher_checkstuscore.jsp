@@ -22,62 +22,56 @@
 				<div class="col-md-offset-5">
 					<h4>查看学生成绩</h4>
 				</div>
-				<div id="buttonGroup" class="col-md-9 col-md-offset-2">
-					<form action="${pageContext.servletContext.contextPath}/studentSearchAllStuscore" method="post">
-						<div id="term" class="col-md-8 col-md-offset-3">
-							学期时间：
-							<select name="termId">
-								<c:forEach items="${termList }" var="term">
-									<option value="${term.id }">${term.termtime }</option>
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col-md-4 col-md-offset-4">
-							<button type="submit" class="btn btn-default">查询</button>
-						</div>
-					</form>
-					
-					<!-- 还可以添加搜索单个课程的功能 -->
-					
+				<div>本学期您任教的课程:</div>
+				<div class="col-md-12">
+					<div class="col-md-12">
+						<table class="table table-condensed">
+							<tr>
+								<td>课程编号</td>
+								<td>课程名称</td>
+								<td>课程性质</td>
+								<td>操作</td>
+							</tr>
+							<c:forEach items="${list }" var="curr">
+								<tr>
+									<td>${curr.id }</td>
+									<td>${curr.name }</td>
+									<td>
+										<c:if test="${curr.coursesid!=0 }">
+											专业课
+										</c:if>
+										<c:if test="${curr.coursesid==0 }">
+											选修课
+										</c:if>
+									</td>
+									<td>
+										<a href="${pageContext.servletContext.contextPath}/teacherSelectStuscore/${curr.id }/${curr.coursesid }" class="btn" style="background-color: white;">添加/修改成绩</a>
+									</td>
+								</tr>								
+							</c:forEach>
+						</table>
+					</div>
 				</div>
+				
 				<div class="col-md-6">
-					学期时间：${term }
+					已选择的课程：${curriculum }<br />
+					该课程的所有学生：
 				</div>
 				<div class="col-md-12">
 					<table class="table table-hover">
 						<tr>
-							<td>课程编号</td>
-							<td>课程名称</td>
-							<td>总成绩</td>
-							<td>学分</td>
-							<td>绩点</td>
-							<td>课程性质</td>
-							<td>学期时间</td>
+							<td>学号</td>
+							<td>班级</td>
+							<td>姓名</td>
+							<td>总成绩</td>						
 						</tr>
-						<c:forEach items="${resultList}" var="stuscore">
+						<c:forEach items="${resultList }" var="score">
 							<tr>
-								<td>
-									<c:if test="${stuscore.couresid!=0 }">
-										${stuscore.couresid }
-									</c:if>
-									<c:if test="${stuscore.couresid==0 }">
-										${stuscore.electiveid }
-									</c:if>
-								</td>
-								<td>${stuscore.coursename }</td>
-								<td>${stuscore.score }</td>
-								<td>${stuscore.credit }</td>
-								<td>${stuscore.point }</td>
-								<td>
-									<c:if test="${stuscore.couresid!=0 }">
-										专业课
-									</c:if>
-									<c:if test="${stuscore.couresid==0 }">
-										选修课
-									</c:if>
-								</td>
-								<td>${term }</td>
-							</tr>
+								<td>${score.studentid }</td>
+								<td>${score.classes }</td>
+								<td>${score.name }</td>
+								<td>${score.score }</td>
+							</tr>							
 						</c:forEach>
 					</table>
 				</div>

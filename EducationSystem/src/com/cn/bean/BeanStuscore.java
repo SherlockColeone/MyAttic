@@ -18,14 +18,16 @@ public class BeanStuscore {
 	private Integer endterm;
 	//×Ü³É¼¨
 	private String score;
+	//¿Î³Ìid
+	private Integer curriculumId;
 	
 	public BeanStuscore() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public BeanStuscore(Integer studentid, String classes, String name, Integer ordinary, Integer endterm,
-			String score) {
+	public BeanStuscore(Integer studentid, String classes, String name, Integer ordinary, Integer endterm, String score,
+			Integer curriculumId) {
 		super();
 		this.studentid = studentid;
 		this.classes = classes;
@@ -33,6 +35,7 @@ public class BeanStuscore {
 		this.ordinary = ordinary;
 		this.endterm = endterm;
 		this.score = score;
+		this.curriculumId = curriculumId;
 	}
 
 	public Integer getStudentid() {
@@ -83,9 +86,17 @@ public class BeanStuscore {
 		this.score = score;
 	}
 
+	public Integer getCurriculumId() {
+		return curriculumId;
+	}
+
+	public void setCurriculumId(Integer curriculumId) {
+		this.curriculumId = curriculumId;
+	}
+
 	@Override
 	public String toString() {
 		return "BeanStuscore [studentid=" + studentid + ", classes=" + classes + ", name=" + name + ", ordinary="
-				+ ordinary + ", endterm=" + endterm + ", score=" + score + "]";
+				+ ordinary + ", endterm=" + endterm + ", score=" + score + ", curriculumId=" + curriculumId + "]";
 	}
 }

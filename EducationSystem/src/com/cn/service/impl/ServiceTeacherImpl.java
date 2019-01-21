@@ -293,21 +293,61 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public boolean modifyStuScoreByCoursesid(int coursesid) {
-		
-		return false;
+	public boolean modifyStuScoreByCoursesid(List<BeanStuscore> list) {
+		int i = 0;
+		StuscoreExample example = new StuscoreExample();
+		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
+		for (BeanStuscore beanStuscore : list) {
+			//根据专业课id和学号查出该学生该课程的成绩
+			criteria.andCouresidEqualTo(beanStuscore.getCurriculumId());
+			criteria.andStudentidEqualTo(beanStuscore.getStudentid());
+			List<Stuscore> listStuscore = stuscoreMapper.selectByExample(example);
+			Stuscore stuscore = listStuscore.get(0);
+			String strScore = beanStuscore.getScore();
+			//设置成绩
+			stuscore.setScore(strScore);
+			//计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
+			Integer score = new Integer(strScore);
+			Double point = new Double((score-50)+((score%10)/10));
+			//设置绩点
+			stuscore.setPoint(point);
+			//添加到数据库中
+			i = stuscoreMapper.insert(stuscore);
+		}
+		if (i>0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public boolean modifyStuScoreByElectiveid(int electiveid) {
-		
-		return false;
-	}
-	
-	@Override
-	public boolean modifyStuScoreByClassesid(int classesid) {
-		
-		return false;
+	public boolean modifyStuScoreByElectiveid(List<BeanStuscore> list) {
+		int i = 0;
+		StuscoreExample example = new StuscoreExample();
+		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
+		for (BeanStuscore beanStuscore : list) {
+			//根据选修课id和学号查出该学生该课程的成绩
+			criteria.andElectiveidEqualTo(beanStuscore.getCurriculumId());
+			criteria.andStudentidEqualTo(beanStuscore.getStudentid());
+			List<Stuscore> listStuscore = stuscoreMapper.selectByExample(example);
+			Stuscore stuscore = listStuscore.get(0);
+			String strScore = beanStuscore.getScore();
+			//设置成绩
+			stuscore.setScore(strScore);
+			//计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
+			Integer score = new Integer(strScore);
+			Double point = new Double((score-50)+((score%10)/10));
+			//设置绩点
+			stuscore.setPoint(point);
+			//添加到数据库中
+			i = stuscoreMapper.insert(stuscore);
+		}
+		if (i>0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -373,8 +413,14 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		for (Stuscore stuscore : listStuscore) {
 			//查询该成绩对应的学生信息
 			Student student = studentMapper.selectByPrimaryKey(stuscore.getStudentid());
+			Integer curriculumId = 0;
+			if (stuscore.getCouresid()!=0) { //专业课的成绩
+				curriculumId = stuscore.getCouresid();
+			} else { //选修课的成绩
+				curriculumId = stuscore.getElectiveid();
+			}
 			BeanStuscore score = new BeanStuscore(student.getId(), checkNameUtils.searchByClassesId(student.getClassesid()), 
-					student.getName(), null, null, stuscore.getScore());
+					student.getName(), null, null, stuscore.getScore(),curriculumId);
 			list.add(score);
 		}
 		return list;

@@ -126,24 +126,17 @@ public interface ServiceTeacher {
 	
 	/**
 	 * 	上传一门专业课的成绩
-	 * @param coursesid 专业课id
+	 * @param list 一门专业课的学生成绩
 	 * @return 是否成功上传
 	 */
-	public boolean modifyStuScoreByCoursesid(int coursesid);
+	public boolean modifyStuScoreByCoursesid(List<BeanStuscore> list);
 	
 	/**
 	 * 	上传一门选修课的成绩
-	 * @param electiveid 选修课id
+	 * @param list 一门选修课的学生成绩
 	 * @return 是否成功上传
 	 */
-	public boolean modifyStuScoreByElectiveid(int electiveid);
-	
-	/**
-	 * 	上传一个班的所有学生成绩
-	 * @param classesid 班级编号
-	 * @return 是否成功上传
-	 */
-	public boolean modifyStuScoreByClassesid(int classesid);
+	public boolean modifyStuScoreByElectiveid(List<BeanStuscore> list);
 	
 	/**
 	 * 	上传某一次社会考试成绩

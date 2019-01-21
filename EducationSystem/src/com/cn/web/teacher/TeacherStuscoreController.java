@@ -69,7 +69,7 @@ public class TeacherStuscoreController {
 	 * 	显示已选择课程的所有学生成绩
 	 * 
 	 * @param request 请求
-	 * @return 跳转到教师成绩管理页面
+	 * @return 重定向到教师成绩管理页面
 	 */
 	@RequestMapping(value = "/teacherSelectStuscore/{id}/{coursesid}")
 	public String teacherSelectStuscore(HttpServletRequest request,@PathVariable("id")Integer id,
@@ -88,30 +88,67 @@ public class TeacherStuscoreController {
 		request.setAttribute("curriculum", curriculum);
 		request.setAttribute("list", list);
 		request.setAttribute("resultList", resultList);
-		// 跳转到教师学生成绩管理页面
+		//重定向到教师学生成绩管理页面
 		return "redirect:/teacherStuscore";
 	}
 
 	/**
-	 * 	根据选择的条件查询出课程安排
+	 * 	添加或修改该课程的学生成绩
 	 * 
 	 * @param request    请求
-	 * @param termId     从表单获取的学期id
 	 * @return 跳转到教师成绩查询页面
 	 */
 	@RequestMapping(value = "/teacherModifyStuscore")
-	public String teacherModifyStuscore(HttpServletRequest request, Integer termId) {
+	public String teacherModifyStuscore(HttpServletRequest request) {
 		
-		// 查出学期的名字
-		String term = checkNameUtils.searchByTermid(termId);
-		request.setAttribute("term", term);
+		return "teacher/teacher_checkstuscore";
+	}
+	
+	/**
+	 * 	跳转到教师查询成绩的页面
+	 * 
+	 * @param request 请求
+	 * @return 跳转到教师查询成绩页面
+	 */
+	@RequestMapping(value = "/teacherCheckStuscore")
+	public String teacherCheckStuscore(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取教师对象
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
-//		//查询该学期的所有成绩
-//		List<Stuscore> resultList = serviceStudent.searchAllStuScoreByStudentidAndTermid(teacher.getId(), termId);
-//		//把结果列表添加到视图中
-//		request.setAttribute("resultList",resultList);
-		return "teacher/teacher_stuscore";
+		//查找该教师该学期的所有课程
+		list = serviceTeacher.searchAllCurriculumByTermidAndTeacherid(GetTermUtils.getCurrentTermiId(),
+				teacher.getId());
+		request.setAttribute("curriculum", curriculum);
+		request.setAttribute("list", list);
+		request.setAttribute("resultList", resultList);
+		// 跳转到教师查询成绩页面
+		return "teacher/teacher_checkstuscore";
+	}
+	
+	/**
+	 * 	显示已选择课程的所有学生成绩
+	 * 
+	 * @param request 请求
+	 * @return 重定向到教师查询成绩页面
+	 */
+	@RequestMapping(value = "/teacherCheckSelectStuscore/{id}/{coursesid}")
+	public String teacherCheckSelectStuscore(HttpServletRequest request,@PathVariable("id")Integer id,
+			@PathVariable("coursesid")Integer coursesid) {
+		if (coursesid!=0) { //选择的是专业课
+			curriculum = checkNameUtils.searchByCoursesId(id);
+			//根据专业课id查找所有学生成绩
+			List<Stuscore> listStuscore = serviceTeacher.searchAllStuScoreByCoursesid(id);
+			resultList = serviceTeacher.changeStuscoreListIntoBeanStuscoreList(listStuscore);
+		} else { //选择的是选修课
+			curriculum = checkNameUtils.searchByElectiveId(id);
+			//根据选修课id查找所有学生成绩
+			List<Stuscore> listStuscore = serviceTeacher.searchAllStuScoreByElectiveid(id);
+			resultList = serviceTeacher.changeStuscoreListIntoBeanStuscoreList(listStuscore);
+		}
+		request.setAttribute("curriculum", curriculum);
+		request.setAttribute("list", list);
+		request.setAttribute("resultList", resultList);
+		//重定向到教师学生查询成绩页面
+		return "redirect:/teacherStuscore";
 	}
 }

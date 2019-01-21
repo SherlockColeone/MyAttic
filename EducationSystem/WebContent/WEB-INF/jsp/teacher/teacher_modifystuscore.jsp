@@ -70,7 +70,11 @@
 							</tr>
 							<c:forEach items="${resultList }" var="score">
 								<tr>
-									<td>${score.studentid }</td>
+									<td>
+										${score.studentid }
+										<input name="studentid" type="text" value="${score.studentid }" hidden="hidden" readonly="readonly" />
+										<input name="curriculumId" type="text" value="${score.curriculumId }" hidden="hidden" readonly="readonly" />
+									</td>
 									<td>${score.classes }</td>
 									<td>${score.name }</td>
 									<td>								
