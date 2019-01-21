@@ -10,15 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cn.bean.BeanStuscore;
 import com.cn.bean.Curriculum;
-import com.cn.bean.Student;
 import com.cn.bean.Stuscore;
 import com.cn.bean.Teacher;
-import com.cn.bean.Term;
-import com.cn.service.ServiceStudent;
 import com.cn.service.ServiceTeacher;
 import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
@@ -101,6 +97,7 @@ public class TeacherStuscoreController {
 	@RequestMapping(value = "/teacherModifyStuscore")
 	public String teacherModifyStuscore(HttpServletRequest request) {
 		
+		
 		return "teacher/teacher_checkstuscore";
 	}
 	
@@ -149,6 +146,6 @@ public class TeacherStuscoreController {
 		request.setAttribute("list", list);
 		request.setAttribute("resultList", resultList);
 		//重定向到教师学生查询成绩页面
-		return "redirect:/teacherStuscore";
+		return "redirect:/teacherCheckStuscore";
 	}
 }

@@ -19,6 +19,18 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-12">
+					<div class="col-md-3">
+						<a href="${pageContext.servletContext.contextPath}/teacherStuscore" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-left"></span>学生成绩管理页面
+						</a>
+					</div>
+					<div class="col-md-3 col-md-offset-6">
+						<a href="#" class="btn btn-default">
+							留在本页面<span class="glyphicon glyphicon-arrow-right"></span>
+						</a>
+					</div>
+				</div>			
 				<div class="col-md-offset-5">
 					<h4>查看学生成绩</h4>
 				</div>
