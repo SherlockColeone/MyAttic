@@ -16,11 +16,29 @@ public class BeanCet {
 	private Integer score;
 	//是否具备资格报名/是否已报名。0代表是，1代表否
 	private Integer qualification;
+	//学生的班级
+	private String classes;
+	//学生的姓名
+	private String studentname;
+	//学生的学号
+	private Integer studentid;
 	
 	public BeanCet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public BeanCet(String name, String time, Integer score, String classes, String studentname, Integer studentid) {
+		super();
+		this.name = name;
+		this.time = time;
+		this.score = score;
+		this.classes = classes;
+		this.studentname = studentname;
+		this.studentid = studentid;
+	}
+	
+	//除学生的班级、姓名、学号
 	public BeanCet(String name, String time, String place, Integer score, Integer qualification) {
 		super();
 		this.name = name;
@@ -29,6 +47,21 @@ public class BeanCet {
 		this.score = score;
 		this.qualification = qualification;
 	}
+	
+	//所有属性
+	public BeanCet(String name, String time, String place, Integer score, Integer qualification, String classes,
+			String studentname, Integer studentid) {
+		super();
+		this.name = name;
+		this.time = time;
+		this.place = place;
+		this.score = score;
+		this.qualification = qualification;
+		this.classes = classes;
+		this.studentname = studentname;
+		this.studentid = studentid;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -59,9 +92,28 @@ public class BeanCet {
 	public void setQualification(Integer qualification) {
 		this.qualification = qualification;
 	}
+	public String getClasses() {
+		return classes;
+	}
+	public void setClasses(String classes) {
+		this.classes = classes;
+	}
+	public String getStudentname() {
+		return studentname;
+	}
+	public void setStudentname(String studentname) {
+		this.studentname = studentname;
+	}
+	public Integer getStudentid() {
+		return studentid;
+	}
+	public void setStudentid(Integer studentid) {
+		this.studentid = studentid;
+	}
 	@Override
 	public String toString() {
 		return "BeanCet [name=" + name + ", time=" + time + ", place=" + place + ", score=" + score + ", qualification="
-				+ qualification + "]";
+				+ qualification + ", classes=" + classes + ", studentname=" + studentname + ", studentid=" + studentid
+				+ "]";
 	}
 }

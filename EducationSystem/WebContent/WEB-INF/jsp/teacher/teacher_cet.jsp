@@ -5,13 +5,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>社会考试管理</title>
+		<title>社会考试成绩管理</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="css/student/student_courses.css" />
+		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/cet.js"></script>
 	</head>
 
 	<body>
@@ -20,71 +19,57 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="col-md-1">
-					<a href="${pageContext.servletContext.contextPath}/studentGradeCet" class="btn btn-default">
-						<span class="glyphicon glyphicon-arrow-left"></span>前往社会考试成绩页面
-					</a>
-				</div>
 				<div class="col-md-offset-5">
-					<h4>社会考试管理</h4>
+					<h4>社会考试成绩管理</h4>
 				</div>
 				<div class="col-md-12">
-					<table class="table table-striped">
+					<table class="table table-bordered">
 						<tr>
 							<td>社会考试名称</td>
 							<td>社会考试时间</td>
-							<td>是否具备报名资格</td>
+							<td>需要查询的学生学号</td>
 							<td>操作</td>
 						</tr>
-						<c:forEach items="${list }" var="result">
-							<tr>
-								<td class="cetId" hidden>${result.score }</td>
-								<td class="name">${result.name }</td>
-								<td class="time">${result.time }</td>
-								<td class="qualification">
-									<c:if test="${result.qualification==0 }">是</c:if>
-									<c:if test="${result.qualification==1 }">否</c:if>
-								</td>
-								<td>
-									
-									<!-- 未解决的问题：当不能报名时无法点击链接 -->
-									
-									<a class="apply" href="#">报名</a>
-								</td>
-							</tr>							
+						<c:forEach items="${list }" var="cet">
+							<form action="${pageContext.servletContext.contextPath}/teacherCheckGradecet" method="post">
+								<tr>
+									<td hidden>
+										<input type="text" name="cetid" value="${cet.id }" hidden="hidden" readonly="readonly" />
+									</td>
+									<td class="name">${cet.cetname }</td>
+									<td class="time">${cet.cettime }</td>
+									<td class="qualification">
+										<input type="text" name="studentid" />
+									</td>
+									<td class="apply">
+										<button type="submit" class="btn" style="background-color: white;">查询成绩</button>
+									</td>
+								</tr>
+							</form>							
 						</c:forEach>
 					</table>
 				</div>
 
-				<div id="single" class="col-md-12" style="display: none;">
+				<div class="col-md-6">
+					社会考试名称：${beancet.name }<br />
+					社会考试时间：${beancet.time }
+				</div>
+				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
-							<td>社会考试名称</td>
-							<td>社会考试时间</td>
+							<td>班级</td>
+							<td>姓名</td>
 							<td>学号</td>
+							<td>成绩</td>
 						</tr>
 						<tr>
-							<td id="showName"></td>
-							<td id="showTime"></td>
-							<td>${studentId }</td>
+							<td>${beancet.classes }</td>
+							<td>${beancet.studentname }</td>
+							<td>${beancet.studentid }</td>
+							<td>${beancet.score }</td>
 						</tr>
 					</table>
-					<div class="col-md-4 col-md-offset-5">
-						<form action="#" method="post">
-							<input id="cetId" name="cetId" hidden readonly />
-							<button id="submit" type="submit" class="btn btn-default">确定报名</button>
-						</form>
-					</div>
 				</div>
-			</div>
-			
-			<!--列表组-->
-			<div class="list-group col-md-1 col-md-pull-0">
-				<a href="#" class="list-group-item disabled">
-					<h4>社会考试</h4>
-				</a>
-				<a href="${pageContext.servletContext.contextPath}/studentGradeCet" class="list-group-item">社会考试成绩与安排</a>
-				<a href="#" class="list-group-item active">社会考试报名</a>`
 			</div>
 		</div>
 

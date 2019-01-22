@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cn.bean.BeanCet;
 import com.cn.bean.BeanStuscore;
+import com.cn.bean.Cet;
+import com.cn.bean.CetExample;
 import com.cn.bean.Courses;
 import com.cn.bean.CoursesExample;
 import com.cn.bean.Curriculum;
@@ -27,6 +30,7 @@ import com.cn.bean.StuscoreExample;
 import com.cn.bean.Teacher;
 import com.cn.bean.TeacherExample;
 import com.cn.bean.TeacherExample.Criteria;
+import com.cn.dao.CetMapper;
 import com.cn.dao.ClassesMapper;
 import com.cn.dao.CoursesMapper;
 import com.cn.dao.CurriculumarrangeMapper;
@@ -39,6 +43,7 @@ import com.cn.dao.StuscoreMapper;
 import com.cn.dao.TeacherMapper;
 import com.cn.service.ServiceTeacher;
 import com.cn.utils.CheckNameUtils;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	教师端逻辑层实现类
@@ -69,6 +74,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	private ClassesMapper classesMapper;
 	@Autowired
 	private CheckNameUtils checkNameUtils;
+	@Autowired
+	private CetMapper cetMapper;
 
 	@Override
 	public Teacher teacherLogin(int teacherid, String password) {
@@ -238,6 +245,15 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
+	public Gradecet searchGradeCetByStudentidAndCetid(int studentid,int cetid) {
+		GradecetExample example = new GradecetExample();
+		com.cn.bean.GradecetExample.Criteria criteria = example.createCriteria();
+		criteria.andStudentidEqualTo(studentid);
+		criteria.andCetidEqualTo(cetid);
+		return gradecetMapper.selectByExample(example).get(0);
+	}
+	
+	@Override
 	public List<Student> searchAllStudentByElectiveid(int electiveid) {
 		List<Student> listStudent = new ArrayList<>();
 		//根据选修课id查询学生成绩表
@@ -351,12 +367,6 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public boolean modifyGradeCetByStudentid(int studentid) {
-		
-		return false;
-	}
-
-	@Override
 	public List<Evaluation> searchAllEvaluationByTeacherid(int teacherid) {
 		EvaluationExample example = new EvaluationExample();
 		com.cn.bean.EvaluationExample.Criteria criteria = example.createCriteria();
@@ -424,6 +434,23 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			list.add(score);
 		}
 		return list;
+	}
+
+	@Override
+	public List<Cet> searchAllCetByCurrentTermid() {
+		CetExample example = new CetExample();
+		com.cn.bean.CetExample.Criteria criteria = example.createCriteria();
+		criteria.andTermidEqualTo(GetTermUtils.getCurrentTermiId());
+		return cetMapper.selectByExample(example);
+	}
+
+	@Override
+	public BeanCet changeGradecetIntoBeanCetByStudentid(Gradecet gradecet,int studentid) {
+		//根据学号找到学生
+		Student student = studentMapper.selectByPrimaryKey(studentid);
+		BeanCet beanCet = new BeanCet(checkNameUtils.searchByCetId(gradecet.getCetid()), gradecet.getCettime(), 
+				gradecet.getCetscore(), checkNameUtils.searchByClassesId(student.getClassesid()), student.getName(), studentid);
+		return beanCet;
 	}
 
 }

@@ -2,7 +2,9 @@ package com.cn.service;
 
 import java.util.List;
 
+import com.cn.bean.BeanCet;
 import com.cn.bean.BeanStuscore;
+import com.cn.bean.Cet;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
@@ -96,6 +98,14 @@ public interface ServiceTeacher {
 	public List<Gradecet> searchAllGradeCetByTeacherid(int teacherid);
 	
 	/**
+	 * 查找某个学生某次社会考试成绩
+	 * @param studentid 学号
+	 * @param cetid 社会考试id
+	 * @return 社会考试成绩对象
+	 */
+	public Gradecet searchGradeCetByStudentidAndCetid(int studentid,int cetid);
+	
+	/**
 	 *	 根据选修课查询该选修课的学生名单
 	 * @param electiveid 选修课id
 	 * @return 该选修课的学生名单
@@ -137,13 +147,6 @@ public interface ServiceTeacher {
 	 * @return 是否成功上传
 	 */
 	public boolean modifyStuScoreByElectiveid(List<BeanStuscore> list);
-	
-	/**
-	 * 	上传某一次社会考试成绩
-	 * @param studentid 考生学号
-	 * @return 是否成功上传
-	 */
-	public boolean modifyGradeCetByStudentid(int studentid);
 	
 	/**
 	 * 	查看某位教师的所有教学评价
@@ -188,5 +191,19 @@ public interface ServiceTeacher {
 	 * @return BeanStuscore集合
 	 */
 	public List<BeanStuscore> changeStuscoreListIntoBeanStuscoreList(List<Stuscore> listStuscore);
+	
+	/**
+	 * 查找当前学期的所有社会考试
+	 * @return 社会考试集合
+	 */
+	public List<Cet> searchAllCetByCurrentTermid();
+	
+	/**
+	 * 将社会考试成绩类转换成BeanCet类
+	 * @param gradecet 社会考试成绩类对象
+	 * @param studentid 学号
+	 * @return BeanCet类
+	 */
+	public BeanCet changeGradecetIntoBeanCetByStudentid(Gradecet gradecet,int studentid);
 	
 }
