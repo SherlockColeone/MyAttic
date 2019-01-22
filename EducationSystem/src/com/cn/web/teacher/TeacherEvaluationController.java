@@ -22,7 +22,7 @@ import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
 /**
- * 	进入学生教师评价的控制器
+ * 	进入教师评价结果的控制器
  * @author Sherlock
  *
  */
@@ -37,10 +37,10 @@ public class TeacherEvaluationController {
 	/**
 	 * 跳转到选择教师的页面
 	 * @param request 请求
-	 * @return 跳转到学生教师评价页面（选择教师）
+	 * @return 跳转到教师评价页面（选择教师）
 	 */
 	@RequestMapping(value="/teacherEvaluation")
-	public String studentEvaluation(HttpServletRequest request) {
+	public String teacherEvaluation(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
