@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>社会考试报名</title>
+		<title>社会考试管理</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/student/student_courses.css" />
@@ -26,7 +26,7 @@
 					</a>
 				</div>
 				<div class="col-md-offset-5">
-					<h4>社会考试报名</h4>
+					<h4>社会考试管理</h4>
 				</div>
 				<div class="col-md-12">
 					<table class="table table-striped">

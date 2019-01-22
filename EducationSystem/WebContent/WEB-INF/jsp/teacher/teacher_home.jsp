@@ -51,7 +51,7 @@
 				</a>
 				<a href="${pageContext.servletContext.contextPath}/teacherGradeCet" id="cet" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/cet.png" />
-					<div>社会考试成绩</div>
+					<div>社会考试管理</div>
 				</a>				
 				<a href="${pageContext.servletContext.contextPath}/teacherStuscore" id="stuscore" class="col-md-4 btn" style="padding-top: 30px;">
 					<img src="images/stuscore.png" />

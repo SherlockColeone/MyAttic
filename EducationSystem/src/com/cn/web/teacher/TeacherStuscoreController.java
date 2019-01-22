@@ -98,7 +98,7 @@ public class TeacherStuscoreController {
 	public String teacherModifyStuscore(HttpServletRequest request) {
 		
 		
-		return "teacher/teacher_checkstuscore";
+		return "redirect:/teacherCheckStuscore";
 	}
 	
 	/**

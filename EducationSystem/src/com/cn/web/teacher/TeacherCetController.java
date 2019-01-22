@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cn.bean.BeanCet;
-import com.cn.bean.Student;
-import com.cn.service.ServiceStudent;
+import com.cn.bean.Teacher;
+import com.cn.service.ServiceTeacher;
+import com.cn.service.ServiceTeacher;
 
 /**
- * 	进入学生社会考试的控制器
+ * 	进入教师社会考试的控制器
  * @author Sherlock
  *
  */
@@ -23,63 +24,63 @@ import com.cn.service.ServiceStudent;
 @Controller
 public class TeacherCetController {
 	@Autowired
-	private ServiceStudent serviceStudent;
+	private ServiceTeacher serviceTeacher;
 		
 	/**
-	 * 进入学生社会考试成绩页面
+	 * 进入教师社会考试管理页面
 	 * @param request 请求
-	 * @return 跳转到学生社会考试页面
+	 * @return 跳转到教师社会考试管理页面
 	 */
 	@RequestMapping(value="/teacherGradeCet")
-	public String studentGradeCet(HttpServletRequest request) {
+	public String teacherGradeCet(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		//从session域中获取学生对象
-		Student student = (Student) session.getAttribute("student");
-		//设置准考证号
-		request.setAttribute("studentId", student.getId());
-		//找到该学生的所有社会考试成绩
-		List<BeanCet> listScore = serviceStudent.searchAllGradeCetScoreByStudentid(student.getId());		
-		request.setAttribute("listScore", listScore);
-		//找到该学生的所有社会考试报名
-		List<BeanCet> listApply = serviceStudent.searchAllGradeCetApplyByStudentid(student.getId());		
-		request.setAttribute("listApply", listApply);
-		//跳转到学生社会考试页面
-		return "student/student_gradecet";
+		//从session域中获取教师对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+//		//设置准考证号
+//		request.setAttribute("studentId", student.getId());
+//		//找到该教师的所有社会考试成绩
+//		List<BeanCet> listScore = serviceTeacher.searchAllGradeCetScoreByTeacherid(student.getId());		
+//		request.setAttribute("listScore", listScore);
+//		//找到该教师的所有社会考试报名
+//		List<BeanCet> listApply = serviceTeacher.searchAllGradeCetApplyByTeacherid(student.getId());		
+//		request.setAttribute("listApply", listApply);
+		//跳转到教师社会考试页面
+		return "teacher/teacher_gradecet";
 	}
 	
 	/**
-	 * 进入学生社会考试报名页面
+	 * 进入教师社会考试报名页面
 	 * @param request 请求
-	 * @return 跳转到学生社会考试报名页面
+	 * @return 跳转到教师社会考试报名页面
 	 */
 	@RequestMapping(value="/teacherCet")
-	public String studentCet(HttpServletRequest request) {
-		//查找当前学期所有的社会考试
-		List<BeanCet> list = serviceStudent.searchAllBeanCetByCurrentTerm();
-		request.setAttribute("list", list);
+	public String teacherCet(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		//从session域中获取学生对象
-		Student student = (Student) session.getAttribute("student");
-		//设置准考证号
-		request.setAttribute("studentId", student.getId());		
-		//跳转到学生社会考试报名页面
-		return "student/student_cet";
+		//从session域中获取教师对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+//		//查找当前学期所有的社会考试
+//		List<BeanCet> list = serviceTeacher.searchAllBeanCetByCurrentTerm();
+//		request.setAttribute("list", list);		
+//		//设置准考证号
+//		request.setAttribute("studentId", student.getId());		
+		//跳转到教师社会考试报名页面
+		return "teacher/teacher_cet";
 	}
 	
 	/**
-	 * 处理学生社会考试报名
+	 * 处理教师社会考试报名
 	 * @param request 请求
-	 * @return 重定向到学生社会考试成绩页面
+	 * @return 重定向到教师社会考试成绩页面
 	 */
 	@RequestMapping(value="/teacherApplyCet/{cetId}")
-	public String studentApplyCet(HttpServletRequest request,@PathVariable("cetId")Integer cetId) {
+	public String teacherApplyCet(HttpServletRequest request,@PathVariable("cetId")Integer cetId) {
 		HttpSession session = request.getSession();
-		//从session域中获取学生对象
-		Student student = (Student) session.getAttribute("student");
-		//在社会考试成绩表中添加学生的信息
-		serviceStudent.addGradecetApplyByStudentidAndCetid(student.getId(), cetId);
-		//重定向到学生社会考试成绩页面（PS：由于本方法带参数，因此重定向时需要带上/）
-		return "redirect:/studentGradeCet";
+		//从session域中获取教师对象
+		Teacher student = (Teacher) session.getAttribute("student");
+//		//在社会考试成绩表中添加教师的信息
+//		serviceTeacher.addGradecetApplyByTeacheridAndCetid(student.getId(), cetId);
+		//重定向到教师社会考试成绩页面（PS：由于本方法带参数，因此重定向时需要带上/）
+		return "redirect:/teacherGradeCet";
 	}
 	
 }
