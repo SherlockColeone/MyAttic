@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/teacher/cet.js"></script>
 	</head>
 
 	<body>

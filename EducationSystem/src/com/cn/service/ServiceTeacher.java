@@ -214,4 +214,6 @@ public interface ServiceTeacher {
 	 */
 	public List<BeanArrange> changeAllCurriculumarrangeIntoBeanArrange(List<Curriculumarrange> listCurr);
 	
+	public List<Evaluation> GetStatisticsByListEvaluation(List<Evaluation> listEvaluation);
+	
 }

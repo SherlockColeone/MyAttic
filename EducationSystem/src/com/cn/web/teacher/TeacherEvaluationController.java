@@ -17,7 +17,9 @@ import com.cn.bean.Curriculum;
 import com.cn.bean.Elective;
 import com.cn.bean.Student;
 import com.cn.bean.Stuscore;
+import com.cn.bean.Teacher;
 import com.cn.service.ServiceStudent;
+import com.cn.service.ServiceTeacher;
 import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
@@ -30,79 +32,29 @@ import com.cn.utils.GetTermUtils;
 @Controller
 public class TeacherEvaluationController {
 	@Autowired
-	private ServiceStudent serviceStudent;
+	private ServiceTeacher serviceTeacher;
 	@Autowired
 	private CheckNameUtils checkNameUtils;
 	
 	/**
-	 * 跳转到选择教师的页面
+	 * 	跳转到教师评价结果页面
 	 * @param request 请求
-	 * @return 跳转到教师评价页面（选择教师）
+	 * @return 跳转到教师评价结果页面
 	 */
 	@RequestMapping(value="/teacherEvaluation")
 	public String teacherEvaluation(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
-		Student student = (Student) session.getAttribute("student");
-		//根据当前学期与学号找到所有任课老师
-		List<Stuscore> stuScore = serviceStudent.searchAllStuScoreByStudentidAndTermid(student.getId(),
-				GetTermUtils.getCurrentTermiId());
-		List<Curriculum> list = new ArrayList<>();
-		for (Stuscore score : stuScore) {
-			if(score.getCouresid()!=0) { //专业课
-				Courses courses = serviceStudent.searchCoursesByCoursesId(score.getCouresid());
-				//检查是否已评价该教师
-				Integer check = serviceStudent.checkEvaluationByStudentidAndTeacherid(student.getId(), courses.getTeacherid());
-				//termid的属性用于放置是否已评价
-				Curriculum curriculum = new Curriculum(courses.getName(), courses.getTeacher(), check, courses.getTeacherid(),
-						courses.getId(), 0);
-				list.add(curriculum);
-			}
-			else { //选修课
-				Elective elective = serviceStudent.searchElectiveById(score.getElectiveid());
-				//检查是否已评价该教师
-				Integer check = serviceStudent.checkEvaluationByStudentidAndTeacherid(student.getId(), elective.getTeacherid());
-				//termid的属性用于放置是否已评价
-				Curriculum curriculum = new Curriculum(elective.getName(), elective.getTeacher(), check, elective.getTeacherid(),
-						0, elective.getId());
-				list.add(curriculum);
-			}			
-		}
-		request.setAttribute("list", list);
-		//跳转到学生教师评价页面（选择教师）
-		return "student/student_evaluation";
-	}
-	
-	/**
-	 * 跳转到填写评价的页面
-	 * @param request 请求
-	 * @return 跳转到学生教师评价页面（填写评价）
-	 */
-	@RequestMapping(value="/teacherEvaluationForm/{teacherid}")
-	public String studentEvaluationForm(HttpServletRequest request,@PathVariable("teacherid")Integer teacherid) {
-		String teacherName = checkNameUtils.searchByTeacherId(teacherid);
-		//把教师工号与姓名传到页面
-		request.setAttribute("teacherid", teacherid);
-		request.setAttribute("teacherName", teacherName);
-		//跳转到学生教师评价页面（填写评价）
-		return "student/student_evaluationform";
-	}
-	
-	/**
-	 * 提交教师评价
-	 * @param request 请求
-	 * @param content 教师评价内容
-	 * @return 重定向到学生教师评价页面（选择教师）
-	 */
-	@RequestMapping(value="/teacherEvaluationSubmit")
-	public String studentEvaluationSubmit(HttpServletRequest request,BeanEvaluation content) {
-		HttpSession session = request.getSession();
-		//从session域中获取学生对象
-		Student student = (Student) session.getAttribute("student");
-		//把表单的内容与学生学号添加进去
-		serviceStudent.addEvaluationByStudentidAndContent(student.getId(), content);
-		//重定向到学生教师评价页面（选择教师）
-		return "redirect:studentEvaluation";
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		request.setAttribute("teacher", teacher);
+		//找到该教师的所有教学评价
+		serviceTeacher.searchAllEvaluationByTeacherid(teacher.getId());
+		//转换成
+		
+		
+		request.setAttribute("list", teacher);
+		//跳转到教师评价结果页面
+		return "teacher/teacher_evaluation";
 	}
 	
 }
