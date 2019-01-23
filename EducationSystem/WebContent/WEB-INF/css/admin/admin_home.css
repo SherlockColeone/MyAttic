@@ -1,0 +1,78 @@
+/**
+ * 	教师个人首页的css文件
+ */
+
+#main{
+	margin-bottom: 20px;
+}
+
+a{
+	color: white;
+	margin: 5px;
+}
+
+.col-md-4{
+	height: 304px;	
+}
+
+.col-md-2{
+	color: white;
+	height: 150px;
+	padding: 30px;
+}
+
+#message{
+	background-color: cornflowerblue;
+	color: white;
+	height: 304px;
+	padding-top: 50px;
+}
+
+#curriculum{
+	background-color: MediumSeaGreen;
+	color: white;
+	height: 304px;
+	padding-top: 100px;
+}
+
+#courses{
+	background-color:Darkorange ;
+	color: white;
+}
+
+#elective{
+	background-color: crimson ;
+	color: white;
+}
+
+#curriculumarrange{
+	background-color:Peru ;
+	color: white;
+}
+
+#exam{
+	background-color: MediumOrchid ;
+	color: white;
+}
+
+#cet{
+	background-color: brown;
+	color: white;
+}
+
+#stuscore{
+	background-color: CadetBlue;
+	color: white;
+	height: 150px;
+	padding: 20px;
+}
+
+#evaluation{
+	background-color: MediumPurple ;
+	color: white;
+}
+
+#password{
+	background-color: DarkOliveGreen ;
+	color: white;
+}

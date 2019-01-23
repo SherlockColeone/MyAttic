@@ -7,7 +7,7 @@
 		<title>管理员个人中心</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="css/teacher/teacher_home.css" />
+		<link rel="stylesheet" href="css/admin/admin_home.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 	</head>
