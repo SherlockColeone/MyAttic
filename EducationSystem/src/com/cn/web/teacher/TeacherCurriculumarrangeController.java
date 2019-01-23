@@ -10,8 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cn.bean.BeanArrange;
-import com.cn.bean.Student;
-import com.cn.service.ServiceStudent;
+import com.cn.bean.Curriculumarrange;
+import com.cn.bean.Teacher;
+import com.cn.service.ServiceTeacher;
 
 /**
  * 	进入教师调课通知的控制器
@@ -22,15 +23,16 @@ import com.cn.service.ServiceStudent;
 @Controller
 public class TeacherCurriculumarrangeController {
 	@Autowired
-	private ServiceStudent serviceStudent;
+	private ServiceTeacher serviceTeacher;
 	
 	@RequestMapping(value="/teacherCurriculumarrange")
 	public String teacherCurriculumarrange(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		//从session域中获取教师对象
-		Student student = (Student) session.getAttribute("student");
-		//根据教师查询所有调课
-		List<BeanArrange> list = serviceStudent.searchAllCurriculumarrangeByClassesid(student.getClassesid());
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		//查询该教师所有调课
+		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacherid(teacher.getId());
+		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);
 		request.setAttribute("list", list);
 		//跳转到教师调课通知页面
 		return "teacher/teacher_curriculumarrange";

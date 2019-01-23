@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
 import com.cn.bean.BeanStuscore;
 import com.cn.bean.Cet;
@@ -451,6 +452,27 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		BeanCet beanCet = new BeanCet(checkNameUtils.searchByCetId(gradecet.getCetid()), gradecet.getCettime(), 
 				gradecet.getCetscore(), checkNameUtils.searchByClassesId(student.getClassesid()), student.getName(), studentid);
 		return beanCet;
+	}
+
+	@Override
+	public List<BeanArrange> changeAllCurriculumarrangeIntoBeanArrange(List<Curriculumarrange> listCurr) {
+		List<BeanArrange> list = new ArrayList<>();
+		for (Curriculumarrange arrange : listCurr) {
+			//找到课程名称
+			String name = checkNameUtils.searchByCoursesId(arrange.getCoursesid());
+			//拼接上课日期
+			String day = checkNameUtils.transformDay(arrange.getDay());
+			String time = arrange.getTime();
+			//进行拼接
+			String date = day+"<br />"+time+"节";
+			//找到教师名称
+			String teacher = checkNameUtils.searchByTeacherId(arrange.getTeacherid());
+			//找到班级名称
+			String classes = checkNameUtils.searchByClassesId(arrange.getClassesid());
+			BeanArrange bean = new BeanArrange(name, arrange.getWeek(), date, arrange.getPlace(), teacher, classes);
+			list.add(bean);
+		}
+		return list;
 	}
 
 }

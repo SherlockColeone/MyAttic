@@ -31,7 +31,6 @@
 							<td>课程周次</td>
 							<td>调课后时间</td>
 							<td>调课后地点</td>
-							<td>课程老师</td>
 							<td>上课班级</td>
 						</tr>
 						<c:forEach items="${list }" var="result">
@@ -42,7 +41,6 @@
 									${result.date }
 								</td>
 								<td>${result.place }</td>
-								<td>${result.teacher }</td>
 								<td>${result.classes }</td>
 							</tr>								
 						</c:forEach>

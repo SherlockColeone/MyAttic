@@ -301,11 +301,9 @@ public class ServiceStudentImpl implements ServiceStudent {
 			String time = arrange.getTime();
 			//进行拼接
 			String date = day+"<br />"+time+"节";
-			//找到教师名称
-			String teacher = checkNameUtils.searchByTeacherId(arrange.getTeacherid());
 			//找到班级名称
 			String classes = checkNameUtils.searchByClassesId(arrange.getClassesid());
-			BeanArrange bean = new BeanArrange(name, arrange.getWeek(), date, arrange.getPlace(), teacher, classes);
+			BeanArrange bean = new BeanArrange(name, arrange.getWeek(), date, arrange.getPlace(), null, classes);
 			list.add(bean);
 		}
 		return list;

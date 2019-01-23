@@ -2,6 +2,7 @@ package com.cn.service;
 
 import java.util.List;
 
+import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
 import com.cn.bean.BeanStuscore;
 import com.cn.bean.Cet;
@@ -205,5 +206,12 @@ public interface ServiceTeacher {
 	 * @return BeanCet类
 	 */
 	public BeanCet changeGradecetIntoBeanCetByStudentid(Gradecet gradecet,int studentid);
+	
+	/**
+	 *  将课程安排类集合转换成BeanArrange集合
+	 * @param list 课程安排类集合
+	 * @return BeanArrange集合
+	 */
+	public List<BeanArrange> changeAllCurriculumarrangeIntoBeanArrange(List<Curriculumarrange> listCurr);
 	
 }
