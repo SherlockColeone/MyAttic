@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
+import com.cn.bean.BeanEvaluation;
 import com.cn.bean.BeanStuscore;
 import com.cn.bean.Cet;
 import com.cn.bean.CetExample;
@@ -47,7 +48,8 @@ import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
 /**
- * 	教师端逻辑层实现类
+ * 教师端逻辑层实现类
+ * 
  * @author Sherlock
  *
  */
@@ -85,7 +87,7 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		criteria.andIdEqualTo(teacherid);
 		criteria.andPasswordEqualTo(password);
 		List<Teacher> list = teacherMapper.selectByExample(example);
-		if(list.size()==0) {
+		if (list.size() == 0) {
 			return null;
 		}
 		return list.get(0);
@@ -106,66 +108,65 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 
 	@Override
 	public int modifyTeacherPwd(int teacherid, String pwd, String newPwd) {
-		//获取该教师在数据库中的密码
+		// 获取该教师在数据库中的密码
 		String password = teacherMapper.selectByPrimaryKey(teacherid).getPassword();
-		if(pwd.equals(password)) { //验证通过，可以修改密码
+		if (pwd.equals(password)) { // 验证通过，可以修改密码
 			Teacher record = new Teacher();
 			record.setId(teacherid);
 			record.setPassword(newPwd);
 			return teacherMapper.updateByPrimaryKeySelective(record);
-		}
-		else {  //输入的密码与原始密码不符
+		} else { // 输入的密码与原始密码不符
 			return -1;
 		}
 	}
 
 	/**
-	 * 	把专业课或选修课转化成课程格式
-	 * @param courses 专业课对象，若为空证明无专业课
+	 * 把专业课或选修课转化成课程格式
+	 * 
+	 * @param courses  专业课对象，若为空证明无专业课
 	 * @param elective 选修课对象，若为空证明无选修课
 	 * @return 总课程集合
 	 */
 	private List<Curriculum> curriculumTransform(Courses courses, Elective elective) {
 		List<Curriculum> list = new ArrayList<>();
-		//专业课程
-		if(courses!=null) {
-			//获取上课节数
+		// 专业课程
+		if (courses != null) {
+			// 获取上课节数
 			String time = courses.getTime();
-			//通过获取节数计算课程大节，获取最后一个字符
+			// 通过获取节数计算课程大节，获取最后一个字符
 			int i = new Integer(time.substring(4));
 			int lesson = 0;
-			//当获取到2-8时除以2计算出课程在第几大节
-			if(i!=0) {
-				lesson = i/2;
+			// 当获取到2-8时除以2计算出课程在第几大节
+			if (i != 0) {
+				lesson = i / 2;
 			}
-			//当获取到0时即为10，属于第五大节
+			// 当获取到0时即为10，属于第五大节
 			else {
 				lesson = 5;
 			}
-			//获取课程在星期几
+			// 获取课程在星期几
 			int day = courses.getDay();
-			//获取班级名称
+			// 获取班级名称
 			String classes = classesMapper.selectByPrimaryKey(courses.getClassesid()).getName();
 			Curriculum curr = new Curriculum(courses.getId(), courses.getName(), courses.getWeek(), day, time, lesson,
-					courses.getPlace(), courses.getTeacher(), courses.getClassesid(), courses.getTermid(), 
-					courses.getTeacherid(),courses.getId(),0,classes);
+					courses.getPlace(), courses.getTeacher(), courses.getClassesid(), courses.getTermid(),
+					courses.getTeacherid(), courses.getId(), 0, classes);
 			list.add(curr);
 		}
-		//选修课程
-		if(elective!=null) {
+		// 选修课程
+		if (elective != null) {
 			String time = elective.getTime();
 			int i = new Integer(time.substring(4));
 			int lesson = 0;
-			if(i!=0) {
-				lesson = i/2;
-			}
-			else {
+			if (i != 0) {
+				lesson = i / 2;
+			} else {
 				lesson = 5;
 			}
 			int day = elective.getDay();
 			Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getWeek(), day, time,
-					lesson,elective.getPlace(), elective.getTeacher(), elective.getTermid(),elective.getTeacherid(),
-					0,elective.getId());
+					lesson, elective.getPlace(), elective.getTeacher(), elective.getTermid(), elective.getTeacherid(),
+					0, elective.getId());
 			list.add(curr);
 		}
 		return list;
@@ -174,7 +175,7 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	@Override
 	public List<Curriculum> searchAllCurriculumByTermidAndTeacherid(int termid, int teacherid) {
 		List<Curriculum> list = new ArrayList<>();
-		//找到该教师所有专业课
+		// 找到该教师所有专业课
 		CoursesExample coursesExample = new CoursesExample();
 		com.cn.bean.CoursesExample.Criteria criteriaCourses = coursesExample.createCriteria();
 		criteriaCourses.andTermidEqualTo(termid);
@@ -183,7 +184,7 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		for (Courses courses : listCourses) {
 			list.addAll(curriculumTransform(courses, null));
 		}
-		//找到该教师所有选修课
+		// 找到该教师所有选修课
 		ElectiveExample electiveExample = new ElectiveExample();
 		com.cn.bean.ElectiveExample.Criteria criteriaElecitve = electiveExample.createCriteria();
 		criteriaElecitve.andTermidEqualTo(termid);
@@ -198,25 +199,24 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	@Override
 	public List<Curriculum> searchAllCurriculumByTermidAndClassesid(int termid, int classesid) {
 		List<Curriculum> list = new ArrayList<>();
-		//找到所有专业课
+		// 找到所有专业课
 		CoursesExample example = new CoursesExample();
 		com.cn.bean.CoursesExample.Criteria criteria = example.createCriteria();
 		criteria.andClassesidEqualTo(classesid);
 		criteria.andTermidEqualTo(termid);
 		List<Courses> listCourses = coursesMapper.selectByExample(example);
 		for (Courses courses : listCourses) {
-			//转成总课程的格式
+			// 转成总课程的格式
 			list.addAll(curriculumTransform(courses, null));
 		}
 		return list;
 	}
 
 	@Override
-	public boolean addCurriculumArrange(Curriculumarrange vo) {	
-		if(curriculumarrangeMapper.insert(vo)>0) {
+	public boolean addCurriculumArrange(Curriculumarrange vo) {
+		if (curriculumarrangeMapper.insert(vo) > 0) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -246,26 +246,26 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public Gradecet searchGradeCetByStudentidAndCetid(int studentid,int cetid) {
+	public Gradecet searchGradeCetByStudentidAndCetid(int studentid, int cetid) {
 		GradecetExample example = new GradecetExample();
 		com.cn.bean.GradecetExample.Criteria criteria = example.createCriteria();
 		criteria.andStudentidEqualTo(studentid);
 		criteria.andCetidEqualTo(cetid);
 		return gradecetMapper.selectByExample(example).get(0);
 	}
-	
+
 	@Override
 	public List<Student> searchAllStudentByElectiveid(int electiveid) {
 		List<Student> listStudent = new ArrayList<>();
-		//根据选修课id查询学生成绩表
+		// 根据选修课id查询学生成绩表
 		StuscoreExample example = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
 		criteria.andElectiveidEqualTo(electiveid);
 		List<Stuscore> listStuscore = stuscoreMapper.selectByExample(example);
-		//遍历成绩表
+		// 遍历成绩表
 		for (Stuscore stuscore : listStuscore) {
 			int id = stuscore.getStudentid();
-			//根据学生学号查询学生
+			// 根据学生学号查询学生
 			listStudent.add(studentMapper.selectByPrimaryKey(id));
 		}
 		return listStudent;
@@ -290,20 +290,20 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	@Override
 	public List<Stuscore> searchAllStuScoreByClassesidAndTermid(int classesid, int termid) {
 		List<Stuscore> listStusore = new ArrayList<>();
-		//先根据班级找到所有学生
+		// 先根据班级找到所有学生
 		StudentExample studentExample = new StudentExample();
 		com.cn.bean.StudentExample.Criteria studentCriteria = studentExample.createCriteria();
 		studentCriteria.andClassesidEqualTo(classesid);
 		List<Student> listStudent = studentMapper.selectByExample(studentExample);
 		StuscoreExample stuscoreExample = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria stuscoreCriteria = stuscoreExample.createCriteria();
-		//添加学期条件
+		// 添加学期条件
 		stuscoreCriteria.andTermidEqualTo(termid);
-		//遍历学生集合
+		// 遍历学生集合
 		for (Student student : listStudent) {
-			//添加学生条件
+			// 添加学生条件
 			stuscoreCriteria.andStudentidEqualTo(student.getId());
-			//找到一个学期该学生的所有成绩集合
+			// 找到一个学期该学生的所有成绩集合
 			listStusore.add(stuscoreMapper.selectByExample(stuscoreExample).get(0));
 		}
 		return listStusore;
@@ -315,23 +315,23 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		StuscoreExample example = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
 		for (BeanStuscore beanStuscore : list) {
-			//根据专业课id和学号查出该学生该课程的成绩
+			// 根据专业课id和学号查出该学生该课程的成绩
 			criteria.andCouresidEqualTo(beanStuscore.getCurriculumId());
 			criteria.andStudentidEqualTo(beanStuscore.getStudentid());
 			List<Stuscore> listStuscore = stuscoreMapper.selectByExample(example);
 			Stuscore stuscore = listStuscore.get(0);
 			String strScore = beanStuscore.getScore();
-			//设置成绩
+			// 设置成绩
 			stuscore.setScore(strScore);
-			//计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
+			// 计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
 			Integer score = new Integer(strScore);
-			Double point = new Double((score-50)+((score%10)/10));
-			//设置绩点
+			Double point = new Double((score - 50) + ((score % 10) / 10));
+			// 设置绩点
 			stuscore.setPoint(point);
-			//添加到数据库中
+			// 添加到数据库中
 			i = stuscoreMapper.insert(stuscore);
 		}
-		if (i>0) {
+		if (i > 0) {
 			return true;
 		} else {
 			return false;
@@ -344,23 +344,23 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		StuscoreExample example = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
 		for (BeanStuscore beanStuscore : list) {
-			//根据选修课id和学号查出该学生该课程的成绩
+			// 根据选修课id和学号查出该学生该课程的成绩
 			criteria.andElectiveidEqualTo(beanStuscore.getCurriculumId());
 			criteria.andStudentidEqualTo(beanStuscore.getStudentid());
 			List<Stuscore> listStuscore = stuscoreMapper.selectByExample(example);
 			Stuscore stuscore = listStuscore.get(0);
 			String strScore = beanStuscore.getScore();
-			//设置成绩
+			// 设置成绩
 			stuscore.setScore(strScore);
-			//计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
+			// 计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
 			Integer score = new Integer(strScore);
-			Double point = new Double((score-50)+((score%10)/10));
-			//设置绩点
+			Double point = new Double((score - 50) + ((score % 10) / 10));
+			// 设置绩点
 			stuscore.setPoint(point);
-			//添加到数据库中
+			// 添加到数据库中
 			i = stuscoreMapper.insert(stuscore);
 		}
-		if (i>0) {
+		if (i > 0) {
 			return true;
 		} else {
 			return false;
@@ -397,9 +397,9 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	public List<Curriculum> changeElectiveListIntoCurriculumList(List<Elective> listElective) {
 		List<Curriculum> list = new ArrayList<>();
 		for (Elective elective : listElective) {
-			//转换成字符串的星期几
+			// 转换成字符串的星期几
 			String day = checkNameUtils.transformDay(elective.getDay());
-			String time = day+" "+elective.getTime()+"节";
+			String time = day + " " + elective.getTime() + "节";
 			Curriculum curr = new Curriculum(elective.getName(), time, elective.getPlace(), elective.getId());
 			list.add(curr);
 		}
@@ -418,20 +418,21 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public List<BeanStuscore> changeStuscoreListIntoBeanStuscoreList(List<Stuscore> listStuscore) {	
+	public List<BeanStuscore> changeStuscoreListIntoBeanStuscoreList(List<Stuscore> listStuscore) {
 		List<BeanStuscore> list = new ArrayList<>();
-		//遍历所有的学生成绩
+		// 遍历所有的学生成绩
 		for (Stuscore stuscore : listStuscore) {
-			//查询该成绩对应的学生信息
+			// 查询该成绩对应的学生信息
 			Student student = studentMapper.selectByPrimaryKey(stuscore.getStudentid());
 			Integer curriculumId = 0;
-			if (stuscore.getCouresid()!=0) { //专业课的成绩
+			if (stuscore.getCouresid() != 0) { // 专业课的成绩
 				curriculumId = stuscore.getCouresid();
-			} else { //选修课的成绩
+			} else { // 选修课的成绩
 				curriculumId = stuscore.getElectiveid();
 			}
-			BeanStuscore score = new BeanStuscore(student.getId(), checkNameUtils.searchByClassesId(student.getClassesid()), 
-					student.getName(), null, null, stuscore.getScore(),curriculumId);
+			BeanStuscore score = new BeanStuscore(student.getId(),
+					checkNameUtils.searchByClassesId(student.getClassesid()), student.getName(), null, null,
+					stuscore.getScore(), curriculumId);
 			list.add(score);
 		}
 		return list;
@@ -446,11 +447,12 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public BeanCet changeGradecetIntoBeanCetByStudentid(Gradecet gradecet,int studentid) {
-		//根据学号找到学生
+	public BeanCet changeGradecetIntoBeanCetByStudentid(Gradecet gradecet, int studentid) {
+		// 根据学号找到学生
 		Student student = studentMapper.selectByPrimaryKey(studentid);
-		BeanCet beanCet = new BeanCet(checkNameUtils.searchByCetId(gradecet.getCetid()), gradecet.getCettime(), 
-				gradecet.getCetscore(), checkNameUtils.searchByClassesId(student.getClassesid()), student.getName(), studentid);
+		BeanCet beanCet = new BeanCet(checkNameUtils.searchByCetId(gradecet.getCetid()), gradecet.getCettime(),
+				gradecet.getCetscore(), checkNameUtils.searchByClassesId(student.getClassesid()), student.getName(),
+				studentid);
 		return beanCet;
 	}
 
@@ -458,19 +460,80 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	public List<BeanArrange> changeAllCurriculumarrangeIntoBeanArrange(List<Curriculumarrange> listCurr) {
 		List<BeanArrange> list = new ArrayList<>();
 		for (Curriculumarrange arrange : listCurr) {
-			//找到课程名称
+			// 找到课程名称
 			String name = checkNameUtils.searchByCoursesId(arrange.getCoursesid());
-			//拼接上课日期
+			// 拼接上课日期
 			String day = checkNameUtils.transformDay(arrange.getDay());
 			String time = arrange.getTime();
-			//进行拼接
-			String date = day+"<br />"+time+"节";
-			//找到教师名称
+			// 进行拼接
+			String date = day + "<br />" + time + "节";
+			// 找到教师名称
 			String teacher = checkNameUtils.searchByTeacherId(arrange.getTeacherid());
-			//找到班级名称
+			// 找到班级名称
 			String classes = checkNameUtils.searchByClassesId(arrange.getClassesid());
 			BeanArrange bean = new BeanArrange(name, arrange.getWeek(), date, arrange.getPlace(), teacher, classes);
 			list.add(bean);
+		}
+		return list;
+	}
+
+	@Override
+	public List<BeanEvaluation> GetStatisticsByListEvaluation(List<Evaluation> listEvaluation) {
+		List<BeanEvaluation> list = new ArrayList<>();
+		// 获取总人数
+		int sum = listEvaluation.size();
+		// 处理当总人数为0时的情况
+		if (sum == 0) {
+			// sum为0时当作1来处理
+			sum = 1;
+		}
+		for (int i = 0; i < 10; i++) {
+			// 第一个选项的人数
+			Integer item1 = 0;
+			// 第二个选项的人数
+			Integer item2 = 0;
+			// 第三个选项的人数
+			Integer item3 = 0;
+			// 第四个选项的人数
+			Integer item4 = 0;
+			// 第五个选项的人数
+			Integer item5 = 0;
+			for (Evaluation evaluation : listEvaluation) {
+				// 获取学生填写的评价选项
+				String content = evaluation.getContent();
+				// 获取10道题中第几道题的值
+				char item = content.charAt(i);
+				// 出现当中的选项就添加1人
+				switch (item) {
+				case '1':
+					item1++;
+					break;
+				case '2':
+					item2++;
+					break;
+				case '3':
+					item3++;
+					break;
+				case '4':
+					item4++;
+					break;
+				case '5':
+					item5++;
+					break;
+				default:
+					break;
+				}
+			}
+			// 根据每个选项统计出人数和占比
+			String str1 = item1.toString() + "人    " + new Integer(item1 / sum * 100).toString() + "%";
+			String str2 = item2.toString() + "人    " + new Integer(item2 / sum * 100).toString() + "%";
+			String str3 = item3.toString() + "人    " + new Integer(item3 / sum * 100).toString() + "%";
+			String str4 = item4.toString() + "人    " + new Integer(item4 / sum * 100).toString() + "%";
+			String str5 = item5.toString() + "人    " + new Integer(item5 / sum * 100).toString() + "%";			
+			BeanEvaluation beanEvaluation = new BeanEvaluation();
+			// 将5个选项的结果进行拼接并赋值
+			beanEvaluation.setItem(str1 + "*" + str2 + "*" + str3 + "*" + str4 + "*" + str5);
+			list.add(beanEvaluation);
 		}
 		return list;
 	}

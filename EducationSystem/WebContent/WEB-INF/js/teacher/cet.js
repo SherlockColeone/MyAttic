@@ -1,7 +1,3 @@
-/**
- * 教师社会考试管理页面的js文件
- */
-
 $(function() {
 	$("button").click(function(){
 		if ($(".id").val()=="") {

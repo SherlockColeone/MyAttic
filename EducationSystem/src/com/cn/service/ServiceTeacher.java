@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cn.bean.BeanArrange;
 import com.cn.bean.BeanCet;
+import com.cn.bean.BeanEvaluation;
 import com.cn.bean.BeanStuscore;
 import com.cn.bean.Cet;
 import com.cn.bean.Courses;
@@ -214,6 +215,11 @@ public interface ServiceTeacher {
 	 */
 	public List<BeanArrange> changeAllCurriculumarrangeIntoBeanArrange(List<Curriculumarrange> listCurr);
 	
-	public List<Evaluation> GetStatisticsByListEvaluation(List<Evaluation> listEvaluation);
+	/**
+	 * 	将一名教师的所有评价结果统计成BeanEvaluation类的形式
+	 * @param listEvaluation 一名教师的所有评价结果集合
+	 * @return BeanEvaluation集合
+	 */
+	public List<BeanEvaluation> GetStatisticsByListEvaluation(List<Evaluation> listEvaluation);
 	
 }
