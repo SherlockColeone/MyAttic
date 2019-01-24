@@ -27,6 +27,45 @@ public class AdminMessageController {
 		return "admin/admin_message";
 	}
 	
+	@RequestMapping(value="/adminMessageManage")
+	public String adminMessageManage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取管理员对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		//查询出二级学院的名字
+		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
+		//把二级学院的名字放入视图中
+		request.setAttribute("academy",academy);
+		//跳转到管理员个人信息
+		return "admin/admin_messagemodify";
+	}
+	
+	@RequestMapping(value="/adminInsertMessage")
+	public String adminInsertManage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取管理员对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		//查询出二级学院的名字
+		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
+		//把二级学院的名字放入视图中
+		request.setAttribute("academy",academy);
+		//跳转到管理员个人信息
+		return "admin/admin_messagemodify";
+	}
+	
+	@RequestMapping(value="/adminDeleteMessage")
+	public String adminDeleteManage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取管理员对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		//查询出二级学院的名字
+		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
+		//把二级学院的名字放入视图中
+		request.setAttribute("academy",academy);
+		//跳转到管理员个人信息
+		return "admin/admin_messagemodify";
+	}
+	
 	@RequestMapping(value="/adminModifyMessage")
 	public String adminModifyMessage(HttpServletRequest request) {
 		HttpSession session = request.getSession();

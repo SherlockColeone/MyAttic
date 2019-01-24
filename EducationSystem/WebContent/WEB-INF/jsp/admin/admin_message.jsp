@@ -19,9 +19,16 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-6 col-md-offset-3">
-				<center>
-					<h4>管理员个人信息</h4>
-				</center>
+				<div class="col-md-3">
+					<a href="${pageContext.servletContext.contextPath}/adminMessageManage" class="btn btn-default">
+						<span class="glyphicon glyphicon-arrow-left"></span>师生个人信息管理中心
+					</a>
+				</div>
+				<div class="col-md-4 col-md-offset-1">
+					<center>
+						<h4>管理员个人信息</h4>
+					</center>
+				</div>
 				<table class="col-md-12">
 					<tr>
 						<td width="15%">姓名</td>

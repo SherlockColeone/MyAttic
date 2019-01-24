@@ -1,0 +1,53 @@
+/**
+ * 	管理员师生个人信息中心的css文件
+ */
+
+#main{
+	margin-bottom: 20px;
+}
+
+#up{
+	margin-bottom: 5px;
+}
+
+table{
+	table-layout: fixed;
+}
+
+td{
+	border:1px solid;
+	border-collapse: collapse;
+	text-align: center;
+	height: 40px;
+	word-wrap: break-word;
+}
+
+tr{
+	border-collapse: collapse;
+}
+
+#select{
+	margin: 10px;
+}
+
+.form-control{
+	width: 100px;
+	display: inline-block;
+}
+
+#identity{
+	margin-right: 10px;
+}
+
+#inputId{
+	width: 130px;
+	margin-right: 10px;
+}
+
+#confirm{
+	margin-top: 10px;
+}
+
+#message{
+	display: none;
+}

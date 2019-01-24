@@ -23,7 +23,7 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("师生个人信息管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminModifyMessage");
+		modify.attr("href","${pageContext.servletContext.contextPath}/adminMessageManage");
 		check.children("div").html("查看管理员个人信息");
 		check.attr("href","${pageContext.servletContext.contextPath}/adminMessage");		
 	});
