@@ -1,5 +1,5 @@
 /**
- * 	教师个人首页的css文件
+ * 管理员个人首页的css文件
  */
 
 #main{
@@ -11,10 +11,6 @@ a{
 	margin: 5px;
 }
 
-.col-md-4{
-	height: 304px;	
-}
-
 .col-md-2{
 	color: white;
 	height: 150px;
@@ -22,46 +18,53 @@ a{
 }
 
 #message{
-	background-color: cornflowerblue;
+	background-color:brown ;
 	color: white;
 	height: 304px;
 	padding-top: 50px;
 }
 
 #curriculum{
-	background-color: MediumSeaGreen;
+	background-color:Peru ;
+	color: white;
+	margin-top: 158px;
+}
+
+#courses{
+	background-color:CadetBlue ;
 	color: white;
 	height: 304px;
 	padding-top: 100px;
 }
 
-#courses{
+#elective{
+	background-color: MediumSeaGreen ;
+	color: white;
+	height: 304px;
+	padding-top: 100px;
+}
+
+#curriculumarrange{
+	background-color:cornflowerblue ;
+	color: white;
+	margin-top: 158px;
+}
+
+#exam{
+	background-color: DarkOliveGreen ;
+	color: white;
+	height: 150px;
+	padding: 20px;
+	
+}
+
+#cet{
 	background-color:Darkorange ;
 	color: white;
 }
 
-#elective{
-	background-color: crimson ;
-	color: white;
-}
-
-#curriculumarrange{
-	background-color:Peru ;
-	color: white;
-}
-
-#exam{
-	background-color: MediumOrchid ;
-	color: white;
-}
-
-#cet{
-	background-color: brown;
-	color: white;
-}
-
 #stuscore{
-	background-color: CadetBlue;
+	background-color:crimson ;
 	color: white;
 	height: 150px;
 	padding: 20px;
@@ -73,6 +76,6 @@ a{
 }
 
 #password{
-	background-color: DarkOliveGreen ;
+	background-color: MediumOrchid ;
 	color: white;
 }
