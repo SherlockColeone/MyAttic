@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>管理员个人信息</title>
+		<title>师生个人信息中心</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/message.css" />
@@ -20,7 +20,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-6 col-md-offset-3">
 				<center>
-					<h4>管理员个人信息</h4>
+					<h4>师生个人信息中心</h4>
 				</center>
 				<table class="col-md-12">
 					<tr>

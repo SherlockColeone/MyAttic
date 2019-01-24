@@ -11,7 +11,7 @@ import com.cn.bean.Teacher;
 import com.cn.utils.CheckNameUtils;
 
 /**
- * 	进入教师个人信息的控制器
+ * 	进入管理员个人信息的控制器
  * @author Sherlock
  *
  */
@@ -22,29 +22,22 @@ public class AdminMessageController {
 	private CheckNameUtils checkNameUtils;
 	
 	@RequestMapping(value="/adminMessage")
-	public String adminMessage(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		//从session域中获取教师对象
-		Teacher teacher = (Teacher) session.getAttribute("teacher");
-		//查询出二级学院的名字
-		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
-		//把二级学院的名字放入视图中
-		request.setAttribute("academy",academy);
-		//跳转到教师个人信息
+	public String adminMessage() {
+		//跳转到管理员个人信息页面
 		return "admin/admin_message";
 	}
 	
 	@RequestMapping(value="/adminModifyMessage")
 	public String adminModifyMessage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		//从session域中获取教师对象
+		//从session域中获取管理员对象
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 		//查询出二级学院的名字
 		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
 		//把二级学院的名字放入视图中
 		request.setAttribute("academy",academy);
-		//跳转到教师个人信息
-		return "admin/admin_message";
+		//跳转到管理员个人信息
+		return "admin/admin_messagemodify";
 	}
 	
 }
