@@ -8,7 +8,7 @@
 		<title>教师个人信息</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="css/student/student_message.css" />
+		<link rel="stylesheet" href="css/message.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 	</head>

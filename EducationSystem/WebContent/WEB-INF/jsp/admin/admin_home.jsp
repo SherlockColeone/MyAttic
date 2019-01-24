@@ -20,7 +20,7 @@
 			<div id="block" class="col-md-8 col-md-offset-2">
 				<a href="${pageContext.servletContext.contextPath}/adminCourses" id="courses" class="col-md-2 btn">
 					<img src="images/courses.png" />
-					<div>课程安排</div>	
+					<div>课程安排</div>
 				</a>
 				<a href="${pageContext.servletContext.contextPath}/adminCurriculum" id="curriculum" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/curriculum.png" />
@@ -28,7 +28,7 @@
 				</a>
 				<a href="${pageContext.servletContext.contextPath}/adminMessage" id="message" class="col-md-2 btn" style="padding-top: 70px;">
 					<img src="images/personal.png" />
-					<div>管理员信息</div>
+					<div>师生个人信息中心</div>
 					<div>工号：${admin.id }</div>
 					<div>姓名：${admin.name }</div>
 					<div>身份：管理员</div>
