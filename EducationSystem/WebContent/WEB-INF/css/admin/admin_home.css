@@ -21,7 +21,7 @@ a{
 	background-color:brown ;
 	color: white;
 	height: 304px;
-	padding-top: 50px;
+	padding-top: 30px;
 }
 
 #curriculum{
@@ -34,14 +34,14 @@ a{
 	background-color:CadetBlue ;
 	color: white;
 	height: 304px;
-	padding-top: 100px;
+	padding-top: 30px;
 }
 
 #elective{
 	background-color: MediumSeaGreen ;
 	color: white;
 	height: 304px;
-	padding-top: 100px;
+	padding-top: 30px;
 }
 
 #curriculumarrange{
@@ -55,7 +55,6 @@ a{
 	color: white;
 	height: 150px;
 	padding: 20px;
-	
 }
 
 #cet{
@@ -77,5 +76,29 @@ a{
 
 #password{
 	background-color: MediumOrchid ;
+	color: white;
+}
+
+#modify{
+	background-color: LightGrey ;
+}
+
+#check{
+	background-color: black ;
+	margin-top: 40px;
+}
+
+button{
+	color: white;
+	margin: 5px;
+}
+
+#modify div{
+	margin-top: 3px;
+	color: black;
+}
+
+#check div{
+	margin-top: 3px;
 	color: white;
 }
