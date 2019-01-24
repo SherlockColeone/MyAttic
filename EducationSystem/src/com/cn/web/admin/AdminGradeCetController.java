@@ -21,7 +21,7 @@ import com.cn.service.ServiceTeacher;
  */
 
 @Controller
-public class AdminCetController {
+public class AdminGradeCetController {
 	@Autowired
 	private ServiceTeacher serviceTeacher;
 	//用于显示所有社会考试
@@ -34,8 +34,8 @@ public class AdminCetController {
 	 * @param request 请求
 	 * @return 跳转到教师社会考试管理页面
 	 */
-	@RequestMapping(value="/adminCet")
-	public String adminCet(HttpServletRequest request) {
+	@RequestMapping(value="/adminGradeCet")
+	public String adminGradeCet(HttpServletRequest request) {
 		//找到当前学期的所有社会考试
 		list = serviceTeacher.searchAllCetByCurrentTermid();
 		request.setAttribute("list", list);
@@ -51,8 +51,8 @@ public class AdminCetController {
 	 * @param studentid 学号
 	 * @return 跳转到教师社会考试管理页面
 	 */
-	@RequestMapping(value="/adminCheckCet")
-	public String adminCheckCet(HttpServletRequest request,Integer cetid,Integer studentid) {
+	@RequestMapping(value="/adminCheckGradecet")
+	public String adminCheckGradecet(HttpServletRequest request,Integer cetid,Integer studentid) {
 		Gradecet gradeCet = serviceTeacher.searchGradeCetByStudentidAndCetid(studentid, cetid);
 		beancet = serviceTeacher.changeGradecetIntoBeanCetByStudentid(gradeCet, studentid);
 		request.setAttribute("beancet", beancet);

@@ -23,9 +23,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("师生个人信息管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminCet");
+		modify.attr("href","${pageContext.servletContext.contextPath}/adminModifyMessage");
 		check.children("div").html("查看管理员个人信息");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminGradeCet");		
+		check.attr("href","${pageContext.servletContext.contextPath}/adminMessage");		
 	});
 	
 	//课程安排的函数
@@ -83,7 +83,7 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("重置用户密码");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/password");
+		modify.attr("href","${pageContext.servletContext.contextPath}/resetPassword");
 		check.children("div").html("修改个人密码");
 		check.attr("href","${pageContext.servletContext.contextPath}/password");
 	});

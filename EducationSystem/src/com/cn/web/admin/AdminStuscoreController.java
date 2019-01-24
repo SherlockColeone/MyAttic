@@ -60,6 +60,27 @@ public class AdminStuscoreController {
 		// 跳转到教师学生成绩管理页面
 		return "admin/admin_modifystuscore";
 	}
+
+	/**
+	 * 	跳转到教师查询成绩的页面
+	 * 
+	 * @param request 请求
+	 * @return 跳转到教师查询成绩页面
+	 */
+	@RequestMapping(value = "/adminCheckStuscore")
+	public String adminCheckStuscore(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取教师对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		//查找该教师该学期的所有课程
+		list = serviceTeacher.searchAllCurriculumByTermidAndTeacherid(GetTermUtils.getCurrentTermiId(),
+				teacher.getId());
+		request.setAttribute("curriculum", curriculum);
+		request.setAttribute("list", list);
+		request.setAttribute("resultList", resultList);
+		// 跳转到教师查询成绩页面
+		return "admin/admin_checkstuscore";
+	}
 	
 	/**
 	 * 	显示已选择课程的所有学生成绩
@@ -88,26 +109,7 @@ public class AdminStuscoreController {
 		return "redirect:/adminStuscore";
 	}
 	
-	/**
-	 * 	跳转到教师查询成绩的页面
-	 * 
-	 * @param request 请求
-	 * @return 跳转到教师查询成绩页面
-	 */
-	@RequestMapping(value = "/adminCheckStuscore")
-	public String adminCheckStuscore(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		//从session域中获取教师对象
-		Teacher teacher = (Teacher) session.getAttribute("teacher");
-		//查找该教师该学期的所有课程
-		list = serviceTeacher.searchAllCurriculumByTermidAndTeacherid(GetTermUtils.getCurrentTermiId(),
-				teacher.getId());
-		request.setAttribute("curriculum", curriculum);
-		request.setAttribute("list", list);
-		request.setAttribute("resultList", resultList);
-		// 跳转到教师查询成绩页面
-		return "admin/admin_checkstuscore";
-	}
+
 	
 	/**
 	 * 	显示已选择课程的所有学生成绩

@@ -79,4 +79,25 @@ public class PasswordController {
 		//跳转到密码管理页面
 		return "password";
 	}
+	
+	@RequestMapping(value="/resetPassword")
+	public String resetPassword(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取用户对象
+		Student student = (Student) session.getAttribute("student");
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		Admin admin = (Admin) session.getAttribute("admin");
+		//根据不同身份把用户账号添加到视图中
+		if(student!=null) { //学生
+			request.setAttribute("id", student.getId());
+		}
+		else if(teacher!=null) { //教师
+			request.setAttribute("id", teacher.getId());
+		}
+		else if(admin!=null) { //管理员
+			request.setAttribute("id", admin.getId());
+		}
+		//跳转到密码管理页面
+		return "password";
+	}
 }

@@ -49,6 +49,22 @@ public class AdminElectiveController {
 		return "admin/admin_elective";
 	}
 	
+	@RequestMapping(value="/adminCheckElective")
+	public String adminCheckElective(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取教師对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");		
+		//获取当前学期该教师的所有选修课
+		List<Elective> listElective = serviceTeacher.searchAllElectiveByTeacheridAndTermid(teacher.getId(),
+				GetTermUtils.getCurrentTermiId());
+		List<Curriculum> list = serviceTeacher.changeElectiveListIntoCurriculumList(listElective);
+		request.setAttribute("list", list);
+		request.setAttribute("studentList", studentList);
+		request.setAttribute("elective", elective);
+		//跳转到教師選修課安排页面
+		return "admin/admin_elective";
+	}
+	
 	@RequestMapping(value="/adminSearchAllStudent/{electiveid}")
 	public String adminSelectElective(HttpServletRequest request,@PathVariable("electiveid")Integer electiveid) {
 		//根据选修课id查找该课程所有学生

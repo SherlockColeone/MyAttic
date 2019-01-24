@@ -50,6 +50,15 @@ public class AdminCoursesController {
 		return "admin/admin_courses";
 	}
 	
+	@RequestMapping(value="/adminCheckCourses")
+	public String adminCheckCourses(HttpServletRequest request) {
+		termList = getTermUtils.getAllTerms();
+		//把学期列表添加到视图中
+		request.setAttribute("termList",termList);
+		//跳转到教师课程安排
+		return "admin/admin_courses";
+	}
+	
 	/**
 	 * 	根据选择的条件查询出课程安排
 	 * @param request 请求
