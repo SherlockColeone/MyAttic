@@ -48,6 +48,10 @@ tr{
 	margin-top: 10px;
 }
 
+#forStudent{
+	display: none;
+}
+
 #forTeacher{
 	display: none;
 }
@@ -64,4 +68,8 @@ tr{
 .longInput{
 	width: 210px;
 	height: 35px;
+}
+
+#showForm{
+	display: none;
 }

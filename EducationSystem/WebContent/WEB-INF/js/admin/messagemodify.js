@@ -14,19 +14,43 @@ $(function() {
 			$(".idLabel").html("工号:");
 		}
 	});
+	
+	var check = function(){
+		if ($("#inputId").val()=="") {
+			return false;
+		} else{
+			if($(".operate[type=radio]:checked").size() < 1){
+				return false;
+			} else{
+				return true;
+			}
+		}
+	}
+	
+	$("#form").submit(function() {
+		if(check()) {
+			//提交操作
+			$("#message").attr("action","${pageContext.servletContext.contextPath}/adminMessageManage");
+		} else {
+			alert("请输入学号或工号并选择操作！");
+			return false;
+		}
+	});
 
 	//针对不同的身份对表格进行更改
 	var identityResult = $("#identityResult").val();
-	if(identityResult == 3) { //进行操作的是学生
-		
-	} else if(identityResult == 2) { //进行操作的是教师
-		//隐藏学生表格，显示教师表格
-		$("#forTeacher").css("display", "block");
-		$("#forStudent").css("display", "none");
-	} else if(identityResult == 1) { //进行操作的是管理员
-		$("#forAdmin").css("display", "block");
-		$("#forStudent").css("display", "none");
+	if(identityResult != ""){
+		$("#showForm").css("display", "block");
+		if(identityResult == 3) { //进行操作的是学生
+			$("#forStudent").css("display", "block");		
+		} else if(identityResult == 2) { //进行操作的是教师
+			//显示教师表格
+			$("#forTeacher").css("display", "block");
+		} else if(identityResult == 1) { //进行操作的是管理员
+			$("#forAdmin").css("display", "block");
+		}		
 	}
+
 	
 	//针对不同操作更改提交的url地址
 	var manageResult = $("#manageResult").val();

@@ -30,7 +30,7 @@ public class AdminMessageController {
 	}
 	
 	@RequestMapping(value="/adminMessageManage")
-	public String adminMessageManage(HttpServletRequest request) {
+	public String adminMessageManage(HttpServletRequest request,Integer id,Integer operate) {
 		HttpSession session = request.getSession();
 		//从session域中获取管理员对象
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
