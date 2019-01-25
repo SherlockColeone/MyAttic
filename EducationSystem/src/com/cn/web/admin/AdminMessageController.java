@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cn.bean.Admin;
+import com.cn.bean.Student;
 import com.cn.bean.Teacher;
 import com.cn.utils.CheckNameUtils;
 
@@ -41,10 +43,7 @@ public class AdminMessageController {
 	}
 	
 	@RequestMapping(value="/adminInsertMessage")
-	public String adminInsertManage(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		//从session域中获取管理员对象
-		Teacher teacher = (Teacher) session.getAttribute("teacher");
+	public String adminInsertManage(HttpServletRequest request,Student student,Teacher teacher,Admin admin) {
 		//查询出二级学院的名字
 		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
 		//把二级学院的名字放入视图中
@@ -54,10 +53,7 @@ public class AdminMessageController {
 	}
 	
 	@RequestMapping(value="/adminDeleteMessage")
-	public String adminDeleteManage(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		//从session域中获取管理员对象
-		Teacher teacher = (Teacher) session.getAttribute("teacher");
+	public String adminDeleteManage(HttpServletRequest request,Student student,Teacher teacher,Admin admin) {
 		//查询出二级学院的名字
 		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
 		//把二级学院的名字放入视图中
@@ -67,10 +63,7 @@ public class AdminMessageController {
 	}
 	
 	@RequestMapping(value="/adminModifyMessage")
-	public String adminModifyMessage(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		//从session域中获取管理员对象
-		Teacher teacher = (Teacher) session.getAttribute("teacher");
+	public String adminModifyMessage(HttpServletRequest request,Student student,Teacher teacher,Admin admin) {
 		//查询出二级学院的名字
 		String academy = checkNameUtils.searchByAcademyId(teacher.getAcademyid());
 		//把二级学院的名字放入视图中

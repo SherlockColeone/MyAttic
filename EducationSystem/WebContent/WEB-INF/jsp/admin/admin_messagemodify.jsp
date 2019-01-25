@@ -50,60 +50,206 @@
 						</div>
 					</form>
 				</div>
-				<form id="message" action="#" method="post" enctype="multipart/form-data">
-					<table class="col-md-12">
-						<tr>
-							<td width="15%">姓名</td>
-							<td>周星星</td>
-							<td width="15%" class="idLabel">学号</td><!--会出现bug：即使查出结果也会随着下拉框而改变-->
-							<td colspan="2">2015121359527</td>
-							<td rowspan="4">
-								<img src="" />照片
-							</td>
-						</tr>
-						<tr>
-							<td width="15%">身份证号</td>
-							<td colspan="2">44XXXXXXXXXXXXXX10</td>
-							<td>性别</td>
-							<td>男</td>
-						</tr>
-						<tr>
-							<td width="15%">籍贯</td>
-							<td>广东省广州市</td>
-							<td width="15%">家庭地址</td>
-							<td colspan="2">广东省广州市</td>
-						</tr>
-						<tr>
-							<td width="15%">电话</td>
-							<td>18000000000</td>
-							<td width="15%">出生日期</td>
-							<td colspan="2">2015/01/01</td>
-						</tr>
-						<tr>
-							<td width="15%">民族</td>
-							<td colspan="2">汉族</td>
-							<td>政治面貌</td>
-							<td colspan="2">群众</td>
-						</tr>
-						<tr>
-							<td width="15%">入职时间</td>
-							<td colspan="2">2015/09</td>
-							<td>职位</td>
-							<td colspan="2">教授</td>
-						</tr>
-						<tr id="academy">
-							<td width="15%">二级学院</td>
-							<td colspan="2">信息工程学院</td>
-							<td>专业</td>
-							<td colspan="2">计算机科学与技术</td>
-						</tr>
-					</table>
-					<div id="confirm" class="col-md-10 col-md-offset-5">
-						<button type="submit" class="btn btn-primary">
-							<span class="glyphicon glyphicon-save"></span>提交信息
-						</button>
-					</div>
-				</form>
+				<!--根据该按钮的值判断当前身份和操作-->
+				<input id="identityResult" value="3" hidden="hidden" readonly="readonly" />
+				<input id="manageResult" value="1" hidden="hidden" readonly="readonly" />
+				<div class="col-md-12">
+					当前操作:&nbsp;添加&nbsp;学生
+				</div>
+				<div class="col-md-12">
+					<form id="message" action="#" method="post" enctype="multipart/form-data">
+						<div class="col-md-12" id="forStudent">
+							<!--学生专用的表格-->
+							<table class="col-md-12">
+								<tr>
+									<td width="15%">姓名</td>
+									<td><input type="text" name="name" value="周星星" class="input" /></td>
+									<td width="15%">学号</td>
+									<td colspan="2"><input type="text" name="id" value="2015121359527" class="longInput" /></td>
+									<td rowspan="4">
+										<img src="" />上传照片<br /><input type="file" name="photo" class="input" />
+									</td>
+								</tr>
+								<tr>
+									<td width="15%">身份证号</td>
+									<td colspan="2"><input type="text" name="idcard" value="44XXXXXXXXXXXXXX10" class="longInput" /></td>
+									<td>性别</td>
+									<td><input type="text" name="sex" value="男" class="input" /></td>
+								</tr>
+								<tr>
+									<td width="15%">籍贯</td>
+									<td><input type="text" name="birthplace" value="广东省广州市" class="input" /></td>
+									<td width="15%">家庭地址</td>
+									<td colspan="2"><input type="text" name="address" value="广东省广州市" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">电话</td>
+									<td><input type="text" name="phone" value="18000000000" class="input" /></td>
+									<td width="15%">出生日期</td><!--此处可尝试使用日历-->
+									<td colspan="2"><input type="text" name="birth" value="2015/01/01" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">民族</td>
+									<td colspan="2"><input type="text" name="nation" value="汉族" class="longInput" /></td>
+									<td>政治面貌</td>
+									<td colspan="2">
+										<select name="politics" class="longInput form-control">
+											<option value="群众">群众</option>
+											<option value="中共党员">中共党员</option>
+											<option value="共青团员">共青团员</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td width="15%">入学时间</td>
+									<td colspan="2"><input type="text" name="regist" value="2015/09" class="longInput" /></td>
+									<td>班级编号</td>
+									<td colspan="2"><input type="text" name="nation" value="1201" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">二级学院</td>
+									<td colspan="2">
+										<select name="academy" class="longInput form-control">
+											<option value="1">信息工程学院</option>
+											<option value="2">外国语学院</option>
+											<option value="3">人文学院</option>
+											<option value="4">经济管理学院</option>
+											<option value="5">会计学院</option>
+											<option value="6">设计学院</option>
+											<option value="7">传媒学院</option>
+										</select>										
+									</td>
+									<td>专业</td>
+									<td colspan="2"><input type="text" name="major" value="计算机科学与技术" class="longInput" /></td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="col-md-12" id="forTeacher">
+							<!--教师专用的表格-->
+							<table class="col-md-12">
+								<tr>
+									<td width="15%">姓名</td>
+									<td><input type="text" name="name" value="周星星" class="input" /></td>
+									<td width="15%">工号</td>
+									<td colspan="2"><input type="text" name="id" value="2015121359527" class="longInput" /></td>
+									<td rowspan="4">
+										<img src="" />上传照片<br /><input type="file" name="photo" class="input" />
+									</td>
+								</tr>
+								<tr>
+									<td width="15%">身份证号</td>
+									<td colspan="2"><input type="text" name="idcard" value="44XXXXXXXXXXXXXX10" class="longInput" /></td>
+									<td>性别</td>
+									<td><input type="text" name="sex" value="男" class="input" /></td>
+								</tr>
+								<tr>
+									<td width="15%">籍贯</td>
+									<td><input type="text" name="birthplace" value="广东省广州市" class="input" /></td>
+									<td width="15%">家庭地址</td>
+									<td colspan="2"><input type="text" name="address" value="广东省广州市" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">电话</td>
+									<td><input type="text" name="phone" value="18000000000" class="input" /></td>
+									<td width="15%">出生日期</td>
+									<td colspan="2"><input type="text" name="birth" value="2015/01/01" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">民族</td>
+									<td colspan="2"><input type="text" name="nation" value="汉族" class="longInput" /></td>
+									<td>政治面貌</td>
+									<td colspan="2">
+										<select id="identity" name="politics" class="longInput form-control">
+											<option value="群众">群众</option>
+											<option value="中共党员">中共党员</option>
+											<option value="共青团员">共青团员</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td width="15%">入职时间</td>
+									<td colspan="2"><input type="text" name="entrytime" value="2015/09" class="longInput" /></td>
+									<td>职位</td>
+									<td colspan="2"><input type="text" name="position" value="教授" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">二级学院</td>
+									<td colspan="2">
+										<select name="academy" class="longInput form-control">
+											<option value="1">信息工程学院</option>
+											<option value="2">外国语学院</option>
+											<option value="3">人文学院</option>
+											<option value="4">经济管理学院</option>
+											<option value="5">会计学院</option>
+											<option value="6">设计学院</option>
+											<option value="7">传媒学院</option>
+										</select>
+									</td>
+									<td></td>
+									<td colspan="2"></td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="col-md-12" id="forAdmin">
+							<!--管理员专用的表格-->
+							<table class="col-md-12">
+								<tr>
+									<td width="15%">姓名</td>
+									<td><input type="text" name="name" value="周星星" class="input" /></td>
+									<td width="15%">工号</td>
+									<td colspan="2"><input type="text" name="id" value="2015121359527" class="longInput" /></td>
+									<td rowspan="4">
+										<img src="" />上传照片<br /><input type="file" name="photo" class="input" />
+									</td>
+								</tr>
+								<tr>
+									<td width="15%">身份证号</td>
+									<td colspan="2"><input type="text" name="idcard" value="44XXXXXXXXXXXXXX10" class="longInput" /></td>
+									<td>性别</td>
+									<td><input type="text" name="sex" value="男" class="input" /></td>
+								</tr>
+								<tr>
+									<td width="15%">籍贯</td>
+									<td><input type="text" name="birthplace" value="广东省广州市" class="input" /></td>
+									<td width="15%">家庭地址</td>
+									<td colspan="2"><input type="text" name="address" value="广东省广州市" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">电话</td>
+									<td><input type="text" name="phone" value="18000000000" class="input" /></td>
+									<td width="15%">出生日期</td>
+									<td colspan="2"><input type="text" name="birth" value="2015/01/01" class="longInput" /></td>
+								</tr>
+								<tr>
+									<td width="15%">民族</td>
+									<td colspan="2"><input type="text" name="nation" value="汉族" class="longInput" /></td>
+									<td>政治面貌</td>
+									<td colspan="2">
+										<select id="identity" name="politics" class="longInput form-control">
+											<option value="群众">群众</option>
+											<option value="中共党员">中共党员</option>
+											<option value="共青团员">共青团员</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td width="15%">入职时间</td>
+									<td colspan="2"><input type="text" name="entrytime" value="2015/09" class="longInput" /></td>
+									<td>职位</td>
+									<td colspan="2"><input type="text" name="position" value="管理员" class="longInput" /></td>
+								</tr>
+							</table>
+						</div>
+
+						<div id="confirm" class="col-md-10 col-md-offset-5">
+							<button id="submit" type="submit" class="btn btn-primary">
+								<span class="glyphicon glyphicon-save"></span>提交信息
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 
