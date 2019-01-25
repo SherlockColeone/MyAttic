@@ -25,13 +25,19 @@
 						<div class="col-md-6">
 							欢迎回来！
 							<c:if test="${not empty student }">
-								${student.name }同学！
+								<c:if test="${not empty student.name }">
+									${student.name }同学！
+								</c:if>								
 							</c:if>
 							<c:if test="${not empty teacher }">
-								${teacher.name }老师！
+								<c:if test="${not empty teacher.name }">
+									${teacher.name }老师！
+								</c:if>
 							</c:if>
 							<c:if test="${not empty admin }">
-								${admin.name }管理员！
+								<c:if test="${not empty admin.name }">
+									${admin.name }管理员！
+								</c:if>								
 							</c:if>
 							<br />当前学期为：${term }
 						</div>

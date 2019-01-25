@@ -23,9 +23,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("师生个人信息管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminMessageManage");
+		modify.attr("href","adminMessageManage");
 		check.children("div").html("查看管理员个人信息");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminMessage");		
+		check.attr("href","adminMessage");		
 	});
 	
 	//课程安排的函数
@@ -35,9 +35,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("课程安排管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminCourses");
+		modify.attr("href","adminCourses");
 		check.children("div").html("查看课程安排");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminCheckCourses");
+		check.attr("href","adminCheckCourses");
 	});
 		
 	//选课管理的函数
@@ -47,9 +47,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("选课管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminElective");
+		modify.attr("href","adminElective");
 		check.children("div").html("查看选课结果");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminCheckElective");
+		check.attr("href","adminCheckElective");
 	});
 		
 	//调课安排的函数
@@ -59,9 +59,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("调课安排管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminCurriculumarrange");
+		modify.attr("href","adminCurriculumarrange");
 		check.children("div").html("查看调课安排");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminCheckCurriculumarrange");
+		check.attr("href","adminCheckCurriculumarrange");
 	});
 			
 	//考试安排的函数
@@ -71,9 +71,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("调课安排管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminExam");
+		modify.attr("href","adminExam");
 		check.children("div").html("查看调课安排");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminCheckExam");
+		check.attr("href","adminCheckExam");
 	});
 				
 	//密码管理的函数
@@ -83,9 +83,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("重置用户密码");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/resetPassword");
+		modify.attr("href","resetPassword");
 		check.children("div").html("修改个人密码");
-		check.attr("href","${pageContext.servletContext.contextPath}/password");
+		check.attr("href","password");
 	});
 					
 	//学生成绩的函数
@@ -95,9 +95,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("学生成绩管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminStuscore");
+		modify.attr("href","adminStuscore");
 		check.children("div").html("查询学生成绩");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminCheckStuscore");
+		check.attr("href","adminCheckStuscore");
 	});
 						
 	//社会考试安排的函数
@@ -107,9 +107,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("社会考试安排管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminCet");
+		modify.attr("href","adminCet");
 		check.children("div").html("查看社会考试安排");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminCheckCet");
+		check.attr("href","adminCheckCet");
 	});
 							
 	//社会考试成绩的函数
@@ -119,8 +119,8 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("社会考试成绩管理");
 		//更改跳转的控制器
-		modify.attr("href","${pageContext.servletContext.contextPath}/adminGradeCet");
+		modify.attr("href","adminGradeCet");
 		check.children("div").html("查看社会考试成绩");
-		check.attr("href","${pageContext.servletContext.contextPath}/adminCheckGradeCet");
+		check.attr("href","adminCheckGradeCet");
 	});
 });

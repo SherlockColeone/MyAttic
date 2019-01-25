@@ -15,22 +15,23 @@ $(function() {
 		}
 	});
 	
-	var check = function(){
-		if ($("#inputId").val()=="") {
+	var check = function() {
+		if($(".operate[type=radio]:checked").size() < 1) { //若没有选择操作
 			return false;
-		} else{
-			if($(".operate[type=radio]:checked").size() < 1){
+		} else if($(".operate[type=radio]:checked").val()==1){ //选择添加时不需填写学号或工号
+			return true;
+		} else { //已选择删除或修改
+			if($("#inputId").val() == "") { //若没有填写学号或工号
 				return false;
-			} else{
+			} else {
 				return true;
-			}
+			}			
 		}
 	}
 	
 	$("#form").submit(function() {
 		if(check()) {
 			//提交操作
-			$("#message").attr("action","${pageContext.servletContext.contextPath}/adminMessageManage");
 		} else {
 			alert("请输入学号或工号并选择操作！");
 			return false;
@@ -55,11 +56,11 @@ $(function() {
 	//针对不同操作更改提交的url地址
 	var manageResult = $("#manageResult").val();
 	if(manageResult == 1) { //进行添加操作
-		$("#message").attr("action", "${pageContext.servletContext.contextPath}/adminInsertMessage");
+		$("#message").attr("action", "adminInsertMessage");
 	} else if(manageResult == 2) { //进行删除操作
-		$("#message").attr("action", "${pageContext.servletContext.contextPath}/adminDeleteMessage");
+		$("#message").attr("action", "adminDeleteMessage");
 	} else if(manageResult == 3) { //进行修改操作
-		$("#message").attr("action", "${pageContext.servletContext.contextPath}/adminModifyMessage");
+		$("#message").attr("action", "adminModifyMessage");
 	}
 
 	//判断是否存在空的信息
@@ -132,6 +133,14 @@ $(function() {
 		} else {
 			alert("存在未写入的值！");
 			return false;
+		}
+	});
+	
+
+	//下拉框的默认值问题
+	$("option").each(function() {
+		if($(this).val()==$(this).parent("select").prev(".define").val()) {
+			$(this).attr("selected", "selected");
 		}
 	});
 });
