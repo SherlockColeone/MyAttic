@@ -64,8 +64,8 @@
 					<div class="col-md-12">
 						<form id="message" action="#" method="post" enctype="multipart/form-data">
 							<!--根据该按钮的值判断当前身份和操作-->
-							<input id="identityResult" value="${identityResult }" hidden="hidden" readonly="readonly" />
-							<input id="manageResult" value="${manageResult }" hidden="hidden" readonly="readonly" />
+							<input id="identityResult" name="identityResult" value="${identityResult }" hidden="hidden" readonly="readonly" />
+							<input id="manageResult" name="manageResult" value="${manageResult }" hidden="hidden" readonly="readonly" />
 							<div class="col-md-12" id="forStudent">
 								<!--学生专用的表格-->
 								<table class="col-md-12">
@@ -82,7 +82,13 @@
 										<td width="15%">身份证号</td>
 										<td colspan="2"><input type="text" name="student.idcard" value="${student.idcard }" class="longInput" /></td>
 										<td>性别</td>
-										<td><input type="text" name="student.sex" value="${student.sex }" class="input" /></td>
+										<td>
+											<input class="define" value="${student.sex }" hidden="hidden" readonly="readonly" />
+											<select id="identity" name="student.sex" class="form-control">
+												<option value="男">男</option>
+												<option value="女">女</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<td width="15%">籍贯</td>
@@ -114,13 +120,13 @@
 										<td width="15%">入学时间</td>
 										<td colspan="2"><input type="text" name="student.regist" value="${student.regist }" class="longInput" /></td>
 										<td>班级编号</td>
-										<td colspan="2"><input type="text" name="student.nation" value="${student.nation }" class="longInput" /></td>
+										<td colspan="2"><input type="text" name="student.classesid" value="${student.nation }" class="longInput" /></td>
 									</tr>
 									<tr>
 										<td width="15%">二级学院</td>
 										<td colspan="2">
 											<input class="define" value="${student.academyid }" hidden="hidden" readonly="readonly" />
-											<select name="student.academy" class="longInput form-control">
+											<select name="student.academyid" class="longInput form-control">
 												<option value="1">信息工程学院</option>
 												<option value="2">外国语学院</option>
 												<option value="3">人文学院</option>
@@ -131,7 +137,7 @@
 											</select>
 										</td>
 										<td>专业编号</td>
-										<td colspan="2"><input type="text" name="student.major" value="${student.majorid }" class="longInput" /></td>
+										<td colspan="2"><input type="text" name="student.majorid" value="${student.majorid }" class="longInput" /></td>
 									</tr>
 								</table>
 							</div>
@@ -152,7 +158,13 @@
 										<td width="15%">身份证号</td>
 										<td colspan="2"><input type="text" name="teacher.idcard" value="${teacher.idcard }" class="longInput" /></td>
 										<td>性别</td>
-										<td><input type="text" name="teacher.sex" value="${teacher.sex }" class="input" /></td>
+										<td>
+											<input class="define" value="${teacher.sex }" hidden="hidden" readonly="readonly" />
+											<select id="identity" name="teacher.sex" class="form-control">
+												<option value="男">男</option>
+												<option value="女">女</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<td width="15%">籍贯</td>
@@ -189,7 +201,7 @@
 										<td width="15%">二级学院</td>
 										<td colspan="2">
 											<input class="define" value="${teacher.academyid }" hidden="hidden" readonly="readonly" />
-											<select name="teacher.academy" class="longInput form-control">
+											<select name="teacher.academyid" class="longInput form-control">
 												<option value="1">信息工程学院</option>
 												<option value="2">外国语学院</option>
 												<option value="3">人文学院</option>
@@ -221,7 +233,13 @@
 										<td width="15%">身份证号</td>
 										<td colspan="2"><input type="text" name="admin.idcard" value="${admin.idcard }" class="longInput" /></td>
 										<td>性别</td>
-										<td><input type="text" name="admin.sex" value="${admin.sex }" class="input" /></td>
+										<td>
+											<input class="define" value="${admin.sex }" hidden="hidden" readonly="readonly" />
+											<select id="identity" name="admin.sex" class="form-control">
+												<option value="男">男</option>
+												<option value="女">女</option>
+											</select>
+										</td>
 									</tr>
 									<tr>
 										<td width="15%">籍贯</td>

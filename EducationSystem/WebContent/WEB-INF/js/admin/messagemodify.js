@@ -136,10 +136,10 @@ $(function() {
 		}
 	});
 	
-
 	//下拉框的默认值问题
 	$("option").each(function() {
-		if($(this).val()==$(this).parent("select").prev(".define").val()) {
+		var defaultValue = $(this).parent("select").prev(".define");
+		if($(this).val() == defaultValue.val()) {
 			$(this).attr("selected", "selected");
 		}
 	});

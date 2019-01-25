@@ -37,7 +37,7 @@ public class AdminMessageController {
 	}
 
 	/**
-	 * 根据前台的身份、id、操作来显示个人信息
+	 * 	根据前台的身份、id、操作来显示个人信息
 	 * 
 	 * @param request  请求
 	 * @param identity 身份
@@ -75,21 +75,50 @@ public class AdminMessageController {
 
 	@RequestMapping(value = "/adminInsertMessage")
 	public String adminInsertManage(HttpServletRequest request, User user, Integer identityResult) {
-
+		if (identityResult==1) { //身份是管理员
+			Admin admin = user.getAdmin();
+			//由于添加时没有密码，因此要给默认的密码123456
+			admin.setPassword("123456");
+			//同时要设置身份
+			admin.setIdentity(1);
+			serviceAdmin.addAdmin(admin);
+		} else if(identityResult==2) { //身份是教师
+			Teacher teacher = user.getTeacher();
+			teacher.setPassword("123456");
+			teacher.setIdentity(2);
+			serviceAdmin.addTeacher(teacher);
+		} else if(identityResult==3) { //身份是学生
+			Student student = user.getStudent();
+			student.setPassword("123456");
+			student.setIdentity(3);
+			serviceAdmin.addStudent(student);
+		}
 		// 跳转到管理员个人信息
 		return "admin/admin_messagemodify";
 	}
 
 	@RequestMapping(value = "/adminDeleteMessage")
-	public String adminDeleteManage(HttpServletRequest request, User user) {
-
+	public String adminDeleteManage(HttpServletRequest request, User user, Integer identityResult) {
+		if (identityResult==1) { //身份是管理员
+			serviceAdmin.delAdminByAdminid(user.getAdmin().getId());
+		} else if(identityResult==2) { //身份是教师
+			serviceAdmin.delTeacherByTeacherid(user.getTeacher().getId());
+		} else if(identityResult==3) { //身份是学生
+			serviceAdmin.delStudentByStudentid(user.getStudent().getId());
+		}
 		// 跳转到管理员个人信息
 		return "admin/admin_messagemodify";
 	}
 
 	@RequestMapping(value = "/adminModifyMessage")
-	public String adminModifyMessage(HttpServletRequest request, User user) {
-
+	public String adminModifyMessage(HttpServletRequest request, User user, Integer identityResult) {
+		if (identityResult==1) { //身份是管理员
+			serviceAdmin.modifyAdmin(user.getAdmin());
+		} else if(identityResult==2) { //身份是教师
+			serviceAdmin.modifyTeacher(user.getTeacher());
+		} else if(identityResult==3) { //身份是学生
+			serviceAdmin.modifyStudent(user.getStudent());
+		}
 		// 跳转到管理员个人信息
 		return "admin/admin_messagemodify";
 	}
