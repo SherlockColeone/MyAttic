@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/admin/courses.js"></script>		
 	</head>
 
 	<body>
@@ -20,63 +21,106 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-offset-5">
-					<h4>课程安排查询</h4>
+					<h4>学生课程安排管理</h4>
 				</div>
-				<div id="buttonGroup" class="col-md-10 col-md-offset-2">
-					<form action="${pageContext.servletContext.contextPath}/teacherSearchAllCourses" method="post">
-						<div id="term" class="col-md-8 col-md-offset-3">
-							开课时间：
-							<select name="termId">
-								<c:forEach items="${termList }" var="term">
-									<option value="${term.id }">${term.termtime }</option>
-								</c:forEach>
-							</select>
+				<div id="buttonGroup" class="col-md-12 col-md-offset-1">
+					<form id="searchCurriculum" action="#" method="post">
+						<div id="curriculum" class="col-md-4">
+							操作：
+							<input class="operate" type="radio" name="operate" value="1" />添加&nbsp;&nbsp;&nbsp;
+							<input class="operate" type="radio" name="operate" value="2" />删除&nbsp;&nbsp;&nbsp;
+							<input class="operate" type="radio" name="operate" value="3" />修改&nbsp;&nbsp;&nbsp;
 						</div>
-						<div id="courses" class="col-md-8 col-md-offset-3">
-							课程性质：
-							<select name="curriculum">
-								<option value="0">不限性质</option>
-								<option value="1">专业课</option>
-								<option value="2">选修课</option>
-							</select>
+						<div id="term" class="col-md-4">
+							课程编号：<input id="inputId" type="text" name="inputId" />
 						</div>
-						<div class="col-md-4 col-md-offset-4">
-							<button type="submit" class="btn btn-default">
-								<span class="glyphicon glyphicon-screenshot"></span>查询
+						<div class="col-md-4">
+							<button id="search" type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-zoom-in"></span>查询课程
 							</button>
 						</div>
 					</form>
-					
-					<!-- 还可以添加搜索单个课程的功能 -->
-					
-				</div>
-				<div class="col-md-6">
-					查询条件：${term }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${nature }
 				</div>
 				<div class="col-md-12">
-					<table class="table table-striped">
-						<tr>
-							<td>课程编号</td>
-							<td>课程名称</td>
-							<td>开课时间</td>
-							<td>课程性质</td>
-						</tr>
-						<c:forEach items="${resultList }" var="result">
-							<tr>
-								<td>${result.id }</td>
-								<td>${result.name }</td>
-								<td>${term }</td>
-								<td>
-									<c:if test="${not empty result.classesid }">
-										专业课
-									</c:if>
-									<c:if test="${empty result.classesid }">
-										选修课
-									</c:if>
-								</td>
-							</tr>
-						</c:forEach>
-					</table>
+					进行的操作：添加<br />
+				</div>
+				<div class="col-md-12">
+					<form id="courses" action="#" method="post">
+						<div class="col-md-12">
+							<table class="table table-striped">
+								<tr>
+									<td>课程编号</td>
+									<td>课程名称</td>
+									<td>开课时间</td>
+									<td>课程教师编号</td>
+									<td>班级编号</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="text" name="id" value="230" />
+									</td>
+									<td>
+										<input type="text" name="name" value="数据库原理及应用" />
+									</td>
+									<td>
+										<input type="text" name="week" value="1-16周" />
+									</td>
+									<td>
+										<input type="text" name="teacherid" value="2006100" />
+									</td>
+									<td>
+										<input type="text" name="classesid" value="1201" />
+									</td>
+								</tr>
+								<br />
+								<tr>
+									<td>星期几</td>
+									<td>第几节</td>
+									<td>上课地点</td>
+									<td colspan="2">学期</td>
+								</tr>
+								<tr>
+									<td>
+										<select id="day" name="day" class="form-control">
+											<option value="1">星期一</option>
+											<option value="2">星期二</option>
+											<option value="3">星期三</option>
+											<option value="4">星期四</option>
+											<option value="5">星期五</option>
+											<option value="6">星期六</option>
+											<option value="7">星期日</option>
+										</select>
+									</td>
+									<td>
+										<select id="time" name="time" class="form-control">
+											<option value="01-02">01-02节</option>
+											<option value="03-04">03-04节</option>
+											<option value="05-06">05-06节</option>
+											<option value="07-08">07-08节</option>
+											<option value="09-10">09-10节</option>
+										</select>
+									</td>
+									<td>
+										<input type="text" name="place" value="16-301" />
+									</td>
+									<td>
+										<button class="btn btn-info" name="termid" type="button" value="0">采用当前学期</button>
+										<input name="termid" type="button" value="0" placeholder="采用当前学期" />
+									</td>
+									<td>
+										<select id="termid" name="termid" class="form-control">
+											<option value="20181">2018-09-2019-01</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="confirm" class="col-md-10 col-md-offset-5">
+							<button id="submit" type="submit" class="btn btn-success">
+								<span class="glyphicon glyphicon-check"></span>提交信息
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
