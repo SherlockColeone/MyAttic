@@ -20,11 +20,16 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-3">
+					<a href="${pageContext.servletContext.contextPath}/adminCoursesModify" class="btn btn-default">
+						<span class="glyphicon glyphicon-arrow-left"></span>前往学生课程安排管理
+					</a>
+				</div>
 				<div class="col-md-offset-5">
 					<h4>查看学生课程安排</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-12 col-md-offset-3">
-					<form id="coursesSearchCurriculum" action="#" method="post">
+					<form id="coursesSearchCurriculum" action="${pageContext.servletContext.contextPath}/adminCheckCoursesForCourses" method="post">
 						<div id="term" class="col-md-4">
 							课程编号：<input id="coursesInputId" type="text" name="inputId" />
 						</div>
@@ -43,27 +48,29 @@
 								<td>课程名称</td>
 								<td>开课时间</td>
 								<td>课程教师编号</td>
-								<td>班级编号</td>
+								<td>课程教师姓名</td>
 							</tr>
 							<tr>
-								<td>230</td>
-								<td>数据库原理及应用</td>
-								<td>1-16周</td>
-								<td>2006100</td>
-								<td>1201</td>
+								<td>${courses.id }</td>
+								<td>${courses.name }</td>
+								<td>${courses.week }</td>
+								<td>${courses.teacherid }</td>
+								<td>${courses.teacher }</td>
 							</tr>
 							<br />
 							<tr>
+								<td>班级编号</td>
 								<td>星期几</td>
 								<td>第几节</td>
 								<td>上课地点</td>
-								<td colspan="2">学期</td>
+								<td>学期</td>
 							</tr>
 							<tr>
-								<td>星期五</td>
-								<td>03-04节</td>
-								<td>16-301</td>
-								<td colspan="2">2018-09-2019-01</td>
+								<td>${courses.classesid }</td>
+								<td>${courses.day }</td>
+								<td>${courses.time }</td>
+								<td>${courses.place }</td>
+								<td>${termName }</td>
 							</tr>
 						</table>
 					</div>

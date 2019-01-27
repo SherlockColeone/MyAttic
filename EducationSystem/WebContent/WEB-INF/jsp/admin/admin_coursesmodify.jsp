@@ -20,11 +20,16 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-3">
+					<a href="${pageContext.servletContext.contextPath}/adminCourses" class="btn btn-default">
+						<span class="glyphicon glyphicon-arrow-left"></span>查看学生课程安排
+					</a>
+				</div>
 				<div class="col-md-offset-5">
 					<h4>学生课程安排管理</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-12 col-md-offset-1">
-					<form id="searchCurriculum" action="#" method="post">
+					<form id="searchCurriculum" action="${pageContext.servletContext.contextPath}/adminCheckCoursesForCoursesModify" method="post">
 						<div id="curriculum" class="col-md-4">
 							操作：
 							<input class="operate" type="radio" name="operate" value="1" />添加&nbsp;&nbsp;&nbsp;
@@ -36,17 +41,21 @@
 						</div>
 						<div class="col-md-4">
 							<button id="search" type="submit" class="btn btn-default">
-								<span class="glyphicon glyphicon-zoom-in"></span>查询课程
+								<span class="glyphicon glyphicon-zoom-in"></span>进入操作
 							</button>
 						</div>
 					</form>
 				</div>
 				<div class="col-md-12">
-					进行的操作：添加<br />
+					进行的操作：
+					<c:if test="${manageResult==1 }">添加</c:if>
+					<c:if test="${manageResult==2 }">删除</c:if>
+					<c:if test="${manageResult==3 }">修改</c:if>
+					<br />
 				</div>
 				<div class="col-md-12">
 					<form id="courses" action="#" method="post">
-						<input id="manageResult" name="manageResult" value="" type="text" hidden="hidden" readonly="readonly" />
+						<input id="manageResult" name="manageResult" value="${manageResult }" type="text" hidden="hidden" readonly="readonly" />
 						<div class="col-md-12">
 							<table class="table table-striped">
 								<tr>
@@ -54,28 +63,29 @@
 									<td>课程名称</td>
 									<td>开课时间</td>
 									<td>课程教师编号</td>
-									<td>班级编号</td>
+									<td>课程教师姓名</td>
 								</tr>
 								<tr>
 									<td>
-										<input type="text" id="id" name="id" value="230" class="courses" />
+										<input type="text" id="id" name="id" value="${courses.id }" class="courses" />
 										<button id="randomid" class="btn btn-info" name="id" type="button" value="0" style="margin-top: 5px;">随机分配编号</button>
 									</td>
 									<td>
-										<input type="text" name="name" value="数据库原理及应用" class="courses" />
+										<input type="text" name="name" value="${courses.name }" class="courses" />
 									</td>
 									<td>
-										<input type="text" name="week" value="1-16周" class="courses" />
+										<input type="text" name="week" value="${courses.week }" class="courses" />
 									</td>
 									<td>
-										<input type="text" name="teacherid" value="2006100" class="courses" />
+										<input type="text" name="teacherid" value="${courses.teacherid }" class="courses" />
 									</td>
 									<td>
-										<input type="text" name="classesid" value="1201" class="courses" />
+										<input type="text" name="teacher" value="${courses.teacher }" class="courses" />
 									</td>
 								</tr>
 								<br />
 								<tr>
+									<td>班级编号</td>
 									<td>星期几</td>
 									<td>第几节</td>
 									<td>上课地点</td>
@@ -83,6 +93,10 @@
 								</tr>
 								<tr>
 									<td>
+										<input type="text" name="classesid" value="${courses.classesid }" class="courses" />
+									</td>	
+									<td>
+										<input class="define" value="${courses.day }" hidden="hidden" />
 										<select id="day" name="day" class="form-control" class="courses">
 											<option value="1">星期一</option>
 											<option value="2">星期二</option>
@@ -94,6 +108,7 @@
 										</select>
 									</td>
 									<td>
+										<input class="define" value="${courses.time }" hidden="hidden" />
 										<select id="time" name="time" class="form-control" class="courses">
 											<option value="01-02">01-02节</option>
 											<option value="03-04">03-04节</option>
@@ -103,17 +118,16 @@
 										</select>
 									</td>
 									<td>
-										<input type="text" name="place" value="16-301" class="courses" />
+										<input type="text" name="place" value="${courses.place }" class="courses" />
 									</td>
 									<td>
-										<button id="currentTerm" class="btn btn-info" name="termid" type="button" value="20182">采用当前学期</button>
-									</td>
-									<td>
+										<input class="define" value="${courses.termid }" hidden="hidden" />
 										<select id="termid" name="termid" class="form-control" class="courses">
-											<option value="20181">2018-09-2019-01</option>
-											<option value="20182">2019-03-2019-07</option>
-											<option value="20191">2019-09-2020-01</option>
+											<c:forEach items="${termList }" var="term">
+												<option value="${term.id }">${term.termtime }</option>												
+											</c:forEach>
 										</select>
+										<button id="currentTerm" class="btn btn-info" name="termid" type="button" value="${currentTermiId }">采用当前学期</button>
 									</td>
 								</tr>
 							</table>

@@ -38,11 +38,11 @@ $(function() {
 	//针对不同操作更改提交的url地址
 	var manageResult = $("#manageResult").val();
 	if(manageResult == 1) { //进行添加操作
-		$("#message").attr("action", "adminInsertCourses");
+		$("#courses").attr("action", "adminInsertCourses");
 	} else if(manageResult == 2) { //进行删除操作
-		$("#message").attr("action", "adminDeleteCourses");
+		$("#courses").attr("action", "adminDeleteCourses");
 	} else if(manageResult == 3) { //进行修改操作
-		$("#message").attr("action", "adminModifyCourses");
+		$("#courses").attr("action", "adminModifyCourses");
 	}
 
 	//点击随机编号时编号输入框的值为0
@@ -64,6 +64,14 @@ $(function() {
 			alert("提交成功！");
 		} else {
 			return false;
+		}
+	});
+		
+	//下拉框的默认值问题
+	$("option").each(function() {
+		var defaultValue = $(this).parent("select").prev(".define");
+		if($(this).val() == defaultValue.val()) {
+			$(this).attr("selected", "selected");
 		}
 	});
 });

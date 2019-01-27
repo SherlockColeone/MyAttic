@@ -33,11 +33,11 @@ $(function() {
 		same();
 		//更改图标
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
-		modify.children("div").html("课程安排管理");
+		modify.children("div").html("学生课程安排管理");
 		//更改跳转的控制器
-		modify.attr("href","adminCourses");
-		check.children("div").html("查看课程安排");
-		check.attr("href","adminCheckCourses");
+		modify.attr("href","adminCoursesModify");
+		check.children("div").html("查看学生课程安排");
+		check.attr("href","adminCourses");
 	});
 		
 	//选课管理的函数

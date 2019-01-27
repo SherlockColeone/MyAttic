@@ -1,26 +1,21 @@
 package com.cn.web.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cn.bean.Courses;
-import com.cn.bean.Curriculum;
-import com.cn.bean.Elective;
-import com.cn.bean.Teacher;
 import com.cn.bean.Term;
-import com.cn.service.ServiceTeacher;
+import com.cn.service.ServiceAdmin;
 import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
 /**
- * 	教师课程安排的控制器
+ * 	管理员课程安排的控制器
  * @author Sherlock
  *
  */
@@ -28,80 +23,92 @@ import com.cn.utils.GetTermUtils;
 @Controller
 public class AdminCoursesController {
 	@Autowired
-	private ServiceTeacher serviceTeacher;
+	private ServiceAdmin serviceAdmin;
 	@Autowired
 	private CheckNameUtils checkNameUtils;
 	@Autowired
 	private GetTermUtils getTermUtils;
 	
-	public List<Term> termList = new ArrayList<>();
-	
-	/**
-	 * 	将学期放入表单的学期选项中
-	 * @param request 请求
-	 * @return 跳转到教师课程安排页面
-	 */
 	@RequestMapping(value="/adminCourses")
 	public String adminCourses(HttpServletRequest request) {
-		termList = getTermUtils.getAllTerms();
-		//把学期列表添加到视图中
-		request.setAttribute("termList",termList);
-		//跳转到教师课程安排
+		//跳转到管理查看课程安排页面
 		return "admin/admin_courses";
 	}
 	
-	@RequestMapping(value="/adminCheckCourses")
-	public String adminCheckCourses(HttpServletRequest request) {
-		termList = getTermUtils.getAllTerms();
-		//把学期列表添加到视图中
-		request.setAttribute("termList",termList);
-		//跳转到教师课程安排
+	@RequestMapping(value="/adminCoursesModify")
+	public String adminCoursesModify(HttpServletRequest request) {
+		//跳转到管理员课程安排管理页面
+		return "admin/admin_coursesmodify";
+	}
+	
+	//判断课程编号是否需要随机编号
+	private Integer checkId(Courses courses) {
+		if (courses.getId()==0) {
+			return null;
+		} else {
+			return courses.getId();
+		}		
+	}
+	
+	@RequestMapping(value="/adminInsertCourses")
+	public String adminInsertCourses(HttpServletRequest request,Courses courses) {
+		//设置编号
+		courses.setId(checkId(courses));
+		//添加课程
+		serviceAdmin.addCourses(courses);
+		//跳转到管理员课程安排
+		return "admin/admin_coursesmodify";
+	}
+	
+	@RequestMapping(value="/adminDeleteCourses")
+	public String adminDeleteCourses(HttpServletRequest request,Courses courses) {
+		//删除课程
+		serviceAdmin.delCoursesByCoursesid(courses.getId());
+		//跳转到管理员课程安排
+		return "admin/admin_coursesmodify";
+	}
+	
+	@RequestMapping(value="/adminModifyCourses")
+	public String adminModifyCourses(HttpServletRequest request,Courses courses) {
+		//设置编号
+		courses.setId(checkId(courses));
+		//修改课程
+		serviceAdmin.modifyCourses(courses);		
+		//跳转到管理员课程安排
+		return "admin/admin_coursesmodify";
+	}
+	
+	@RequestMapping(value="/adminCheckCoursesForCourses")
+	public String adminCheckCoursesForCourses(HttpServletRequest request,Integer inputId) {
+		Courses courses = serviceAdmin.searchCoursesByCoursesid(inputId);
+		//把搜索的课程放到视图中
+		request.setAttribute("courses",courses);
+		//获取学期名字
+		String termName = checkNameUtils.searchByTermid(courses.getTermid());
+		request.setAttribute("termName",termName);
+		//跳转到管理员查看课程安排
 		return "admin/admin_courses";
 	}
 	
-	/**
-	 * 	根据选择的条件查询出课程安排
-	 * @param request 请求
-	 * @param termId 从表单获取的学期id
-	 * @param curriculum 从表单获取的课程性质。0表示不限性质；1表示专业课；2表示选修课
-	 * @return 跳转到教师课程安排页面
-	 */
-	@RequestMapping(value="/adminSearchAllCourses")
-	public String adminSearchAllCourses(HttpServletRequest request,Integer termId,Integer curriculum) {
-		//把学期列表添加到视图中
+	@RequestMapping(value="/adminCheckCoursesForCoursesModify")
+	public String adminCheckCoursesForCoursesModify(HttpServletRequest request,Integer inputId,Integer operate) {
+		//标记需要进行的操作
+		Integer manageResult = operate;
+		request.setAttribute("manageResult",manageResult);
+		Courses courses = new Courses();
+		if (operate!=1) { //进行的是删除或修改操作
+			courses = serviceAdmin.searchCoursesByCoursesid(inputId);
+		}		
+		//把搜索的课程放到视图中
+		request.setAttribute("courses",courses);
+		//获取所有学期
+		List<Term> termList = getTermUtils.getAllTerms();
 		request.setAttribute("termList",termList);
-		//查出学期的名字
-		String term = checkNameUtils.searchByTermid(termId);
-		request.setAttribute("term",term);
-		HttpSession session = request.getSession();
-		//从session域中获取教师对象
-		Teacher teacher = (Teacher) session.getAttribute("teacher");		
-		if(curriculum==0) { //性质不限
-			//查询该学期的所有课程
-			List<Curriculum> resultList = serviceTeacher.searchAllCurriculumByTermidAndTeacherid(termId, teacher.getId());
-			//把结果列表添加到视图中
-			request.setAttribute("resultList",resultList);
-			request.setAttribute("nature","不限性质");
-		} 
-		else if(curriculum==1) { //专业课
-			List<Courses> resultList = serviceTeacher.searchAllCoursesByTeacheridAndTermid(teacher.getId(), termId);
-			//把专业课列表添加到视图中
-			request.setAttribute("resultList",resultList);
-			request.setAttribute("nature","专业课");
-		}
-		else if(curriculum==2) { //选修课
-			List<Curriculum> resultList = new ArrayList<>();
-			List<Elective> list = serviceTeacher.searchAllElectiveByTeacheridAndTermid(teacher.getId(), termId);
-			//由于选修课缺少某些属性无法在页面中显示，因此转换成总课程对象显示
-			for (Elective elective : list) {
-				Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getTeacher(), null,
-						0, elective.getId());
-				resultList.add(curr);
-			}			
-			//把选修课列表添加到视图中
-			request.setAttribute("resultList",resultList);
-			request.setAttribute("nature","选修课");
-		}
-		return "admin/admin_courses";
+		//获取当前的学期id
+		Integer currentTermiId = GetTermUtils.getCurrentTermiId();
+		request.setAttribute("currentTermiId",currentTermiId);
+		//跳转到管理员课程安排管理
+		return "admin/admin_coursesmodify";
 	}
+
 }
