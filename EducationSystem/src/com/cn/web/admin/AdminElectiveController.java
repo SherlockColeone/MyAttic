@@ -19,7 +19,7 @@ import com.cn.service.ServiceTeacher;
 import com.cn.utils.GetTermUtils;
 
 /**
- * 	进入教师选修课安排的控制器
+ * 	管理员选课管理的控制器
  * @author Sherlock
  *
  */
