@@ -1,5 +1,5 @@
 /**
- * 管理员选课管理js事件
+ * 管理员选课管理与查看学生选课结果js事件
  */
 
 $(function() {
@@ -35,6 +35,9 @@ $(function() {
 			if(value.value == $("#currentTerm").val()) {
 				//选中
 				$(this).attr("selected", "selected");
+			} else {
+				//其他的撤销选中
+				$(this).removeAttr("selected");
 			}
 		});
 	});
@@ -42,11 +45,11 @@ $(function() {
 	//针对不同操作更改提交的url地址
 	var manageResult = $("#manageResult").val();
 	if(manageResult == 1) { //进行添加操作
-		$("#message").attr("action", "adminInsertCourses");
+		$("#elective").attr("action", "adminInsertElective");
 	} else if(manageResult == 2) { //进行删除操作
-		$("#message").attr("action", "adminDeleteCourses");
+		$("#elective").attr("action", "adminDeleteElective");
 	} else if(manageResult == 3) { //进行修改操作
-		$("#message").attr("action", "adminModifyCourses");
+		$("#elective").attr("action", "adminModifyElective");
 	}
 
 	//点击随机编号时编号输入框的值为0
@@ -54,20 +57,25 @@ $(function() {
 		$("#id").val("0");
 	});
 
-	$("#courses").submit(function() {
-		var i = 0;
-		$(".courses").each(function(index, value) {
-			if(value.value == "") {
-				i++;
-			}
-		});
-		if(i > 0) {
-			alert("不能存在空的数据！");
+	$("#elective").submit(function() {
+		if (manageResult=="") { //没有选择操作便提交
+			alert("请选择操作再提交课程！");
 			return false;
-		} else if(confirm("确定提交该课程的信息？")) {
-			alert("提交成功！");
-		} else {
-			return false;
+		} else{
+			var i = 0;
+			$(".courses").each(function(index, value) {
+				if(value.value == "") {
+					i++;
+				}
+			});
+			if(i > 0) {
+				alert("不能存在空的数据！");
+				return false;
+			} else if(confirm("确定提交该课程的信息？")) {
+				alert("提交成功！");
+			} else {
+				return false;
+			}			
 		}
 	});
 		

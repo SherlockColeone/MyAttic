@@ -57,7 +57,7 @@ public class AdminCoursesController {
 		//添加课程
 		serviceAdmin.addCourses(courses);
 		//跳转到管理员课程安排
-		return "admin/admin_coursesmodify";
+		return "redirect:adminCoursesModify";
 	}
 	
 	@RequestMapping(value="/adminDeleteCourses")
@@ -65,7 +65,7 @@ public class AdminCoursesController {
 		//删除课程
 		serviceAdmin.delCoursesByCoursesid(courses.getId());
 		//跳转到管理员课程安排
-		return "admin/admin_coursesmodify";
+		return "redirect:adminCoursesModify";
 	}
 	
 	@RequestMapping(value="/adminModifyCourses")
@@ -75,7 +75,7 @@ public class AdminCoursesController {
 		//修改课程
 		serviceAdmin.modifyCourses(courses);		
 		//跳转到管理员课程安排
-		return "admin/admin_coursesmodify";
+		return "redirect:adminCoursesModify";
 	}
 	
 	@RequestMapping(value="/adminCheckCoursesForCourses")

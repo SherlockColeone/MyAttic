@@ -1,21 +1,17 @@
 package com.cn.web.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cn.bean.Curriculum;
 import com.cn.bean.Elective;
-import com.cn.bean.Student;
-import com.cn.bean.Teacher;
-import com.cn.service.ServiceTeacher;
+import com.cn.bean.Term;
+import com.cn.service.ServiceAdmin;
+import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
 /**
@@ -26,49 +22,81 @@ import com.cn.utils.GetTermUtils;
 @Controller
 public class AdminElectiveController {
 	@Autowired
-	private ServiceTeacher serviceTeacher;
+	private ServiceAdmin serviceAdmin;
+	@Autowired
+	private CheckNameUtils checkNameUtils;
+	@Autowired
+	private GetTermUtils getTermUtils;
 	
-	//学生名单集合
-	private List<Curriculum> studentList = new ArrayList<>();
-	//已选择的选修课
-	private Elective elective = new Elective();
 	
 	@RequestMapping(value="/adminElective")
 	public String adminElective(HttpServletRequest request) {
-		//跳转到教師選修課安排页面
+		//跳转到查看学生课程安排页面
 		return "admin/admin_elective";
 	}
 	
 	@RequestMapping(value="/adminElectiveModify")
 	public String adminElectiveModify(HttpServletRequest request) {
-		//跳转到教師選修課安排页面
+		//跳转到选课管理页面
 		return "admin/admin_electivemodify";
 	}
 	
 	@RequestMapping(value="/adminCheckElective")
-	public String adminCheckElective(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		//从session域中获取教師对象
-		Teacher teacher = (Teacher) session.getAttribute("teacher");		
-		//获取当前学期该教师的所有选修课
-		List<Elective> listElective = serviceTeacher.searchAllElectiveByTeacheridAndTermid(teacher.getId(),
-				GetTermUtils.getCurrentTermiId());
-		List<Curriculum> list = serviceTeacher.changeElectiveListIntoCurriculumList(listElective);
-		request.setAttribute("list", list);
-		request.setAttribute("studentList", studentList);
-		request.setAttribute("elective", elective);
-		//跳转到教師選修課安排页面
-		return "admin/admin_elective";
+	public String adminCheckElective(HttpServletRequest request,Integer inputId,Integer operate) {
+		//标记需要进行的操作
+		Integer manageResult = operate;
+		request.setAttribute("manageResult",manageResult);
+		Elective elective = new Elective();
+		if (operate!=1) { //进行的是删除或修改操作
+			elective = serviceAdmin.searchElectiveByElectiveid(inputId);
+		}		
+		//把搜索的选修课放到视图中
+		request.setAttribute("elective",elective);
+		//获取所有学期
+		List<Term> termList = getTermUtils.getAllTerms();
+		request.setAttribute("termList",termList);
+		//获取当前的学期id
+		Integer currentTermiId = GetTermUtils.getCurrentTermiId();
+		request.setAttribute("currentTermiId",currentTermiId);
+		//跳转到选课管理页面
+		return "admin/admin_electivemodify";
 	}
 	
-	@RequestMapping(value="/adminSearchAllStudent/{electiveid}")
-	public String adminSelectElective(HttpServletRequest request,@PathVariable("electiveid")Integer electiveid) {
-		//根据选修课id查找该课程所有学生
-		List<Student> listStudent = serviceTeacher.searchAllStudentByElectiveid(electiveid);
-		//将该学生集合转换成课程集合并赋值到全局变量
-		studentList = serviceTeacher.changeStudentListIntoCurriculumList(listStudent);
-		//重定向到教師選修課安排页面
-		return "redirect:/adminElective";
+	//判断选修课编号是否需要随机编号
+	private Integer checkId(Elective elective) {
+		if (elective.getId()==0) {
+			return null;
+		} else {
+			return elective.getId();
+		}		
+	}
+	
+	@RequestMapping(value="/adminInsertElective")
+	public String adminInsertElective(HttpServletRequest request,Elective elective) {
+		//设置编号
+		elective.setId(checkId(elective));
+		//添加课程
+		serviceAdmin.addElective(elective);
+		//跳转到管理员课程安排
+		return "redirect:adminElectiveModify";
+	}
+	
+	@RequestMapping(value="/adminDeleteElective")
+	public String adminDeleteElective(HttpServletRequest request,Elective elective) {
+		//删除课程
+		serviceAdmin.delElectiveByElectiveid(elective.getId());
+		//跳转到管理员课程安排
+		return "redirect:adminElectiveModify";
+	}
+	
+	@RequestMapping(value="/adminModifyElective")
+	public String adminModifyElective(HttpServletRequest request,Elective elective) {
+		//设置编号
+		elective.setId(checkId(elective));
+		//修改课程
+		serviceAdmin.modifyElective(elective);		
+		//跳转到管理员课程安排
+		return "redirect:adminElectiveModify";
 	}
 	
 }

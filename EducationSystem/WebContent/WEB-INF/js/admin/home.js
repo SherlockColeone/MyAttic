@@ -47,9 +47,9 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("选课管理");
 		//更改跳转的控制器
-		modify.attr("href","adminElective");
-		check.children("div").html("查看选课结果");
-		check.attr("href","adminCheckElective");
+		modify.attr("href","adminElectiveModify");
+		check.children("div").html("查看学生选课结果");
+		check.attr("href","adminElective");
 	});
 		
 	//调课安排的函数

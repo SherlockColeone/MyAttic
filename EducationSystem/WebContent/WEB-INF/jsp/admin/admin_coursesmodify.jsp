@@ -32,9 +32,12 @@
 					<form id="searchCurriculum" action="${pageContext.servletContext.contextPath}/adminCheckCoursesForCoursesModify" method="post">
 						<div id="curriculum" class="col-md-4">
 							操作：
-							<input class="operate" type="radio" name="operate" value="1" />添加&nbsp;&nbsp;&nbsp;
-							<input class="operate" type="radio" name="operate" value="2" />删除&nbsp;&nbsp;&nbsp;
-							<input class="operate" type="radio" name="operate" value="3" />修改&nbsp;&nbsp;&nbsp;
+							<input id="insert" class="operate" type="radio" name="operate" value="1" />
+							<label for="insert">添加&nbsp;&nbsp;&nbsp;</label>
+							<input id="delete" class="operate" type="radio" name="operate" value="2" />
+							<label for="delete">删除&nbsp;&nbsp;&nbsp;</label>
+							<input id="modify" class="operate" type="radio" name="operate" value="3" />
+							<label for="modify">修改&nbsp;&nbsp;&nbsp;</label>
 						</div>
 						<div id="term" class="col-md-4">
 							课程编号：<input id="inputId" type="text" name="inputId" />

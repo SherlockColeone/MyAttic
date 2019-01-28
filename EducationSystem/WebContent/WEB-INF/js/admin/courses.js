@@ -51,19 +51,24 @@ $(function() {
 	});
 
 	$("#courses").submit(function() {
-		var i = 0;
-		$(".courses").each(function(index, value) {
-			if(value.value == "") {
-				i++;
-			}
-		});
-		if(i > 0) {
-			alert("不能存在空的数据！");
+		if (manageResult=="") { //没有选择操作便提交
+			alert("请选择操作再提交课程！");
 			return false;
-		} else if(confirm("确定提交该课程的信息？")) {
-			alert("提交成功！");
-		} else {
-			return false;
+		} else{
+			var i = 0;
+			$(".courses").each(function(index, value) {
+				if(value.value == "") {
+					i++;
+				}
+			});
+			if(i > 0) {
+				alert("不能存在空的数据！");
+				return false;
+			} else if(confirm("确定提交该课程的信息？")) {
+				alert("提交成功！");
+			} else {
+				return false;
+			}			
 		}
 	});
 		
