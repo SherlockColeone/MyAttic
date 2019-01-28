@@ -86,4 +86,39 @@ $(function() {
 			$(this).attr("selected", "selected");
 		}
 	});
+	
+	$("#electiveResult").submit(function() {
+		
+	});
+	
+	//全选/全不选框
+	$("#checkAll").change(function(){
+		if ($(this).prop("checked")) { //若是全选
+			//遍历所有选择框
+			$(".select").each(function(){
+				$(this).prop("checked","checked");
+			});			
+		}
+	});
+	
+	$("#dontCheck").change(function(){
+		if ($(this).prop("checked")) { //若是全选
+			//遍历所有选择框
+			$(".select").each(function(){
+				$(this).removeAttr("checked");
+			});				
+		}
+	});	
+	
+	//遍历输入框
+	$(".hide").each(function(index,value) {
+		if (value.value==0) { //证明该选修课尚未添加			
+			$(this).next("div").attr("display","block");
+		} else if(value.value==1){ //证明该选修课已经添加
+			//隐藏选择
+			$(this).next("div").attr("display","none");
+			//标记该选修课
+			$(this).parents("tr").attr("class","success");
+		}
+	});	
 });

@@ -18,7 +18,7 @@
 
 		<!--主体-->
 		<div id="main" class="container col-md-12">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-10 col-md-offset-1">
 				<div class="col-md-3">
 					<a href="${pageContext.servletContext.contextPath}/adminElectiveModify" class="btn btn-default">
 						<span class="glyphicon glyphicon-arrow-left"></span>前往选课管理
@@ -27,49 +27,82 @@
 				<div class="col-md-offset-5">
 					<h4>查看学生选课结果</h4>
 				</div>
-				<div id="buttonGroup" class="col-md-12 col-md-offset-3">
-					<form id="electiveSearchCurriculum" action="#" method="post">
-						<div id="term" class="col-md-4">
-							选修课编号：<input id="electiveInputId" type="text" name="inputId" />
-						</div>
-						<div class="col-md-4">
-							<button id="search" type="submit" class="btn btn-default">
-								<span class="glyphicon glyphicon-zoom-in"></span>查询选修课
-							</button>
-						</div>
-					</form>
-				</div>
 				<div class="col-md-12">
+					本学期所有选修课名单如下：（蓝色标记的是已经添加的课程）
+				</div>
+				<div class="col-md-12">					
 					<div class="col-md-12">
-						<table class="table table-striped">
-							<tr>
-								<td>选修课编号</td>
-								<td>选修课名称</td>
-								<td>开课时间</td>
-								<td>课程教师编号</td>
-								<td>课程教师姓名</td>
-							</tr>
-							<tr>
-								<td>${elective.id }</td>
-								<td>${elective.name }</td>
-								<td>${elective.week }</td>
-								<td>${elective.teacherid }</td>
-								<td>${elective.teacher }</td>
-							</tr>
-							<br />
-							<tr>
-								<td>星期几</td>
-								<td>第几节</td>
-								<td>上课地点</td>
-								<td colspan="2">学期</td>
-							</tr>
-							<tr>
-								<td>${elective.day }</td>
-								<td>${elective.time }</td>
-								<td>${elective.place }</td>
-								<td colspan="2">${termName }</td>
-							</tr>
-						</table>
+						<form id="electiveResult" action="#" method="post">
+							<table class="table table-condensed">
+								<tr>
+									<td>
+										<label for="checkAll">全选&nbsp;</label><input type="checkbox" name="check" id="checkAll" />
+										<label for="dontCheck">全不选&nbsp;</label><input type="checkbox" id="dontCheck" />
+									</td>
+									<td>选修课编号</td>
+									<td>选修课名称</td>
+									<td>开课时间</td>
+									<td>课程教师编号</td>
+									<td>课程教师姓名</td>
+									<td>上课时间</td>
+									<td>上课地点</td>
+									<td>课程人数</td>
+								</tr>
+								<tr>
+									<td>
+										<input class="hide" value="1" hidden="hidden" readonly="readonly" />
+										<div id="selectBox">
+											选择&nbsp;<input type="checkbox" class="select" />
+										</div>
+									</td>
+									<td>201811</td>
+									<td>侵权责任法</td>
+									<td>1-16周</td>
+									<td>2008203</td>
+									<td>李晓敏</td>
+									<td>星期一<br />03-04节</td>
+									<td>19-302</td>
+									<td>50</td>
+								</tr>
+								<tr>
+									<td>
+										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
+										<div id="selectBox">
+											选择&nbsp;<input type="checkbox" class="select" />
+										</div>
+									</td>
+									<td>201812</td>
+									<td>数据库原理及应用</td>
+									<td>1-16周</td>
+									<td>2006100</td>
+									<td>风清扬</td>
+									<td>星期一<br />03-04节</td>
+									<td>16-301</td>
+									<td>50</td>
+								</tr>
+								<tr>
+									<td>
+										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
+										<div id="selectBox">
+											选择&nbsp;<input type="checkbox" class="select" />
+										</div>
+									</td>
+									<td>201813</td>
+									<td>数据库原理及应用</td>
+									<td>1-16周</td>
+									<td>2006100</td>
+									<td>风清扬</td>
+									<td>星期一<br />03-04节</td>
+									<td>16-301</td>
+									<td>50</td>
+								</tr>							
+							</table>
+							<div class="col-md-12">
+								<button id="submit" type="submit" class="btn btn-info">
+									<span class="glyphicon glyphicon-check"></span>添加已选择的课程
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
