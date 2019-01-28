@@ -88,6 +88,8 @@ $(function() {
 	});
 	
 	$("#electiveResult").submit(function() {
+		//把已选择的选课id拼接起来
+		$("#result").val();
 		
 	});
 	

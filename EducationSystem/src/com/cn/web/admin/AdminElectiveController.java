@@ -31,7 +31,7 @@ public class AdminElectiveController {
 	
 	@RequestMapping(value="/adminElective")
 	public String adminElective(HttpServletRequest request) {
-		//跳转到查看学生课程安排页面
+		//跳转到查看学生选课结果页面
 		return "admin/admin_elective";
 	}
 	
@@ -99,4 +99,10 @@ public class AdminElectiveController {
 		return "redirect:adminElectiveModify";
 	}
 	
+	@RequestMapping(value="/adminAddElective")
+	public String adminAddElective(HttpServletRequest request,String electiveIds) {
+		
+		//跳转到查看学生选课结果页面
+		return "admin/admin_elective";
+	}	
 }

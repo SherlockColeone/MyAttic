@@ -97,6 +97,8 @@
 									<td>50</td>
 								</tr>							
 							</table>
+							<!--用于拼接所有已选择的选课id-->
+							<input id="result" value="" hidden="hidden" readonly="readonly" />								
 							<div class="col-md-12">
 								<button id="submit" type="submit" class="btn btn-info">
 									<span class="glyphicon glyphicon-check"></span>添加已选择的课程
