@@ -58,10 +58,10 @@ $(function() {
 	});
 
 	$("#elective").submit(function() {
-		if (manageResult=="") { //没有选择操作便提交
+		if(manageResult == "") { //没有选择操作便提交
 			alert("请选择操作再提交课程！");
 			return false;
-		} else{
+		} else {
 			var i = 0;
 			$(".courses").each(function(index, value) {
 				if(value.value == "") {
@@ -75,10 +75,10 @@ $(function() {
 				alert("提交成功！");
 			} else {
 				return false;
-			}			
+			}
 		}
 	});
-		
+
 	//下拉框的默认值问题
 	$("option").each(function() {
 		var defaultValue = $(this).parent("select").prev(".define");
@@ -86,41 +86,64 @@ $(function() {
 			$(this).attr("selected", "selected");
 		}
 	});
-	
+
 	$("#electiveResult").submit(function() {
-		//把已选择的选课id拼接起来
-		$("#result").val();
-		
+		var str = "";
+		var i = 0;
+		//遍历所有的选修课
+		$("tr").children('input[type=checkbox]:checked').each(function() {
+			console.log($(this).val());
+			//获取编号并进行拼接
+			var id = value.children("#id").html();
+			str = str + "*" + id;
+			i++;
+//			if($(this).children('input:radio:checked').val() == 0) { //若该选择框已经选择
+//				//获取编号并进行拼接
+//				var id = value.children("#id").html();
+//				str = str + "*" + id;
+//				i++;
+//			}
+		});
+		if(i > 0) { //有进行选择
+			//拼接起来的id字符串赋值给输入框
+			var ids = str;
+			$("#result").val(ids);
+			console.log($("#result").val());
+			return false;
+		} else { //没有进行选择
+			alert("请进行选择！");
+			return false;
+		}
 	});
-	
+
 	//全选/全不选框
-	$("#checkAll").change(function(){
-		if ($(this).prop("checked")) { //若是全选
+	$("#checkAll").change(function() {
+		if($(this).prop("checked")) { //若是全选
 			//遍历所有选择框
-			$(".select").each(function(){
-				$(this).prop("checked","checked");
-			});			
+			$(".select").each(function() {
+				$(this).prop("checked", "checked");
+			});
 		}
 	});
-	
-	$("#dontCheck").change(function(){
-		if ($(this).prop("checked")) { //若是全选
+
+	$("#dontCheck").change(function() {
+		if($(this).prop("checked")) { //若是全选
 			//遍历所有选择框
-			$(".select").each(function(){
+			$(".select").each(function() {
 				$(this).removeAttr("checked");
-			});				
+			});
 		}
-	});	
-	
+	});
+
 	//遍历输入框
-	$(".hide").each(function(index,value) {
-		if (value.value==0) { //证明该选修课尚未添加			
-			$(this).next("div").attr("display","block");
-		} else if(value.value==1){ //证明该选修课已经添加
-			//隐藏选择
-			$(this).next("div").attr("display","none");
+	$(".hide").each(function(index, value) {
+		if(value.value == 0) { //证明该选修课尚未添加			
+			$(this).next("div").attr("display", "block");
+		} else if(value.value == 1) { //证明该选修课已经添加
+			//清空选择
+			$(this).next("#selectBox").html("");
 			//标记该选修课
-			$(this).parents("tr").attr("class","success");
+			$(this).parents("tr").attr("class", "success");
 		}
-	});	
+	});
 });

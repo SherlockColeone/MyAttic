@@ -36,8 +36,8 @@
 							<table class="table table-condensed">
 								<tr>
 									<td>
-										<label for="checkAll">全选&nbsp;</label><input type="checkbox" name="check" id="checkAll" />
-										<label for="dontCheck">全不选&nbsp;</label><input type="checkbox" id="dontCheck" />
+										<label for="checkAll">全选&nbsp;</label><input type="radio" name="check" id="checkAll" />
+										<label for="dontCheck">全不选&nbsp;</label><input type="radio" name="check" id="dontCheck" />
 									</td>
 									<td>选修课编号</td>
 									<td>选修课名称</td>
@@ -52,10 +52,10 @@
 									<td>
 										<input class="hide" value="1" hidden="hidden" readonly="readonly" />
 										<div id="selectBox">
-											选择&nbsp;<input type="checkbox" class="select" />
+											选择&nbsp;<input type="radio" class="select" />
 										</div>
 									</td>
-									<td>201811</td>
+									<td id="id">201811</td>
 									<td>侵权责任法</td>
 									<td>1-16周</td>
 									<td>2008203</td>
@@ -68,10 +68,10 @@
 									<td>
 										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
 										<div id="selectBox">
-											选择&nbsp;<input type="checkbox" class="select" />
+											选择&nbsp;<input type="radio" class="select" />
 										</div>
 									</td>
-									<td>201812</td>
+									<td id="id">201812</td>
 									<td>数据库原理及应用</td>
 									<td>1-16周</td>
 									<td>2006100</td>
@@ -84,10 +84,10 @@
 									<td>
 										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
 										<div id="selectBox">
-											选择&nbsp;<input type="checkbox" class="select" />
+											选择&nbsp;<input type="radio" class="select" />
 										</div>
 									</td>
-									<td>201813</td>
+									<td id="id">201813</td>
 									<td>数据库原理及应用</td>
 									<td>1-16周</td>
 									<td>2006100</td>
@@ -95,11 +95,27 @@
 									<td>星期一<br />03-04节</td>
 									<td>16-301</td>
 									<td>50</td>
-								</tr>							
+								</tr>
+								<tr>
+									<td>
+										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
+										<div id="selectBox">
+											选择&nbsp;<input type="radio" class="select" />
+										</div>
+									</td>
+									<td id="id">201814</td>
+									<td>韩语基础</td>
+									<td>1-16周</td>
+									<td>2006100</td>
+									<td>马克龙</td>
+									<td>星期一<br />03-04节</td>
+									<td>16-301</td>
+									<td>50</td>
+								</tr>								
 							</table>
 							<!--用于拼接所有已选择的选课id-->
-							<input id="result" value="" hidden="hidden" readonly="readonly" />								
-							<div class="col-md-12">
+							<input id="result" value="" hidden="hidden" readonly="readonly" />							
+							<div class="col-md-12 col-md-offset-5">
 								<button id="submit" type="submit" class="btn btn-info">
 									<span class="glyphicon glyphicon-check"></span>添加已选择的课程
 								</button>
