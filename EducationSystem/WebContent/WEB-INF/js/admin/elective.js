@@ -103,7 +103,12 @@ $(function() {
 			//拼接起来的id字符串赋值给输入框
 			var ids = str;
 			$("#result").val(ids);
-			return true;
+			if(confirm("确定提交该课程的信息？")) {
+				alert("提交成功！");
+				return true;
+			} else {
+				return false;
+			}			
 		} else{ //没有进行选择
 			alert("请进行选择！");
 			return false;

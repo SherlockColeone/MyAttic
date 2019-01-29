@@ -12,7 +12,6 @@ import com.cn.bean.BeanElective;
 import com.cn.bean.Elective;
 import com.cn.bean.Term;
 import com.cn.service.ServiceAdmin;
-import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
 /**
@@ -107,8 +106,7 @@ public class AdminElectiveController {
 		List<Integer> idList = serviceAdmin.splitElectiveResults(result);
 		//进行添加
 		serviceAdmin.addStuscoreByElectiveidList(idList);
-		
 		//跳转到查看学生选课结果页面
-		return "admin/admin_elective";
+		return "redirect:adminElective";
 	}	
 }

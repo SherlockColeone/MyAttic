@@ -43,6 +43,7 @@ import com.cn.dao.TeacherMapper;
 import com.cn.dao.TempelectiveMapper;
 import com.cn.service.ServiceAdmin;
 import com.cn.utils.CheckNameUtils;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	管理员端逻辑层实现类
@@ -594,6 +595,7 @@ public class ServiceAdminImpl implements ServiceAdmin {
 				result.setNumber(result.getNumber()+1);				
 			} 			
 		}
+		List<BeanElective> listResult = new ArrayList<>();
 		for (BeanElective bean : resultList) {
 			Elective elective = searchElectiveByElectiveid(bean.getId());
 			//对时间的显示进行处理			
@@ -607,14 +609,16 @@ public class ServiceAdminImpl implements ServiceAdmin {
 			}
 			bean = new BeanElective(isInserted, bean.getId(), elective.getName(), elective.getWeek(), elective.getTeacherid(), 
 					elective.getTeacher(), time, elective.getPlace(), bean.getNumber());
+			//添加至另一个集合中避免重复
+			listResult.add(bean);
 		}		
-		return resultList;
+		return listResult;
 	}
 
 	@Override
 	public List<Integer> splitElectiveResults(String result) {
 		List<Integer> list = new ArrayList<>();
-		String[] strList = result.split("*");
+		String[] strList = result.split("\\*");
 		for (String string : strList) {
 			list.add(new Integer(string));
 		}
@@ -622,9 +626,25 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	}
 
 	@Override
+	public boolean addStuscore(Stuscore vo) {
+		if (stuscoreMapper.insert(vo)>0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
 	public boolean addStuscoreByElectiveidList(List<Integer> idList) {
-		
-		return false;
+		for (Integer electiveid : idList) {
+			List<Tempelective> listTemp = searchAllTempElectiveByElectiveid(electiveid);
+			for (Tempelective temp : listTemp) {
+				Stuscore stuscore = new Stuscore(temp.getStudentid(), checkNameUtils.searchByElectiveId(temp.getElectiveid()),
+						2, GetTermUtils.getCurrentTermiId(), 0, electiveid);
+				stuscoreMapper.insert(stuscore);
+			}
+		}
+		return true;
 	}
 
 }

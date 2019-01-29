@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/admin/elective.js"></script>
 	</head>
 
 	<body>
@@ -32,7 +33,7 @@
 				</div>
 				<div class="col-md-12">					
 					<div class="col-md-12">
-						<form id="electiveResult" action="#" method="post">
+						<form id="electiveResult" action="${pageContext.servletContext.contextPath}/adminAddElective" method="post">
 							<table class="table table-condensed">
 								<tr>
 									<td>

@@ -410,6 +410,13 @@ public interface ServiceAdmin {
 	public List<Integer> splitElectiveResults(String result);
 	
 	/**
+	 * 添加学生成绩
+	 * @param vo 学生成绩对象
+	 * @return 是否成功添加
+	 */
+	public boolean addStuscore(Stuscore vo);
+	
+	/**
 	 * 根据选修课id为每个学生添加学生成绩
 	 * @param idList 选修课id集合
 	 * @return 是否成功添加
