@@ -3,6 +3,7 @@ package com.cn.service;
 import java.util.List;
 
 import com.cn.bean.Admin;
+import com.cn.bean.BeanElective;
 import com.cn.bean.Cet;
 import com.cn.bean.Classes;
 import com.cn.bean.Courses;
@@ -13,7 +14,9 @@ import com.cn.bean.Exam;
 import com.cn.bean.Gradecet;
 import com.cn.bean.Major;
 import com.cn.bean.Student;
+import com.cn.bean.Stuscore;
 import com.cn.bean.Teacher;
+import com.cn.bean.Tempelective;
 
 /**
  * 	管理员端逻辑层
@@ -374,4 +377,43 @@ public interface ServiceAdmin {
 	 */
 	public Evaluation searchEvaluationByEvaluationid(int evaluationid);
 	
+	/**
+	 * 查找所有选课报名记录
+	 * @return 选课报名记录集合
+	 */
+	public List<Tempelective> searchAllTempElective();
+	
+	/**
+	 * 根据选修课编号查找所有选课报名记录
+	 * @return 选课报名记录集合
+	 */
+	public List<Tempelective> searchAllTempElectiveByElectiveid(int electiveid);	
+	
+	/**
+	 * 根据选修课编号查询所有的学生成绩
+	 * @param electiveid 选修课编号
+	 * @return 学生成绩集合
+	 */
+	public List<Stuscore> searchAllStuscoreByElectiveid(int electiveid);
+	
+	/**
+	 * 显示本学期所有的选课结果
+	 * @return 本学期的选课结果集合
+	 */
+	public List<BeanElective> showBeanElectiveList();
+	
+	/**
+	 * 将表单传输过来的字符串结果分割成多个选修课编号
+	 * @param result 表单的字符串结果
+	 * @return 选修课编号集合
+	 */
+	public List<Integer> splitElectiveResults(String result);
+	
+	/**
+	 * 根据选修课id为每个学生添加学生成绩
+	 * @param idList 选修课id集合
+	 * @return 是否成功添加
+	 */
+	public boolean addStuscoreByElectiveidList(List<Integer> idList);
+
 }

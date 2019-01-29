@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cn.bean.Admin;
 import com.cn.bean.AdminExample;
 import com.cn.bean.AdminExample.Criteria;
+import com.cn.bean.BeanElective;
 import com.cn.bean.Cet;
 import com.cn.bean.Classes;
 import com.cn.bean.Courses;
@@ -21,7 +22,11 @@ import com.cn.bean.Gradecet;
 import com.cn.bean.GradecetExample;
 import com.cn.bean.Major;
 import com.cn.bean.Student;
+import com.cn.bean.Stuscore;
+import com.cn.bean.StuscoreExample;
 import com.cn.bean.Teacher;
+import com.cn.bean.Tempelective;
+import com.cn.bean.TempelectiveExample;
 import com.cn.dao.AdminMapper;
 import com.cn.dao.CetMapper;
 import com.cn.dao.ClassesMapper;
@@ -33,8 +38,11 @@ import com.cn.dao.ExamMapper;
 import com.cn.dao.GradecetMapper;
 import com.cn.dao.MajorMapper;
 import com.cn.dao.StudentMapper;
+import com.cn.dao.StuscoreMapper;
 import com.cn.dao.TeacherMapper;
+import com.cn.dao.TempelectiveMapper;
 import com.cn.service.ServiceAdmin;
+import com.cn.utils.CheckNameUtils;
 
 /**
  * 	管理员端逻辑层实现类
@@ -67,6 +75,12 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	private GradecetMapper gradecetMapper;
 	@Autowired
 	private EvaluationMapper evaluationMapper;
+	@Autowired
+	private TempelectiveMapper tempelectiveMapper;
+	@Autowired
+	private CheckNameUtils checkNameUtils;
+	@Autowired
+	private StuscoreMapper stuscoreMapper;
 	
 
 	@Override
@@ -519,6 +533,98 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	@Override
 	public Evaluation searchEvaluationByEvaluationid(int evaluationid) {
 		return evaluationMapper.selectByPrimaryKey(evaluationid);
+	}
+
+	@Override
+	public List<Tempelective> searchAllTempElective() {
+		TempelectiveExample example = new TempelectiveExample();
+		return tempelectiveMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Tempelective> searchAllTempElectiveByElectiveid(int electiveid) {
+		TempelectiveExample example = new TempelectiveExample();
+		com.cn.bean.TempelectiveExample.Criteria criteria = example.createCriteria();
+		criteria.andElectiveidEqualTo(electiveid);
+		return tempelectiveMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Stuscore> searchAllStuscoreByElectiveid(int electiveid) {
+		StuscoreExample example = new StuscoreExample();
+		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
+		criteria.andElectiveidEqualTo(electiveid);
+		return stuscoreMapper.selectByExample(example);
+	}
+	
+	/**
+	 * 判断有无重复的选修课编号集合
+	 * @param electiveid 给出的选修课编号
+	 * @param resultList 选修课记录集合
+	 * @return 返回一个BeanElective对象表示当前编号已存在，返回null表示当前编号不存在，可以添加该编号
+	 */
+	private BeanElective remainUnique(int electiveid,List<BeanElective> resultList) {
+		for (BeanElective bean : resultList) {
+			if (electiveid==bean.getId()) { //表示当前编号集合中已有
+				//直接返回该对象
+				return bean;
+			}
+		}	
+		//返回null代表不存在该编号
+		return null;
+	}
+	
+	@Override
+	public List<BeanElective> showBeanElectiveList() {
+		List<BeanElective> resultList = new ArrayList<>();
+		List<Tempelective> list = searchAllTempElective();
+		//遍历出这学期所有选课并统计出每门课的人数
+		for (Tempelective temp : list) {
+			BeanElective result = remainUnique(temp.getElectiveid(), resultList);
+			if (result==null) { //当前选课编号不存在，需要创建新的选修课
+				BeanElective bean = new BeanElective();
+				//创建该选课编号的选修课
+				bean.setId(temp.getElectiveid());
+				//当前人数为1
+				bean.setNumber(1);
+				//将该课程添加至集合中
+				resultList.add(bean);
+			} else { //当前选课编号已存在
+				//直接设置人数加一
+				result.setNumber(result.getNumber()+1);				
+			} 			
+		}
+		for (BeanElective bean : resultList) {
+			Elective elective = searchElectiveByElectiveid(bean.getId());
+			//对时间的显示进行处理			
+			String day = checkNameUtils.transformDay(elective.getDay());
+			String time = day+" "+elective.getTime()+"节";
+			//对列表中每个BeanElective对象进行赋值
+			//判断是否已添加该选修课到学生成绩表中
+			int isInserted = 0;//0代表未添加
+			if (searchAllStuscoreByElectiveid(bean.getId()).size()>0) { //证明已添加
+				isInserted = 1;
+			}
+			bean = new BeanElective(isInserted, bean.getId(), elective.getName(), elective.getWeek(), elective.getTeacherid(), 
+					elective.getTeacher(), time, elective.getPlace(), bean.getNumber());
+		}		
+		return resultList;
+	}
+
+	@Override
+	public List<Integer> splitElectiveResults(String result) {
+		List<Integer> list = new ArrayList<>();
+		String[] strList = result.split("*");
+		for (String string : strList) {
+			list.add(new Integer(string));
+		}
+		return list;
+	}
+
+	@Override
+	public boolean addStuscoreByElectiveidList(List<Integer> idList) {
+		
+		return false;
 	}
 
 }

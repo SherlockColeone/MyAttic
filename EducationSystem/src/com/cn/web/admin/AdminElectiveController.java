@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cn.bean.BeanElective;
 import com.cn.bean.Elective;
 import com.cn.bean.Term;
 import com.cn.service.ServiceAdmin;
@@ -24,13 +25,14 @@ public class AdminElectiveController {
 	@Autowired
 	private ServiceAdmin serviceAdmin;
 	@Autowired
-	private CheckNameUtils checkNameUtils;
-	@Autowired
 	private GetTermUtils getTermUtils;
 	
 	
 	@RequestMapping(value="/adminElective")
 	public String adminElective(HttpServletRequest request) {
+		//显示本学期所有的选课结果
+		List<BeanElective> list = serviceAdmin.showBeanElectiveList();
+		request.setAttribute("list",list);
 		//跳转到查看学生选课结果页面
 		return "admin/admin_elective";
 	}
@@ -100,7 +102,11 @@ public class AdminElectiveController {
 	}
 	
 	@RequestMapping(value="/adminAddElective")
-	public String adminAddElective(HttpServletRequest request,String electiveIds) {
+	public String adminAddElective(HttpServletRequest request,String result) {
+		//将表单传输过来的字符串结果分割成多个选修课编号
+		List<Integer> idList = serviceAdmin.splitElectiveResults(result);
+		//进行添加
+		serviceAdmin.addStuscoreByElectiveidList(idList);
 		
 		//跳转到查看学生选课结果页面
 		return "admin/admin_elective";

@@ -28,7 +28,7 @@
 					<h4>查看学生选课结果</h4>
 				</div>
 				<div class="col-md-12">
-					本学期所有选修课名单如下：（蓝色标记的是已经添加的课程）
+					本学期所有选修课名单如下：（绿色标记的是已经添加的课程）
 				</div>
 				<div class="col-md-12">					
 					<div class="col-md-12">
@@ -48,73 +48,27 @@
 									<td>上课地点</td>
 									<td>课程人数</td>
 								</tr>
+								<c:forEach items="${list }" var="bean">
 								<tr>
 									<td>
-										<input class="hide" value="1" hidden="hidden" readonly="readonly" />
+										<input class="hide" value="${bean.isInserted }" hidden="hidden" readonly="readonly" />
 										<div id="selectBox">
-											选择&nbsp;<input type="radio" class="select" />
+											选择&nbsp;<input type="checkbox" class="select" />
 										</div>
 									</td>
-									<td id="id">201811</td>
-									<td>侵权责任法</td>
-									<td>1-16周</td>
-									<td>2008203</td>
-									<td>李晓敏</td>
-									<td>星期一<br />03-04节</td>
-									<td>19-302</td>
-									<td>50</td>
-								</tr>
-								<tr>
-									<td>
-										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
-										<div id="selectBox">
-											选择&nbsp;<input type="radio" class="select" />
-										</div>
-									</td>
-									<td id="id">201812</td>
-									<td>数据库原理及应用</td>
-									<td>1-16周</td>
-									<td>2006100</td>
-									<td>风清扬</td>
-									<td>星期一<br />03-04节</td>
-									<td>16-301</td>
-									<td>50</td>
-								</tr>
-								<tr>
-									<td>
-										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
-										<div id="selectBox">
-											选择&nbsp;<input type="radio" class="select" />
-										</div>
-									</td>
-									<td id="id">201813</td>
-									<td>数据库原理及应用</td>
-									<td>1-16周</td>
-									<td>2006100</td>
-									<td>风清扬</td>
-									<td>星期一<br />03-04节</td>
-									<td>16-301</td>
-									<td>50</td>
-								</tr>
-								<tr>
-									<td>
-										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
-										<div id="selectBox">
-											选择&nbsp;<input type="radio" class="select" />
-										</div>
-									</td>
-									<td id="id">201814</td>
-									<td>韩语基础</td>
-									<td>1-16周</td>
-									<td>2006100</td>
-									<td>马克龙</td>
-									<td>星期一<br />03-04节</td>
-									<td>16-301</td>
-									<td>50</td>
-								</tr>								
+									<td id="id">${bean.id }</td>
+									<td>${bean.name }</td>
+									<td>${bean.week }</td>
+									<td>${bean.teacherid }</td>
+									<td>${bean.teacher }</td>
+									<td>${bean.time }</td>
+									<td>${bean.place }</td>
+									<td>${bean.number }</td>
+								</tr>									
+								</c:forEach>								
 							</table>
 							<!--用于拼接所有已选择的选课id-->
-							<input id="result" value="" hidden="hidden" readonly="readonly" />							
+							<input id="result" name="result" value="" hidden="hidden" readonly="readonly" />							
 							<div class="col-md-12 col-md-offset-5">
 								<button id="submit" type="submit" class="btn btn-info">
 									<span class="glyphicon glyphicon-check"></span>添加已选择的课程

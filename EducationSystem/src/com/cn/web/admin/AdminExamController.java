@@ -17,7 +17,7 @@ import com.cn.service.ServiceTeacher;
 import com.cn.utils.CheckNameUtils;
 
 /**
- * 	进入考试安排（教师）的控制器
+ * 	进入管理员考试安排管理的控制器
  * @author Sherlock
  *
  */
