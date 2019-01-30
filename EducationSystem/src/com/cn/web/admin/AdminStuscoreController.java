@@ -20,7 +20,7 @@ import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
 /**
- * 	进入学生成绩管理（教师）的控制器
+ * 	进入管理员专业课管理、查询学生成绩的控制器
  * 
  * @author Sherlock
  *

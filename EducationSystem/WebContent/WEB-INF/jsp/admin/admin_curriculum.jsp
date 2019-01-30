@@ -25,19 +25,22 @@
 						<h4>查看班级课程表</h4>
 					</center>
 				</div>
-				<div id="buttonGroup" class="col-md-10 col-md-offset-2">
-					<form action="${pageContext.servletContext.contextPath}/teacherSearchCurriculum" method="post">
-						<div id="term" class="col-md-8 col-md-offset-3">
+				<div id="buttonGroup" class="col-md-12 col-md-offset-1">
+					<form id="curriculum" action="${pageContext.servletContext.contextPath}/adminSearchCurriculum" method="post">
+						<div class="col-md-4">
+							班级编号：<input id="inputId" type="text" name="inputId" />
+						</div>
+						<div id="term" class="col-md-4">
 							学期时间：
-							<select name="termId">
+							<select name="termid">
 								<c:forEach items="${termList }" var="term">
 									<option value="${term.id }">${term.termtime }</option>
 								</c:forEach>
 							</select>
 						</div>
-						<div class="col-md-4 col-md-offset-4">
+						<div class="col-md-2">
 							<button type="submit" class="btn btn-default">
-								<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>查询
+								<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>查询课程表
 							</button>
 						</div>
 					</form>
@@ -57,7 +60,8 @@
 						</div>
 					</c:forEach>
 				</div>
-				<div class="col-md-5">学期时间：${term }</div>			
+				<div class="col-md-8">班级编号：${classesid }</div>
+				<div class="col-md-4">学期时间：${term }</div>
 				<div class="col-md-12">
 					<table class="table table-bordered">
 						<tr>

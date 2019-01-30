@@ -57,6 +57,7 @@
 				<button type="button" id="stuscore" class="col-md-2 btn" style="padding-top: 30px;margin: 5px;">
 					<img src="images/stuscore.png" />
 					<div>
+						专业课录入与<br />
 						学生成绩管理&nbsp;
 						<span class="glyphicon glyphicon-menu-down"></span>
 					</div>

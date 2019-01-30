@@ -19,4 +19,14 @@ $(function() {
 		var curr = $(this).find("p").html();
 		$("tr").eq(lesson).children("td").eq(day).html(curr);
 	});
+	
+	//管理员课程表的事件
+	$("#curriculum").submit(function() {
+		if($("#inputId").val() == "") { //若没有填写班级编号
+			alert("请填写需要查询的班级编号！");
+			return false;
+		} else {
+			return true;
+		}
+	});	
 });

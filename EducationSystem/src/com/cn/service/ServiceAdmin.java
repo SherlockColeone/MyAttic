@@ -7,6 +7,7 @@ import com.cn.bean.BeanElective;
 import com.cn.bean.Cet;
 import com.cn.bean.Classes;
 import com.cn.bean.Courses;
+import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
 import com.cn.bean.Elective;
 import com.cn.bean.Evaluation;
@@ -417,10 +418,25 @@ public interface ServiceAdmin {
 	public boolean addStuscore(Stuscore vo);
 	
 	/**
+	 * 	管理员根据班级id查询所有专业课
+	 * @param classesid 班级id
+	 * @return 专业课集合
+	 */
+	public List<Courses> searchAllCoursesByClassesid(int classesid);
+	
+	/**
 	 * 根据选修课id为每个学生添加学生成绩
 	 * @param idList 选修课id集合
 	 * @return 是否成功添加
 	 */
 	public boolean addStuscoreByElectiveidList(List<Integer> idList);
+	
+	/**
+	 * 查询某个班级一个学期的所有专业课
+	 * @param classesid 班级编号
+	 * @param termi	学期id
+	 * @return	某个班级一个学期的所有课程
+	 */
+	public List<Curriculum> searchCurriculumByClassesidAndTermid(int classesid, int termid);
 
 }

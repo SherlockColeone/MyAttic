@@ -13,6 +13,8 @@ import com.cn.bean.BeanElective;
 import com.cn.bean.Cet;
 import com.cn.bean.Classes;
 import com.cn.bean.Courses;
+import com.cn.bean.CoursesExample;
+import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
 import com.cn.bean.Elective;
 import com.cn.bean.Evaluation;
@@ -645,6 +647,77 @@ public class ServiceAdminImpl implements ServiceAdmin {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public List<Courses> searchAllCoursesByClassesid(int classesid) {
+		CoursesExample example = new CoursesExample();
+		com.cn.bean.CoursesExample.Criteria criteria = example.createCriteria();
+		criteria.andClassesidEqualTo(classesid);
+		return coursesMapper.selectByExample(example);
+	}
+	
+	/**
+	 * 把专业课或选修课转化成课程格式
+	 * 
+	 * @param courses  专业课对象，若为空证明无专业课
+	 * @param elective 选修课对象，若为空证明无选修课
+	 * @return 总课程集合
+	 */
+	private List<Curriculum> curriculumTransform(Courses courses, Elective elective) {
+		List<Curriculum> list = new ArrayList<>();
+		// 专业课程
+		if (courses != null) {
+			// 获取上课节数
+			String time = courses.getTime();
+			// 通过获取节数计算课程大节，获取最后一个字符
+			int i = new Integer(time.substring(4));
+			int lesson = 0;
+			// 当获取到2-8时除以2计算出课程在第几大节
+			if (i != 0) {
+				lesson = i / 2;
+			}
+			// 当获取到0时即为10，属于第五大节
+			else {
+				lesson = 5;
+			}
+			// 获取课程在星期几
+			int day = courses.getDay();
+			// 获取班级名称
+			String classes = classesMapper.selectByPrimaryKey(courses.getClassesid()).getName();
+			Curriculum curr = new Curriculum(courses.getId(), courses.getName(), courses.getWeek(), day, time, lesson,
+					courses.getPlace(), courses.getTeacher(), courses.getClassesid(), courses.getTermid(),
+					courses.getTeacherid(), courses.getId(), 0, classes);
+			list.add(curr);
+		}
+		// 选修课程
+		if (elective != null) {
+			String time = elective.getTime();
+			int i = new Integer(time.substring(4));
+			int lesson = 0;
+			if (i != 0) {
+				lesson = i / 2;
+			} else {
+				lesson = 5;
+			}
+			int day = elective.getDay();
+			Curriculum curr = new Curriculum(elective.getId(), elective.getName(), elective.getWeek(), day, time,
+					lesson, elective.getPlace(), elective.getTeacher(), elective.getTermid(), elective.getTeacherid(),
+					0, elective.getId());
+			list.add(curr);
+		}
+		return list;
+	}	
+	
+	@Override
+	public List<Curriculum> searchCurriculumByClassesidAndTermid(int classesid, int termid) {
+		List<Curriculum> list = new ArrayList<>();
+		//查询所有专业课
+		List<Courses> listCourses = searchAllCoursesByClassesid(classesid);
+		for (Courses courses : listCourses) {
+			list.addAll(curriculumTransform(courses, null));
+		}
+		return list;
 	}
 
 }
