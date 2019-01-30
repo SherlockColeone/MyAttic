@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教师课程表</title>
+		<title>查看班级课程表</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/curriculum.css" />
@@ -22,7 +22,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-8 col-md-offset-2">
 					<center>
-						<h4>教师学期课程表</h4>
+						<h4>查看班级课程表</h4>
 					</center>
 				</div>
 				<div id="buttonGroup" class="col-md-10 col-md-offset-2">
