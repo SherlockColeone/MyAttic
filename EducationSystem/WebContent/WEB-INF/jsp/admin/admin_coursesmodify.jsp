@@ -8,7 +8,7 @@
 		<title>学生课程安排管理</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
-		<link rel="stylesheet" href="css/courses.css" />
+		<link rel="stylesheet" href="css/admin/admin_courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/admin/courses.js"></script>		
@@ -71,7 +71,7 @@
 								<tr>
 									<td>
 										<input type="text" id="id" name="id" value="${courses.id }" class="courses" />
-										<button id="randomid" class="btn btn-info" name="id" type="button" value="0" style="margin-top: 5px;">随机分配编号</button>
+										<button id="randomid" class="btn btn-info" name="id" type="button" value="0">随机分配编号</button>
 									</td>
 									<td>
 										<input type="text" name="name" value="${courses.name }" class="courses" />

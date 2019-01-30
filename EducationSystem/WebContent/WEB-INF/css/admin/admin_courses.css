@@ -1,0 +1,35 @@
+
+#main{
+	margin-top: 15px;
+}
+
+#main div{
+	margin-top: 10px;
+}
+
+table{
+	text-align: center;
+}
+
+option{
+	width: 50px;
+	height: 20px;
+}
+
+#checkAll{
+	width: 15px;
+	height: 15px;	
+}
+
+.select{
+	width: 15px;
+	height: 15px;	
+}
+
+#randomid{
+	margin-top: 5px;
+}
+
+.exam{
+	width: 120px;
+}

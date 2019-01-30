@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/admin/admin/exam.js"></script>
+		<script type="text/javascript" src="js/admin/exam.js"></script>
 	</head>
 
 	<body>
@@ -20,11 +20,16 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-3">
+					<a href="${pageContext.servletContext.contextPath}/adminExamModify" class="btn btn-default">
+						<span class="glyphicon glyphicon-arrow-left"></span>前往考试安排管理
+					</a>
+				</div>
 				<div class="col-md-offset-5">
 					<h4>查看本学期考试安排</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-12 col-md-offset-3">
-					<form id="coursesSearchCurriculum" action="${pageContext.servletContext.contextPath}/adminCheckExam" method="post">
+					<form id="examSearchCurriculum" action="${pageContext.servletContext.contextPath}/adminCheckExam" method="post">
 						<div id="term" class="col-md-4">
 							考试安排编号：<input id="coursesInputId" type="text" name="inputId" />
 						</div>
@@ -47,13 +52,14 @@
 							<td>监考老师编号</td>
 						</tr>
 						<tr>
-							<td>227</td>
-							<td>24</td>
-							<td>2018-06-16</td>
-							<td>9:00-11:00</td>
-							<td>7-203</td>
-							<td>1201</td>
-							<td>2007301</td>
+							<td>${exam.id }</td>
+							<td>${exam.coursesid }</td>
+							<td id="dayexam"></td>
+							<td id="timeexam"></td>
+							<input id="examtime" name="examtime" value="${exam.examtime }" type="text" hidden="hidden" readonly="readonly" />
+							<td>${exam.place }</td>
+							<td>${exam.classesid }</td>
+							<td>${exam.teacherid }</td>
 						</tr>
 					</table>
 				</div>
