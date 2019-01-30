@@ -18,7 +18,7 @@ import com.cn.utils.CheckNameUtils;
 import com.cn.utils.GetTermUtils;
 
 /**
- * 	进入教师课程表的控制器
+ * 	进入管理员查看课程表的控制器
  * @author Sherlock
  *
  */
@@ -34,11 +34,6 @@ public class AdminCurriculumController {
 	
 	public List<Term> termList = new ArrayList<>();
 	
-	/**
-	 * 获取2018-2019第一学期该教师的课表
-	 * @param request 请求
-	 * @return 跳转到教师课程表页面
-	 */
 	@RequestMapping(value="/adminCurriculum")
 	public String adminCurriculum(HttpServletRequest request) {
 		//把学期列表添加到视图中

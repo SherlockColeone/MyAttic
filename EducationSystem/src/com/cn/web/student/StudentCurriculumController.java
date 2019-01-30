@@ -15,6 +15,7 @@ import com.cn.bean.Student;
 import com.cn.bean.Term;
 import com.cn.service.ServiceStudent;
 import com.cn.utils.CheckNameUtils;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	进入学生课程表的控制器
@@ -42,12 +43,12 @@ public class StudentCurriculumController {
 		termList = serviceStudent.searchAllTerm();
 		request.setAttribute("termList", termList);
 		// 查出学期的名字
-		String term = "2018-09-2019-01";
+		String term = GetTermUtils.getCurrentTerm();
 		request.setAttribute("term", term);
 		HttpSession session = request.getSession();
 		//从session域中获取学生对象
 		Student student = (Student) session.getAttribute("student");
-		List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), 20181);
+		List<Curriculum> resultList = serviceStudent.searchCurriculumByStudentidAndTermid(student.getId(), GetTermUtils.getCurrentTermiId());
 		request.setAttribute("resultList", resultList);
 		//跳转到学生课程表页面
 		return "student/student_curriculum";
