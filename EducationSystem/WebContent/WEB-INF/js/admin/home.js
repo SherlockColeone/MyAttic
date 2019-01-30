@@ -69,13 +69,13 @@ $(function() {
 		same();
 		//更改图标
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
-		modify.children("div").html("调课安排管理");
+		modify.children("div").html("考试安排管理");
 		//更改跳转的控制器
-		modify.attr("href","adminExam");
-		check.children("div").html("查看调课安排");
-		check.attr("href","adminCheckExam");
+		modify.attr("href","adminExamModify");
+		check.children("div").html("查看考试安排");
+		check.attr("href","adminExam");
 	});
-				
+	
 	//密码管理的函数
 	$("#password").click(function(){
 		same();

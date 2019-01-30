@@ -24,7 +24,7 @@
 					<h4>查看本学期考试安排</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-12 col-md-offset-3">
-					<form id="coursesSearchCurriculum" action="${pageContext.servletContext.contextPath}/adminCheckExam" method="post">
+					<form id="coursesSearchCurriculum" action="#" method="post">
 						<div id="term" class="col-md-4">
 							考试安排编号：<input id="coursesInputId" type="text" name="inputId" />
 						</div>
