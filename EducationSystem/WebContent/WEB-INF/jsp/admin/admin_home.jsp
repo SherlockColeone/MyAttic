@@ -58,7 +58,7 @@
 					<img src="images/stuscore.png" />
 					<div>
 						专业课录入与<br />
-						学生成绩管理&nbsp;
+						查看学生成绩&nbsp;
 						<span class="glyphicon glyphicon-menu-down"></span>
 					</div>
 				</button>

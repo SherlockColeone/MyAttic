@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>专业课录入</title>
+		<title>班级专业课录入</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/courses.css" />
@@ -32,7 +32,7 @@
 					</div>
 				</div>			
 				<div class="col-md-offset-5">
-					<h4>专业课录入</h4>
+					<h4>班级专业课录入</h4>
 				</div>
 				<div>本学期您任教的课程:</div>
 				<div class="col-md-12">

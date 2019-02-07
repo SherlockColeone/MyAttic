@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>学生成绩管理</title>
+		<title>查看学生成绩</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/courses.css" />
@@ -21,71 +21,62 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<a href="${pageContext.servletContext.contextPath}/teacherStuscore" class="btn btn-default">
-							<span class="glyphicon glyphicon-arrow-left"></span>学生成绩管理页面
-						</a>
-					</div>
-					<div class="col-md-3 col-md-offset-6">
 						<a href="#" class="btn btn-default">
-							留在本页面<span class="glyphicon glyphicon-arrow-right"></span>
+							<span class="glyphicon glyphicon-arrow-left"></span>班级专业课录入页面
 						</a>
 					</div>
-				</div>			
-				<div class="col-md-offset-5">
-					<h4>学生成绩管理</h4>
 				</div>
-				<div>本学期您任教的课程:</div>
+				<div class="col-md-offset-5">
+					<h4>查看学生成绩</h4>
+				</div>
+				<div id="buttonGroup" class="col-md-12 col-md-offset-1">
+					<form id="coursesSearchCurriculum" action="#" method="post">
+						<div id="term" class="col-md-4">
+							学生学号：<input id="coursesInputId" type="text" name="inputId" />
+						</div>
+						<div id="term" class="col-md-4">
+							学期时间：
+							<select name="termid">
+								<option value="20181">2018-09-2019-01</option>
+								<option value="20182">2019-03-2019-07</option>
+								<option value="20191">2019-09-2020-01</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<button id="search" type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-zoom-in"></span>查询学生成绩
+							</button>
+						</div>					
+					</form>
+				</div>
+								
 				<div class="col-md-12">
+					<div>学号：&nbsp;&nbsp;学期时间：</div>
 					<div class="col-md-12">
 						<table class="table table-condensed">
 							<tr>
 								<td>课程编号</td>
 								<td>课程名称</td>
+								<td>总成绩</td>
 								<td>课程性质</td>
-								<td>操作</td>
+								<td>学期时间</td>
 							</tr>
-							<c:forEach items="${list }" var="curr">
-								<tr>
-									<td>${curr.id }</td>
-									<td>${curr.name }</td>
-									<td>
-										<c:if test="${curr.coursesid!=0 }">
-											专业课
-										</c:if>
-										<c:if test="${curr.coursesid==0 }">
-											选修课
-										</c:if>
-									</td>
-									<td>
-										<a href="${pageContext.servletContext.contextPath}/teacherSelectStuscore/${curr.id }/${curr.coursesid }" class="btn" style="background-color: white;">添加/修改成绩</a>
-									</td>
-								</tr>								
-							</c:forEach>
+							<tr>
+								<td>230</td>
+								<td>数据库原理及应用</td>								
+								<td>88</td>
+								<td>专业课</td>
+								<td>专业课</td>
+							</tr>
+							<tr>
+								<td>201812</td>
+								<td>广告鉴赏</td>								
+								<td>96</td>
+								<td>选修课</td>
+								<td>专业课</td>
+							</tr>
 						</table>
 					</div>
-				</div>
-				
-				<div class="col-md-6">
-					已选择的课程：${curriculum }<br />
-					该课程的所有学生：
-				</div>
-				<div class="col-md-12">
-					<table class="table table-hover">
-						<tr>
-							<td>学号</td>
-							<td>班级</td>
-							<td>姓名</td>
-							<td>总成绩</td>						
-						</tr>
-						<c:forEach items="${resultList }" var="score">
-							<tr>
-								<td>${score.studentid }</td>
-								<td>${score.classes }</td>
-								<td>${score.name }</td>
-								<td>${score.score }</td>
-							</tr>							
-						</c:forEach>
-					</table>
 				</div>
 			</div>
 		</div>
