@@ -79,4 +79,15 @@ $(function() {
 			$(this).attr("selected", "selected");
 		}
 	});
+	
+	
+	//查看学生成绩页面的事件
+	$("#stuscoreSearch").submit(function() {
+		if($("#studentid").val() == "") { //若没有填写学号
+			alert("请填写需要查询的学生学号！");
+			return false;
+		} else {
+			return true;
+		}
+	});
 });

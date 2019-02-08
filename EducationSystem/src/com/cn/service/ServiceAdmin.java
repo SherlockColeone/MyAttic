@@ -379,32 +379,32 @@ public interface ServiceAdmin {
 	public Evaluation searchEvaluationByEvaluationid(int evaluationid);
 	
 	/**
-	 * 查找所有选课报名记录
+	 * 	查找所有选课报名记录
 	 * @return 选课报名记录集合
 	 */
 	public List<Tempelective> searchAllTempElective();
 	
 	/**
-	 * 根据选修课编号查找所有选课报名记录
+	 * 	根据选修课编号查找所有选课报名记录
 	 * @return 选课报名记录集合
 	 */
 	public List<Tempelective> searchAllTempElectiveByElectiveid(int electiveid);	
 	
 	/**
-	 * 根据选修课编号查询所有的学生成绩
+	 * 	根据选修课编号查询所有的学生成绩
 	 * @param electiveid 选修课编号
 	 * @return 学生成绩集合
 	 */
 	public List<Stuscore> searchAllStuscoreByElectiveid(int electiveid);
 	
 	/**
-	 * 显示本学期所有的选课结果
+	 * 	显示本学期所有的选课结果
 	 * @return 本学期的选课结果集合
 	 */
 	public List<BeanElective> showBeanElectiveList();
 	
 	/**
-	 * 将表单传输过来的字符串结果分割成多个选修课编号
+	 * 	将表单传输过来的字符串结果分割成多个选修课编号
 	 * @param result 表单的字符串结果
 	 * @return 选修课编号集合
 	 */
@@ -425,18 +425,26 @@ public interface ServiceAdmin {
 	public List<Courses> searchAllCoursesByClassesid(int classesid);
 	
 	/**
-	 * 根据选修课id为每个学生添加学生成绩
+	 * 	根据选修课id为每个学生添加学生成绩
 	 * @param idList 选修课id集合
 	 * @return 是否成功添加
 	 */
 	public boolean addStuscoreByElectiveidList(List<Integer> idList);
 	
 	/**
-	 * 查询某个班级一个学期的所有专业课
+	 * 	查询某个班级一个学期的所有专业课
 	 * @param classesid 班级编号
 	 * @param termi	学期id
 	 * @return	某个班级一个学期的所有课程
 	 */
 	public List<Curriculum> searchCurriculumByClassesidAndTermid(int classesid, int termid);
+	
+	/**
+	 * 	根据学号与学期编号查询所有的学生成绩
+	 * @param studentid 学生学号
+	 * @param termid 学期编号
+	 * @return	某个学生某个学期的所有成绩
+	 */
+	public List<Stuscore> searchAllStuscoreByStudentidAndTermid(int studentid,int termid);
 
 }

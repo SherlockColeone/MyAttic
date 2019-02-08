@@ -93,11 +93,11 @@ $(function() {
 		same();
 		//更改图标
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
-		modify.children("div").html("学生成绩管理");
+		modify.children("div").html("录入班级专业课");
 		//更改跳转的控制器
-		modify.attr("href","adminStuscore");
+		modify.attr("href","adminStuscoremodify");
 		check.children("div").html("查询学生成绩");
-		check.attr("href","adminCheckStuscore");
+		check.attr("href","adminStuscore");
 	});
 						
 	//社会考试安排的函数

@@ -720,4 +720,13 @@ public class ServiceAdminImpl implements ServiceAdmin {
 		return list;
 	}
 
+	@Override
+	public List<Stuscore> searchAllStuscoreByStudentidAndTermid(int studentid, int termid) {
+		StuscoreExample example = new StuscoreExample();
+		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
+		criteria.andStudentidEqualTo(studentid);
+		criteria.andTermidEqualTo(termid);
+		return stuscoreMapper.selectByExample(example);
+	}
+
 }
