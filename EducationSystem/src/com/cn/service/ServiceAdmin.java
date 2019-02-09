@@ -406,9 +406,9 @@ public interface ServiceAdmin {
 	/**
 	 * 	将表单传输过来的字符串结果分割成多个选修课编号
 	 * @param result 表单的字符串结果
-	 * @return 选修课编号集合
+	 * @return 编号集合
 	 */
-	public List<Integer> splitElectiveResults(String result);
+	public List<Integer> splitResults(String result);
 	
 	/**
 	 * 添加学生成绩
@@ -432,6 +432,28 @@ public interface ServiceAdmin {
 	public boolean addStuscoreByElectiveidList(List<Integer> idList);
 	
 	/**
+	 * 	根据班级编号查找所有学生
+	 * @param classesid 班级编号
+	 * @return 学生集合
+	 */
+	public List<Student> searchAllStudentByClassesid(int classesid);
+	
+	/**
+	 * 	根据专业课编号查找所有学生
+	 * @param coursesid 专业课编号
+	 * @return 学生成绩集合
+	 */
+	public List<Stuscore> searchAllStuscoreByCoursesid(int coursesid);	
+	
+	/**
+	 * 	根据专业课id和班级id为每个学生添加学生成绩
+	 * @param idList 专业课id集合
+	 * @param classesid 班级编号
+	 * @return 是否成功添加
+	 */
+	public boolean addStuscoreByElectiveidListAndClassesid(List<Integer> idList,int classesid);
+	
+	/**
 	 * 	查询某个班级一个学期的所有专业课
 	 * @param classesid 班级编号
 	 * @param termi	学期id
@@ -446,5 +468,19 @@ public interface ServiceAdmin {
 	 * @return	某个学生某个学期的所有成绩
 	 */
 	public List<Stuscore> searchAllStuscoreByStudentidAndTermid(int studentid,int termid);
-
+	
+	/**
+	 * 	管理员根据班级id查询所有专业课
+	 * @param classesid 班级id
+	 * @param termid 学期id
+	 * @return 专业课集合
+	 */
+	public List<Courses> searchAllCoursesByClassesidAndTermid(int classesid,int termid);
+	
+	/**
+	 * 	显示某个班级某一学期所有专业课的录入情况
+	 * @return 某个班级某一学期所有专业课的录入情况
+	 */
+	public List<BeanElective> showBeanCoursesList(int classesid,int termid);
+	
 }

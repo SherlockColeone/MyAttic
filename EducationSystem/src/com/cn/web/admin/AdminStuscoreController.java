@@ -1,15 +1,15 @@
 package com.cn.web.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cn.bean.BeanElective;
+import com.cn.bean.Courses;
 import com.cn.bean.Stuscore;
 import com.cn.bean.Term;
 import com.cn.service.ServiceAdmin;
@@ -61,35 +61,35 @@ public class AdminStuscoreController {
 		
 	@RequestMapping(value = "/adminStuscoremodify")
 	public String adminCheckSelectStuscore(HttpServletRequest request) {
-		//重定向到管理员录入专业课页面
+		//跳转到管理员录入专业课页面
 		return "admin/admin_stuscoremodify";
 	}
 	
-	/**
-	 * 	显示已选择课程的所有学生成绩
-	 * 
-	 * @param request 请求
-	 * @return 重定向到教师成绩管理页面
-	 */
-	@RequestMapping(value = "/adminSelectStuscore/{id}/{coursesid}")
-	public String adminSelectStuscore(HttpServletRequest request,@PathVariable("id")Integer id,
-			@PathVariable("coursesid")Integer coursesid) {
-//		if (coursesid!=0) { //选择的是专业课
-//			curriculum = checkNameUtils.searchByCoursesId(id);
-//			//根据专业课id查找所有学生成绩
-//			List<Stuscore> listStuscore = serviceTeacher.searchAllStuScoreByCoursesid(id);
-//			resultList = serviceTeacher.changeStuscoreListIntoBeanStuscoreList(listStuscore);
-//		} else { //选择的是选修课
-//			curriculum = checkNameUtils.searchByElectiveId(id);
-//			//根据选修课id查找所有学生成绩
-//			List<Stuscore> listStuscore = serviceTeacher.searchAllStuScoreByElectiveid(id);
-//			resultList = serviceTeacher.changeStuscoreListIntoBeanStuscoreList(listStuscore);
-//		}
-//		request.setAttribute("curriculum", curriculum);
-//		request.setAttribute("list", list);
-//		request.setAttribute("resultList", resultList);
-		//重定向到教师学生成绩管理页面
-		return "redirect:/adminStuscore";
+	@RequestMapping(value = "/adminStuscoreCheckClassess")
+	public String adminStuscoreCheckClassess(HttpServletRequest request,Integer classesid) {
+		List<Courses> coursesList = serviceAdmin.searchAllCoursesByClassesidAndTermid(classesid, GetTermUtils.getCurrentTermiId());
+		request.setAttribute("coursesList", coursesList);
+		String classesName = checkNameUtils.searchByClassesId(classesid);
+		//设置班级名称
+		request.setAttribute("classesName", classesName);
+		//设置班级编号
+		request.setAttribute("classesid", classesid);
+		//显示专业课录入的情况
+		List<BeanElective> list = serviceAdmin.showBeanCoursesList(classesid,GetTermUtils.getCurrentTermiId());
+		//显示专业课录入的情况
+		request.setAttribute("list",list);
+		//跳转到管理员录入专业课页面
+		return "admin/admin_stuscoremodify";
+	}
+	
+	@RequestMapping(value = "/adminAddStuscore")
+	public String adminAddStuscore(HttpServletRequest request,String result,Integer classesid) {
+		//将表单传输过来的字符串结果分割成多个选修课编号
+		List<Integer> idList = serviceAdmin.splitResults(result);
+		//进行添加		
+		serviceAdmin.addStuscoreByElectiveidListAndClassesid(idList,classesid);
+		//重定向到管理员录入专业课页面
+		return "redirect:adminStuscoremodify";
 	}
 
 }

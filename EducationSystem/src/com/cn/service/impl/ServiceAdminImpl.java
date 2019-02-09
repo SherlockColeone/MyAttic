@@ -24,6 +24,7 @@ import com.cn.bean.Gradecet;
 import com.cn.bean.GradecetExample;
 import com.cn.bean.Major;
 import com.cn.bean.Student;
+import com.cn.bean.StudentExample;
 import com.cn.bean.Stuscore;
 import com.cn.bean.StuscoreExample;
 import com.cn.bean.Teacher;
@@ -613,12 +614,12 @@ public class ServiceAdminImpl implements ServiceAdmin {
 					elective.getTeacher(), time, elective.getPlace(), bean.getNumber());
 			//添加至另一个集合中避免重复
 			listResult.add(bean);
-		}		
+		}
 		return listResult;
 	}
 
 	@Override
-	public List<Integer> splitElectiveResults(String result) {
+	public List<Integer> splitResults(String result) {
 		List<Integer> list = new ArrayList<>();
 		String[] strList = result.split("\\*");
 		for (String string : strList) {
@@ -649,6 +650,38 @@ public class ServiceAdminImpl implements ServiceAdmin {
 		return true;
 	}
 
+	@Override
+	public List<Student> searchAllStudentByClassesid(int classesid) {
+		StudentExample example = new StudentExample();
+		com.cn.bean.StudentExample.Criteria criteria = example.createCriteria();
+		criteria.andClassesidEqualTo(classesid);
+		return studentMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Stuscore> searchAllStuscoreByCoursesid(int coursesid) {
+		StuscoreExample example = new StuscoreExample();
+		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
+		criteria.andCouresidEqualTo(coursesid);
+		return stuscoreMapper.selectByExample(example);
+	}		
+	
+	@Override
+	public boolean addStuscoreByElectiveidListAndClassesid(List<Integer> idList,int classesid) {
+		//遍历所有的课程编号
+		for (Integer coursesid : idList) {
+			//根据班级编号查找所有的学生
+			List<Student> listStudent = searchAllStudentByClassesid(classesid);
+			for (Student student : listStudent) {
+				//设置学生成绩
+				Stuscore stuscore = new Stuscore(student.getId(), checkNameUtils.searchByCoursesId(coursesid),
+						4, GetTermUtils.getCurrentTermiId(), coursesid, 0);
+				stuscoreMapper.insert(stuscore);
+			}
+		}
+		return true;
+	}
+	
 	@Override
 	public List<Courses> searchAllCoursesByClassesid(int classesid) {
 		CoursesExample example = new CoursesExample();
@@ -727,6 +760,37 @@ public class ServiceAdminImpl implements ServiceAdmin {
 		criteria.andStudentidEqualTo(studentid);
 		criteria.andTermidEqualTo(termid);
 		return stuscoreMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Courses> searchAllCoursesByClassesidAndTermid(int classesid, int termid) {
+		CoursesExample example = new CoursesExample();
+		com.cn.bean.CoursesExample.Criteria criteria = example.createCriteria();
+		criteria.andClassesidEqualTo(classesid);
+		criteria.andTermidEqualTo(termid);
+		return coursesMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<BeanElective> showBeanCoursesList(int classesid,int termid) {
+		List<BeanElective> list = new ArrayList<>();
+		List<Courses> listCourses = searchAllCoursesByClassesidAndTermid(classesid, termid);
+		//找到并遍历学期一个班级的所有专业课
+		for (Courses courses : listCourses) {
+			//查找专业课是否已录入Stuscore表中
+			List<Stuscore> isExisted = searchAllStuscoreByCoursesid(courses.getId());
+			int isInserted = 0;//0代表未添加
+			if (isExisted.size()==0) { //不存在
+				isInserted = 1;
+			}
+			//对时间的显示进行处理			
+			String day = checkNameUtils.transformDay(courses.getDay());
+			String time = day+" "+courses.getTime()+"节";
+			BeanElective bean = new BeanElective(isInserted, courses.getId(), courses.getName(), courses.getWeek(), 
+					courses.getTeacherid(), courses.getTeacher(), time, courses.getPlace(), null);
+			list.add(bean);
+		}		
+		return list;
 	}
 
 }

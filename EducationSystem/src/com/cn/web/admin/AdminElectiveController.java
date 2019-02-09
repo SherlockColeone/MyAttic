@@ -103,7 +103,7 @@ public class AdminElectiveController {
 	@RequestMapping(value="/adminAddElective")
 	public String adminAddElective(HttpServletRequest request,String result) {
 		//将表单传输过来的字符串结果分割成多个选修课编号
-		List<Integer> idList = serviceAdmin.splitElectiveResults(result);
+		List<Integer> idList = serviceAdmin.splitResults(result);
 		//进行添加
 		serviceAdmin.addStuscoreByElectiveidList(idList);
 		//跳转到查看学生选课结果页面

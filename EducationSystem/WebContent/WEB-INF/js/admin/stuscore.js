@@ -9,49 +9,41 @@ $(function() {
 		}
 	});	
 	
-	
-	
-	
-	
-	$("#searchCurriculum").submit(function() {
-		if($(".operate[type=radio]:checked").size() < 1) { //若没有选择操作
-			alert("请选择操作！");
-			return false;
-		} else if($(".operate[type=radio]:checked").val() == 1) { //选择添加时不需填写学号或工号
-			return true;
-		} else { //已选择删除或修改
-			if($("#inputId").val() == "") { //若没有填写课程编号
-				alert("请填写需要操作的课程编号！");
-				return false;
-			} else {
-				return true;
-			}
-		}
-	});
-
-	$("#electiveSearchCurriculum").submit(function() {
-		if($("#electiveInputId").val() == "") { //若没有填写课程编号
-			alert("请填写需要操作的课程编号！");
+	$("#classesSearch").submit(function() {
+		if($("#classesid").val() == "") { //若没有填写学号
+			alert("请填写需要查询的班级编号！");
 			return false;
 		} else {
 			return true;
 		}
 	});
-
-	//针对不同操作更改提交的url地址
-	var manageResult = $("#manageResult").val();
-	if(manageResult == 1) { //进行添加操作
-		$("#elective").attr("action", "adminInsertElective");
-	} else if(manageResult == 2) { //进行删除操作
-		$("#elective").attr("action", "adminDeleteElective");
-	} else if(manageResult == 3) { //进行修改操作
-		$("#elective").attr("action", "adminModifyElective");
-	}
 	
-	$("#electiveResult").submit(function() {		
+	//全选/全不选框
+	$("#checkAll").change(function(){
+		if ($(this).prop("checked")) { //若是全选
+			//遍历所有选择框
+			$(".select").each(function(){
+				$(this).prop("checked","checked");
+			});			
+		}
+	});	
+	
+	//遍历输入框
+	$(".hide").each(function(index,value) {
+		if (value.value==0) { //证明该专业课尚未添加			
+			$(this).next("div").attr("display","block");
+		} else if(value.value==1){ //证明该专业课已经添加
+			//清空选择
+			$(this).next("#selectBox").html("");
+			//标记该专业课
+			$(this).parents("tr").attr("class","success");
+		}
+	});
+	
+	$("#coursesResult").submit(function() {		
 		var str = "";
 		var i = 0;
-		//遍历所有的选修课
+		//遍历所有的专业课
 		$("tr").each(function(){
 			if ($(this).children("td").children("div").children(".select").prop("checked")) { //若该选择框已经选择
 				//获取编号并进行拼接
@@ -64,9 +56,9 @@ $(function() {
 			//拼接起来的id字符串赋值给输入框
 			var ids = str;
 			$("#result").val(ids);
-			if(confirm("确定提交该课程的信息？")) {
-				alert("提交成功！");
-				return false;
+			if(confirm("确定录入已选择的专业课？")) {
+				alert("录入成功！");
+				return true;
 			} else {
 				return false;
 			}			
@@ -76,34 +68,4 @@ $(function() {
 		}
 	});
 	
-	//全选/全不选框
-	$("#checkAll").change(function(){
-		if ($(this).prop("checked")) { //若是全选
-			//遍历所有选择框
-			$(".select").each(function(){
-				$(this).prop("checked","checked");
-			});			
-		}
-	});
-	
-	$("#dontCheck").change(function(){
-		if ($(this).prop("checked")) { //若是全选
-			//遍历所有选择框
-			$(".select").each(function(){
-				$(this).removeAttr("checked");
-			});				
-		}
-	});	
-	
-	//遍历输入框
-	$(".hide").each(function(index,value) {
-		if (value.value==0) { //证明该选修课尚未添加			
-			$(this).next("div").attr("display","block");
-		} else if(value.value==1){ //证明该选修课已经添加
-			//清空选择
-			$(this).next("#selectBox").html("");
-			//标记该选修课
-			$(this).parents("tr").attr("class","success");
-		}
-	});	
 });

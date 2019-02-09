@@ -22,18 +22,30 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<a href="#" class="btn btn-default">
+						<a href="${pageContext.servletContext.contextPath}/adminStuscore" class="btn btn-default">
 							<span class="glyphicon glyphicon-arrow-left"></span>查看学生成绩页面
 						</a>
 					</div>
 				</div>
 				<div class="col-md-offset-5">
 					<h4>班级专业课录入</h4>
+				</div>				
+				<div id="buttonGroup" class="col-md-12 col-md-offset-3">
+					<form id="classesSearch" action="${pageContext.servletContext.contextPath}/adminStuscoreCheckClassess" method="post">
+						<div id="classes" class="col-md-4">
+							班级编号：<input id="classesid" type="text" name="classesid" />
+						</div>
+						<div class="col-md-4">
+							<button id="search" type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-zoom-in"></span>查询班级
+							</button>
+						</div>
+					</form>
 				</div>
-				<div>计科1501班本学期的所有专业课：</div>
+				<div>${classesName }本学期的所有专业课：</div>
 				<div class="col-md-12">
 					<div class="col-md-12">
-						<form id="coursesResult" action="#" method="post">
+						<form id="coursesResult" action="${pageContext.servletContext.contextPath}/adminAddStuscore" method="post">
 							<table class="table table-condensed">
 								<tr>
 									<td>
@@ -47,42 +59,30 @@
 									<td>上课时间</td>
 									<td>上课地点</td>
 								</tr>
+								<c:forEach items="${list }" var="bean">
 								<tr>
 									<td>
-										<input class="hide" value="1" hidden="hidden" readonly="readonly" />
+										<input class="hide" value="${bean.isInserted }" hidden="hidden" readonly="readonly" />
 										<div id="selectBox">
 											选择&nbsp;<input type="checkbox" class="select" />
 										</div>
 									</td>
-									<td id="id">201811</td>
-									<td>侵权责任法</td>
-									<td>1-16周</td>
-									<td>2008203</td>
-									<td>李晓敏</td>
-									<td>星期一&nbsp;03-04节</td>
-									<td>19-302</td>
-								</tr>
-								<tr>
-									<td>
-										<input class="hide" value="0" hidden="hidden" readonly="readonly" />
-										<div id="selectBox">
-											选择&nbsp;<input type="checkbox" class="select" />
-										</div>
-									</td>
-									<td id="id">201812</td>
-									<td>数据库原理及应用</td>
-									<td>1-16周</td>
-									<td>2006100</td>
-									<td>风清扬</td>
-									<td>星期一&nbsp;03-04节</td>
-									<td>16-301</td>
-								</tr>
+									<td id="id">${bean.id }</td>
+									<td>${bean.name }</td>
+									<td>${bean.week }</td>
+									<td>${bean.teacherid }</td>
+									<td>${bean.teacher }</td>
+									<td>${bean.time }</td>
+									<td>${bean.place }</td>
+								</tr>								
+								</c:forEach>
 							</table>
-							<!--用于拼接所有已选择的选课id-->
+							<!--用于拼接所有已选择的专业课id与班级id-->
 							<input id="result" name="result" value="" hidden="hidden" readonly="readonly" />							
+							<input id="classesid" name="classesid" value="${classesid }" hidden="hidden" readonly="readonly" />
 							<div class="col-md-12 col-md-offset-5">
 								<button id="submit" type="submit" class="btn btn-info">
-									<span class="glyphicon glyphicon-check"></span>添加已选择的课程
+									<span class="glyphicon glyphicon-check"></span>录入已选择的专业课
 								</button>
 							</div>
 						</form>
