@@ -70,7 +70,7 @@
 					该课程的所有学生：
 				</div>
 				<div class="col-md-12">
-					<form action="#" method="post">
+					<form id="upload" action="${pageContext.servletContext.contextPath}/teacherModifyStuscore" method="post">
 						<table class="table table-hover">
 							<tr>
 								<td>学号</td>
@@ -80,12 +80,13 @@
 								<td>期末成绩</td>
 								<td>总成绩</td>						
 							</tr>
+							<input name="curriculumId" type="text" value="${curriculumId }" hidden="hidden" readonly="readonly" />
+							<input name="type" type="text" value="${type }" hidden="hidden" readonly="readonly" />
 							<c:forEach items="${resultList }" var="score">
 								<tr>
 									<td>
 										${score.studentid }
-										<input name="studentid" type="text" value="${score.studentid }" hidden="hidden" readonly="readonly" />
-										<input name="curriculumId" type="text" value="${score.curriculumId }" hidden="hidden" readonly="readonly" />
+										<input id="studentid" name="studentid" type="text" value="${score.studentid }" hidden="hidden" readonly="readonly" />
 									</td>
 									<td>${score.classes }</td>
 									<td>${score.name }</td>
@@ -96,12 +97,13 @@
 										<input name="endterm" type="text" value="${score.endterm }" />
 									</td>
 									<td>
-										<input name="score" type="text" value="${score.score }" />
+										<input id="score" name="score" type="text" value="${score.score }" />
 									</td>
 								</tr>							
 							</c:forEach>
 						</table>
 						<div class="col-md-4 col-md-offset-5">
+							<input id="result" name="result" type="text" value="" hidden="hidden" readonly="readonly" />
 							<button id="submit" type="submit" class="btn btn-default">
 								<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>上传成绩
 							</button>
