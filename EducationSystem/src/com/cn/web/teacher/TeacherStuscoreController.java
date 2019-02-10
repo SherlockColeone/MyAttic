@@ -39,6 +39,10 @@ public class TeacherStuscoreController {
 	private List<BeanStuscore> resultList = new ArrayList<>();
 	// 用于显示已选择的课程
 	private String curriculum = "";
+	//用于显示课程编号
+	private int curriculumId = 0;
+	//用于显示课程类型
+	private int type = 2;
 
 	/**
 	 * 显示该教师目前学期的所有课程
@@ -57,6 +61,14 @@ public class TeacherStuscoreController {
 		request.setAttribute("curriculum", curriculum);
 		request.setAttribute("list", list);
 		request.setAttribute("resultList", resultList);
+		request.setAttribute("curriculumId", curriculumId);
+		request.setAttribute("type", type);
+		//将该五个变量设置为初始值，避免其他方法调用已存入的值
+		list = new ArrayList<>();
+		resultList = new ArrayList<>();
+		curriculum = "";
+		curriculumId = 0;
+		type = 2;
 		// 跳转到教师学生成绩管理页面
 		return "teacher/teacher_modifystuscore";
 	}
@@ -76,22 +88,20 @@ public class TeacherStuscoreController {
 			List<Stuscore> listStuscore = serviceTeacher.searchAllStuScoreByCoursesid(id);
 			resultList = serviceTeacher.changeStuscoreListIntoBeanStuscoreList(listStuscore);
 			// 设置专业课标记，0为专业课
-			request.setAttribute("type", 0);
+			type = 0;
 		} else { // 选择的是选修课
 			curriculum = checkNameUtils.searchByElectiveId(id);
 			// 根据选修课id查找所有学生成绩
 			List<Stuscore> listStuscore = serviceTeacher.searchAllStuScoreByElectiveid(id);
 			resultList = serviceTeacher.changeStuscoreListIntoBeanStuscoreList(listStuscore);
 			// 设置选修课标记，1为选修课
-			request.setAttribute("type", 1);
+			type = 1;
 		}
 		// 设置课程名称
 		request.setAttribute("curriculum", curriculum);
 		// 设置课程id
-		request.setAttribute("curriculumId", id);
-		request.setAttribute("list", list);
-		request.setAttribute("resultList", resultList);
-		// 重定向到教师学生成绩管理页面
+		curriculumId = id;
+		// 重定向到教师学生成绩管理页面（由于该方法的url已改变，不能用跳转）
 		return "redirect:/teacherStuscore";
 	}
 
@@ -105,9 +115,15 @@ public class TeacherStuscoreController {
 	 * @return 跳转到教师成绩查询页面
 	 */
 	@RequestMapping(value = "/teacherModifyStuscore")
-	public String teacherModifyStuscore(HttpServletRequest request, Integer curriculumId, Integer type, String result) {
-		
-		
+	public String teacherModifyStuscore(HttpServletRequest request, Integer type, Integer curriculumId, 
+			String result) {
+		if (type==0) { //专业课
+			//上传专业课成绩
+			serviceTeacher.modifyStuScoreByCoursesidAndResult(curriculumId, result);
+		} else if(type==1) { //选修课
+			//上传选修课成绩
+			serviceTeacher.modifyStuScoreByElectiveidAndResult(curriculumId, result);
+		}		
 		return "redirect:/teacherCheckStuscore";
 	}
 
@@ -128,6 +144,10 @@ public class TeacherStuscoreController {
 		request.setAttribute("curriculum", curriculum);
 		request.setAttribute("list", list);
 		request.setAttribute("resultList", resultList);
+		//将该三个变量设置为初始值，避免其他方法调用已存入的值
+		list = new ArrayList<>();
+		resultList = new ArrayList<>();
+		curriculum = "";
 		// 跳转到教师查询成绩页面
 		return "teacher/teacher_checkstuscore";
 	}
@@ -152,10 +172,7 @@ public class TeacherStuscoreController {
 			List<Stuscore> listStuscore = serviceTeacher.searchAllStuScoreByElectiveid(id);
 			resultList = serviceTeacher.changeStuscoreListIntoBeanStuscoreList(listStuscore);
 		}
-		request.setAttribute("curriculum", curriculum);
-		request.setAttribute("list", list);
-		request.setAttribute("resultList", resultList);
-		// 重定向到教师学生查询成绩页面
+		// 重定向到教师学生查询成绩页面（由于该方法的url已改变，不能用跳转）
 		return "redirect:/teacherCheckStuscore";
 	}
 }

@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/teacher/stuscore.js"></script>
 	</head>
 
 	<body>
@@ -57,7 +58,7 @@
 										</c:if>
 									</td>
 									<td>
-										<a href="${pageContext.servletContext.contextPath}/teacherSelectStuscore/${curr.id }/${curr.coursesid }" class="btn" style="background-color: white;">添加/修改成绩</a>
+										<a href="${pageContext.servletContext.contextPath}/teacherCheckSelectStuscore/${curr.id }/${curr.coursesid }" class="btn" style="background-color: white;">查看</a>
 									</td>
 								</tr>								
 							</c:forEach>

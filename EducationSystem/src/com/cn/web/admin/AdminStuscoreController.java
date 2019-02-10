@@ -85,7 +85,7 @@ public class AdminStuscoreController {
 	@RequestMapping(value = "/adminAddStuscore")
 	public String adminAddStuscore(HttpServletRequest request,String result,Integer classesid) {
 		//将表单传输过来的字符串结果分割成多个选修课编号
-		List<Integer> idList = serviceAdmin.splitResults(result);
+		List<Integer> idList = serviceAdmin.splitResult(result);
 		//进行添加		
 		serviceAdmin.addStuscoreByElectiveidListAndClassesid(idList,classesid);
 		//重定向到管理员录入专业课页面

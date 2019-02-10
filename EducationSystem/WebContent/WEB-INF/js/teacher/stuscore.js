@@ -1,11 +1,18 @@
 $(function() {
 	$("#upload").submit(function() {
 		var str = "";
+		var i = 0;
 		//遍历所有的成绩
-		$("tr").each(function() {
-			var studentid = $(this).children("td").children("#studentid").val();
-			var score = $(this).children("td").children("#score").val();
-			str = str + studentid + "^" + score + "*";
+		$(".foreach").each(function() {
+			if (i>0) {
+				var studentid = $(this).children("td").children("#studentid").val();
+				var score = $(this).children("td").children("#score").val();
+				if(score==""){ //当没有填写成绩时
+					score = 0;
+				}				
+				str = str + studentid + "^" + score + "*";
+			}
+			i++;
 		});
 		//拼接起来的字符串赋值给输入框
 		var result = str;

@@ -408,7 +408,7 @@ public interface ServiceAdmin {
 	 * @param result 表单的字符串结果
 	 * @return 编号集合
 	 */
-	public List<Integer> splitResults(String result);
+	public List<Integer> splitResult(String result);
 	
 	/**
 	 * 添加学生成绩

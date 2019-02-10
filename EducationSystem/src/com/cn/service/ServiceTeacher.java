@@ -141,14 +141,39 @@ public interface ServiceTeacher {
 	 * @param list 一门专业课的学生成绩
 	 * @return 是否成功上传
 	 */
-	public boolean modifyStuScoreByCoursesid(List<BeanStuscore> list);
+	public boolean modifyCoursesStuScoreByBeanStuscoreList(List<BeanStuscore> list);
 	
 	/**
 	 * 	上传一门选修课的成绩
 	 * @param list 一门选修课的学生成绩
 	 * @return 是否成功上传
 	 */
-	public boolean modifyStuScoreByElectiveid(List<BeanStuscore> list);
+	public boolean modifyElectiveStuScoreByStuscoreList(List<BeanStuscore> list);
+
+	/**
+	 * 	将表单传输过来的字符串结果分割成学号与成绩的集合
+	 * @param result 表单的字符串结果
+	 * @return 学生成绩集合
+	 */
+	public List<Stuscore> splitResult(String result);	
+	
+	/**
+	 * 	根据专业课编号上传一门专业课的成绩
+	 * 
+	 * @param coursesid 专业课id
+	 * @param result 用字符串拼接起来的学号与成绩
+	 * @return 是否成功上传
+	 */
+	public boolean modifyStuScoreByCoursesidAndResult(int coursesid,String result);
+	
+	/**
+	 * 	根据选修课编号上传一门选修课的成绩
+	 * 
+	 * @param electiveid 选修课id
+	 * @param result 用字符串拼接起来的学号与成绩
+	 * @return 是否成功上传
+	 */
+	public boolean modifyStuScoreByElectiveidAndResult(int electiveid,String result);		
 	
 	/**
 	 * 	查看某位教师的所有教学评价

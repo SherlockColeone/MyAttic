@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/teacher/stuscore.js"></script>
 	</head>
 
 	<body>
@@ -72,7 +73,7 @@
 				<div class="col-md-12">
 					<form id="upload" action="${pageContext.servletContext.contextPath}/teacherModifyStuscore" method="post">
 						<table class="table table-hover">
-							<tr>
+							<tr class="foreach">
 								<td>学号</td>
 								<td>班级</td>
 								<td>姓名</td>
@@ -83,7 +84,7 @@
 							<input name="curriculumId" type="text" value="${curriculumId }" hidden="hidden" readonly="readonly" />
 							<input name="type" type="text" value="${type }" hidden="hidden" readonly="readonly" />
 							<c:forEach items="${resultList }" var="score">
-								<tr>
+								<tr class="foreach">
 									<td>
 										${score.studentid }
 										<input id="studentid" name="studentid" type="text" value="${score.studentid }" hidden="hidden" readonly="readonly" />

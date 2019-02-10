@@ -619,7 +619,7 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	}
 
 	@Override
-	public List<Integer> splitResults(String result) {
+	public List<Integer> splitResult(String result) {
 		List<Integer> list = new ArrayList<>();
 		String[] strList = result.split("\\*");
 		for (String string : strList) {

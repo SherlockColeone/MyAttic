@@ -310,7 +310,7 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public boolean modifyStuScoreByCoursesid(List<BeanStuscore> list) {
+	public boolean modifyCoursesStuScoreByBeanStuscoreList(List<BeanStuscore> list) {
 		int i = 0;
 		StuscoreExample example = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
@@ -339,7 +339,7 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 	}
 
 	@Override
-	public boolean modifyStuScoreByElectiveid(List<BeanStuscore> list) {
+	public boolean modifyElectiveStuScoreByStuscoreList(List<BeanStuscore> list) {
 		int i = 0;
 		StuscoreExample example = new StuscoreExample();
 		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
@@ -367,6 +367,86 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		}
 	}
 
+	@Override
+	public List<Stuscore> splitResult(String result) {
+		List<Stuscore> list = new ArrayList<>();		
+		//根据 * 分割出每一个学号加成绩
+		String[] strList = result.split("\\*");
+		for (String string : strList) {
+			//将学生成绩根据 ^ 分割学号和成绩
+			String[] scoreList = string.split("\\^");
+			Stuscore stuscore = new Stuscore();
+			//设置学号
+			stuscore.setStudentid(new Integer(scoreList[0]));
+			//设置成绩
+			stuscore.setScore(scoreList[1]);
+			list.add(stuscore);			
+		}
+		return list;
+	}
+
+	@Override
+	public boolean modifyStuScoreByCoursesidAndResult(int coursesid, String result) {
+		int i = 0;
+		//将拼接的字符串结果分割并得到学生成绩集合
+		List<Stuscore> list = splitResult(result);
+		for (Stuscore stuscore : list) {
+			// 根据专业课id和学号查出该学生该课程的成绩
+			StuscoreExample example = new StuscoreExample();
+			com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();			
+			criteria.andCouresidEqualTo(coursesid);
+			criteria.andStudentidEqualTo(stuscore.getStudentid());
+			List<Stuscore> listStuscore = stuscoreMapper.selectByExample(example);
+			String strScore = stuscore.getScore();
+			stuscore = listStuscore.get(0);
+			// 设置成绩
+			stuscore.setScore(strScore);			
+			// 计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
+			Integer intScore = new Integer(strScore);
+			Double point = new Double((intScore - 50) + ((intScore % 10) / 10));
+			// 设置绩点
+			stuscore.setPoint(point);
+			// 修改数据库中的成绩数据
+			i = stuscoreMapper.updateByPrimaryKey(stuscore);
+		}
+		if (i > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean modifyStuScoreByElectiveidAndResult(int electiveid, String result) {
+		int i = 0;
+		StuscoreExample example = new StuscoreExample();
+		com.cn.bean.StuscoreExample.Criteria criteria = example.createCriteria();
+		//将拼接的字符串结果分割并得到学生成绩集合
+		List<Stuscore> list = splitResult(result);		
+		for (Stuscore stuscore : list) {
+			// 根据选修课id和学号查出该学生该课程的成绩
+			criteria.andElectiveidEqualTo(electiveid);
+			criteria.andStudentidEqualTo(stuscore.getStudentid());
+			List<Stuscore> listStuscore = stuscoreMapper.selectByExample(example);
+			String strScore = stuscore.getScore();
+			stuscore = listStuscore.get(0);			
+			// 设置成绩
+			stuscore.setScore(strScore);
+			// 计算绩点。绩点计算公式：绩点=（成绩-50）+（成绩%10 /10）
+			Integer score = new Integer(strScore);
+			Double point = new Double((score - 50) + ((score % 10) / 10));
+			// 设置绩点
+			stuscore.setPoint(point);
+			// 修改数据库中的成绩数据
+			i = stuscoreMapper.updateByPrimaryKey(stuscore);
+		}
+		if (i > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+	
 	@Override
 	public List<Evaluation> searchAllEvaluationByTeacherid(int teacherid) {
 		EvaluationExample example = new EvaluationExample();
