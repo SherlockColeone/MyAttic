@@ -15,7 +15,7 @@ import com.cn.bean.Gradecet;
 import com.cn.service.ServiceTeacher;
 
 /**
- * 	进入教师社会考试的控制器
+ * 	管理员社会考试安排的控制器
  * @author Sherlock
  *
  */
@@ -30,7 +30,7 @@ public class AdminCetController {
 	BeanCet beancet = new BeanCet();
 		
 	/**
-	 * 进入教师社会考试管理页面
+	 * 	进入教师社会考试管理页面
 	 * @param request 请求
 	 * @return 跳转到教师社会考试管理页面
 	 */
@@ -45,7 +45,7 @@ public class AdminCetController {
 	}
 	
 	/**
-	 * 查找某个学生某次社会考试成绩
+	 * 	查找某个学生某次社会考试成绩
 	 * @param request 请求
 	 * @param cetid 社会考试id
 	 * @param studentid 学号

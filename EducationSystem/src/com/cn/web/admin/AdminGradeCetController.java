@@ -15,7 +15,7 @@ import com.cn.bean.Gradecet;
 import com.cn.service.ServiceTeacher;
 
 /**
- * 	进入教师社会考试的控制器
+ * 	管理员社会考试成绩管理的控制器
  * @author Sherlock
  *
  */

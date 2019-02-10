@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>社会考试成绩管理</title>
+		<title>查看社会考试成绩</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/courses.css" />
@@ -21,7 +21,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-offset-5">
-					<h4>社会考试成绩管理</h4>
+					<h4>查看社会考试成绩</h4>
 				</div>
 				<div class="col-md-12">
 					<div id="content" hidden="hidden">
