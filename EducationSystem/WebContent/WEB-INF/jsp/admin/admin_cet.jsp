@@ -20,6 +20,13 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-12">
+					<div class="col-md-3">
+						<a href="${pageContext.servletContext.contextPath}/adminCheckCet" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-left"></span>查看社会考试安排页面
+						</a>
+					</div>
+				</div>
 				<div class="col-md-offset-5">
 					<h4>社会考试安排管理</h4>
 				</div>
@@ -31,45 +38,59 @@
 							<td>需要查询的学生学号</td>
 							<td>操作</td>
 						</tr>
-						<c:forEach items="${list }" var="cet">
-							<form action="${pageContext.servletContext.contextPath}/teacherCheckGradecet" method="post">
-								<tr>
-									<td hidden>
-										<input type="text" name="cetid" value="${cet.id }" hidden="hidden" readonly="readonly" />
-									</td>
-									<td class="name">${cet.cetname }</td>
-									<td class="time">${cet.cettime }</td>
-									<td class="qualification">
-										<input type="text" name="studentid" />
-									</td>
-									<td class="apply">
-										<button type="submit" class="btn" style="background-color: white;">查询成绩</button>
-									</td>
-								</tr>
-							</form>							
+						<c:forEach items="" var="">
+						
 						</c:forEach>
+						<form action="#" method="post">
+							<tr>
+								<td hidden="hidden">
+									<input class="cetid" type="text" name="cetId" value="201864" hidden="hidden" readonly="readonly" />
+								</td>
+								<td>CET-4</td>
+								<td>2018-06-16</td>
+								<td>
+									<input class="id" type="text" name="studentid" />
+								</td>
+								<td class="apply">
+									<button id="cetSubmit" type="submit" class="btn" style="background-color: white;">查询成绩</button>
+								</td>
+							</tr>
+						</form>
 					</table>
 				</div>
 
-				<div class="col-md-6">
-					社会考试名称：${beancet.name }<br />
-					社会考试时间：${beancet.time }
-				</div>
-				<div class="col-md-12">
-					<table class="table table-striped">
-						<tr>
-							<td>班级</td>
-							<td>姓名</td>
-							<td>学号</td>
-							<td>成绩</td>
-						</tr>
-						<tr>
-							<td>${beancet.classes }</td>
-							<td>${beancet.studentname }</td>
-							<td>${beancet.studentid }</td>
-							<td>${beancet.score }</td>
-						</tr>
-					</table>
+				<div id="result" class="col-md-12" style="display: none;">
+					<div class="col-md-6">
+						社会考试名称：CET-6<br /> 社会考试时间：2018-06-16
+					</div>
+					<div class="col-md-12">
+						<form id="cet" action="#" method="post">
+							<table class="table table-striped">
+								<tr>								
+									<td>准考证号</td>
+									<td>姓名</td>
+									<td>社会考试时间</td>
+									<td>社会考试地点</td>
+								</tr>
+								<tr>
+									<td>
+										2018620103
+										<input id="studentid" type="text" name="studentid" value="2018620103" hidden="hidden" readonly="readonly" />
+									</td>
+									<td>成军局</td>
+									<td>9:00-11:00</td>
+									<td>
+										<input id="place" type="text" name="place" value="7-203" />
+									</td>
+								</tr>
+							</table>
+							<div class="col-md-12 col-md-offset-5">
+								<button id="submit" type="submit" class="btn btn-success">
+									<span class="glyphicon glyphicon-ok"></span>提交社会考试安排
+								</button>
+							</div>
+						</form>
+					</div>					
 				</div>
 			</div>
 		</div>
