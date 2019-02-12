@@ -41,6 +41,9 @@
 							<td>社会考试时间</td>
 							<td>需要查询的考生号</td>
 						</tr>
+						<c:forEach items="${list }" var="gradecet">
+						
+						</c:forEach>						
 						<form id="cetSubmit" action="#" method="post">
 							<tr>
 								<td hidden="hidden">
@@ -48,32 +51,6 @@
 								</td>
 								<td>CET-4</td>
 								<td>2018-06-16</td>
-								<td>
-									<input class="id" type="text" name="id" />
-									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
-								</td>
-							</tr>
-						</form>
-						<form id="cetSubmit" action="#" method="post">
-							<tr>
-								<td hidden="hidden">
-									<input class="cetid" type="text" name="cetid" value="201864" hidden="hidden" readonly="readonly" />
-								</td>
-								<td>CET-6</td>
-								<td>2018-06-16</td>
-								<td>
-									<input class="id" type="text" name="id" />
-									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
-								</td>
-							</tr>
-						</form>
-						<form id="cetSubmit" action="#" method="post">
-							<tr>
-								<td hidden="hidden">
-									<input class="cetid" type="text" name="cetid" value="201864" hidden="hidden" readonly="readonly" />
-								</td>
-								<td>计算机二级</td>
-								<td>2018-03-24</td>
 								<td>
 									<input class="id" type="text" name="id" />
 									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
