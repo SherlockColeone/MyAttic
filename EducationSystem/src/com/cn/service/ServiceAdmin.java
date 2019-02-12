@@ -6,6 +6,7 @@ import com.cn.bean.Admin;
 import com.cn.bean.BeanElective;
 import com.cn.bean.Cet;
 import com.cn.bean.Classes;
+import com.cn.bean.Classroom;
 import com.cn.bean.Courses;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
@@ -482,5 +483,33 @@ public interface ServiceAdmin {
 	 * @return 某个班级某一学期所有专业课的录入情况
 	 */
 	public List<BeanElective> showBeanCoursesList(int classesid,int termid);
+	
+	/**
+	 * 根据学期id查找所有社会考试
+	 * @param termid 学期id
+	 * @return 社会考试集合
+	 */
+	public List<Cet> searchAllCetByTermid(int termid);
+	
+	/**
+	 * 根据学生学号和社会考试id查找社会考试成绩
+	 * @param studentid 学号
+	 * @param cetid 社会考试id
+	 * @return 社会考试成绩
+	 */
+	public Gradecet searchGradecetByStudentidAndCetid(int studentid,int cetid);
+	
+	/**
+	 * 根据课室id查找课室
+	 * @param classroomid 课室id
+	 * @return 课室对象
+	 */
+	public Classroom searchClassroomByClassroomid(int classroomid);
+	
+	/**
+	 * 查找所有课室
+	 * @return 课室集合
+	 */
+	public List<Classroom> searchAllClassroom();
 	
 }

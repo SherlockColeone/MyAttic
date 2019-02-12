@@ -31,4 +31,12 @@ $(function() {
 			return false;
 		}
 	});
+	
+	//下拉框的默认值问题
+	$("option").each(function() {
+		var defaultValue = $(this).parent("select").next("input");
+		if($(this).val() == defaultValue.val()) {
+			$(this).attr("selected", "selected");
+		}
+	});
 });

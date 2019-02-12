@@ -38,24 +38,23 @@
 							<td>需要查询的学生学号</td>
 							<td>操作</td>
 						</tr>
-						<c:forEach items="" var="">
-						
-						</c:forEach>
-						<form action="#" method="post">
+						<c:forEach items="${list }" var="cet">
+						<form action="${pageContext.servletContext.contextPath}/adminSelectCetByCetidAndStudentidForCet" method="post">
 							<tr>
 								<td hidden="hidden">
-									<input class="cetid" type="text" name="cetId" value="201864" hidden="hidden" readonly="readonly" />
+									<input class="cetid" type="text" name="cetid" value="${cet.id}" hidden="hidden" readonly="readonly" />
 								</td>
-								<td>CET-4</td>
-								<td>2018-06-16</td>
+								<td>${cet.cetname}</td>
+								<td>${cet.cettime}</td>
 								<td>
 									<input class="id" type="text" name="studentid" />
 								</td>
 								<td class="apply">
-									<button id="cetSubmit" type="submit" class="btn" style="background-color: white;">查询成绩</button>
+									<button id="cetSubmit" type="submit" class="btn" style="background-color: white;">查询</button>
 								</td>
 							</tr>
 						</form>
+						</c:forEach>
 					</table>
 				</div>
 
@@ -64,7 +63,7 @@
 						社会考试名称：CET-6<br /> 社会考试时间：2018-06-16
 					</div>
 					<div class="col-md-12">
-						<form id="cet" action="#" method="post">
+						<form id="cet" action="${pageContext.servletContext.contextPath}/adminModifyCet" method="post">
 							<table class="table table-striped">
 								<tr>								
 									<td>准考证号</td>
@@ -74,13 +73,18 @@
 								</tr>
 								<tr>
 									<td>
-										2018620103
-										<input id="studentid" type="text" name="studentid" value="2018620103" hidden="hidden" readonly="readonly" />
+										${gradecet.studentid }
+										<input id="studentid" type="text" name="studentid" value="${gradecet.studentid }" hidden="hidden" readonly="readonly" />
 									</td>
-									<td>成军局</td>
-									<td>9:00-11:00</td>
+									<td>${studentName }</td>
+									<td>${gradecet.cettime }</td>
 									<td>
-										<input id="place" type="text" name="place" value="7-203" />
+										<select id="classroomid" name="classroomid" class="form-control">
+											<c:forEach items="${classroomList }" var="classroom">
+												<option value="${classroom.id }">${classroom.name }</option>
+											</c:forEach>
+										</select>
+										<input id="place" type="text" name="place" value="${classroom }" hidden="hidden" readonly="readonly" />
 									</td>
 								</tr>
 							</table>

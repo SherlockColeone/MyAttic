@@ -11,7 +11,10 @@ import com.cn.bean.AdminExample;
 import com.cn.bean.AdminExample.Criteria;
 import com.cn.bean.BeanElective;
 import com.cn.bean.Cet;
+import com.cn.bean.CetExample;
 import com.cn.bean.Classes;
+import com.cn.bean.Classroom;
+import com.cn.bean.ClassroomExample;
 import com.cn.bean.Courses;
 import com.cn.bean.CoursesExample;
 import com.cn.bean.Curriculum;
@@ -33,6 +36,7 @@ import com.cn.bean.TempelectiveExample;
 import com.cn.dao.AdminMapper;
 import com.cn.dao.CetMapper;
 import com.cn.dao.ClassesMapper;
+import com.cn.dao.ClassroomMapper;
 import com.cn.dao.CoursesMapper;
 import com.cn.dao.CurriculumarrangeMapper;
 import com.cn.dao.ElectiveMapper;
@@ -85,6 +89,8 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	private CheckNameUtils checkNameUtils;
 	@Autowired
 	private StuscoreMapper stuscoreMapper;
+	@Autowired
+	private ClassroomMapper classroomMapper;
 	
 
 	@Override
@@ -791,6 +797,34 @@ public class ServiceAdminImpl implements ServiceAdmin {
 			list.add(bean);
 		}		
 		return list;
+	}
+
+	@Override
+	public List<Cet> searchAllCetByTermid(int termid) {
+		CetExample example = new CetExample();
+		com.cn.bean.CetExample.Criteria criteria = example.createCriteria();
+		criteria.andTermidEqualTo(termid);
+		return cetMapper.selectByExample(example);
+	}
+
+	@Override
+	public Gradecet searchGradecetByStudentidAndCetid(int studentid, int cetid) {
+		GradecetExample example = new GradecetExample();
+		com.cn.bean.GradecetExample.Criteria criteria = example.createCriteria();
+		criteria.andStudentidEqualTo(studentid);
+		criteria.andCetidEqualTo(cetid);
+		return gradecetMapper.selectByExample(example).get(0);
+	}
+
+	@Override
+	public Classroom searchClassroomByClassroomid(int classroomid) {
+		return classroomMapper.selectByPrimaryKey(classroomid);
+	}
+
+	@Override
+	public List<Classroom> searchAllClassroom() {
+		ClassroomExample example = new ClassroomExample();
+		return classroomMapper.selectByExample(example);
 	}
 
 }

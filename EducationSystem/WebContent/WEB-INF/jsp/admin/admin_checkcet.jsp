@@ -22,15 +22,16 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<a href="#" class="btn btn-default">
+						<a href="${pageContext.servletContext.contextPath}/adminCet" class="btn btn-default">
 							<span class="glyphicon glyphicon-arrow-left"></span>社会考试安排管理页面
 						</a>
 					</div>
-				</div>				
+				</div>
 				<div class="col-md-offset-5">
 					<h4>查看社会考试安排</h4>
 				</div>
 				<div class="col-md-12">
+					<div>本学期的社会考试：</div>
 					<table class="table table-bordered">
 						<tr>
 							<td>社会考试名称</td>
@@ -38,30 +39,29 @@
 							<td>需要查询的学生学号</td>
 							<td>操作</td>
 						</tr>
-						<c:forEach items="" var="">
-						
-						</c:forEach>						
-						<form action="#" method="post">
+						<c:forEach items="${list }" var="cet">
+						<form action="${pageContext.servletContext.contextPath}/adminSelectCetByCetidAndStudentidForCheckCet" method="post">
 							<tr>
-								<td hidden>
-									<input class="cetid" type="text" name="cetId" value="201864" hidden="hidden" readonly="readonly" />
+								<td hidden="hidden">
+									<input class="cetid" type="text" name="cetid" value="${cet.id}" hidden="hidden" readonly="readonly" />
 								</td>
-								<td>CET-4</td>
-								<td>2018-06-16</td>
+								<td>${cet.cetname}</td>
+								<td>${cet.cettime}</td>
 								<td>
 									<input class="id" type="text" name="studentid" />
 								</td>
 								<td class="apply">
-									<button id="cetSubmit" type="submit" class="btn" style="background-color: white;">查询成绩</button>
+									<button id="cetSubmit" type="submit" class="btn" style="background-color: white;">查询</button>
 								</td>
 							</tr>
 						</form>
+						</c:forEach>
 					</table>
 				</div>
 
 				<div class="col-md-6">
-					社会考试名称：CET-6<br />
-					社会考试时间：2018-06-16
+					社会考试名称：${cet.cetname }<br />
+					社会考试时间：${cet.cettime}
 				</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
@@ -72,10 +72,10 @@
 							<td>社会考试地点</td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>${gradecet.studentid }</td>
+							<td>${studentName }</td>
+							<td>${gradecet.cettime }</td>
+							<td>${classroom }</td>
 						</tr>
 					</table>
 				</div>
