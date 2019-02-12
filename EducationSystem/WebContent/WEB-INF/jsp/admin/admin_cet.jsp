@@ -31,6 +31,7 @@
 					<h4>社会考试安排管理</h4>
 				</div>
 				<div class="col-md-12">
+				<div>本学期的社会考试：</div>
 					<table class="table table-bordered">
 						<tr>
 							<td>社会考试名称</td>

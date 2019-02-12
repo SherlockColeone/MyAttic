@@ -11,399 +11,95 @@
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/teacher/evaluation.js"></script>
+		<script type="text/javascript" src="js/admin/gradecet.js"></script>
 	</head>
 
 	<body>
 		<jsp:include page="../header.jsp"></jsp:include>
 
+	<body>
+		<div id="header"></div>
+
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-12">
+					<div class="col-md-3">
+						<a href="#" class="btn btn-default">
+							<span class="glyphicon glyphicon-arrow-left"></span>社会考试成绩管理页面
+						</a>
+					</div>
+				</div>
 				<div class="col-md-offset-5">
 					<h4>查看社会考试成绩</h4>
 				</div>
 				<div class="col-md-12">
-					<div id="content" hidden="hidden">
-						<c:forEach items="${list }" var="result">
-							<span>${result.item }</span>
-						</c:forEach>
-					</div>				
-					<div class="col-md-5">
-						当前评价的教师：${teacher.name }<br />
-						已有 ${sum } 人对该教师作出评价，评价人数及比例如下：
+					<div>本学期的社会考试：</div>
+					<table class="table table-bordered">
+						<tr>
+							<td>社会考试名称</td>
+							<td>社会考试时间</td>
+							<td>需要查询的考生号</td>
+						</tr>
+						<form id="cetSubmit" action="#" method="post">
+							<tr>
+								<td hidden="hidden">
+									<input class="cetid" type="text" name="cetid" value="201864" hidden="hidden" readonly="readonly" />
+								</td>
+								<td>CET-4</td>
+								<td>2018-06-16</td>
+								<td>
+									<input class="id" type="text" name="id" />
+									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
+								</td>
+							</tr>
+						</form>
+						<form id="cetSubmit" action="#" method="post">
+							<tr>
+								<td hidden="hidden">
+									<input class="cetid" type="text" name="cetid" value="201864" hidden="hidden" readonly="readonly" />
+								</td>
+								<td>CET-6</td>
+								<td>2018-06-16</td>
+								<td>
+									<input class="id" type="text" name="id" />
+									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
+								</td>
+							</tr>
+						</form>
+						<form id="cetSubmit" action="#" method="post">
+							<tr>
+								<td hidden="hidden">
+									<input class="cetid" type="text" name="cetid" value="201864" hidden="hidden" readonly="readonly" />
+								</td>
+								<td>计算机二级</td>
+								<td>2018-03-24</td>
+								<td>
+									<input class="id" type="text" name="id" />
+									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
+								</td>
+							</tr>
+						</form>
+					</table>
+				</div>
+
+				<div id="result" class="col-md-12" style="display: none;">
+					<div class="col-md-6">
+						社会考试名称：CET-6<br /> 社会考试时间：2018-06-16
 					</div>
-					<div id="form" class="col-md-12">
-						<div id="i0" class="col-md-12">
-							<h5>1、任课老师在教学中是否保持精神饱满，仪表端庄，声音洪亮</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i1" class="col-md-12">
-							<h5>2、任课教师专业知识方面</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i2" class="col-md-12">
-							<h5>3、您认为任课教师在及时更新教学内容，介绍学科新动态、新发展、理论联系实际方面做得如何</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i3" class="col-md-12">
-							<h5>4、您认为老师在教学中是否善于启发学生思维，培养学生的动手能力</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i4" class="col-md-12">
-							<h5>5、您认为任课老师在课堂教学中能否做到突出重点，化解难点，讲授熟练，清晰透彻</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i5" class="col-md-12">
-							<h5>6、您认为任课老师是否因材施教，注重学生学习方法的引导</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i6" class="col-md-12">
-							<h5>7、您认为在课堂上，任课老师与同学的互动情况</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i7" class="col-md-12">
-							<h5>8、您认为课堂上的学习气氛如何</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i8" class="col-md-12">
-							<h5>9、您认为该老师的语言表达能力如何</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
-						<div id="i9" class="col-md-12">
-							<h5>10、该老师布置作业的情况如何</h5>
-							<div class="col-md-3">
-								<label>非常好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较好</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>一般</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>较差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-
-							<div class="col-md-3">
-								<label>非常差</label>
-							</div>
-							<div class="col-md-9">
-								<label class="result"></label>
-							</div>
-						</div>
+					<div class="col-md-12">
+						<table class="table table-striped">
+							<tr>
+								<td>准考证号</td>
+								<td>姓名</td>
+								<td>总成绩</td>
+							</tr>
+							<tr>
+								<td>2018620103</td>
+								<td>成军局</td>
+								<td>425</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
