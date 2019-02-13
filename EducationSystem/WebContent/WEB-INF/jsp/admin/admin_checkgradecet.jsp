@@ -25,7 +25,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<a href="#" class="btn btn-default">
+						<a href="${pageContext.servletContext.contextPath}/adminGradecet" class="btn btn-default">
 							<span class="glyphicon glyphicon-arrow-left"></span>社会考试成绩管理页面
 						</a>
 					</div>
@@ -41,28 +41,28 @@
 							<td>社会考试时间</td>
 							<td>需要查询的考生号</td>
 						</tr>
-						<c:forEach items="${list }" var="gradecet">
-						
-						</c:forEach>						
-						<form id="cetSubmit" action="#" method="post">
+						<c:forEach items="${list }" var="cet">
+						<form id="cetSubmit" action="${pageContext.servletContext.contextPath}/adminSelectGradecetBycetidAndStudentidForCheckGradecet" method="post">
 							<tr>
 								<td hidden="hidden">
-									<input class="cetid" type="text" name="cetid" value="201864" hidden="hidden" readonly="readonly" />
+									<input class="cetid" type="text" name="cetid" value="${cet.id }" hidden="hidden" readonly="readonly" />
 								</td>
-								<td>CET-4</td>
-								<td>2018-06-16</td>
+								<td>${cet.cetname }</td>
+								<td>${cet.cettime}</td>
 								<td>
-									<input class="id" type="text" name="id" />
+									<input class="id" type="text" name="studentid" />
 									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
 								</td>
 							</tr>
 						</form>
+						</c:forEach>						
 					</table>
 				</div>
 
 				<div id="result" class="col-md-12" style="display: none;">
 					<div class="col-md-6">
-						社会考试名称：CET-6<br /> 社会考试时间：2018-06-16
+						社会考试名称：${cet.cetname }<br />
+						社会考试时间：${cet.cettime}
 					</div>
 					<div class="col-md-12">
 						<table class="table table-striped">
@@ -72,9 +72,9 @@
 								<td>总成绩</td>
 							</tr>
 							<tr>
-								<td>2018620103</td>
-								<td>成军局</td>
-								<td>425</td>
+								<td>${gradecet.id }</td>
+								<td>${studentName }</td>
+								<td>${gradecet.cetscore }</td>
 							</tr>
 						</table>
 					</div>

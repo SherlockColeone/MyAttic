@@ -8,7 +8,7 @@ $(function() {
 	});
 	
 	$(".cetSubmit").click(function(){
-		if ($(".id").val()=="") {
+		if ($(this).prev(".id").val()=="") {
 			alert("请输入需要查询的学号！");
 			return false;
 		}
@@ -21,7 +21,7 @@ $(function() {
 	
 	$("#cet").submit(function(){
 		if ($("#studentid").val()!="") {  //只有当查询之后才能修改
-			if ($("#score").val()=="") {
+			if ($("#cetscore").val()=="") {
 				alert("总成绩不能为空！");
 				return false;
 			}

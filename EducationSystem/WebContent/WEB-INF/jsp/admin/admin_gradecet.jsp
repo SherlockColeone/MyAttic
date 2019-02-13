@@ -22,7 +22,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
 					<div class="col-md-3">
-						<a href="#" class="btn btn-default">
+						<a href="${pageContext.servletContext.contextPath}/adminCheckGradecet" class="btn btn-default">
 							<span class="glyphicon glyphicon-arrow-left"></span>查看社会考试成绩页面
 						</a>
 					</div>
@@ -38,31 +38,31 @@
 							<td>社会考试时间</td>
 							<td>需要查询的考生号</td>
 						</tr>
-						<c:forEach items="${list }" var="gradecet">
-						
-						</c:forEach>
-						<form id="cetSubmit" action="#" method="post">
+						<c:forEach items="${list }" var="cet">
+						<form id="cetSubmit" action="${pageContext.servletContext.contextPath}/adminSelectGradecetBycetidAndStudentidForGradecet" method="post">
 							<tr>
-								<td hidden>
-									<input class="cetid" type="text" name="cetid" value="201864" hidden="hidden" readonly="readonly" />
+								<td hidden="hidden">
+									<input class="cetid" type="text" name="cetid" value="${cet.id }" hidden="hidden" readonly="readonly" />
 								</td>
-								<td>CET-4</td>
-								<td>2018-06-16</td>
+								<td>${cet.cetname }</td>
+								<td>${cet.cettime}</td>
 								<td>
-									<input class="id" type="text" name="id" />
+									<input class="id" type="text" name="studentid" />
 									<button type="submit" class="btn cetSubmit" style="background-color: white;display: none;">查询成绩</button>
 								</td>
 							</tr>
 						</form>
+						</c:forEach>
 					</table>
 				</div>
 
 				<div id="result" class="col-md-12" style="display: none;">
 					<div class="col-md-6">
-						社会考试名称：CET-6<br /> 社会考试时间：2018-06-16
+						社会考试名称：${cet.cetname }<br />
+						社会考试时间：${cet.cettime}
 					</div>
 					<div class="col-md-12">
-						<form id="cet" action="#" method="post">
+						<form id="cet" action="${pageContext.servletContext.contextPath}/adminModifyGradecet" method="post">
 							<table class="table table-striped">
 								<tr>
 									<td>准考证号</td>
@@ -71,12 +71,13 @@
 								</tr>
 								<tr>
 									<td>
-										2018620103
-										<input id="studentid" type="text" name="studentid" value="2018620103" hidden="hidden" readonly="readonly" />
+										${gradecet.studentid }
+										<input id="studentid" type="text" name="studentid" value="${gradecet.studentid }" hidden="hidden" readonly="readonly" />
+										<input type="text" name="cetid" value="${gradecet.cetid }" hidden="hidden" readonly="readonly" />
 									</td>
-									<td>成军局</td>
+									<td>${studentName }</td>
 									<td>
-										<input id="score" type="text" name="score" value="425" />
+										<input id="cetscore" type="text" name="cetscore" value="${gradecet.cetscore }" />
 									</td>
 								</tr>
 							</table>

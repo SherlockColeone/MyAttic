@@ -1,6 +1,6 @@
 $(function() {
-	$("#cetSubmit").click(function(){
-		if ($(".id").val()=="") {
+	$(".cetSubmit").click(function(){
+		if ($(this).parent(".apply").prev("td").children(".id").val()=="") {
 			alert("请输入需要查询的学号！");
 			return false;
 		}

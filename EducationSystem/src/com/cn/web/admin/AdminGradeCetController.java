@@ -1,6 +1,5 @@
 package com.cn.web.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cn.bean.BeanCet;
 import com.cn.bean.Cet;
 import com.cn.bean.Gradecet;
-import com.cn.service.ServiceTeacher;
+import com.cn.bean.Student;
+import com.cn.service.ServiceAdmin;
+import com.cn.utils.GetTermUtils;
 
 /**
  * 	管理员社会考试成绩管理的控制器
@@ -23,41 +23,75 @@ import com.cn.service.ServiceTeacher;
 @Controller
 public class AdminGradeCetController {
 	@Autowired
-	private ServiceTeacher serviceTeacher;
-	//用于显示所有社会考试
-	private List<Cet> list = new ArrayList<>();
-	//用于显示查询的社会考试成绩
-	BeanCet beancet = new BeanCet();
-		
-	/**
-	 * 进入教师社会考试管理页面
-	 * @param request 请求
-	 * @return 跳转到教师社会考试管理页面
-	 */
-	@RequestMapping(value="/adminGradeCet")
+	private ServiceAdmin serviceAdmin;
+	
+	@RequestMapping(value="/adminGradecet")
 	public String adminGradeCet(HttpServletRequest request) {
-		//找到当前学期的所有社会考试
-		list = serviceTeacher.searchAllCetByCurrentTermid();
+		//获取当前学期的所有社会考试
+		List<Cet> list = serviceAdmin.searchAllCetByTermid(GetTermUtils.getCurrentTermiId());
 		request.setAttribute("list", list);
-		request.setAttribute("beancet", beancet);
-		//跳转到教师社会考试管理页面
-		return "admin/admin_cet";
+		//跳转到管理员社会考试成绩管理页面
+		return "admin/admin_gradecet";
 	}
 	
-	/**
-	 * 查找某个学生某次社会考试成绩
-	 * @param request 请求
-	 * @param cetid 社会考试id
-	 * @param studentid 学号
-	 * @return 跳转到教师社会考试管理页面
-	 */
+	@RequestMapping(value="/adminSelectGradecetBycetidAndStudentidForGradecet")
+	public String adminSelectGradecetBycetidAndStudentidForGradecet(HttpServletRequest request,Integer cetid,
+			Integer studentid) {
+		//获取当前学期的所有社会考试
+		List<Cet> list = serviceAdmin.searchAllCetByTermid(GetTermUtils.getCurrentTermiId());
+		request.setAttribute("list", list);
+		//根据学号与社会考试id查出社会考试成绩
+		Gradecet gradecet = serviceAdmin.searchGradecetByStudentidAndCetid(studentid, cetid);
+		request.setAttribute("gradecet", gradecet);
+		//查找出已选择的社会考试
+		Cet cet = serviceAdmin.searchCetByCetid(cetid);
+		request.setAttribute("cet", cet);
+		//设置学号与学生姓名
+		Student student = serviceAdmin.searchStudentByStudentid(gradecet.getStudentid());
+		request.setAttribute("studentName", student.getName());
+		//跳转到管理员查看社会考试成绩管理页面
+		return "admin/admin_gradecet";
+	}
+	
+	@RequestMapping(value="/adminModifyGradecet")
+	public String adminModifyGradecet(HttpServletRequest request,Integer studentid,Integer cetid,
+			Integer cetscore) {
+		//根据学号与社会考试id查找出社会考试成绩
+		Gradecet gradecet = serviceAdmin.searchGradecetByStudentidAndCetid(studentid, cetid);
+		//设置它的成绩
+		gradecet.setCetscore(cetscore);
+		//修改社会考试成绩
+		serviceAdmin.modifyGradeCet(gradecet);
+		//重定向到管理员社会考试成绩管理页面
+		return "redirect:adminGradecet";
+	}
+	
 	@RequestMapping(value="/adminCheckGradecet")
-	public String adminCheckGradecet(HttpServletRequest request,Integer cetid,Integer studentid) {
-		Gradecet gradeCet = serviceTeacher.searchGradeCetByStudentidAndCetid(studentid, cetid);
-		beancet = serviceTeacher.changeGradecetIntoBeanCetByStudentid(gradeCet, studentid);
-		request.setAttribute("beancet", beancet);
-		//跳转到教师社会考试管理页面
-		return "redirect:/adminGradeCet";
+	public String adminCheckGradecet(HttpServletRequest request) {
+		//获取当前学期的所有社会考试
+		List<Cet> list = serviceAdmin.searchAllCetByTermid(GetTermUtils.getCurrentTermiId());
+		request.setAttribute("list", list);
+		//跳转到管理员查看社会考试成绩页面
+		return "admin/admin_checkgradecet";
+	}
+	
+	@RequestMapping(value="/adminSelectGradecetBycetidAndStudentidForCheckGradecet")
+	public String adminSelectCetByGradecetidAndStudentidForCheckGradecet(HttpServletRequest request,Integer cetid,
+			Integer studentid) {
+		//获取当前学期的所有社会考试
+		List<Cet> list = serviceAdmin.searchAllCetByTermid(GetTermUtils.getCurrentTermiId());
+		request.setAttribute("list", list);
+		//根据学号与社会考试id查出社会考试成绩
+		Gradecet gradecet = serviceAdmin.searchGradecetByStudentidAndCetid(studentid, cetid);
+		request.setAttribute("gradecet", gradecet);
+		//查找出已选择的社会考试
+		Cet cet = serviceAdmin.searchCetByCetid(cetid);
+		request.setAttribute("cet", cet);
+		//设置学号与学生姓名
+		Student student = serviceAdmin.searchStudentByStudentid(gradecet.getStudentid());
+		request.setAttribute("studentName", student.getName());
+		//跳转到管理员查看社会考试成绩页面
+		return "admin/admin_checkgradecet";
 	}
 
 }

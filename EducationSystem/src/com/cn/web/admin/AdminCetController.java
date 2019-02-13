@@ -59,18 +59,16 @@ public class AdminCetController {
 	}
 	
 	@RequestMapping(value="/adminModifyCet")
-	public String adminModifyCet(HttpServletRequest request,Integer studentid,Integer classroomid) {
-		//将地点与学号设置到一个社会考试成绩对象中
-		Gradecet gradecet = new Gradecet();
-		gradecet.setStudentid(studentid);
+	public String adminModifyCet(HttpServletRequest request,Integer studentid,Integer cetid,
+			Integer classroomid) {
+		//根据学号与社会考试id查找出社会考试成绩
+		Gradecet gradecet = serviceAdmin.searchGradecetByStudentidAndCetid(studentid, cetid);
+		//设置它的考场号
 		gradecet.setClassroomid(classroomid);
 		//修改社会考试成绩
 		serviceAdmin.modifyGradeCet(gradecet);
-		//获取当前学期的所有社会考试
-		List<Cet> list = serviceAdmin.searchAllCetByTermid(GetTermUtils.getCurrentTermiId());
-		request.setAttribute("list", list);
-		//跳转到管理员社会考试管理页面
-		return "admin/admin_cet";
+		//重定向管理员社会考试管理页面
+		return "redirect:adminCet";
 	}
 	
 	@RequestMapping(value="/adminCheckCet")

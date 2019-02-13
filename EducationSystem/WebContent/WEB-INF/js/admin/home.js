@@ -119,8 +119,8 @@ $(function() {
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
 		modify.children("div").html("社会考试成绩管理");
 		//更改跳转的控制器
-		modify.attr("href","adminGradeCet");
+		modify.attr("href","adminGradecet");
 		check.children("div").html("查看社会考试成绩");
-		check.attr("href","adminCheckGradeCet");
+		check.attr("href","adminCheckGradecet");
 	});
 });

@@ -51,7 +51,7 @@
 									<input class="id" type="text" name="studentid" />
 								</td>
 								<td class="apply">
-									<button id="cetSubmit" type="submit" class="btn" style="background-color: white;">查询</button>
+									<button type="submit" class="btn cetSubmit" style="background-color: white;">查询</button>
 								</td>
 							</tr>
 						</form>

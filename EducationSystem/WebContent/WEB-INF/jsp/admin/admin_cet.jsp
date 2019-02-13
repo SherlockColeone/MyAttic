@@ -51,7 +51,7 @@
 									<input class="id" type="text" name="studentid" />
 								</td>
 								<td class="apply">
-									<button id="cetSubmit" type="submit" class="btn" style="background-color: white;">查询</button>
+									<button type="submit" class="btn cetSubmit" style="background-color: white;">查询</button>
 								</td>
 							</tr>
 						</form>
@@ -76,6 +76,7 @@
 									<td>
 										${gradecet.studentid }
 										<input id="studentid" type="text" name="studentid" value="${gradecet.studentid }" hidden="hidden" readonly="readonly" />
+										<input type="text" name="cetid" value="${gradecet.cetid }" hidden="hidden" readonly="readonly" />
 									</td>
 									<td>${studentName }</td>
 									<td>${gradecet.cettime }</td>
