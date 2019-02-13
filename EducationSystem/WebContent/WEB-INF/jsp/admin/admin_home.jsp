@@ -43,7 +43,7 @@
 				<button type="button" id="curriculumarrange" class="col-md-2 btn" style="margin: 5px;margin-top: 158px;">
 					<img src="images/curriculumarrange.png" />
 					<div>
-						调课通知&nbsp;
+						教师调课管理&nbsp;
 						<span class="glyphicon glyphicon-menu-down"></span>
 					</div>
 				</button>
