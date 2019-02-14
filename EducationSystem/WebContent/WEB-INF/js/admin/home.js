@@ -57,10 +57,10 @@ $(function() {
 		same();
 		//更改图标
 		$(this).children("div").children("span").attr("class","glyphicon glyphicon-hand-right");
-		modify.children("div").html("调课安排管理");
+		modify.children("div").html("教师调课管理");
 		//更改跳转的控制器
 		modify.attr("href","adminCurriculumarrange");
-		check.children("div").html("查看调课安排");
+		check.children("div").html("查看教师调课");
 		check.attr("href","adminCheckCurriculumarrange");
 	});
 			
