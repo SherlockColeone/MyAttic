@@ -5,13 +5,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教师调课通知</title>
+		<title>查看调课通知</title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="css/courses.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/exam.js"></script>
+		<script type="text/javascript" src="js/teacher/curriculumarrange.js"></script>
 	</head>
 
 	<body>
@@ -20,10 +20,15 @@
 		<!--主体-->
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="col-md-offset-5">
-					<h4>调课通知</h4>
+				<div class="col-md-12">
+					<a href="${pageContext.servletContext.contextPath}/" class="btn btn-default">
+						<span class="glyphicon glyphicon-arrow-left"></span>申请调课
+					</a>
 				</div>
-				<div class="col-md-6 col-md-offset-0">开学以来：</div>
+				<div class="col-md-offset-5">
+					<h4>查看调课通知</h4>
+				</div>
+				<div class="col-md-6">已批准的调课：（开学以来）</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>

@@ -40,7 +40,8 @@
 						</div>					
 					</form>
 				</div>				
-				<div class="col-md-6">查询的教师工号：</div>
+				<div class="col-md-12">已批准的调课：（开学以来）</div>
+				<div class="col-md-12">查询的教师工号：</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
@@ -58,8 +59,8 @@
 								星期二<br />01-02节
 							</td>
 							<td>1-502</td>
-							<td></td>
-							<td></td>
+							<td>风清扬</td>
+							<td>计算机科学技术1501班</td>
 						</tr>
 					</table>
 				</div>

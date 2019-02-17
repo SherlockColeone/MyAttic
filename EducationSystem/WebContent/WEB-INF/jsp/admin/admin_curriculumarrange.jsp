@@ -29,8 +29,17 @@
 					<h4>教师调课管理</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-12 col-md-offset-1">
-					<form id="curriculumarrangeSearch" action="#" method="post">
-						<div id="teacher" class="col-md-4 col-md-offset-2">
+					<form id="searchCurriculumarrange" action="#" method="post">
+						<div id="curriculum" class="col-md-4">
+							操作：
+							<input id="insert" class="operate" type="radio" name="operate" value="1" />
+							<label for="insert">添加&nbsp;&nbsp;&nbsp;</label>
+							<input id="delete" class="operate" type="radio" name="operate" value="2" />
+							<label for="delete">删除&nbsp;&nbsp;&nbsp;</label>
+							<input id="modify" class="operate" type="radio" name="operate" value="3" />
+							<label for="modify">修改&nbsp;&nbsp;&nbsp;</label>
+						</div>
+						<div id="teacher" class="col-md-4">
 							教师工号：<input id="teacherid" type="text" name="teacherid" />
 						</div>
 						<div class="col-md-3">
