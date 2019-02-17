@@ -21,7 +21,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
-					<a href="${pageContext.servletContext.contextPath}/" class="btn btn-default">
+					<a href="${pageContext.servletContext.contextPath}/teacherCurriculumarrange" class="btn btn-default">
 						<span class="glyphicon glyphicon-arrow-left"></span>查看调课通知
 					</a>
 				</div>

@@ -31,11 +31,26 @@ public class TeacherCurriculumarrangeController {
 		//从session域中获取教师对象
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 		//查询该教师所有调课
+		
+		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacherid(teacher.getId());
+		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);
+		
+		request.setAttribute("list", list);
+		//跳转到查看调课通知页面
+		return "teacher/teacher_curriculumarrange";
+	}
+	
+	@RequestMapping(value="/teacherModifyCurriculumarrange")
+	public String teacherModifyCurriculumarrange(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		//从session域中获取教师对象
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+		//查询该教师所有调课
 		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacherid(teacher.getId());
 		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);
 		request.setAttribute("list", list);
-		//跳转到教师调课通知页面
-		return "teacher/teacher_curriculumarrange";
+		//跳转到申请调课页面
+		return "teacher/teacher_modifycurriculumarrange";
 	}
 	
 }
