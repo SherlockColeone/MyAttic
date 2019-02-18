@@ -22,12 +22,28 @@ public class BeanArrange {
 	private String teacher;
 	//班级名字
 	private String classes;
+	//教务处是否批准，-1表示不批准、0表示未处理、1表示已批准
+	private Integer permit;
 	
 	public BeanArrange() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
+	public BeanArrange(Integer coursesid, Integer electiveid, String name, String week, String date, String place,
+			String teacher, String classes, Integer permit) {
+		super();
+		this.coursesid = coursesid;
+		this.electiveid = electiveid;
+		this.name = name;
+		this.week = week;
+		this.date = date;
+		this.place = place;
+		this.teacher = teacher;
+		this.classes = classes;
+		this.permit = permit;
+	}
+
 	public BeanArrange(Integer coursesid, Integer electiveid, String name, String week, String date, String place,
 			String teacher, String classes) {
 		super();
@@ -103,9 +119,17 @@ public class BeanArrange {
 	public void setClasses(String classes) {
 		this.classes = classes;
 	}
+	public Integer getPermit() {
+		return permit;
+	}
+	public void setPermit(Integer permit) {
+		this.permit = permit;
+	}
+
 	@Override
 	public String toString() {
 		return "BeanArrange [coursesid=" + coursesid + ", electiveid=" + electiveid + ", name=" + name + ", week="
-				+ week + ", date=" + date + ", place=" + place + ", teacher=" + teacher + ", classes=" + classes + "]";
+				+ week + ", date=" + date + ", place=" + place + ", teacher=" + teacher + ", classes=" + classes
+				+ ", permit=" + permit + "]";
 	}
 }

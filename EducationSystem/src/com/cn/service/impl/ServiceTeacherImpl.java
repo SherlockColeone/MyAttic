@@ -561,8 +561,10 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			String teacher = checkNameUtils.searchByTeacherId(arrange.getTeacherid());
 			// 找到班级名称
 			String classes = checkNameUtils.searchByClassesId(arrange.getClassesid());
+			//设置是否批准
+			Integer permit = arrange.getPermit();			
 			BeanArrange bean = new BeanArrange(arrange.getCoursesid(),arrange.getElectiveid(), name, 
-					arrange.getWeek(), date, arrange.getPlace(), teacher, classes);
+					arrange.getWeek(), date, arrange.getPlace(), teacher, classes,permit);
 			list.add(bean);
 		}
 		return list;
@@ -627,6 +629,16 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			list.add(beanEvaluation);
 		}
 		return list;
+	}
+
+	@Override
+	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacheridNotpermitAndPermitting(int teacherid) {
+		CurriculumarrangeExample example = new CurriculumarrangeExample();
+		com.cn.bean.CurriculumarrangeExample.Criteria criteria = example.createCriteria();
+		criteria.andTeacheridEqualTo(teacherid);
+		//不选择已批准的调课
+		criteria.andPermitNotEqualTo(1);
+		return curriculumarrangeMapper.selectByExample(example);
 	}
 
 }

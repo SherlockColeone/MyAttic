@@ -72,7 +72,7 @@
 								<c:if test="${result.day==5 }">星期五</c:if>
 								<c:if test="${result.day==6 }">星期六</c:if>
 								<c:if test="${result.day==7 }">星期日</c:if>
-								<br />${result.time }
+								<br />${result.time }节
 							</td>
 							<td>${result.place }</td>
 							<td>

@@ -254,4 +254,11 @@ public interface ServiceTeacher {
 	 */
 	public List<BeanEvaluation> GetStatisticsByListEvaluation(List<Evaluation> listEvaluation);
 	
+	/**
+	 * 查询某位教师的所有未批准或不批准的调课安排
+	 * @param teacherid
+	 * @return 调课集合
+	 */
+	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacheridNotpermitAndPermitting(int teacherid);
+	
 }

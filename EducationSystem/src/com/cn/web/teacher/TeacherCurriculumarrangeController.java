@@ -32,8 +32,12 @@ public class TeacherCurriculumarrangeController {
 		Teacher teacher = (Teacher) session.getAttribute("teacher");
 		//查询该教师所有已批准的调课
 		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacheridPermitted(teacher.getId());
-		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);		
+		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);
 		request.setAttribute("list", list);
+		//查询该教师所有未批准或不批准的调课
+		List<Curriculumarrange> listCurr2 = serviceTeacher.searchAllCurriculumArrangeByTeacheridNotpermitAndPermitting(teacher.getId());
+		List<BeanArrange> list2 = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr2);		
+		request.setAttribute("list2", list2);
 		//跳转到查看调课通知页面
 		return "teacher/teacher_curriculumarrange";
 	}
