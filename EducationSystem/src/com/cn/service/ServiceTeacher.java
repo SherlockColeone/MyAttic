@@ -86,6 +86,13 @@ public interface ServiceTeacher {
 	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacherid(int teacherid);
 	
 	/**
+	 * 	查询某位教师的所有已批准的调课安排
+	 * @param teacherid 教师工号
+	 * @return 调课安排集合
+	 */
+	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacheridPermitted(int teacherid);
+	
+	/**
 	 * 	查询监考老师的所有考试安排
 	 * @param teacherid 监考老师工号
 	 * @return 考试安排集合

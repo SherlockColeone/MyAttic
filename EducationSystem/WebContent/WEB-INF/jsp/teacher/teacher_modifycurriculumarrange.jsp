@@ -76,7 +76,7 @@
 									<input class="input" name="place" type="text" />
 								</td>
 								<td>
-									<select id="time" name="nature" class="form-control" class="courses">
+									<select id="nature" name="nature" class="form-control" class="courses">
 										<option value="0">专业课</option>
 										<option value="1">选修课</option>
 									</select>

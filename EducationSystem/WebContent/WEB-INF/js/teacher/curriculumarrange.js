@@ -6,10 +6,11 @@ $(function(){
 		$("#arrangeDate").html(arrangeDate);
 	}
 
-	$("#curriculumarrangeSubmit").submit(function(){		
-		//若没有填写班级编号则补上0
-		if ($("#classesid").val()=="") {
-			$("#classesid").val("0");
+	$("#curriculumarrangeSubmit").submit(function(){
+		if ($("#nature").val()==1) {   //若选择了选修课且没有填写班级编号则补上0
+			if ($("#classesid").val()=="") {
+				$("#classesid").val("0");
+			}
 		}
 		var i = 0;
 		$(".input").each(function(index,value){

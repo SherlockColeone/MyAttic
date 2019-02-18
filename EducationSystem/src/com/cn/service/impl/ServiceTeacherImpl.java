@@ -228,6 +228,16 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 		criteria.andTeacheridEqualTo(teacherid);
 		return curriculumarrangeMapper.selectByExample(example);
 	}
+	
+	@Override
+	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacheridPermitted(int teacherid) {
+		CurriculumarrangeExample example = new CurriculumarrangeExample();
+		com.cn.bean.CurriculumarrangeExample.Criteria criteria = example.createCriteria();
+		criteria.andTeacheridEqualTo(teacherid);
+		//选择已批准的调课
+		criteria.andPermitEqualTo(1);
+		return curriculumarrangeMapper.selectByExample(example);
+	}	
 
 	@Override
 	public List<Exam> searchAllExamByTeacherid(int teacherid) {
