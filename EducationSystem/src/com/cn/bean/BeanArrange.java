@@ -6,6 +6,10 @@ package com.cn.bean;
  *
  */
 public class BeanArrange {
+	//专业课编号
+	private Integer coursesid;
+	//选修课编号
+	private Integer electiveid;
 	//课程名称
 	private String name;
 	//周次
@@ -24,6 +28,19 @@ public class BeanArrange {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public BeanArrange(Integer coursesid, Integer electiveid, String name, String week, String date, String place,
+			String teacher, String classes) {
+		super();
+		this.coursesid = coursesid;
+		this.electiveid = electiveid;
+		this.name = name;
+		this.week = week;
+		this.date = date;
+		this.place = place;
+		this.teacher = teacher;
+		this.classes = classes;
+	}
+
 	public BeanArrange(String name, String week, String date, String place, String teacher, String classes) {
 		super();
 		this.name = name;
@@ -33,6 +50,23 @@ public class BeanArrange {
 		this.teacher = teacher;
 		this.classes = classes;
 	}
+	
+	public Integer getCoursesid() {
+		return coursesid;
+	}
+
+	public void setCoursesid(Integer coursesid) {
+		this.coursesid = coursesid;
+	}
+
+	public Integer getElectiveid() {
+		return electiveid;
+	}
+
+	public void setElectiveid(Integer electiveid) {
+		this.electiveid = electiveid;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -71,7 +105,7 @@ public class BeanArrange {
 	}
 	@Override
 	public String toString() {
-		return "BeanArrange [name=" + name + ", week=" + week + ", date=" + date + ", place=" + place + ", teacher="
-				+ teacher + ", classes=" + classes + "]";
+		return "BeanArrange [coursesid=" + coursesid + ", electiveid=" + electiveid + ", name=" + name + ", week="
+				+ week + ", date=" + date + ", place=" + place + ", teacher=" + teacher + ", classes=" + classes + "]";
 	}
 }

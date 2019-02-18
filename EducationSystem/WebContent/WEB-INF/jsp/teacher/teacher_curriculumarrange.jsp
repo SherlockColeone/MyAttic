@@ -32,14 +32,24 @@
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
+							<td>课程编号</td>
 							<td>课程名称</td>
 							<td>课程周次</td>
 							<td>调课后时间</td>
 							<td>调课后地点</td>
 							<td>上课班级</td>
+							<td>课程性质</td>
 						</tr>
 						<c:forEach items="${list }" var="result">
 							<tr>
+								<td>
+									<c:if test="${result.coursesid==0 }">
+										${result.electiveid }
+									</c:if>
+									<c:if test="${result.electiveid==0 }">
+										${result.coursesid }
+									</c:if>
+								</td>
 								<td>${result.name }</td>
 								<td>${result.week }</td>
 								<td id="arrangeDate">
@@ -47,6 +57,14 @@
 								</td>
 								<td>${result.place }</td>
 								<td>${result.classes }</td>
+								<td>
+									<c:if test="${result.coursesid==0 }">
+										选修课
+									</c:if>
+									<c:if test="${result.electiveid==0 }">
+										专业课
+									</c:if>
+								</td>
 							</tr>								
 						</c:forEach>
 					</table>

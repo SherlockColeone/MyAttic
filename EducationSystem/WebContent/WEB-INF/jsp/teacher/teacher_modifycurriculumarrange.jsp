@@ -30,22 +30,21 @@
 				</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
-						<form id="curriculumarrangeSubmit" action="#" method="post">
+						<form id="curriculumarrangeSubmit" action="${pageContext.servletContext.contextPath}/teacherCurriculumarrangeSubmit" method="post">
 							<tr>
-								<td>课程名称</td>
+								<td>课程编号</td>
 								<td>课程周次</td>
 								<td>调课后在星期几</td>
 								<td>调课后在第几节</td>
 							</tr>
 							<tr>
 								<td>
-									<input class="input" value="数据库原理" type="text" />
+									<input class="input" name="id" type="text" />
 								</td>
 								<td>
-									<input class="input" value="第8周" type="text" placeholder="第X周或第X周-第Y周" />
+									<input class="input" name="week" type="text" placeholder="第X周或第X周-第Y周" />
 								</td>
 								<td>
-									<input class="define" value="星期二" hidden="hidden" />
 									<select id="day" name="day" class="form-control" class="courses">
 										<option value="1">星期一</option>
 										<option value="2">星期二</option>
@@ -57,7 +56,6 @@
 									</select>
 								</td>
 								<td>
-									<input class="define" value="01-02节" hidden="hidden" />
 									<select id="time" name="time" class="form-control" class="courses">
 										<option value="01-02节">01-02节</option>
 										<option value="03-04节">03-04节</option>
@@ -69,19 +67,22 @@
 							</tr>
 							<tr>
 								<td>调课后地点</td>
-								<td>课程老师</td>
-								<td>上课班级</td>
+								<td>课程性质</td>
+								<td>上课班级编号（选修课不需要填写）</td>
 								<td>操作</td>
 							</tr>
 							<tr>
 								<td>
-									<input class="input" value="1-502" type="text" />
+									<input class="input" name="place" type="text" />
 								</td>
 								<td>
-									<input class="input" value="风清扬" type="text" />
+									<select id="time" name="nature" class="form-control" class="courses">
+										<option value="0">专业课</option>
+										<option value="1">选修课</option>
+									</select>
 								</td>
 								<td>
-									<input class="input" value="计算机科学技术1501班" type="text" />
+									<input id="classesid" class="input" name="classesid" type="text" />
 								</td>
 								<td>
 									<button class="btn btn-info" type="submit">提交</button>

@@ -551,7 +551,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 			String teacher = checkNameUtils.searchByTeacherId(arrange.getTeacherid());
 			// ÕÒµ½°à¼¶Ãû³Æ
 			String classes = checkNameUtils.searchByClassesId(arrange.getClassesid());
-			BeanArrange bean = new BeanArrange(name, arrange.getWeek(), date, arrange.getPlace(), teacher, classes);
+			BeanArrange bean = new BeanArrange(arrange.getCoursesid(),arrange.getElectiveid(), name, 
+					arrange.getWeek(), date, arrange.getPlace(), teacher, classes);
 			list.add(bean);
 		}
 		return list;
