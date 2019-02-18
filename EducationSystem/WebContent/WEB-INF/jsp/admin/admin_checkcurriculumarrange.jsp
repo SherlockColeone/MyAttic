@@ -21,7 +21,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
-					<a href="${pageContext.servletContext.contextPath}/adminMessage" class="btn btn-default">
+					<a href="${pageContext.servletContext.contextPath}/adminCurriculumarrange" class="btn btn-default">
 						<span class="glyphicon glyphicon-arrow-left"></span>教师调课管理页面
 					</a>
 				</div>
@@ -29,7 +29,7 @@
 					<h4>查看教师调课安排</h4>
 				</div>
 				<div id="buttonGroup" class="col-md-12 col-md-offset-1">
-					<form id="curriculumarrangeSearch" action="#" method="post">
+					<form id="curriculumarrangeSearch" action="${pageContext.servletContext.contextPath}/adminSearchCurriculumarrange" method="post">
 						<div id="teacher" class="col-md-4 col-md-offset-2">
 							教师工号：<input id="teacherid" type="text" name="teacherid" />
 						</div>
@@ -41,27 +41,62 @@
 					</form>
 				</div>				
 				<div class="col-md-12">已批准的调课：（开学以来）</div>
-				<div class="col-md-12">查询的教师工号：</div>
+				<div class="col-md-12">查询的教师工号：${teacherid }</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
-							<td>课程名称</td>
+							<td>课程编号</td>
 							<td>课程周次</td>
 							<td>调课后时间</td>
 							<td>调课后地点</td>
-							<td>课程老师</td>
-							<td>上课班级</td>
+							<td>课程性质</td>
+							<td>上课班级编号</td>
+							<td>是否已批准</td>
 						</tr>
+						<c:forEach items="${list }" var="result">
 						<tr>
-							<td>数据库原理</td>
-							<td>第8周</td>
-							<td id="arrangeDate">
-								星期二<br />01-02节
+							<td>
+								<c:if test="${result.coursesid==0 }">
+									${result.electiveid }
+								</c:if>
+								<c:if test="${result.electiveid==0 }">
+									${result.coursesid }
+								</c:if>
 							</td>
-							<td>1-502</td>
-							<td>风清扬</td>
-							<td>计算机科学技术1501班</td>
-						</tr>
+							<td>${result.week }</td>
+							<td id="arrangeDate">
+								<c:if test="${result.day==1 }">星期一</c:if>
+								<c:if test="${result.day==2 }">星期二</c:if>
+								<c:if test="${result.day==3 }">星期三</c:if>
+								<c:if test="${result.day==4 }">星期四</c:if>
+								<c:if test="${result.day==5 }">星期五</c:if>
+								<c:if test="${result.day==6 }">星期六</c:if>
+								<c:if test="${result.day==7 }">星期日</c:if>
+								<br />${result.time }
+							</td>
+							<td>${result.place }</td>
+							<td>
+								<c:if test="${result.coursesid==0 }">
+									选修课
+								</c:if>
+								<c:if test="${result.electiveid==0 }">
+									专业课
+								</c:if>
+							</td>
+							<td>${result.classesid }</td>
+							<td>
+								<c:if test="${result.permit==-1 }">
+									不批准
+								</c:if>
+								<c:if test="${result.permit==0 }">
+									未批准
+								</c:if>								
+								<c:if test="${result.permit==1 }">
+									已批准
+								</c:if>
+							</td>
+						</tr>							
+						</c:forEach>
 					</table>
 				</div>
 			</div>

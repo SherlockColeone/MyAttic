@@ -512,4 +512,11 @@ public interface ServiceAdmin {
 	 */
 	public List<Classroom> searchAllClassroom();
 	
+	/**
+	 * 根据教师工号查找所有的调课
+	 * @param teacherid 教师工号
+	 * @return 调课集合
+	 */
+	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacherid(int teacherid);
+	
 }

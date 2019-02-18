@@ -21,7 +21,7 @@
 		<div id="main" class="container col-md-12">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="col-md-12">
-					<a href="${pageContext.servletContext.contextPath}/adminMessage" class="btn btn-default">
+					<a href="${pageContext.servletContext.contextPath}/adminCheckCurriculumarrange" class="btn btn-default">
 						<span class="glyphicon glyphicon-arrow-left"></span>查看教师调课页面
 					</a>
 				</div>
@@ -49,7 +49,7 @@
 						</div>					
 					</form>
 				</div>
-				<div class="col-md-6">查询的教师工号：</div>
+				<div class="col-md-6">查询的教师工号：${teacherid }</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
@@ -60,6 +60,7 @@
 							<td>课程老师</td>
 							<td>上课班级</td>
 						</tr>
+						
 						<tr>
 							<td>数据库原理</td>
 							<td>第8周</td>

@@ -19,6 +19,7 @@ import com.cn.bean.Courses;
 import com.cn.bean.CoursesExample;
 import com.cn.bean.Curriculum;
 import com.cn.bean.Curriculumarrange;
+import com.cn.bean.CurriculumarrangeExample;
 import com.cn.bean.Elective;
 import com.cn.bean.Evaluation;
 import com.cn.bean.Exam;
@@ -825,6 +826,14 @@ public class ServiceAdminImpl implements ServiceAdmin {
 	public List<Classroom> searchAllClassroom() {
 		ClassroomExample example = new ClassroomExample();
 		return classroomMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacherid(int teacherid) {
+		CurriculumarrangeExample example = new CurriculumarrangeExample();
+		com.cn.bean.CurriculumarrangeExample.Criteria criteria = example.createCriteria();
+		criteria.andTeacheridEqualTo(teacherid);
+		return curriculumarrangeMapper.selectByExample(example);
 	}
 
 }
