@@ -43,7 +43,7 @@
 							<td>操作</td>
 						</tr>
 						<c:forEach items="${list }" var="result">
-						<form id="curriculumarrangePermit" action="${pageContext.servletContext.contextPath}/adminCurriculumarrangePermit" method="post">
+						<form class="curriculumarrangePermit" action="${pageContext.servletContext.contextPath}/adminCurriculumarrangePermit" method="post">
 							<tr>
 								<td>
 									<input id="id" name="id" value="${result.id }" hidden="hidden" readonly="readonly" />

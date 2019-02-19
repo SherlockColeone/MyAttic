@@ -24,7 +24,7 @@ $(function() {
 		}
 	});
 
-	$("#curriculumarrangePermit").submit(function() {
+	$(".curriculumarrangePermit").submit(function() {
 		if($(".operate[type=radio]:checked").size() < 1) { //若没有选择是否批准
 			alert("请选择批准或不批准！");
 			return false;

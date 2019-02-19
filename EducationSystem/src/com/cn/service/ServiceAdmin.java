@@ -507,16 +507,22 @@ public interface ServiceAdmin {
 	public Classroom searchClassroomByClassroomid(int classroomid);
 	
 	/**
-	 * 查找所有课室
+	 * 	查找所有课室
 	 * @return 课室集合
 	 */
 	public List<Classroom> searchAllClassroom();
 	
 	/**
-	 * 根据教师工号查找所有的调课
+	 * 	根据教师工号查找所有的调课
 	 * @param teacherid 教师工号
 	 * @return 调课集合
 	 */
 	public List<Curriculumarrange> searchAllCurriculumArrangeByTeacherid(int teacherid);
+	
+	/**
+	 * 	查找所有尚未批准的调课
+	 * @return 调课安排集合
+	 */
+	public List<Curriculumarrange> searchAllCurriculumArrangeUnpermit();
 	
 }

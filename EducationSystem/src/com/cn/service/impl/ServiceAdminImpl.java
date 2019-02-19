@@ -836,4 +836,12 @@ public class ServiceAdminImpl implements ServiceAdmin {
 		return curriculumarrangeMapper.selectByExample(example);
 	}
 
+	@Override
+	public List<Curriculumarrange> searchAllCurriculumArrangeUnpermit() {
+		CurriculumarrangeExample example = new CurriculumarrangeExample();
+		com.cn.bean.CurriculumarrangeExample.Criteria criteria = example.createCriteria();
+		criteria.andPermitEqualTo(0);
+		return curriculumarrangeMapper.selectByExample(example);
+	}
+	
 }

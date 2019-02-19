@@ -23,25 +23,22 @@ public class AdminCurriculumarrangeController {
 	private ServiceAdmin serviceAdmin;
 	
 	@RequestMapping(value="/adminCurriculumarrange")
-	public String adminCurriculumarrange(HttpServletRequest request) {
-		
-//		//查询该教师所有调课
-//		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacherid(teacher.getId());
-//		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);
-//		request.setAttribute("list", list);		
+	public String adminCurriculumarrange(HttpServletRequest request) {		
+		//查询所有未批准的调课
+		List<Curriculumarrange> list = serviceAdmin.searchAllCurriculumArrangeUnpermit();
+		request.setAttribute("list", list);
 		//跳转到教师调课管理页面
 		return "admin/admin_curriculumarrange";
 	}
 	
 	@RequestMapping(value="/adminCurriculumarrangePermit")
-	public String adminCurriculumarrangePermit(HttpServletRequest request,Curriculumarrange arrange) {
+	public String adminCurriculumarrangePermit(HttpServletRequest request,Integer id,Integer permit) {
+		//根据id查找表中的调课
+		Curriculumarrange curriculumarrange = serviceAdmin.searchCurriculumarrangeByCurriculumarrangeid(id);
+		//设置是否批准
+		curriculumarrange.setPermit(permit);
 		//修改该调课信息
-		serviceAdmin.modifyCurriculumArrange(arrange);
-		
-//		//查询该教师所有调课
-//		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacherid(teacher.getId());
-//		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);
-//		request.setAttribute("list", list);		
+		serviceAdmin.modifyCurriculumArrange(curriculumarrange);
 		//重定向到教师调课管理页面
 		return "redirect:adminCurriculumarrange";
 	}	
