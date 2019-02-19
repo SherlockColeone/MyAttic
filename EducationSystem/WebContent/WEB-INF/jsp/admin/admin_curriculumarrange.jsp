@@ -46,6 +46,7 @@
 						<form id="curriculumarrangePermit" action="${pageContext.servletContext.contextPath}/adminCurriculumarrangePermit" method="post">
 							<tr>
 								<td>
+									<input id="id" name="id" value="${result.id }" hidden="hidden" readonly="readonly" />
 									<c:if test="${result.coursesid==0 }">
 										${result.electiveid }
 									</c:if>

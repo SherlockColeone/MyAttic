@@ -35,6 +35,8 @@ public class AdminCurriculumarrangeController {
 	
 	@RequestMapping(value="/adminCurriculumarrangePermit")
 	public String adminCurriculumarrangePermit(HttpServletRequest request,Curriculumarrange arrange) {
+		//修改该调课信息
+		serviceAdmin.modifyCurriculumArrange(arrange);
 		
 //		//查询该教师所有调课
 //		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacherid(teacher.getId());

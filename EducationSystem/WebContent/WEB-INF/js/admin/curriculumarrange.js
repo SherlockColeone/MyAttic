@@ -1,9 +1,4 @@
-$(function(){
-	//该方法用于显示日期
-	var arrangeDate = $("#arrangeDate").html();
-	arrangeDate.replace(" ","<br />");
-	$("#arrangeDate").html(arrangeDate);
-	
+$(function() {
 	$("#curriculumarrangeSearch").submit(function() {
 		if($("#teacherid").val() == "") { //若没有填写工号
 			alert("请填写需要操作的教师工号！");
@@ -12,7 +7,7 @@ $(function(){
 			return true;
 		}
 	});
-	
+
 	$("#searchCurriculumarrange").submit(function() {
 		if($(".operate[type=radio]:checked").size() < 1) { //若没有选择操作
 			alert("请选择操作！");
@@ -26,6 +21,17 @@ $(function(){
 			} else {
 				return true;
 			}
+		}
+	});
+
+	$("#curriculumarrangePermit").submit(function() {
+		if($(".operate[type=radio]:checked").size() < 1) { //若没有选择是否批准
+			alert("请选择批准或不批准！");
+			return false;
+		} else if(confirm("确定提交该调课申请的处理？")) {
+			alert("提交成功！");
+		} else {
+			return false;
 		}
 	});
 });
