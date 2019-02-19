@@ -33,6 +33,17 @@ public class AdminCurriculumarrangeController {
 		return "admin/admin_curriculumarrange";
 	}
 	
+	@RequestMapping(value="/adminCurriculumarrangePermit")
+	public String adminCurriculumarrangePermit(HttpServletRequest request,Curriculumarrange arrange) {
+		
+//		//查询该教师所有调课
+//		List<Curriculumarrange> listCurr = serviceTeacher.searchAllCurriculumArrangeByTeacherid(teacher.getId());
+//		List<BeanArrange> list = serviceTeacher.changeAllCurriculumarrangeIntoBeanArrange(listCurr);
+//		request.setAttribute("list", list);		
+		//重定向到教师调课管理页面
+		return "redirect:adminCurriculumarrange";
+	}	
+	
 	@RequestMapping(value="/adminCheckCurriculumarrange")
 	public String adminCheckCurriculumarrange(HttpServletRequest request) {
 		//跳转到查看教师调课页面

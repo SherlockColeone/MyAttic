@@ -33,7 +33,6 @@
 					<table class="table table-striped">
 						<tr>
 							<td>课程编号</td>
-							<td>课程名称</td>
 							<td>教师工号</td>
 							<td>课程周次</td>
 							<td>调课后时间</td>
@@ -41,26 +40,53 @@
 							<td>课程性质</td>
 							<td>上课班级编号</td>
 							<td>是否批准</td>
-						</tr>						
-						<form id="curriculumarrangePermit" action="#" method="post">
-							<c:forEach items="${list }" var="result">
+							<td>操作</td>
+						</tr>
+						<c:forEach items="${list }" var="result">
+						<form id="curriculumarrangePermit" action="${pageContext.servletContext.contextPath}/adminCurriculumarrangePermit" method="post">
 							<tr>
-								<td>434</td>
-								<td>数据库原理</td>
-								<td>2006100</td>
-								<td>第8周</td>
 								<td>
-									星期二<br />01-02节
+									<c:if test="${result.coursesid==0 }">
+										${result.electiveid }
+									</c:if>
+									<c:if test="${result.electiveid==0 }">
+										${result.coursesid }
+									</c:if>
 								</td>
-								<td>1-502</td>
-								<td>专业课</td>
-								<td>1201</td>
+								<td>${result.teacherid }</td>
+								<td>${result.week }</td>
+								<td>
+									<c:if test="${result.day==1 }">星期一</c:if>
+									<c:if test="${result.day==2 }">星期二</c:if>
+									<c:if test="${result.day==3 }">星期三</c:if>
+									<c:if test="${result.day==4 }">星期四</c:if>
+									<c:if test="${result.day==5 }">星期五</c:if>
+									<c:if test="${result.day==6 }">星期六</c:if>
+									<c:if test="${result.day==7 }">星期日</c:if>
+									<br />${result.time }节
+								</td>
+								<td>${result.place }</td>
+								<td>
+									<c:if test="${result.coursesid==0 }">
+										选修课
+									</c:if>
+									<c:if test="${result.electiveid==0 }">
+										专业课
+									</c:if>
+								</td>
+								<td>${result.classesid }</td>
+								<td>
+									<input id="permitted" type="radio" name="permit" value="1" />
+									<label for="permitted">已批准&nbsp;&nbsp;&nbsp;</label>
+									<input id="notPermit" type="radio" name="permit" value="-1" />
+									<label for="notPermit">不批准&nbsp;&nbsp;&nbsp;</label>
+								</td>
 								<td>
 									<button class="btn btn-info" type="submit">提交</button>
 								</td>
-							</tr>						
-							</c:forEach>
+							</tr>
 						</form>
+						</c:forEach>
 					</table>
 				</div>
 			</div>
