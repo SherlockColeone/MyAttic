@@ -28,49 +28,39 @@
 				<div class="col-md-offset-5">
 					<h4>教师调课管理</h4>
 				</div>
-				<div id="buttonGroup" class="col-md-12 col-md-offset-1">
-					<form id="searchCurriculumarrange" action="#" method="post">
-						<div id="curriculum" class="col-md-4">
-							操作：
-							<input id="insert" class="operate" type="radio" name="operate" value="1" />
-							<label for="insert">添加&nbsp;&nbsp;&nbsp;</label>
-							<input id="delete" class="operate" type="radio" name="operate" value="2" />
-							<label for="delete">删除&nbsp;&nbsp;&nbsp;</label>
-							<input id="modify" class="operate" type="radio" name="operate" value="3" />
-							<label for="modify">修改&nbsp;&nbsp;&nbsp;</label>
-						</div>
-						<div id="teacher" class="col-md-4">
-							教师工号：<input id="teacherid" type="text" name="teacherid" />
-						</div>
-						<div class="col-md-3">
-							<button id="search" type="submit" class="btn btn-default">
-								<span class="glyphicon glyphicon-zoom-in"></span>查询该教师的调课安排
-							</button>
-						</div>					
-					</form>
-				</div>
-				<div class="col-md-6">查询的教师工号：${teacherid }</div>
+				<div class="col-md-12">本学期所有未处理的调课申请：</div>
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
+							<td>课程编号</td>
 							<td>课程名称</td>
+							<td>教师工号</td>
 							<td>课程周次</td>
 							<td>调课后时间</td>
 							<td>调课后地点</td>
-							<td>课程老师</td>
-							<td>上课班级</td>
-						</tr>
-						
-						<tr>
-							<td>数据库原理</td>
-							<td>第8周</td>
-							<td id="arrangeDate">
-								星期二<br />01-02节
-							</td>
-							<td>1-502</td>
-							<td></td>
-							<td></td>
-						</tr>
+							<td>课程性质</td>
+							<td>上课班级编号</td>
+							<td>是否批准</td>
+						</tr>						
+						<form id="curriculumarrangePermit" action="#" method="post">
+							<c:forEach items="${list }" var="result">
+							<tr>
+								<td>434</td>
+								<td>数据库原理</td>
+								<td>2006100</td>
+								<td>第8周</td>
+								<td>
+									星期二<br />01-02节
+								</td>
+								<td>1-502</td>
+								<td>专业课</td>
+								<td>1201</td>
+								<td>
+									<button class="btn btn-info" type="submit">提交</button>
+								</td>
+							</tr>						
+							</c:forEach>
+						</form>
 					</table>
 				</div>
 			</div>
