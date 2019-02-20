@@ -24,8 +24,8 @@ $(function() {
 		}
 	});
 
-	$(".curriculumarrangePermit").submit(function() {
-		if($(".operate[type=radio]:checked").size() < 1) { //若没有选择是否批准
+	$(".permit").click(function() {
+		if($(this).parents("td").prev("td").children(".operate[type=radio]:checked").size() < 1) { //若没有选择是否批准
 			alert("请选择批准或不批准！");
 			return false;
 		} else if(confirm("确定提交该调课申请的处理？")) {

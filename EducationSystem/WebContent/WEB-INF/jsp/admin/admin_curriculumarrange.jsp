@@ -77,13 +77,11 @@
 								</td>
 								<td>${result.classesid }</td>
 								<td>
-									<input id="permitted" type="radio" name="permit" value="1" />
-									<label for="permitted">已批准&nbsp;&nbsp;&nbsp;</label>
-									<input id="notPermit" type="radio" name="permit" value="-1" />
-									<label for="notPermit">不批准&nbsp;&nbsp;&nbsp;</label>
+									<input class="operate" name="permit" type="radio" value="1" />已批准&nbsp;&nbsp;&nbsp;
+									<input class="operate" name="permit" type="radio" value="-1" />不批准&nbsp;&nbsp;&nbsp;
 								</td>
 								<td>
-									<button class="btn btn-info" type="submit">提交</button>
+									<button class="btn btn-info permit" type="submit">提交</button>
 								</td>
 							</tr>
 						</form>
