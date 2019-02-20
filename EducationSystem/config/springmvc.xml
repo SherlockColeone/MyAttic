@@ -42,6 +42,9 @@
 			<value>5242880</value>
 		</property>
 	</bean>
+	
+	<!-- 配置异常全局异常处理 -->
+	<bean class="com.cn.exception.GlobalException"></bean>
 
 	<!-- 放行 被SpringMVC 拦截的资源 -->
 	<mvc:resources location="WEB-INF/js/" mapping="/js/**"></mvc:resources>	
