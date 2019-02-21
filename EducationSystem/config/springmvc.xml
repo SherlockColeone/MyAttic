@@ -46,7 +46,7 @@
 	<!-- 配置异常全局异常处理 -->
 	<bean class="com.cn.exception.GlobalException"></bean>
 
-	<!-- 放行 被SpringMVC 拦截的资源 -->
+	<!-- 放行被SpringMVC拦截的资源 -->
 	<mvc:resources location="WEB-INF/js/" mapping="/js/**"></mvc:resources>	
 	<mvc:resources location="WEB-INF/css/" mapping="/css/**"></mvc:resources>	
 	<mvc:resources location="WEB-INF/images/" mapping="/images/**"></mvc:resources>
