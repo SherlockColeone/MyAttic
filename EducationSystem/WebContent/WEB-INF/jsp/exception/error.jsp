@@ -30,7 +30,7 @@
 				<c:if test="${not empty student }">
 					<input id="identity" value="3" hidden="hidden" readonly="readonly" />
 				</c:if>
-				<div id="content" class="col-md-8 col-md-offset-2">
+				<div id="content" class="col-md-8 col-md-offset-2" style="background-image: url(images/error.jpg);background-repeat: no-repeat;">
 					<div id="hint" class="col-md-10 col-md-offset-5">
 						<h3>抱歉，页面出现了错误……</h3>
 					</div>					

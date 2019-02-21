@@ -14,9 +14,6 @@ public class GlobalException implements HandlerExceptionResolver {
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
 		ModelAndView mv = new ModelAndView();
-		String error = "页面出现了异常……";
-		//显示错误信息
-		mv.addObject("error",error);
 		//跳转到异常提示页面
 		mv.setViewName("exception/error");
 		return mv;
