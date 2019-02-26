@@ -31,7 +31,7 @@
 				</a>
 				<a href="${pageContext.servletContext.contextPath}/teacherCourses" id="courses" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/courses.png" />
-					<div>课程安排</div>	
+					<div>教学安排</div>	
 				</a>	
 				<a href="${pageContext.servletContext.contextPath}/teacherExam" id="exam" class="col-md-2 btn" style="padding-top: 30px;">
 					<img src="images/exam.png" />
